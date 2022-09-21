@@ -1,0 +1,11 @@
+{
+    "id": "cloud.corral.community",
+    "description": "Corral Community Storage System",
+    "systemType": "LINUX",
+    "host": "cloud.corral.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/",
+    "port": 2222,
+    "canExec": false
+}

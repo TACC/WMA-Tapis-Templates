@@ -1,0 +1,53 @@
+{
+    "id": "stampede2.community",
+    "description": "System for running jobs on the Stampede2 cluster",
+    "systemType": "LINUX",
+    "host": "stampede2.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "canExec": true,
+    "canRunBatch": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY"
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($SCRATCH)/tapis/${JobUUID}",
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "normal",
+            "hpcQueueName": "normal",
+            "maxJobs": -1,
+            "maxJobsPerUser": 50,
+            "minNodeCount": 1,
+            "maxNodeCount": 256,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 68,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 16384,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "developement",
+            "hpcQueueName": "developement",
+            "maxJobs": -1,
+            "maxJobsPerUser": 1,
+            "minNodeCount": 1,
+            "maxNodeCount": 16,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 68,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 16384,
+            "minMinutes": 1,
+            "maxMinutes": 120
+        }
+    ],
+    "batchDefaultLogicalQueue": "normal",
+    "batchSchedulerProfile": "tacc"
+}

@@ -1,0 +1,82 @@
+{
+    "id": "hello-world",
+    "version": "0.0.1",
+    "description": "Prints a configurable Hello World greeting to a target file.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": "3.7.2",
+    "runtimeOptions": ["SINGULARITY_RUN"],
+    "containerImage": "library://rstijerina/taccapps/hello-world:latest",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Hello world from ${JobOwner}",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "execSystemLogicalQueue": "developement",
+        "archiveSystemId": "cloud.corral.community",
+        "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Greeting",
+                    "description": "Choose a greeting to give to your target",
+                    "inputMode": "REQUIRED",
+                    "arg": "hello"
+
+                },
+                {
+                    "name": "Target",
+                    "description": "Whom to address your greeting",
+                    "inputMode": "REQUIRED",
+                    "arg": "world"
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "tacc Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "include": true,
+                    "arg": "--tapis-profile tacc"
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "fileToModify",
+                "description": "The full greeting will be appended to the target .txt file",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": "true",
+                "sourceUrl": "",
+                "targetPath": "out.txt"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 10,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [],
+    "notes": {}
+}

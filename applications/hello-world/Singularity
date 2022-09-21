@@ -1,0 +1,9 @@
+Bootstrap: docker
+
+From: debian:bullseye-slim
+
+%files
+run.sh
+
+%runscript
+run.sh
