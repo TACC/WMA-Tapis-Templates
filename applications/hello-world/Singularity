@@ -1,9 +1,11 @@
 Bootstrap: docker
 
-From: debian:bullseye-slim
+From: taccaci/hello-world:latest
 
-%files
-run.sh
+IncludeCmd: yes
 
-%runscript
-run.sh
+%labels
+    Version v0.0.1
+
+%help
+    This is a demo container used to illustrate tapis apps.

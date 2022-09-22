@@ -1,0 +1,20 @@
+{
+    "name": "hello-world-test",
+    "appId": "hello-world",
+    "appVersion": "0.0.1",
+    "description": "test hello-world job 1",
+    "subscriptions": [
+        {
+            "description": "Email notification",
+            "enabled": true,
+            "eventCategoryFilter": "JOB_NEW_STATUS",
+            "ttlMinutes": 1,
+            "deliveryTargets": [
+                {
+                    "deliveryMethod": "EMAIL",
+                    "deliveryAddress": "stijerina@tacc.utexas.edu"
+                }
+            ]
+        }
+    ]
+}
