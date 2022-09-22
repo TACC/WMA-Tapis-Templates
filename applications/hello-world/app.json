@@ -33,8 +33,10 @@
                     "name": "Greeting",
                     "description": "Choose a greeting to give to your target",
                     "inputMode": "REQUIRED",
-                    "arg": "hello"
-
+                    "arg": "hello",
+                    "meta": {
+                        "label": "Greeting!"
+                    }
                 },
                 {
                     "name": "Target",
@@ -66,7 +68,7 @@
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": "true",
                 "sourceUrl": "",
-                "targetPath": "out.txt"
+                "targetPath": "*"
             }
         ],
         "fileInputArrays": [],
