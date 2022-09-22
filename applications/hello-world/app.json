@@ -33,10 +33,7 @@
                     "name": "Greeting",
                     "description": "Choose a greeting to give to your target",
                     "inputMode": "REQUIRED",
-                    "arg": "hello",
-                    "meta": {
-                        "label": "Greeting!"
-                    }
+                    "arg": "hello"
                 },
                 {
                     "name": "Target",
@@ -50,7 +47,7 @@
                 {
                     "name": "tacc Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
-                    "include": true,
+                    "inputMode": "FIXED",
                     "arg": "--tapis-profile tacc"
                 }
             ],
@@ -66,8 +63,8 @@
                 "name": "fileToModify",
                 "description": "The full greeting will be appended to the target .txt file",
                 "inputMode": "OPTIONAL",
-                "autoMountLocal": "true",
-                "sourceUrl": "",
+                "autoMountLocal": true,
+                "sourceUrl": null,
                 "targetPath": "*"
             }
         ],
