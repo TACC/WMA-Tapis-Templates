@@ -34,8 +34,8 @@
             "maxMinutes": 2880
         },
         {
-            "name": "developement",
-            "hpcQueueName": "developement",
+            "name": "development",
+            "hpcQueueName": "development",
             "maxJobs": -1,
             "maxJobsPerUser": 1,
             "minNodeCount": 1,
