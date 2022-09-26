@@ -60,12 +60,12 @@
         },
         "fileInputs": [
             {
-                "name": "fileToModify",
+                "name": "File to modify",
                 "description": "The full greeting will be appended to the target .txt file",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "*"
+                "targetPath": "in.txt"
             }
         ],
         "fileInputArrays": [],

@@ -5,17 +5,25 @@
     "description": "test hello-world job 1",
     "fileInputs": [
         {
-            "name": "fileToModify",
-            "description": "The full greeting will be appended to the target .txt file",
-            "autoMountLocal": true,
+            "name": "File to modify",
             "sourceUrl": "tapis://cloud.corral.community/work/05089/sal/test/in.txt",
-            "targetPath": "*"
+            "targetPath": "in.txt"
         }
     ],
+    "parameterSet": {
+        "schedulerOptions": [
+            {
+                "name": "TACC Allocation",
+                "description": "The TACC Allocation associated with this job execution",
+                "include": true,
+                "arg": "-A TACC-ACI"
+            }
+        ]
+    },
     "subscriptions": [
         {
             "description": "Email notification",
-            "enabled": true,
+            "enabled": false,
             "eventCategoryFilter": "JOB_NEW_STATUS",
             "ttlMinutes": 1,
             "deliveryTargets": [

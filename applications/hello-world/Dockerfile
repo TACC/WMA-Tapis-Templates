@@ -4,6 +4,6 @@ COPY run.sh /bin/run.sh
 
 RUN chmod +x /bin/run.sh
 
-WORKDIR /TapisExec
+ENTRYPOINT [ "run.sh" ]
 
-CMD [ "/bin/bash", "run.sh" ]
+CMD ["hola", "mundo"]
