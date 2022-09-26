@@ -3,6 +3,15 @@
     "appId": "hello-world",
     "appVersion": "0.0.1",
     "description": "test hello-world job 1",
+    "fileInputs": [
+        {
+            "name": "fileToModify",
+            "description": "The full greeting will be appended to the target .txt file",
+            "autoMountLocal": true,
+            "sourceUrl": "tapis://cloud.corral.community/work/05089/sal/test/in.txt",
+            "targetPath": "*"
+        }
+    ],
     "subscriptions": [
         {
             "description": "Email notification",
