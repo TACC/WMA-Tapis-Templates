@@ -1,0 +1,60 @@
+{
+    "name": "SleepSeconds-app-0.0.1",
+    "description": "Sample app for testing",
+    "appId": "SleepSeconds-app",
+    "appVersion": "0.0.1",
+    "archiveOnAppError": true,
+    "nodeCount": 1,
+    "coresPerNode": 1,
+    "jobType": "FORK",
+    "memoryMB": 100,
+    "maxMinutes": 240,
+    "isMpi": false,
+    "fileInputs": [
+        {
+            "name": "empty",
+            "sourceUrl": "tapis://demo.tapisv3.exec.system/jobs/input/empty.txt",
+            "targetPath": "empty.txt",
+            "description": "An empty file",
+            "autoMountLocal": true
+        },
+        {
+            "name": "file1",
+            "sourceUrl": "tapis://demo.tapisv3.exec.system/jobs/input/file1.txt",
+            "targetPath": "file1.txt",
+            "description": "A random text file",
+            "autoMountLocal": true
+        },
+        {
+            "name": "file2",
+            "sourceUrl": "tapis://demo.tapisv3.exec.system/jobs/input/file2.txt",
+            "targetPath": "file2.txt",
+            "description": "Another random text file",
+            "autoMountLocal": true
+        }
+    ],
+    "fileInputArrays": [],
+    "parameterSet": {
+        "appArgs": [],
+        "containerArgs": [],
+        "schedulerOptions": [
+            {
+                "name": "tacc Scheduler Profile",
+                "description": "Scheduler profile for HPC clusters at TACC",
+                "include": true,
+                "arg": "--tapis-profile tacc"
+            }
+        ],
+        "archiveFilter": {
+            "includes": [],
+            "excludes": [],
+            "includeLaunchFiles": true
+        },
+        "envVariables": [
+            {
+                "key": "MAIN_CLASS",
+                "value": "edu.utexas.tacc.testapps.tapis.SleepSeconds"
+            }
+        ]
+    }
+}

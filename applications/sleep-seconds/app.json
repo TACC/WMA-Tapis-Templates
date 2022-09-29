@@ -1,0 +1,63 @@
+{
+    "id": "SyRunSleepSeconds",
+    "version": "0.0.1",
+    "description": "Sample app for testing singularity run",
+    "containerImage": "library://richcar/default/sleep-seconds-sy:1.0",
+    "appType": "FORK",
+    "runtime": "SINGULARITY",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "owner": "testuser2",
+    "maxJobs": 30,
+    "maxJobsPerUser": 30,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Transfer files and sleep for a specified amount of time",
+        "execSystemId": "tapisv3-exec2",
+        "archiveOnAppError": true,
+        "parameterSet": {
+            "envVariables": [
+                {
+                    "key": "MAIN_CLASS",
+                    "value": "edu.utexas.tacc.testapps.tapis.SleepSecondsSy"
+                }
+            ]
+        },
+        "fileInputs": [
+            {
+                "sourceUrl": "tapis://tapisv3-exec/jobs/input/empty.txt",
+                "targetPath": "empty.txt",
+                "meta": {
+                    "name": "empty",
+                    "description": "An empty file",
+                    "required": true
+                }
+            },
+            {
+                "sourceUrl": "tapis://tapisv3-exec/jobs/input/file1.txt",
+                "targetPath": "file1.txt",
+                "meta": {
+                    "name": "file1",
+                    "description": "A random text file",
+                    "required": true
+                }
+            },
+            {
+                "sourceUrl": "tapis://tapisv3-exec/jobs/input/file2.txt",
+                "targetPath": "file2.txt",
+                "meta": {
+                    "name": "file2",
+                    "description": "Another random text file",
+                    "required": true
+                }
+            }
+        ],
+        "maxMinutes": 240,
+        "tags": [
+            "test",
+            "sleep",
+            "singularity"
+        ]
+    }
+}
