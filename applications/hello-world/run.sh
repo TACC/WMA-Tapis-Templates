@@ -1,5 +1,5 @@
 #!/bin/bash
-echo Your container args are: "$@"
+echo "Your command line args (appArgs) are: $@"
 
 Greeting=$1
 Target=$2
@@ -17,3 +17,8 @@ then
 else
     echo $FULL_GREETING > $_tapisExecSystemOutputDir/out.txt
 fi
+
+# set up license file
+cat << EOT >> $_tapisExecSystemOutputDir/.app_license
+${_license}
+EOT
