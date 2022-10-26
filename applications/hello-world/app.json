@@ -6,7 +6,9 @@
     "enabled": true,
     "runtime": "SINGULARITY",
     "runtimeVersion": "3.7.2",
-    "runtimeOptions": ["SINGULARITY_RUN"],
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
     "containerImage": "library://rstijerina/taccapps/hello-world:latest",
     "jobType": "BATCH",
     "maxJobs": -1,

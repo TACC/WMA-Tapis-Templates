@@ -11,6 +11,16 @@
         }
     ],
     "parameterSet": {
+        "appArgs": [
+            {
+                "name": "Greeting",
+                "arg": "greetings"
+            },
+            {
+                "name": "Target",
+                "arg": "earthling"
+            }
+        ],
         "schedulerOptions": [
             {
                 "name": "TACC Allocation",
@@ -20,6 +30,9 @@
             }
         ]
     },
+    "tags": [
+        "test"
+    ],
     "subscriptions": [
         {
             "description": "Email notification",
