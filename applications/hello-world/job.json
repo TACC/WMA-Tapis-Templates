@@ -41,8 +41,8 @@
             "ttlMinutes": 1,
             "deliveryTargets": [
                 {
-                    "deliveryMethod": "EMAIL",
-                    "deliveryAddress": "stijerina@tacc.utexas.edu"
+                    "deliveryMethod": "WEBHOOK",
+                    "deliveryAddress": "$WH_BASE_URL/webhooks/jobs/"
                 }
             ]
         }
