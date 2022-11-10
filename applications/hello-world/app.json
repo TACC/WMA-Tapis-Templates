@@ -1,7 +1,7 @@
 {
     "id": "hello-world",
     "version": "0.0.1",
-    "description": "Prints a configurable Hello World greeting to a target file.",
+    "description": "Sleeps for 3m. Then prints a configurable Hello World greeting to a target file.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -35,7 +35,21 @@
                     "name": "Greeting",
                     "description": "Choose a greeting to give to your target",
                     "inputMode": "REQUIRED",
-                    "arg": "hello"
+                    "arg": "hello",
+                    "notes": {
+                        "visible": true,
+                        "enum_values": [
+                            {
+                                "hello": "Hello"
+                            },
+                            {
+                                "hola": "Hola"
+                            },
+                            {
+                                "wassup": "Wassup"
+                            }
+                        ]
+                    }
                 },
                 {
                     "name": "Target",
@@ -80,7 +94,6 @@
     },
     "tags": [],
     "notes": {
-        "licenseType": "MATLAB",
-        "label": "Hello World"
+        "label": "Hello World (Sleep 3m)"
     }
 }
