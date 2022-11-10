@@ -1,6 +1,9 @@
 #!/bin/bash
 echo "Your command line args (appArgs) are: $@"
 
+echo "Sleeping for 3m"
+sleep 180
+
 Greeting=$1
 Target=$2
 
@@ -17,8 +20,3 @@ then
 else
     echo $FULL_GREETING > $_tapisExecSystemOutputDir/out.txt
 fi
-
-# set up license file
-cat << EOT >> $_tapisExecSystemOutputDir/.app_license
-${_license}
-EOT
