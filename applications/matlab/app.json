@@ -1,0 +1,64 @@
+{
+    "id": "matlab",
+    "version": "9.13.0",
+    "description": "Launch an interactive Matlab session on a TACC HPC node",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": "3.7.2",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "library://rstijerina/taccapps/hello-world-license:latest",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Matlab (still hello world test)",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.corral.community",
+        "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "tacc Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc"
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 10,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [],
+    "notes": {
+        "licenseType": "MATLAB",
+        "label": "Matlab R2022b"
+    }
+}
