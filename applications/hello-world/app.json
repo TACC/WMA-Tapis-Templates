@@ -37,7 +37,6 @@
                     "inputMode": "REQUIRED",
                     "arg": "hello",
                     "notes": {
-                        "visible": true,
                         "enum_values": [
                             {
                                 "hello": "Hello"
@@ -56,6 +55,33 @@
                     "description": "Whom to address your greeting",
                     "inputMode": "REQUIRED",
                     "arg": "world"
+                },
+                {
+                    "name": "Unrequired Bool Variable",
+                    "description": "This variable is not required and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "bool"
+                    }
+                },
+                {
+                    "name": "Unrequired Number Variable",
+                    "description": "This variable is not required and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "number"
+                    }
+                },
+                {
+                    "name": "Hidden Variable",
+                    "description": "This should not appear",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": "test",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "containerArgs": [],
@@ -80,7 +106,7 @@
                 "description": "The full greeting will be appended to the target .txt file",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
-                "sourceUrl": null,
+                "sourceUrl": "tapis://cloud.corral.community/work/05089/sal/test/in.txt",
                 "targetPath": "in.txt"
             }
         ],
@@ -94,6 +120,8 @@
     },
     "tags": [],
     "notes": {
-        "label": "Hello World (Sleep 3m)"
+        "label": "Hello World (Sleep 3m)",
+        "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
+        "hideNodeCountAndCoresPerNode": true
     }
 }
