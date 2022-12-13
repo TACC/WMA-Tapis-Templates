@@ -23,7 +23,7 @@
         "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
         "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
         "execSystemLogicalQueue": "development",
-        "archiveSystemId": "cloud.corral.community",
+        "archiveSystemId": "cloud.data.community",
         "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
