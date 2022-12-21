@@ -1,5 +1,5 @@
 {
-    "id": "matlab-sal",
+    "id": "matlab",
     "version": "9.13.0",
     "description": "Test application with all WMA fields",
     "owner": "${apiUserId}",
