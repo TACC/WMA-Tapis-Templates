@@ -64,33 +64,6 @@
                     "notes": {
                         "fieldType": "number"
                     }
-                },
-                {
-                    "name": "Unrequired Bool Variable",
-                    "description": "This variable is not required and does nothing",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "arg": null,
-                    "notes": {
-                        "fieldType": "bool"
-                    }
-                },
-                {
-                    "name": "Unrequired Number Variable",
-                    "description": "This variable is not required and does nothing",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "arg": null,
-                    "notes": {
-                        "fieldType": "number"
-                    }
-                },
-                {
-                    "name": "Hidden Variable",
-                    "description": "This should not appear",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "arg": "test",
-                    "notes": {
-                        "isHidden": true
-                    }
                 }
             ],
             "containerArgs": [],
