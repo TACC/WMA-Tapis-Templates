@@ -24,7 +24,7 @@
         "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data.community",
-        "archiveSystemDir": "HOST_EVAL($HOME)/archive/${JobUUID}",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -88,6 +88,7 @@
                 "description": "The full greeting will be appended to the target .txt file",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
+                "sourceUrl": null,
                 "targetPath": "in.txt"
             }
         ],

@@ -32,19 +32,5 @@
     },
     "tags": [
         "test"
-    ],
-    "subscriptions": [
-        {
-            "description": "Email notification",
-            "enabled": false,
-            "eventCategoryFilter": "JOB_NEW_STATUS",
-            "ttlMinutes": 1,
-            "deliveryTargets": [
-                {
-                    "deliveryMethod": "WEBHOOK",
-                    "deliveryAddress": "$WH_BASE_URL/webhooks/jobs/"
-                }
-            ]
-        }
     ]
 }
