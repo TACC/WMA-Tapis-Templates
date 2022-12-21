@@ -57,6 +57,15 @@
                     "arg": "world"
                 },
                 {
+                    "name": "Sleep Time",
+                    "description": "How long to sleep before app execution",
+                    "inputMode": "REQUIRED",
+                    "arg": "30",
+                    "notes": {
+                        "fieldType": "number"
+                    }
+                },
+                {
                     "name": "Unrequired Bool Variable",
                     "description": "This variable is not required and does nothing",
                     "inputMode": "INCLUDE_ON_DEMAND",
@@ -106,7 +115,6 @@
                 "description": "The full greeting will be appended to the target .txt file",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
-                "sourceUrl": "tapis://cloud.corral.community/work/05089/sal/test/in.txt",
                 "targetPath": "in.txt"
             }
         ],

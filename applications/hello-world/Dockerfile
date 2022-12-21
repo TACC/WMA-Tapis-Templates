@@ -6,4 +6,4 @@ RUN chmod +x /bin/run.sh
 
 ENTRYPOINT [ "run.sh" ]
 
-CMD ["hola", "mundo"]
+CMD ["hola", "mundo", "30"]
