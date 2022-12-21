@@ -1,7 +1,7 @@
 {
-    "id": "matlab",
+    "id": "matlab-sal",
     "version": "9.13.0",
-    "description": "Launch an interactive Matlab session on a TACC HPC node",
+    "description": "Test application with all WMA fields",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -23,14 +23,85 @@
         "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
         "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
         "execSystemLogicalQueue": "development",
-        "archiveSystemId": "cloud.corral.community",
+        "archiveSystemId": "cloud.data.community",
         "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
         "cmdPrefix": null,
         "parameterSet": {
-            "appArgs": [],
+            "appArgs": [
+                {
+                    "name": "Greeting",
+                    "description": "Choose a greeting to give to your target",
+                    "inputMode": "REQUIRED",
+                    "arg": "hello",
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "hello": "Hello"
+                            },
+                            {
+                                "hola": "Hola"
+                            },
+                            {
+                                "wassup": "Wassup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Target",
+                    "description": "Whom to address your greeting",
+                    "inputMode": "REQUIRED",
+                    "arg": "world"
+                },
+                {
+                    "name": "Unrequired Bool Variable",
+                    "description": "This variable is NOT required and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "bool"
+                    }
+                },
+                {
+                    "name": "Required Bool Variable",
+                    "description": "This variable is required and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "bool"
+                    }
+                },
+                {
+                    "name": "Unrequired Number Variable",
+                    "description": "This variable is NOT required and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "number"
+                    }
+                },
+                {
+                    "name": "Required Number Variable",
+                    "description": "This variable is required and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "number"
+                    }
+                },
+                {
+                    "name": "Hidden Variable",
+                    "description": "This should not appear",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": "test",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
             "containerArgs": [],
             "schedulerOptions": [
                 {
@@ -47,7 +118,22 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Test Optional input",
+                "description": "This is an unrequired input",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "targetPath": "in.txt"
+            },
+            {
+                "name": "Test Required input",
+                "description": "This is a required input",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "targetPath": "other.txt"
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
@@ -59,6 +145,8 @@
     "tags": [],
     "notes": {
         "licenseType": "MATLAB",
-        "label": "Matlab R2022b"
+        "label": "Test App Sharing (From Sal)",
+        "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
+        "hideNodeCountAndCoresPerNode": false
     }
 }
