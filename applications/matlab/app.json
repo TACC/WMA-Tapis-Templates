@@ -68,7 +68,7 @@
                 {
                     "name": "Required Bool Variable",
                     "description": "This variable is required and does nothing",
-                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "inputMode": "REQUIRED",
                     "arg": null,
                     "notes": {
                         "fieldType": "bool"
@@ -86,7 +86,7 @@
                 {
                     "name": "Required Number Variable",
                     "description": "This variable is required and does nothing",
-                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "inputMode": "REQUIRED",
                     "arg": null,
                     "notes": {
                         "fieldType": "number"
