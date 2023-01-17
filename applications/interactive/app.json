@@ -1,0 +1,116 @@
+{
+    "id": "matlab",
+    "version": "9.13.0",
+    "description": "Run an interactive MATLAB 2022b session on Frontera. Submit a help ticket to get your license configured or approved.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": "3.7.2",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "library://rstijerina/taccapps/hello-world-license:latest",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Run an interactive MATLAB 2022b session on Frontera. Submit a help ticket to get your license configured or approved.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data.community",
+        "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Desktop Resolution",
+                    "description": "Set the desktop screen size for your visualization session.",
+                    "inputMode": "REQUIRED",
+                    "arg": "1280x800",
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "800x600": "800x600"
+                            },
+                            {
+                                "1280x800": "1280x800"
+                            },
+                            {
+                                "1920x1080": "1920x1080"
+                            },
+                            {
+                                "1920x1200": "1920x1200"
+                            },
+                            {
+                                "1600x1200": "1600x1200"
+                            },
+                            {
+                                "2560x1600": "2560x1600"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "tacc Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc"
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "swr -t 8 matlab",
+                    "description": "XTERM Program CMD"
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Test Optional input",
+                "description": "This is an unrequired input",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "targetPath": "in.txt"
+            },
+            {
+                "name": "Test Required input",
+                "description": "This is a required input",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "targetPath": "other.txt"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 10,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [],
+    "notes": {
+        "licenseType": "MATLAB",
+        "label": "Test App Sharing (From Sal)",
+        "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
+        "hideNodeCountAndCoresPerNode": false
+    }
+}
