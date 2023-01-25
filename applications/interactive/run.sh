@@ -3,6 +3,12 @@ set -x
 
 echo "TACC: job $SLURM_JOB_ID execution at: `date`"
 
+_XTERM_CMD="swr -t 8 matlab"
+_webhook_base_url="https://cep.tacc.utexas.edu/webhooks/"
+JobUUID=$SLURM_JOB_ID
+JobOwner=$USER
+desktop_resolution="1024x768"
+
 ########################################################
 ##########     INTERACTIVE WRAPPER CONFIG     ##########
 ########################################################
@@ -40,16 +46,24 @@ else
 fi
 
 # confirm DCV server is alive
-SERVER_TYPE="DCV"
 DCV_SERVER_UP=`systemctl is-active dcvserver`
-if [ $DCV_SERVER_UP != "active" ]; then
+if [ $DCV_SERVER_UP == "active" ]; then
+  SERVER_TYPE="DCV"
+else
   echo "TACC:"
   echo "TACC: ERROR - could not confirm dcvserver active, systemctl returned '$DCV_SERVER_UP'"
+  SERVER_TYPE="VNC"
+fi
+
+# if X0 socket exists, then DCV will use a higher X display number and ruin our day
+# therefore, cowardly bail out and appeal to an admin to fix the problem
+if [ -f /tmp/.X11-unix/X0 ]; then
+  echo "TACC:"
+  echo "TACC: ERROR - X0 socket already exists. DCV script will fail."
   echo "TACC: ERROR - Please submit a consulting ticket at the TACC user portal"
   echo "TACC: ERROR - https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
   echo "TACC:"
-  echo "TACC: job $SLURM_JOB_ID execution finished at: `date`"
-  exit 1
+  SERVER_TYPE="VNC"
 fi
 
 # create an X startup file in /tmp
@@ -63,6 +77,7 @@ unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 . /etc/X11/xinit/xinitrc-common
 EOF
+
 if [ -x $HOME/.vnc/xstartup ]; then
   cat $HOME/.vnc/xstartup >> $XSTARTUP
 else
@@ -70,39 +85,36 @@ else
 fi
 chmod a+rx $XSTARTUP
 
-# if X0 socket exists, then DCV will use a higher X display number and ruin our day
-# therefore, cowardly bail out and appeal to an admin to fix the problem
-if [ -f /tmp/.X11-unix/X0 ]; then
-  echo "TACC:"
-  echo "TACC: ERROR - X0 socket already exists. DCV script will fail."
-  echo "TACC: ERROR - Please submit a consulting ticket at the TACC user portal"
-  echo "TACC: ERROR - https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
-  echo "TACC:"
-  echo "TACC: job $SLURM_JOB_ID execution finished at: `date`"
-  exit 1
+if [ "x${SERVER_TYPE}" == "xDCV" ]; then
+  # create DCV session for this job
+  DCV_HANDLE="${JobUUID}-session"
+  dcv create-session --owner ${JobOwner} --init=$XSTARTUP $DCV_HANDLE
+  if ! `dcv list-sessions | grep -q ${JobUUID}`; then
+    echo "TACC:"
+    echo "TACC: WARNING - could not find a DCV session for this job"
+    echo "TACC: WARNING - This could be because all DCV licenses are in use."
+    echo "TACC: WARNING - Failing over to VNC session."
+    echo "TACC: "
+    echo "TACC: If you rarely receive a DCV session using this script, "
+    echo "TACC: please submit a consulting ticket at the TACC user portal:"
+    echo "TACC: https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
+    echo "TACC: "
+
+    SERVER_TYPE="VNC"
+  else
+    LOCAL_PORT=8443  # default DCV port
+    DISPLAY=":0"
+  fi
 fi
 
-# create DCV session for this job
-DCV_HANDLE="${AGAVE_JOB_ID}-session"
-dcv create-session --owner ${AGAVE_JOB_OWNER} --init=$XSTARTUP $DCV_HANDLE
-if ! `dcv list-sessions | grep -q ${AGAVE_JOB_ID}`; then
-  echo "TACC:"
-  echo "TACC: WARNING - could not find a DCV session for this job"
-  echo "TACC: WARNING - This could be because all DCV licenses are in use."
-  echo "TACC: WARNING - Failing over to VNC session."
-  echo "TACC: "
-  echo "TACC: If you rarely receive a DCV session using this script, "
-  echo "TACC: please submit a consulting ticket at the TACC user portal:"
-  echo "TACC: https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
-  echo "TACC: "
+if [ "x${SERVER_TYPE}" == "xVNC" ]; then
 
-  SERVER_TYPE="VNC"
   VNCSERVER_BIN=`which vncserver`
   echo "TACC: using default VNC server $VNCSERVER_BIN"
 
-  AGAVE_PASS=`which vncpasswd`
-  echo -n ${AGAVE_JOB_ID} > agave_id
-  ${AGAVE_PASS} -f < agave_id > vncp.txt
+  TAPIS_PASS=`which vncpasswd`
+  echo -n ${JobUUID} > tapis_uuid
+  ${TAPIS_PASS} -f < tapis_uuid > vncp.txt
 
   # launch VNC session
   VNC_DISPLAY=`$VNCSERVER_BIN -geometry ${desktop_resolution} -rfbauth vncp.txt $@ 2>&1 | grep desktop | awk -F: '{print $3}'`
@@ -117,24 +129,12 @@ if ! `dcv list-sessions | grep -q ${AGAVE_JOB_ID}`; then
     echo "TACC: job $SLURM_JOB_ID execution finished at: `date`"
     exit 1
   fi
-fi
 
-if [ "x${SERVER_TYPE}" == "xDCV" ]; then
-  LOCAL_PORT=8443  # default DCV port
-  DISPLAY=":0"
-elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
   VNC_PORT=`expr 5900 + $VNC_DISPLAY`
   LOCAL_PORT=5902
   DISPLAY=":${VNC_DISPLAY}"
-else
-  echo "TACC: "
-  echo "TACC: ERROR - unknown server type '${SERVER_TYPE}'"
-  echo "TACC: Please submit a consulting ticket at the TACC user portal"
-  echo "TACC: https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
-  echo "TACC:"
-  echo "TACC: job $SLURM_JOB_ID execution finished at: `date`"
-  exit 1
 fi
+
 echo "TACC: local (compute node) ${SERVER_TYPE} port is $LOCAL_PORT"
 
 LOGIN_PORT=$(tap_get_port)
@@ -145,21 +145,22 @@ sleep 3;
 
 # create reverse tunnel port to login nodes.  Make one tunnel for each login so the user can just connect to $HPC_HOST
 for i in `seq 4`; do
-    ssh -q -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
+  ssh -q -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
 done
+
 echo "TACC: Created reverse ports on $HPC_HOST logins"
 echo "TACC:          https://$HPC_HOST:$LOGIN_PORT"
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
-  curl -k --data "event_type=WEB&address=https://$HPC_HOST:$LOGIN_PORT&owner=${AGAVE_JOB_OWNER}&job_uuid=${AGAVE_JOB_ID}" $INTERACTIVE_WEBHOOK_URL &
+  curl -k --data "event_type=WEB&address=https://$HPC_HOST:$LOGIN_PORT&owner=${JobOwner}&job_uuid=${JobUUID}" $INTERACTIVE_WEBHOOK_URL &
 elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
 
   TAP_CERTFILE=${HOME}/.tap/.${SLURM_JOB_ID}
   # bail if we cannot create a secure session
   if [ ! -f ${TAP_CERTFILE} ]; then
-      echo "TACC: ERROR - could not find TLS cert for secure session"
-      echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
-      exit 1
+    echo "TACC: ERROR - could not find TLS cert for secure session"
+    echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
+    exit 1
   fi
 
   # fire up websockify to turn the vnc session connection into a websocket connection
@@ -169,7 +170,7 @@ elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
   ${WEBSOCKIFY_CMD} ${WEBSOCKIFY_ARGS} # websockify will daemonize
 
   # notifications sent to INTERACTIVE_WEBHOOK_URL
-  curl -k --data "event_type=VNC&host=$HPC_HOST&port=$LOGIN_PORT&password=${AGAVE_JOB_ID}&owner=${AGAVE_JOB_OWNER}" $INTERACTIVE_WEBHOOK_URL &
+  curl -k --data "event_type=VNC&host=$HPC_HOST&port=$LOGIN_PORT&password=${JobUUID}&owner=${JobOwner}" $INTERACTIVE_WEBHOOK_URL &
 else
   # we should never get this message since we just checked this at LOCAL_PORT
   echo "TACC: "
@@ -179,10 +180,6 @@ else
   echo "TACC:"
   echo "TACC: job $SLURM_JOB_ID execution finished at: `date`"
   exit 1
-fi
-
-if [ -d "$workingDirectory" ]; then
-  cd ${workingDirectory}
 fi
 
 # run an xterm and launch $XTERM_CMD for the user; execution will hold here
