@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/hello-world-license:latest",
+    "containerImage": "library://rstijerina/taccapps/interactive-base:latest",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -19,12 +19,12 @@
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
         "execSystemId": "frontera",
-        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
-        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
-        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data.community",
-        "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -60,13 +60,20 @@
                     }
                 }
             ],
-            "containerArgs": [],
+            "containerArgs": [
+                {
+                    "name": "share mount",
+                    "description": "share mount",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/lib,/lib64,/opt,/run,/share,/usr,/var"
+                }
+            ],
             "schedulerOptions": [
                 {
-                    "name": "tacc Scheduler Profile",
-                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "name": "MATLAB TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC MATLAB R2022b",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc"
+                    "arg": "--tapis-profile matlab_2022b"
                 }
             ],
             "envVariables": [
@@ -82,22 +89,7 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [
-            {
-                "name": "Test Optional input",
-                "description": "This is an unrequired input",
-                "inputMode": "OPTIONAL",
-                "autoMountLocal": true,
-                "targetPath": "in.txt"
-            },
-            {
-                "name": "Test Required input",
-                "description": "This is a required input",
-                "inputMode": "REQUIRED",
-                "autoMountLocal": true,
-                "targetPath": "other.txt"
-            }
-        ],
+        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
@@ -109,8 +101,9 @@
     "tags": [],
     "notes": {
         "licenseType": "MATLAB",
-        "label": "Test App Sharing (From Sal)",
+        "label": "MATLAB R2022b Interactive (Frontera)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
-        "hideNodeCountAndCoresPerNode": false
+        "hideNodeCountAndCoresPerNode": true,
+        "isInteractive": true
     }
 }

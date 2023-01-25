@@ -3,15 +3,11 @@ set -x
 
 echo "TACC: job $SLURM_JOB_ID execution at: `date`"
 
-_XTERM_CMD="swr -t 8 matlab"
-_webhook_base_url="https://cep.tacc.utexas.edu/webhooks/"
-JobUUID=$SLURM_JOB_ID
-JobOwner=$USER
-desktop_resolution="1024x768"
-
 ########################################################
 ##########     INTERACTIVE WRAPPER CONFIG     ##########
 ########################################################
+
+desktop_resolution=$1
 
 # program and command line arguments run within xterm -e command
 XTERM_CMD="${_XTERM_CMD}"
@@ -87,9 +83,9 @@ chmod a+rx $XSTARTUP
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
   # create DCV session for this job
-  DCV_HANDLE="${JobUUID}-session"
-  dcv create-session --owner ${JobOwner} --init=$XSTARTUP $DCV_HANDLE
-  if ! `dcv list-sessions | grep -q ${JobUUID}`; then
+  DCV_HANDLE="${_tapisJobUUID}-session"
+  dcv create-session --owner ${_tapisJobOwner} --init=$XSTARTUP $DCV_HANDLE
+  if ! `dcv list-sessions | grep -q ${_tapisJobUUID}`; then
     echo "TACC:"
     echo "TACC: WARNING - could not find a DCV session for this job"
     echo "TACC: WARNING - This could be because all DCV licenses are in use."
@@ -113,11 +109,11 @@ if [ "x${SERVER_TYPE}" == "xVNC" ]; then
   echo "TACC: using default VNC server $VNCSERVER_BIN"
 
   TAPIS_PASS=`which vncpasswd`
-  echo -n ${JobUUID} > tapis_uuid
+  echo -n ${_tapisJobUUID} > tapis_uuid
   ${TAPIS_PASS} -f < tapis_uuid > vncp.txt
 
   # launch VNC session
-  VNC_DISPLAY=`$VNCSERVER_BIN -geometry ${desktop_resolution} -rfbauth vncp.txt $@ 2>&1 | grep desktop | awk -F: '{print $3}'`
+  VNC_DISPLAY=`$VNCSERVER_BIN -geometry ${desktop_resolution} -rfbauth vncp.txt 2>&1 | grep desktop | awk -F: '{print $3}'`
   echo "TACC: got VNC display :$VNC_DISPLAY"
 
   if [ x$VNC_DISPLAY == "x" ]; then
@@ -152,7 +148,7 @@ echo "TACC: Created reverse ports on $HPC_HOST logins"
 echo "TACC:          https://$HPC_HOST:$LOGIN_PORT"
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
-  curl -k --data "event_type=WEB&address=https://$HPC_HOST:$LOGIN_PORT&owner=${JobOwner}&job_uuid=${JobUUID}" $INTERACTIVE_WEBHOOK_URL &
+  curl -k --data "event_type=WEB&address=https://$HPC_HOST:$LOGIN_PORT&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" $INTERACTIVE_WEBHOOK_URL &
 elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
 
   TAP_CERTFILE=${HOME}/.tap/.${SLURM_JOB_ID}
@@ -170,7 +166,7 @@ elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
   ${WEBSOCKIFY_CMD} ${WEBSOCKIFY_ARGS} # websockify will daemonize
 
   # notifications sent to INTERACTIVE_WEBHOOK_URL
-  curl -k --data "event_type=VNC&host=$HPC_HOST&port=$LOGIN_PORT&password=${JobUUID}&owner=${JobOwner}" $INTERACTIVE_WEBHOOK_URL &
+  curl -k --data "event_type=VNC&host=$HPC_HOST&port=$LOGIN_PORT&password=${_tapisJobUUID}&owner=${_tapisJobOwner}" $INTERACTIVE_WEBHOOK_URL &
 else
   # we should never get this message since we just checked this at LOCAL_PORT
   echo "TACC: "
