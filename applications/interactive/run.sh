@@ -7,8 +7,6 @@ echo "TACC: job $SLURM_JOB_ID execution at: `date`"
 ##########     INTERACTIVE WRAPPER CONFIG     ##########
 ########################################################
 
-desktop_resolution=$1
-
 # program and command line arguments run within xterm -e command
 XTERM_CMD="${_XTERM_CMD}"
 
@@ -30,15 +28,15 @@ echo "TACC: running on node $NODE_HOSTNAME on $HPC_HOST"
 
 TAP_FUNCTIONS="/share/doc/slurm/tap_functions"
 if [ -f ${TAP_FUNCTIONS} ]; then
-    . ${TAP_FUNCTIONS}
+  . ${TAP_FUNCTIONS}
 else
-    echo "TACC:"
-    echo "TACC: ERROR - could not find TAP functions file: ${TAP_FUNCTIONS}"
-    echo "TACC: ERROR - Please submit a consulting ticket at the TACC user portal"
-    echo "TACC: ERROR - https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
-    echo "TACC:"
-    echo "TACC: job $SLURM_JOB_ID execution finished at: $(date)"
-    exit 1
+  echo "TACC:"
+  echo "TACC: ERROR - could not find TAP functions file: ${TAP_FUNCTIONS}"
+  echo "TACC: ERROR - Please submit a consulting ticket at the TACC user portal"
+  echo "TACC: ERROR - https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
+  echo "TACC:"
+  echo "TACC: job $SLURM_JOB_ID execution finished at: $(date)"
+  exit 1
 fi
 
 # confirm DCV server is alive
@@ -72,20 +70,27 @@ cat <<- EOF > $XSTARTUP
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 . /etc/X11/xinit/xinitrc-common
+exec startxfce4
 EOF
 
-if [ -x $HOME/.vnc/xstartup ]; then
-  cat $HOME/.vnc/xstartup >> $XSTARTUP
-else
-  echo "exec startxfce4" >> $XSTARTUP
-fi
+### NOTE: an ampersand after "exec startxfce4" can break DCV.
+### This ampersand was found in sal's $HOME/.vnc/xstartup for some reason, so disable for all just in case
+# if [ -x $HOME/.vnc/xstartup ]; then
+#   cat $HOME/.vnc/xstartup >> $XSTARTUP
+# else
+#   echo "exec startxfce4" >> $XSTARTUP
+# fi
 chmod a+rx $XSTARTUP
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
   # create DCV session for this job
   DCV_HANDLE="${_tapisJobUUID}-session"
   dcv create-session --owner ${_tapisJobOwner} --init=$XSTARTUP $DCV_HANDLE
-  if ! `dcv list-sessions | grep -q ${_tapisJobUUID}`; then
+
+  # Wait a few seconds for dcvserver to spin up
+  sleep 5;
+
+  if ! `dcv list-sessions 2>&1 | grep -q ${DCV_HANDLE}`; then
     echo "TACC:"
     echo "TACC: WARNING - could not find a DCV session for this job"
     echo "TACC: WARNING - This could be because all DCV licenses are in use."
@@ -113,7 +118,7 @@ if [ "x${SERVER_TYPE}" == "xVNC" ]; then
   ${TAPIS_PASS} -f < tapis_uuid > vncp.txt
 
   # launch VNC session
-  VNC_DISPLAY=`$VNCSERVER_BIN -geometry ${desktop_resolution} -rfbauth vncp.txt 2>&1 | grep desktop | awk -F: '{print $3}'`
+  VNC_DISPLAY=`$VNCSERVER_BIN -rfbauth vncp.txt $@ 2>&1 | grep desktop | awk -F: '{print $3}'`
   echo "TACC: got VNC display :$VNC_DISPLAY"
 
   if [ x$VNC_DISPLAY == "x" ]; then

@@ -1,9 +1,9 @@
 FROM debian:bullseye-slim
 
-COPY run.sh /singularity/run.sh
+COPY run.sh /tapis/run.sh
 
-RUN chmod +x /singularity/run.sh
+RUN chmod +x /tapis/run.sh
 
-ENTRYPOINT [ "/singularity/run.sh" ]
+ENTRYPOINT [ "/tapis/run.sh" ]
 
 CMD ["1280x800"]

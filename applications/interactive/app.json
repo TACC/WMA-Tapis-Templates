@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/interactive-base:latest",
+    "containerImage": "library://rstijerina/taccapps/interactive-dcvserver-tap_base:latest",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -65,7 +65,7 @@
                     "name": "share mount",
                     "description": "share mount",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin,/lib,/lib64,/opt,/run,/share,/usr,/var"
+                    "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var"
                 }
             ],
             "schedulerOptions": [
@@ -81,6 +81,11 @@
                     "key": "_XTERM_CMD",
                     "value": "swr -t 8 matlab",
                     "description": "XTERM Program CMD"
+                },
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH."
                 }
             ],
             "archiveFilter": {
