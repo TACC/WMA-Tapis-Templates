@@ -30,40 +30,11 @@
         "mpiCmd": null,
         "cmdPrefix": null,
         "parameterSet": {
-            "appArgs": [
-                {
-                    "name": "Desktop Resolution",
-                    "description": "Set the desktop screen size for your visualization session.",
-                    "inputMode": "REQUIRED",
-                    "arg": "1280x800",
-                    "notes": {
-                        "enum_values": [
-                            {
-                                "800x600": "800x600"
-                            },
-                            {
-                                "1280x800": "1280x800"
-                            },
-                            {
-                                "1920x1080": "1920x1080"
-                            },
-                            {
-                                "1920x1200": "1920x1200"
-                            },
-                            {
-                                "1600x1200": "1600x1200"
-                            },
-                            {
-                                "2560x1600": "2560x1600"
-                            }
-                        ]
-                    }
-                }
-            ],
+            "appArgs": [],
             "containerArgs": [
                 {
-                    "name": "share mount",
-                    "description": "share mount",
+                    "name": "Interactive Session and TACC Module Mounts",
+                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
                     "inputMode": "FIXED",
                     "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var"
                 }
@@ -71,7 +42,7 @@
             "schedulerOptions": [
                 {
                     "name": "MATLAB TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC MATLAB R2022b",
+                    "description": "Scheduler profile for TACC MATLAB R2022b.",
                     "inputMode": "FIXED",
                     "arg": "--tapis-profile matlab_2022b"
                 },
@@ -86,7 +57,7 @@
                 {
                     "key": "_XTERM_CMD",
                     "value": "swr -t 8 matlab",
-                    "description": "XTERM Program CMD"
+                    "description": "Command passed to XTERM, launched within the interactive session."
                 },
                 {
                     "key": "APPEND_PATH",
