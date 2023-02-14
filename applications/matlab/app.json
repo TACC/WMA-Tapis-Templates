@@ -1,7 +1,7 @@
 {
     "id": "matlab",
     "version": "9.13.0",
-    "description": "Test application with all WMA fields",
+    "description": "Run an interactive MATLAB 2022b session on Frontera. Submit a help ticket to get your license configured or approved.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -9,22 +9,22 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/hello-world-license:latest",
+    "containerImage": "library://rstijerina/taccapps/interactive-base:1.0.0",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Matlab (still hello world test)",
+        "description": "Run an interactive MATLAB 2022b session on Frontera. Submit a help ticket to get your license configured or approved.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
         "execSystemId": "frontera",
-        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
-        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
-        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data.community",
-        "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -32,108 +32,75 @@
         "parameterSet": {
             "appArgs": [
                 {
-                    "name": "Greeting",
-                    "description": "Choose a greeting to give to your target",
+                    "name": "Desktop Resolution",
+                    "description": "Set the desktop screen size for your visualization session.",
                     "inputMode": "REQUIRED",
-                    "arg": "hello",
+                    "arg": "1280x800",
                     "notes": {
                         "enum_values": [
                             {
-                                "hello": "Hello"
+                                "800x600": "800x600"
                             },
                             {
-                                "hola": "Hola"
+                                "1280x800": "1280x800"
                             },
                             {
-                                "wassup": "Wassup"
+                                "1920x1080": "1920x1080"
+                            },
+                            {
+                                "1920x1200": "1920x1200"
+                            },
+                            {
+                                "1600x1200": "1600x1200"
+                            },
+                            {
+                                "2560x1600": "2560x1600"
                             }
                         ]
                     }
-                },
-                {
-                    "name": "Target",
-                    "description": "Whom to address your greeting",
-                    "inputMode": "REQUIRED",
-                    "arg": "world"
-                },
-                {
-                    "name": "Unrequired Bool Variable",
-                    "description": "This variable is NOT required and does nothing",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "arg": null,
-                    "notes": {
-                        "fieldType": "bool"
-                    }
-                },
-                {
-                    "name": "Required Bool Variable",
-                    "description": "This variable is required and does nothing",
-                    "inputMode": "REQUIRED",
-                    "arg": null,
-                    "notes": {
-                        "fieldType": "bool"
-                    }
-                },
-                {
-                    "name": "Unrequired Number Variable",
-                    "description": "This variable is NOT required and does nothing",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "arg": null,
-                    "notes": {
-                        "fieldType": "number"
-                    }
-                },
-                {
-                    "name": "Required Number Variable",
-                    "description": "This variable is required and does nothing",
-                    "inputMode": "REQUIRED",
-                    "arg": null,
-                    "notes": {
-                        "fieldType": "number"
-                    }
-                },
-                {
-                    "name": "Hidden Variable",
-                    "description": "This should not appear",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "arg": "test",
-                    "notes": {
-                        "isHidden": true
-                    }
                 }
             ],
-            "containerArgs": [],
+            "containerArgs": [
+                {
+                    "name": "share mount",
+                    "description": "share mount",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var"
+                }
+            ],
             "schedulerOptions": [
                 {
-                    "name": "tacc Scheduler Profile",
-                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "name": "MATLAB TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC MATLAB R2022b",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc"
+                    "arg": "--tapis-profile matlab_2022b"
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_"
                 }
             ],
-            "envVariables": [],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "swr -t 8 matlab",
+                    "description": "XTERM Program CMD"
+                },
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH."
+                }
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [
-            {
-                "name": "Test Optional input",
-                "description": "This is an unrequired input",
-                "inputMode": "OPTIONAL",
-                "autoMountLocal": true,
-                "targetPath": "in.txt"
-            },
-            {
-                "name": "Test Required input",
-                "description": "This is a required input",
-                "inputMode": "REQUIRED",
-                "autoMountLocal": true,
-                "targetPath": "other.txt"
-            }
-        ],
+        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
@@ -145,8 +112,9 @@
     "tags": [],
     "notes": {
         "licenseType": "MATLAB",
-        "label": "Test App Sharing (From Sal)",
+        "label": "MATLAB R2022b Interactive (Frontera)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
-        "hideNodeCountAndCoresPerNode": false
+        "hideNodeCountAndCoresPerNode": true,
+        "isInteractive": true
     }
 }

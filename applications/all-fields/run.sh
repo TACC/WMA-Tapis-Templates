@@ -3,6 +3,10 @@ echo "Your command line args (appArgs) are: $@"
 
 Greeting=$1
 Target=$2
+SleepTime=$3
+
+echo "Sleeping for ${SleepTime} seconds"
+sleep $SleepTime
 
 FULL_GREETING="${Greeting} ${Target}. My name is ${_tapisJobOwner}"
 echo "$FULL_GREETING"

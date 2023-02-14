@@ -3,13 +3,7 @@
     "appId": "hello-world",
     "appVersion": "0.0.1",
     "description": "test hello-world job 1",
-    "fileInputs": [
-        {
-            "name": "File to modify",
-            "sourceUrl": "tapis://cloud.corral.community/work/05089/sal/test/in.txt",
-            "targetPath": "in.txt"
-        }
-    ],
+    "fileInputs": [],
     "parameterSet": {
         "appArgs": [
             {
@@ -19,6 +13,10 @@
             {
                 "name": "Target",
                 "arg": "earthling"
+            },
+            {
+                "name": "Sleep Time",
+                "arg": "1"
             }
         ],
         "schedulerOptions": [
@@ -31,6 +29,6 @@
         ]
     },
     "tags": [
-        "test"
+        "portalName:CEP"
     ]
 }
