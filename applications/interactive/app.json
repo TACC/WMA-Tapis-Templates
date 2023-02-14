@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/interactive-dcvserver-tap_base:latest",
+    "containerImage": "library://rstijerina/taccapps/interactive-base:1.0.0",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -74,6 +74,12 @@
                     "description": "Scheduler profile for TACC MATLAB R2022b",
                     "inputMode": "FIXED",
                     "arg": "--tapis-profile matlab_2022b"
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_"
                 }
             ],
             "envVariables": [
