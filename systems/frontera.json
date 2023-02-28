@@ -1,4 +1,7 @@
 {
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "tenant": "portals",
     "id": "frontera",
     "description": "System for running jobs on the Frontera HPC system.",
     "systemType": "LINUX",
@@ -11,10 +14,12 @@
     "canRunBatch": true,
     "jobRuntimes": [
         {
-            "runtimeType": "SINGULARITY"
+            "runtimeType": "SINGULARITY",
+            "version": null
         }
     ],
     "jobWorkingDir": "HOST_EVAL($SCRATCH)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
     "batchScheduler": "SLURM",
@@ -49,5 +54,8 @@
         }
     ],
     "batchDefaultLogicalQueue": "normal",
-    "batchSchedulerProfile": "tacc"
+    "batchSchedulerProfile": "tacc",
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {}
 }
