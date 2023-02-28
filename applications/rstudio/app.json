@@ -76,7 +76,7 @@
         "nodeCount": 1,
         "coresPerNode": 1,
         "memoryMB": 100,
-        "maxMinutes": 10,
+        "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
