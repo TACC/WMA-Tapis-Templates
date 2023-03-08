@@ -110,6 +110,6 @@
     "notes": {
         "label": "Hello World (Sleep 3m)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
-        "hideNodeCountAndCoresPerNode": true
+        "hideNodeCountAndCoresPerNode": false
     }
 }
