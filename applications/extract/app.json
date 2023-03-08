@@ -1,0 +1,81 @@
+{
+    "id": "extract",
+    "version": "0.0.1",
+    "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": "3.7.2",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "library://rstijerina/taccapps/extract:latest",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}/input",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data.community",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": false,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc"
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}"
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "tapisjob.out"
+                ],
+                "includeLaunchFiles": false
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input File",
+                "description": "The archive file to be extracted.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 10,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [],
+    "notes": {
+        "label": "Extract Compressed File",
+        "hideNodeCountAndCoresPerNode": true
+    }
+}

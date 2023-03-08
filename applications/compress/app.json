@@ -1,0 +1,98 @@
+{
+    "id": "compress",
+    "version": "0.0.1",
+    "description": "Compress a file or folder for download.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": "3.7.2",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "library://rstijerina/taccapps/compress:latest",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Compress a file or folder for download.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}/input",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data.community",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": false,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Compression Type",
+                    "description": "Select the type of compressed file, either a Gzipped TAR file (.tar.gz) or a Zip file (.zip).",
+                    "inputMode": "REQUIRED",
+                    "arg": "tgz",
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "tgz": "tar.gz"
+                            },
+                            {
+                                "zip": "zip"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc"
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}"
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "tapisjob.out"
+                ],
+                "includeLaunchFiles": false
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Target path to be compressed",
+                "description": "The directory or file to be compressed.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 10,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [],
+    "notes": {
+        "label": "Compress",
+        "hideNodeCountAndCoresPerNode": true
+    }
+}
