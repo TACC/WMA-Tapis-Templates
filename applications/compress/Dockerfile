@@ -12,4 +12,4 @@ ENV PATH="/tapis:${PATH}"
 
 ENTRYPOINT [ "run.sh" ]
 
-CMD ["tgz"]
+CMD ["tgz", "Archive"]

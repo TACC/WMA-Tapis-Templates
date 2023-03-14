@@ -13,7 +13,7 @@
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
-    "strictFileInputs": true,
+    "strictFileInputs": false,
     "jobAttributes": {
         "description": "Compress a file or folder for download.",
         "dynamicExecSystem": false,
@@ -31,6 +31,12 @@
         "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [
+                {
+                    "name": "Archive File Name",
+                    "description": "Output archive file name. The selected Compression Type will be appended to this filename.",
+                    "inputMode": "REQUIRED",
+                    "arg": "Archive"
+                },
                 {
                     "name": "Compression Type",
                     "description": "Select the type of compressed file, either a Gzipped TAR file (.tar.gz) or a Zip file (.zip).",
@@ -76,7 +82,7 @@
             {
                 "name": "Target path to be compressed",
                 "description": "The directory or file to be compressed.",
-                "inputMode": "REQUIRED",
+                "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "*"
