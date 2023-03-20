@@ -5,12 +5,14 @@ echo "Compression Type is ${CTYPE}"
 
 ARCHIVE_FILE_NAME=$2
 
+cd $_tapisExecSystemInputDir
+
 if [ "$CTYPE" = "tgz" ]; then
   echo 'tarring'
-  tar czvf "${_tapisExecSystemOutputDir}/$ARCHIVE_FILE_NAME.tar.gz" "${_tapisExecSystemInputDir}/*";
+  tar czvf "${_tapisExecSystemOutputDir}/$ARCHIVE_FILE_NAME.tar.gz" .
 else
   echo 'zipping'
-  zip -r "${_tapisExecSystemOutputDir}/$ARCHIVE_FILE_NAME.zip" "${_tapisExecSystemInputDir}"
+  zip "${_tapisExecSystemOutputDir}/$ARCHIVE_FILE_NAME.zip" ./*
 fi
 
 if [ ! $? ]; then
