@@ -1,22 +1,9 @@
 #!/bin/bash
 
 for EXTRACTFILE in $_tapisExecSystemInputDir/*; do
-  if [[ "${EXTRACTFILE}" =~ \.t?gz$ ]]; then
-    tar xzf "${EXTRACTFILE}" -C ${_tapisExecSystemOutputDir}
-  elif [[ "${EXTRACTFILE}" =~ \.tar\.gz$ ]]; then
-    tar xzf "${EXTRACTFILE}" -C ${_tapisExecSystemOutputDir}
-  elif [[ "${EXTRACTFILE}" =~ \.tar$ ]]; then
-    tar xf "${EXTRACTFILE}" -C ${_tapisExecSystemOutputDir}
-  elif [[ "${EXTRACTFILE}" =~ \.gz$ ]]; then
-    gunzip "${EXTRACTFILE}"
-    cp -r ./* ${_tapisExecSystemOutputDir}
-  elif [[ "${EXTRACTFILE}" =~ \.zip$ ]]; then
-    unzip "${EXTRACTFILE}" -d ${_tapisExecSystemOutputDir}
-  else
-    echo 'unrecoginized file extension'
-    echo $EXTRACTFILE
-    exit 1
-  fi
+  # Use the unar command line utility to unarchive any archive type.
+  # -r flag will avoid overwriting files, and -d will extract the archive into a directory of the same name of the archive file
+  unar "${EXTRACTFILE}" -o ${_tapisExecSystemOutputDir} -r -d
 done
 
 if [ ! $? ]; then

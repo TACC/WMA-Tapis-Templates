@@ -10,7 +10,7 @@ if [ "$CTYPE" = "tgz" ]; then
   tar czvf "${_tapisExecSystemOutputDir}/$ARCHIVE_FILE_NAME.tar.gz" "${_tapisExecSystemInputDir}/*";
 else
   echo 'zipping'
-  zip -j -r "${_tapisExecSystemOutputDir}/$ARCHIVE_FILE_NAME.zip" "${_tapisExecSystemInputDir}"
+  zip -r "${_tapisExecSystemOutputDir}/$ARCHIVE_FILE_NAME.zip" "${_tapisExecSystemInputDir}"
 fi
 
 if [ ! $? ]; then

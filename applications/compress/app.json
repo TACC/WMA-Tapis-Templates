@@ -32,12 +32,6 @@
         "parameterSet": {
             "appArgs": [
                 {
-                    "name": "Archive File Name",
-                    "description": "Output archive file name. The selected Compression Type will be appended to this filename.",
-                    "inputMode": "REQUIRED",
-                    "arg": "Archive"
-                },
-                {
                     "name": "Compression Type",
                     "description": "Select the type of compressed file, either a Gzipped TAR file (.tar.gz) or a Zip file (.zip).",
                     "inputMode": "REQUIRED",
@@ -52,6 +46,12 @@
                             }
                         ]
                     }
+                },
+                {
+                    "name": "Archive File Name",
+                    "description": "Output archive file name. The selected Compression Type will be appended to this filename.",
+                    "inputMode": "REQUIRED",
+                    "arg": "Archive"
                 }
             ],
             "containerArgs": [],
