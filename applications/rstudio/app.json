@@ -84,7 +84,7 @@
     "notes": {
         "label": "RStudio Desktop (Frontera)",
         "helpUrl": "https://docs.posit.co/",
-        "hideNodeCountAndCoresPerNode": true,
+        "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true
     }
 }

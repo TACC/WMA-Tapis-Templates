@@ -1,11 +1,11 @@
 {
-    "name": "RstudioDesktop_1.1.463",
-    "description": "Modules to load for RStudio Desktop 1.1.463",
+    "name": "matlab_2022b",
+    "description": "Modules to load for MATLAB R2022b",
     "moduleSpec": [
         {
             "modulesToLoad": [
-                "RstudioDesktop/1.1.423",
-                "Rstats/3.5.1",
+                "swr/21.2.5",
+                "matlab/2022b",
                 "tacc-singularity"
             ],
             "moduleLoadCommand": "module load"

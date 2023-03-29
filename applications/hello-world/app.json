@@ -72,7 +72,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc"
+                    "arg": "--tapis-profile tacc-singularity"
                 },
                 {
                     "name": "Slurm job name",

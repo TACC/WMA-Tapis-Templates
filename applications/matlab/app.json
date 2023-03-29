@@ -85,7 +85,7 @@
         "licenseType": "MATLAB",
         "label": "MATLAB R2022b Interactive (Frontera)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
-        "hideNodeCountAndCoresPerNode": true,
+        "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true
     }
 }

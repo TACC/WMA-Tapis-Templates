@@ -1,11 +1,9 @@
 {
-    "name": "RstudioDesktop_1.1.463",
-    "description": "Modules to load for RStudio Desktop 1.1.463",
+    "name": "tacc-singularity",
+    "description": "Default TACC Singularity Scheduler Profile",
     "moduleSpec": [
         {
             "modulesToLoad": [
-                "RstudioDesktop/1.1.423",
-                "Rstats/3.5.1",
                 "tacc-singularity"
             ],
             "moduleLoadCommand": "module load"
