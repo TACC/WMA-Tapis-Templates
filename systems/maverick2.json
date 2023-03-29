@@ -66,7 +66,7 @@
             "maxMinutes": 2880
         }
     ],
-    "batchDefaultLogicalQueue": "normal",
+    "batchDefaultLogicalQueue": "gtx",
     "batchSchedulerProfile": "tacc",
     "jobCapabilities": [],
     "tags": [],
