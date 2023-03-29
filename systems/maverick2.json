@@ -1,0 +1,74 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "maverick2",
+    "description": "System for running jobs on the Maverick2 HPC system.",
+    "systemType": "LINUX",
+    "host": "maverick2.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "canExec": true,
+    "canRunBatch": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($WORK)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "gtx",
+            "hpcQueueName": "gtx",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 24,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 16,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 128000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "v100",
+            "hpcQueueName": "v100",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 48,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 192000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "p100",
+            "hpcQueueName": "p100",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 3,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 48,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 192000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        }
+    ],
+    "batchDefaultLogicalQueue": "normal",
+    "batchSchedulerProfile": "tacc",
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {}
+}

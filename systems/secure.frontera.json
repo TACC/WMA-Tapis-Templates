@@ -1,0 +1,61 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "tenant": "a2cps",
+    "id": "secure.frontera",
+    "description": "System for running jobs using corral-secure protected data on the Frontera HPC system.",
+    "systemType": "LINUX",
+    "host": "login8.frontera.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "canExec": true,
+    "canRunBatch": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($SCRATCH)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "corralextra",
+            "hpcQueueName": "corralextra",
+            "maxJobs": -1,
+            "maxJobsPerUser": 200,
+            "minNodeCount": 1,
+            "maxNodeCount": 512,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 56,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 192000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "rtx-corralextra",
+            "hpcQueueName": "rtx-corralextra",
+            "maxJobs": -1,
+            "maxJobsPerUser": 50,
+            "minNodeCount": 1,
+            "maxNodeCount": 22,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 16,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 128000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        }
+    ],
+    "batchDefaultLogicalQueue": "corralextra",
+    "batchSchedulerProfile": "tacc",
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {}
+}
