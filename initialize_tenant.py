@@ -10,7 +10,7 @@ TENANT_BASE_URLS = ['https://a2cps.tapis.io', 'https://a2cps.develop.tapis.io',
 SYSTEMS = ['frontera', 'maverick2', 'ls6',
            'secure.frontera', 'secure.cloud.corral']
 
-APPS = ['hello-world', 'compress', 'extract', 'matlab', 'rstudio-desktop']
+APPS = ['a2cps/extract-secure', 'a2cps/compress-secure']
 
 
 def load_file_to_json(filepath):
@@ -55,11 +55,11 @@ def provision(client):
 
         try:
             client.apps.createAppVersion(**app_json)
-            print('app created: {}'.format(app_name))
+            print('app created: {}'.format(app_json['id']))
         except BaseTapyException:
             client.apps.putApp(
                 appId=app_json['id'], appVersion=app_json['version'], **app_json)
-            print('app updated: {}'.format(app_name))
+            print('app updated: {}'.format(app_json['id']))
         client.apps.shareAppPublic(appId=app_json['id'])
 
 
