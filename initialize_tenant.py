@@ -10,7 +10,7 @@ TENANT_BASE_URLS = ['https://a2cps.tapis.io', 'https://a2cps.develop.tapis.io',
 SYSTEMS = ['frontera', 'maverick2', 'ls6',
            'secure.frontera', 'secure.cloud.corral']
 
-APPS = ['hello-world', 'compress', 'extract', 'matlab', 'rstudio']
+APPS = ['hello-world', 'compress', 'extract', 'matlab', 'rstudio-desktop']
 
 
 def load_file_to_json(filepath):
@@ -65,7 +65,12 @@ def provision(client):
 
 def main():
     for tenant_base_url in TENANT_BASE_URLS:
+        print(f'provisioning tenant: {tenant_base_url}')
         client = Tapis(base_url=tenant_base_url, username=client_secrets.CLIENT_USERNAME,
                        password=client_secrets.CLIENT_PASSWORD, resource_set="dev", download_latest_specs=True)
         client.get_tokens()
         provision(client)
+
+
+if __name__ == "__main__":
+    main()

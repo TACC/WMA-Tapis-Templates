@@ -1,0 +1,17 @@
+{
+    "name": "matlab_2022b",
+    "description": "Modules to load for MATLAB R2022b",
+    "moduleSpec": [
+        {
+            "modulesToLoad": [
+                "swr/21.2.5",
+                "matlab/2022b",
+                "tacc-singularity"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
