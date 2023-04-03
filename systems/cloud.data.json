@@ -1,5 +1,5 @@
 {
-    "id": "cloud.data.community",
+    "id": "cloud.data",
     "description": "Corral Community Storage System",
     "systemType": "LINUX",
     "host": "cloud.data.tacc.utexas.edu",

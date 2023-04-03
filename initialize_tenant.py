@@ -5,9 +5,9 @@ import os
 import client_secrets
 
 TENANT_BASE_URLS = ['https://a2cps.tapis.io', 'https://a2cps.develop.tapis.io',
-                    'https://portals.develop.tapis.io', 'https://portals.tapis.io']
+                    'https://portals.develop.tapis.io']
 
-SYSTEMS = ['frontera', 'maverick2', 'ls6',
+SYSTEMS = ['frontera', 'maverick2', 'ls6', 'cloud.data',
            'secure.frontera', 'secure.cloud.corral']
 
 APPS = ['a2cps/extract-secure', 'a2cps/compress-secure']
