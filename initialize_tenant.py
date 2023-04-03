@@ -1,8 +1,8 @@
 from tapipy.tapis import Tapis
 from tapipy.errors import BaseTapyException
-import json
 import os
 import client_secrets
+from utils.load_file_to_json import load_file_to_json
 
 TENANT_BASE_URLS = ['https://a2cps.tapis.io', 'https://a2cps.develop.tapis.io',
                     'https://portals.develop.tapis.io']
@@ -11,13 +11,6 @@ SYSTEMS = ['frontera', 'maverick2', 'ls6', 'cloud.data',
            'secure.frontera', 'secure.cloud.corral']
 
 APPS = ['a2cps/extract-secure', 'a2cps/compress-secure']
-
-
-def load_file_to_json(filepath):
-    with open(filepath, 'r') as f:
-        raw = f.read()
-    loaded = json.loads(raw)
-    return loaded
 
 
 def provision(client):
