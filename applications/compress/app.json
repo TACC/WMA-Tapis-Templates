@@ -99,6 +99,10 @@
     "tags": [],
     "notes": {
         "label": "Compress",
-        "hideNodeCountAndCoresPerNode": true
+        "hideNodeCountAndCoresPerNode": true,
+        "portalNames": [
+            "CEP"
+        ],
+        "icon": "compress"
     }
 }

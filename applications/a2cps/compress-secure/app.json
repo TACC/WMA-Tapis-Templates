@@ -99,6 +99,7 @@
     "tags": [],
     "notes": {
         "label": "Compress",
-        "hideNodeCountAndCoresPerNode": true
+        "hideNodeCountAndCoresPerNode": true,
+        "icon": "compress"
     }
 }

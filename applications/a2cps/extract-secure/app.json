@@ -76,6 +76,7 @@
     "tags": [],
     "notes": {
         "label": "Extract Compressed File",
-        "hideNodeCountAndCoresPerNode": true
+        "hideNodeCountAndCoresPerNode": true,
+        "icon": "extract"
     }
 }
