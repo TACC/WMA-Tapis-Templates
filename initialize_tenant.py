@@ -4,13 +4,19 @@ import os
 import client_secrets
 from utils.load_file_to_json import load_file_to_json
 
-TENANT_BASE_URLS = ['https://a2cps.tapis.io', 'https://a2cps.develop.tapis.io',
-                    'https://portals.develop.tapis.io']
+TENANT_NAME = 'CEP'
 
-SYSTEMS = ['frontera', 'maverick2', 'ls6', 'cloud.data',
-           'secure.frontera', 'secure.cloud.corral']
-
-APPS = ['a2cps/extract-secure', 'a2cps/compress-secure']
+match TENANT_NAME:
+    case 'A2CPS':
+        TENANT_BASE_URLS = ['https://a2cps.tapis.io',
+                            'https://a2cps.develop.tapis.io']
+        SYSTEMS = ['secure.frontera', 'secure.cloud.corral']
+        APPS = ['a2cps/extract-secure', 'a2cps/compress-secure',
+                'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure']
+    case _:
+        TENANT_BASE_URLS = ['https://portals.develop.tapis.io']
+        SYSTEMS = ['frontera', 'maverick2', 'ls6', 'cloud.data']
+        APPS = ['compress', 'extract', 'matlab', 'rstudio-desktop']
 
 
 def provision(client):
