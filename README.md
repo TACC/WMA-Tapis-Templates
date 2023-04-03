@@ -11,8 +11,8 @@
 
 ## Creating a client
 1. (Optional) Install Tapipy in a pyenv environemnt
-  a. `pyenv virtualenv 3.10.6 tapipy`
-  b. `pyenv activate tapipy`
+  a. `pyenv install 3.10`
+  b. `export PYENV_VERSION=3.10.10`
   c. `pip install tapipy`
 2. Install ipython
   a. `pip install ipython`
@@ -27,6 +27,14 @@ client.get_tokens()
 
 ## Creating a credential
 1. Create a keypair locally
-  a. `ssh-keygen -m PEM -t rsa -b 4096 -f $USER.frontera`
-2. Copy the public and private key to the `USER_CREDENTIAL_PRIVATE_KEY` and `USER_CREDENTIAL_PUBLIC_KEY` values in `client_secrets.py`
-3. Adjust the `systemId` and `base_url` values for your desired tenant/system and run the `create_client_credential.py` script
+  a. `ssh-keygen -m PEM -t rsa -b 2048 -f ~/.ssh/$USER.frontera`
+2. Copy the public key to your `~/.ssh/authorized_keys` file on the frontera host
+```
+ssh $USER@frontera.tacc.utexas.edu
+PUBKEY="PASTE PUBLIC KEY HERE"
+echo $PUBKEY >> ~/.ssh/authorized_keys`
+```
+3. Copy the public and private key to the `USER_CREDENTIAL_PRIVATE_KEY` and `USER_CREDENTIAL_PUBLIC_KEY` values in `client_secrets.py`
+4. Adjust the `systemId` and `base_url` values for your desired tenant/system and run the `create_client_credential.py` script
+5. Test the keypair works by making a file listing on a system
+  a. `client.files.listFiles(systemId='frontera', path='/')`
