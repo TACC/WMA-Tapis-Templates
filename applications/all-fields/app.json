@@ -148,6 +148,10 @@
         "label": "Test App Sharing (From Sal)",
         "isInteractive": true,
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
-        "hideNodeCountAndCoresPerNode": false
+        "hideNodeCountAndCoresPerNode": false,
+        "portalNames": [
+            "CEP"
+        ],
+        "icon": "compress"
     }
 }

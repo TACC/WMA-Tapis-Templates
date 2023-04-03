@@ -85,6 +85,7 @@
         "label": "RStudio Desktop (Frontera)",
         "helpUrl": "https://docs.posit.co/",
         "hideNodeCountAndCoresPerNode": false,
-        "isInteractive": true
+        "isInteractive": true,
+        "icon": "rstudio"
     }
 }

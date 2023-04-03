@@ -76,6 +76,10 @@
     "tags": [],
     "notes": {
         "label": "Extract Compressed File",
-        "hideNodeCountAndCoresPerNode": true
+        "hideNodeCountAndCoresPerNode": true,
+        "portalNames": [
+            "CEP"
+        ],
+        "icon": "extract"
     }
 }

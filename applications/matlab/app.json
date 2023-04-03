@@ -86,6 +86,10 @@
         "label": "MATLAB R2022b Interactive (Frontera)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
         "hideNodeCountAndCoresPerNode": false,
-        "isInteractive": true
+        "isInteractive": true,
+        "portalNames": [
+            "CEP"
+        ],
+        "icon": "matlab"
     }
 }
