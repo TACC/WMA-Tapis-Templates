@@ -1,0 +1,9 @@
+Bootstrap: docker
+
+From: taccaci/jupyter-notebook-hpc:latest
+
+%labels
+    Version v0.0.1
+
+%help
+    Interactive jupyter notebook session on TACC HPC systems.
