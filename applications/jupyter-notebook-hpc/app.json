@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "",
+    "containerImage": "library://rstijerina/taccapps/jupyter-notebook-hpc",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -63,8 +63,6 @@
         "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": null,
-        "memoryMB": null,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
