@@ -44,7 +44,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-singularity"
+                    "arg": "--tapis-profile tacc_singularity"
                 },
                 {
                     "name": "TAP Session Substring",
@@ -67,15 +67,15 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: ALL"
+    ],
     "notes": {
         "label": "Jupyter Notebook HPC",
         "helpUrl": "https://docs.jupyter.org/en/latest/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "portalNames": [
-            "CEP"
-        ],
-        "icon": "jupyter"
+        "icon": "jupyter",
+        "category": "Data Processing"
     }
 }

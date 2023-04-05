@@ -42,7 +42,7 @@
                 "name": "tacc Scheduler Profile",
                 "description": "Scheduler profile for HPC clusters at TACC",
                 "include": true,
-                "arg": "--tapis-profile tacc-singularity"
+                "arg": "--tapis-profile tacc_singularity"
             }
         ],
         "archiveFilter": {

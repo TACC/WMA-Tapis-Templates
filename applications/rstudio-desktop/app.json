@@ -80,15 +80,15 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: ALL"
+    ],
     "notes": {
         "label": "RStudio Desktop (Frontera)",
         "helpUrl": "https://docs.posit.co/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "portalNames": [
-            "CEP"
-        ],
-        "icon": "rstudio"
+        "icon": "rstudio",
+        "category": "Data Processing"
     }
 }

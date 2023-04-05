@@ -72,7 +72,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-singularity"
+                    "arg": "--tapis-profile tacc_singularity"
                 },
                 {
                     "name": "Slurm job name",
@@ -106,10 +106,13 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: CEP"
+    ],
     "notes": {
         "label": "Hello World (Sleep 3m)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
-        "hideNodeCountAndCoresPerNode": false
+        "hideNodeCountAndCoresPerNode": false,
+        "category": "Test Apps"
     }
 }
