@@ -37,7 +37,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-singularity"
+                    "arg": "--tapis-profile tacc_singularity"
                 },
                 {
                     "name": "Slurm job name",
@@ -73,13 +73,13 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: ALL"
+    ],
     "notes": {
         "label": "Extract Compressed File",
         "hideNodeCountAndCoresPerNode": true,
-        "portalNames": [
-            "CEP"
-        ],
-        "icon": "extract"
+        "icon": "extract",
+        "category": "Utilities"
     }
 }

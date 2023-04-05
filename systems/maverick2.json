@@ -67,7 +67,7 @@
         }
     ],
     "batchDefaultLogicalQueue": "gtx",
-    "batchSchedulerProfile": "tacc-singularity",
+    "batchSchedulerProfile": "tacc_singularity",
     "jobCapabilities": [],
     "tags": [],
     "notes": {}

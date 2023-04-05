@@ -1,5 +1,5 @@
 {
-    "name": "tacc-singularity",
+    "name": "tacc_singularity",
     "description": "Default TACC Singularity Scheduler Profile",
     "moduleSpec": [
         {

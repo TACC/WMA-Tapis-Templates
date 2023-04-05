@@ -80,16 +80,16 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: ALL"
+    ],
     "notes": {
         "licenseType": "MATLAB",
         "label": "MATLAB R2022b Interactive (Frontera)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "portalNames": [
-            "CEP"
-        ],
-        "icon": "matlab"
+        "icon": "matlab",
+        "category": "Data Processing"
     }
 }

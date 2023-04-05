@@ -80,12 +80,15 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: A2CPS"
+    ],
     "notes": {
         "label": "RStudio Desktop (Frontera)",
         "helpUrl": "https://docs.posit.co/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": "rstudio"
+        "icon": "rstudio",
+        "category": "Data Processing"
     }
 }

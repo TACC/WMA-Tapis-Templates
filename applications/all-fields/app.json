@@ -108,7 +108,7 @@
                     "name": "tacc Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-singularity"
+                    "arg": "--tapis-profile tacc_singularity"
                 }
             ],
             "envVariables": [],
@@ -142,16 +142,16 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: CEP"
+    ],
     "notes": {
         "licenseType": "MATLAB",
         "label": "Test App Sharing (From Sal)",
         "isInteractive": true,
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
         "hideNodeCountAndCoresPerNode": false,
-        "portalNames": [
-            "CEP"
-        ],
-        "icon": "compress"
+        "icon": "compress",
+        "category": "Test Apps"
     }
 }
