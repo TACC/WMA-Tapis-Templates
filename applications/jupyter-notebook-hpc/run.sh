@@ -37,7 +37,6 @@ IP_CONFIG=${NB_SERVERDIR}/jupyter_notebook_config.py
 mkdir -p ${NB_SERVERDIR}
 
 mkdir -p ${HOME}/.tap # this should exist at this point, but just in case...
-TAP_LOCKFILE=${HOME}/.tap/.${SLURM_JOB_ID}.lock
 TAP_CERTFILE=${HOME}/.tap/.${SLURM_JOB_ID}
 
 # bail if we cannot create a secure session
@@ -91,7 +90,7 @@ JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME}.log
 JUPYTER_BIN="/opt/conda/bin/jupyter-lab"
 JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG} --${JUPYTER_SERVER_APP}.token=${TAP_TOKEN}"
 echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS}"
-nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} && rm ${TAP_LOCKFILE} &
+nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
 
 JUPYTER_PID=$!
 
@@ -104,7 +103,7 @@ JUPYTER_URL="https://${NODE_HOSTNAME_DOMAIN}:${LOGIN_PORT}/?token=${TAP_TOKEN}"
 if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
     # sometimes jupyter has a bad day. give it another chance to be awesome.
     echo "TACC: first jupyter launch failed. Retrying..."
-    nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} && rm ${TAP_LOCKFILE} &
+    nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
 fi
 if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
     # jupyter will not be working today. sadness.
