@@ -83,7 +83,7 @@ def main():
                                     'https://a2cps.develop.tapis.io']
                 systems = ['secure.frontera', 'secure.cloud.corral']
                 apps = ['a2cps/extract-secure', 'a2cps/compress-secure',
-                        'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure']
+                        'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-notebook-hpc-secure']
             case _:
                 tenant_base_urls = ['https://portals.develop.tapis.io']
                 systems = ['frontera', 'maverick2', 'ls6', 'cloud.data']
