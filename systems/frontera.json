@@ -165,7 +165,7 @@
         }
     ],
     "batchDefaultLogicalQueue": "normal",
-    "batchSchedulerProfile": "tacc_singularity",
+    "batchSchedulerProfile": "tacc",
     "jobCapabilities": [],
     "tags": [],
     "notes": {}

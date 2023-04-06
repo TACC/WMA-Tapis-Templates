@@ -6,13 +6,13 @@ from utils.load_file_to_json import load_file_to_json
 
 
 def provision(client, systems, apps):
-    profile = load_file_to_json('systems/tacc_singularity.json')
-    try:
-        client.systems.createSchedulerProfile(**profile)
-        print('profile created: {}'.format(profile['name']))
-    except BaseTapyException:
-        print('profile already exists: {}'.format(profile['name']))
-        pass
+    # profile = load_file_to_json('systems/tacc-singularity.json')
+    # try:
+    #     client.systems.createSchedulerProfile(**profile)
+    #     print('profile created: {}'.format(profile['name']))
+    # except BaseTapyException:
+    #     print('profile already exists: {}'.format(profile['name']))
+    #     pass
 
     for system in systems:
         sys_json = load_file_to_json(f'systems/{system}.json')
