@@ -44,10 +44,13 @@ def provision(client, systems, apps, args):
             except BaseTapyException as e:
                 if 'SYSAPI_PRF_EXISTS' in e.message:
                     print('profile already exists: {}'.format(profile['name']))
-                    print('recreating profile {}'.format(profile['name']))
-                    client.systems.deleteSchedulerProfile(name=profile['name'])
-                    client.systems.createSchedulerProfile(**profile)
-                    print('profile created: {}'.format(profile['name']))
+
+                    if args.force:
+                        print('recreating profile {}'.format(profile['name']))
+                        client.systems.deleteSchedulerProfile(
+                            name=profile['name'])
+                        client.systems.createSchedulerProfile(**profile)
+                        print('profile created: {}'.format(profile['name']))
 
         try:
             client.apps.createAppVersion(**app_json)

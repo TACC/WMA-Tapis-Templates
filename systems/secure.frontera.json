@@ -18,7 +18,7 @@
             "version": null
         }
     ],
-    "jobWorkingDir": "HOST_EVAL($SCRATCH)/tapis/${JobUUID}",
+    "jobWorkingDir": "/corral-secure/projects/A2CPS/shared/${JobOwner}/jobs/${JobUUID}",
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
@@ -54,7 +54,7 @@
         }
     ],
     "batchDefaultLogicalQueue": "corralextra",
-    "batchSchedulerProfile": "tacc",
+    "batchSchedulerProfile": "tacc-singularity",
     "jobCapabilities": [],
     "tags": [],
     "notes": {}
