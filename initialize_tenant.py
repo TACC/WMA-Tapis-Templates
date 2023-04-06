@@ -81,7 +81,7 @@ def main():
             case 'A2CPS':
                 tenant_base_urls = ['https://a2cps.tapis.io',
                                     'https://a2cps.develop.tapis.io']
-                systems = ['secure.frontera', 'secure.cloud.corral']
+                systems = ['secure.frontera', 'secure.corral']
                 apps = ['a2cps/extract-secure', 'a2cps/compress-secure',
                         'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-notebook-hpc-secure']
             case _:

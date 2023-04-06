@@ -1,8 +1,8 @@
 {
-    "id": "secure.cloud.corral",
+    "id": "secure.corral",
     "description": "Corral Community Storage System",
     "systemType": "LINUX",
-    "host": "secure.cloud.corral.tacc.utexas.edu",
+    "host": "secure.corral.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "PKI_KEYS",
     "rootDir": "/",
