@@ -1,7 +1,7 @@
 {
     "name": "RstudioDesktop_1.1.463",
     "description": "Modules to load for RStudio Desktop 1.1.463",
-    "moduleSpec": [
+    "moduleLoads": [
         {
             "modulesToLoad": [
                 "RstudioDesktop/1.1.423",

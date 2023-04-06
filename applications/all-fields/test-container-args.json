@@ -1,7 +1,7 @@
 {
     "id": "hello-world",
     "version": "0.0.1",
-    "description": "Sleeps for 3m. Then prints a configurable Hello World greeting to a target file.",
+    "description": "Prints a configurable Hello World greeting to a target file.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -19,12 +19,12 @@
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
         "execSystemId": "frontera",
-        "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
         "execSystemLogicalQueue": "development",
-        "archiveSystemId": "cloud.data.community",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemId": "cloud.corral.community",
+        "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -35,53 +35,57 @@
                     "name": "Greeting",
                     "description": "Choose a greeting to give to your target",
                     "inputMode": "REQUIRED",
-                    "arg": "hello",
-                    "notes": {
-                        "enum_values": [
-                            {
-                                "hello": "Hello"
-                            },
-                            {
-                                "hola": "Hola"
-                            },
-                            {
-                                "wassup": "Wassup"
-                            }
-                        ]
-                    }
+                    "arg": "hello"
                 },
                 {
                     "name": "Target",
                     "description": "Whom to address your greeting",
                     "inputMode": "REQUIRED",
                     "arg": "world"
-                },
-                {
-                    "name": "Sleep Time",
-                    "description": "How long to sleep before app execution",
-                    "inputMode": "REQUIRED",
-                    "arg": "30",
-                    "notes": {
-                        "fieldType": "number"
-                    }
                 }
             ],
-            "containerArgs": [],
+            "containerArgs": [
+                {
+                    "name": "execSystemExecDir mount",
+                    "description": "execSystemExecDir mount",
+                    "inputMode": "FIXED",
+                    "arg": "--bind ${ExecSystemExecDir}:/TapisExec"
+                },
+                {
+                    "name": "Target",
+                    "description": "Whom to address your greeting",
+                    "inputMode": "FIXED",
+                    "arg": "--env Target=world"
+                },
+                {
+                    "name": "execSystemOutputDir mount",
+                    "description": "execSystemOutputDir mount",
+                    "inputMode": "FIXED",
+                    "arg": "--bind ${ExecSystemOutputDir}:/TapisOutput"
+                }
+            ],
             "schedulerOptions": [
                 {
-                    "name": "TACC Scheduler Profile",
+                    "name": "tacc Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
                     "arg": "--tapis-profile tacc-singularity"
-                },
-                {
-                    "name": "Slurm job name",
-                    "description": "Set the slurm job name to be identical to the Tapis job name.",
-                    "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}"
                 }
             ],
-            "envVariables": [],
+            "envVariables": [
+                {
+                    "key": "execSystemExecDir",
+                    "value": "/TapisExec"
+                },
+                {
+                    "key": "execSystemInputDir",
+                    "value": "/TapisInput"
+                },
+                {
+                    "key": "execSystemOutputDir",
+                    "value": "/TapisOutput"
+                }
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -90,12 +94,12 @@
         },
         "fileInputs": [
             {
-                "name": "File to modify",
+                "name": "fileToModify",
                 "description": "The full greeting will be appended to the target .txt file",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "in.txt"
+                "targetPath": "*"
             }
         ],
         "fileInputArrays": [],
@@ -106,13 +110,6 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: CEP"
-    ],
-    "notes": {
-        "label": "Hello World (Sleep 3m)",
-        "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
-        "hideNodeCountAndCoresPerNode": false,
-        "category": "Test Apps"
-    }
+    "tags": [],
+    "notes": {}
 }

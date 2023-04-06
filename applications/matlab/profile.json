@@ -1,7 +1,7 @@
 {
     "name": "matlab_2022b",
     "description": "Modules to load for MATLAB R2022b",
-    "moduleSpec": [
+    "moduleLoads": [
         {
             "modulesToLoad": [
                 "swr/21.2.5",
