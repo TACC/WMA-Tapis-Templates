@@ -71,7 +71,7 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "Jupyter Notebook HPC",
+        "label": "Jupyter Notebook HPC (Frontera)",
         "helpUrl": "https://docs.jupyter.org/en/latest/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
