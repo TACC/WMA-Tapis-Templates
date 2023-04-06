@@ -1,18 +1,25 @@
 from tapipy.tapis import Tapis
 from tapipy.errors import BaseTapyException
 import os
+import argparse
 from client_secrets import TENANT_NAMES, CLIENT_USERNAME, CLIENT_PASSWORD
 from utils.load_file_to_json import load_file_to_json
 
 
-def provision(client, systems, apps):
-    # profile = load_file_to_json('systems/tacc-singularity.json')
-    # try:
-    #     client.systems.createSchedulerProfile(**profile)
-    #     print('profile created: {}'.format(profile['name']))
-    # except BaseTapyException:
-    #     print('profile already exists: {}'.format(profile['name']))
-    #     pass
+def provision(client, systems, apps, args):
+    profile = load_file_to_json('systems/tacc-singularity.json')
+    try:
+        client.systems.createSchedulerProfile(**profile)
+        print('profile created: {}'.format(profile['name']))
+    except BaseTapyException as e:
+        if 'SYSAPI_PRF_EXISTS' in e.message:
+            print('profile already exists: {}'.format(profile['name']))
+
+            if args.force:
+                print('recreating profile {}'.format(profile['name']))
+                client.systems.deleteSchedulerProfile(name=profile['name'])
+                client.systems.createSchedulerProfile(**profile)
+                print('profile created: {}'.format(profile['name']))
 
     for system in systems:
         sys_json = load_file_to_json(f'systems/{system}.json')
@@ -34,9 +41,13 @@ def provision(client, systems, apps):
             try:
                 client.systems.createSchedulerProfile(**profile)
                 print('profile created: {}'.format(profile['name']))
-            except BaseTapyException:
-                print('profile already exists: {}'.format(profile['name']))
-                pass
+            except BaseTapyException as e:
+                if 'SYSAPI_PRF_EXISTS' in e.message:
+                    print('profile already exists: {}'.format(profile['name']))
+                    print('recreating profile {}'.format(profile['name']))
+                    client.systems.deleteSchedulerProfile(name=profile['name'])
+                    client.systems.createSchedulerProfile(**profile)
+                    print('profile created: {}'.format(profile['name']))
 
         try:
             client.apps.createAppVersion(**app_json)
@@ -49,7 +60,20 @@ def provision(client, systems, apps):
 
 
 def main():
-    for tenant_name in TENANT_NAMES:
+    parser = argparse.ArgumentParser(
+        prog='Initialize Tenant', description='Provision or update a tenant with systems, apps, and scheduler profiles')
+    parser.add_argument('-f', '--force', action='store_true',
+                        help='Force recreate scheduler profiles')
+    parser.add_argument('-t', '--tenants',
+                        help='Comma separated list of tenants')
+    args = parser.parse_args()
+
+    if args.tenants:
+        tenant_names = args.tenants.split(',')
+    else:
+        tenant_names = TENANT_NAMES
+
+    for tenant_name in tenant_names:
         match tenant_name:
             case 'A2CPS':
                 tenant_base_urls = ['https://a2cps.tapis.io',
@@ -68,7 +92,7 @@ def main():
             client = Tapis(base_url=tenant_base_url, username=CLIENT_USERNAME,
                            password=CLIENT_PASSWORD, resource_set="dev", download_latest_specs=True)
             client.get_tokens()
-            provision(client, systems, apps)
+            provision(client, systems, apps, args)
 
 
 if __name__ == "__main__":
