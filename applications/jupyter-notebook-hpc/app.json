@@ -44,7 +44,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc_singularity"
+                    "arg": "--tapis-profile tacc"
                 },
                 {
                     "name": "TAP Session Substring",
