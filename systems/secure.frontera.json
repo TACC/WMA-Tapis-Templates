@@ -1,7 +1,6 @@
 {
     "isPublic": true,
     "isDynamicEffectiveUser": true,
-    "tenant": "a2cps",
     "id": "secure.frontera",
     "description": "System for running jobs using corral-secure protected data on the Frontera HPC system.",
     "systemType": "LINUX",

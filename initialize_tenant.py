@@ -1,9 +1,9 @@
-from tapipy.tapis import Tapis
 from tapipy.errors import BaseTapyException
 import os
 import argparse
-from client_secrets import TENANT_NAMES, CLIENT_USERNAME, CLIENT_PASSWORD
+from client_secrets import TENANT_NAMES, TAPIS_CLIENTS
 from utils.load_file_to_json import load_file_to_json
+from utils.client import get_client
 
 
 def provision(client, systems, apps, args):
@@ -79,21 +79,17 @@ def main():
     for tenant_name in tenant_names:
         match tenant_name:
             case 'A2CPS':
-                tenant_base_urls = ['https://a2cps.tapis.io',
-                                    'https://a2cps.develop.tapis.io']
                 systems = ['secure.frontera', 'secure.corral']
                 apps = ['a2cps/extract-secure', 'a2cps/compress-secure',
                         'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-notebook-hpc-secure']
             case _:
-                tenant_base_urls = ['https://portals.develop.tapis.io']
                 systems = ['frontera', 'maverick2', 'ls6', 'cloud.data']
                 apps = ['compress', 'extract', 'matlab',
                         'rstudio-desktop', 'jupyter-notebook-hpc', 'hello-world']
 
-        for tenant_base_url in tenant_base_urls:
-            print(f'provisioning tenant: {tenant_base_url}')
-            client = Tapis(base_url=tenant_base_url, username=CLIENT_USERNAME,
-                           password=CLIENT_PASSWORD, resource_set="dev", download_latest_specs=True)
+        for credentials in TAPIS_CLIENTS.get(tenant_name, []):
+            print(f"provisioning tenant: {credentials['base_url']}")
+            client = get_client(**credentials)
             client.get_tokens()
             provision(client, systems, apps, args)
 
