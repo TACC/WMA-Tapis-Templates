@@ -36,7 +36,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,/opt/apps"
+                    "arg": "--bind /share,/opt/apps,/corral-secure"
                 }
             ],
             "schedulerOptions": [
