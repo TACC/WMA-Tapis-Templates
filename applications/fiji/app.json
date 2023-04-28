@@ -1,0 +1,94 @@
+{
+    "id": "fiji",
+    "version": "2.0.0.1",
+    "description": "Run an interactive Fiji session on Lonestar6.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": "3.7.2",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "library://rstijerina/taccapps/interactive-base:1.0.0",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Run an Fiji session on Lonestar6.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ls6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data.community",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [
+                {
+                    "name": "Interactive Session and TACC Module Mounts",
+                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var"
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "SWR TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC SWR",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile swr"
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_"
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "swr -t 8 /work/projects/NeuroNex/3DEM/bin/Fiji/fiji-nojre-20170530/Fiji.app/ImageJ-linux64 --system",
+                    "description": "Command passed to XTERM, launched within the interactive session."
+                },
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH."
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: ALL"
+    ],
+    "notes": {
+        "label": "Fiji (Lonestar6)",
+        "helpUrl": "http://fiji.sc/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": null,
+        "category": "Data Processing"
+    }
+}
