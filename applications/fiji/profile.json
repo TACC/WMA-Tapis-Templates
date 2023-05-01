@@ -1,0 +1,16 @@
+{
+    "name": "swr",
+    "description": "Modules to load for SWR",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "swr",
+                "tacc-singularity"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
