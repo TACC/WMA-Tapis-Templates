@@ -5,7 +5,7 @@
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
-    "runtimeVersion": "3.7.2",
+    "runtimeVersion": null,
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
@@ -60,7 +60,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-singularity"
+                    "arg": "--tapis-profile tacc-apptainer"
                 },
                 {
                     "name": "Slurm job name",

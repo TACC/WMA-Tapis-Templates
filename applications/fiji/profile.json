@@ -5,7 +5,7 @@
         {
             "modulesToLoad": [
                 "swr",
-                "tacc-singularity"
+                "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
         }

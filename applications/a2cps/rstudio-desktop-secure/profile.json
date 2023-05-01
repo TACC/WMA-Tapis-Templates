@@ -6,7 +6,7 @@
             "modulesToLoad": [
                 "RstudioDesktop/1.1.423",
                 "Rstats/3.5.1",
-                "tacc-singularity"
+                "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
         }
