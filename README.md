@@ -17,7 +17,7 @@
 2. Install ipython
   a. `pip install ipython`
 3. Initiate an ipython session
-  a. `ipython`
+  a. `pyenv exec ipython`
 4. Create a client
 ```
 from tapipy.tapis import Tapis
