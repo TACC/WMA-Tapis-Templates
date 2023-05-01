@@ -5,7 +5,7 @@
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
-    "runtimeVersion": "3.7.2",
+    "runtimeVersion": null,
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],

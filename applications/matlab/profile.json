@@ -6,7 +6,7 @@
             "modulesToLoad": [
                 "swr/21.2.5",
                 "matlab/2022b",
-                "tacc-singularity"
+                "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
         }

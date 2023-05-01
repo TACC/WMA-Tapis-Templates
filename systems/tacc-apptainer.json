@@ -1,10 +1,10 @@
 {
-    "name": "tacc-singularity",
-    "description": "Default TACC Singularity Scheduler Profile",
+    "name": "tacc-apptainer",
+    "description": "Default TACC Apptainer Scheduler Profile",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "tacc-singularity"
+                "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
         }

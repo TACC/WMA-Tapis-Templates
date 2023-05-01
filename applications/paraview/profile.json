@@ -9,7 +9,7 @@
                 "swr",
                 "oneapi_rk/2021.4.0",
                 "paraview/5.10.0",
-                "tacc-singularity"
+                "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
         }

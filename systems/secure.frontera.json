@@ -53,7 +53,7 @@
         }
     ],
     "batchDefaultLogicalQueue": "corralextra",
-    "batchSchedulerProfile": "tacc-singularity",
+    "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],
     "notes": {}

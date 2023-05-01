@@ -7,7 +7,7 @@ from utils.client import get_client
 
 
 def provision(client, systems, apps, args):
-    profile = load_file_to_json('systems/tacc-singularity.json')
+    profile = load_file_to_json('systems/tacc-apptainer.json')
     try:
         client.systems.createSchedulerProfile(**profile)
         print('profile created: {}'.format(profile['name']))
@@ -20,6 +20,8 @@ def provision(client, systems, apps, args):
                 client.systems.deleteSchedulerProfile(name=profile['name'])
                 client.systems.createSchedulerProfile(**profile)
                 print('profile created: {}'.format(profile['name']))
+        else:
+            raise
 
     for system in systems:
         sys_json = load_file_to_json(f'systems/{system}.json')
@@ -51,6 +53,8 @@ def provision(client, systems, apps, args):
                             name=profile['name'])
                         client.systems.createSchedulerProfile(**profile)
                         print('profile created: {}'.format(profile['name']))
+                else:
+                    raise
 
         try:
             client.apps.createAppVersion(**app_json)
