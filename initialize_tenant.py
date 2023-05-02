@@ -88,8 +88,8 @@ def main():
                         'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-notebook-hpc-secure']
             case _:
                 systems = ['frontera', 'maverick2', 'ls6', 'cloud.data']
-                apps = ['compress', 'extract', 'matlab',
-                        'rstudio-desktop', 'jupyter-notebook-hpc', 'hello-world', 'fiji', 'paraview']
+                apps = ['compress', 'extract', 'matlab', 'qgis', 'rstudio-desktop',
+                        'jupyter-notebook-hpc', 'hello-world', 'fiji', 'paraview']
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
