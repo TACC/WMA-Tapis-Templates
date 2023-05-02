@@ -12,6 +12,13 @@ TAPIS_CLIENTS = {
             'client_key': '',
             'access_token': '',
             'refresh_token': '',
+        },
+        {
+            'base_url': 'https://portals.tapis.io',
+            'client_id': '',
+            'client_key': '',
+            'access_token': '',
+            'refresh_token': '',
         }
     ],
     'A2CPS': [
