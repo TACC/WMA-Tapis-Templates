@@ -1,15 +1,15 @@
 {
     "id": "jupyter-notebook-hpc",
     "version": "0.0.1",
-    "description": "Run an interactive Jupyter Notebook sessionon an HPC compute node.",
+    "description": "Run an interactive Jupyter Notebook session on an HPC compute node.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
-    "runtimeVersion": "3.7.2",
+    "runtimeVersion": null,
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/jupyter-notebook-hpc",
+    "containerImage": "docker://taccaci/jupyter-notebook-hpc",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
