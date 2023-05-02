@@ -89,7 +89,7 @@ def main():
             case _:
                 systems = ['frontera', 'maverick2', 'ls6', 'cloud.data']
                 apps = ['compress', 'extract', 'matlab',
-                        'rstudio-desktop', 'jupyter-notebook-hpc', 'hello-world']
+                        'rstudio-desktop', 'jupyter-notebook-hpc', 'hello-world', 'fiji', 'paraview']
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
