@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/jupyter-notebook-hpc",
+    "containerImage": "docker://taccaci/jupyter-notebook-hpc:latest",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
