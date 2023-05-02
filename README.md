@@ -21,7 +21,7 @@
 4. Create a client
 ```
 from tapipy.tapis import Tapis
-client = Tapis(base_url='https://portals.develop.tapis.io', username='$USER', password='******')
+client = Tapis(base_url='https://portals.tapis.io', username='$USER', password='******')
 client.get_tokens()
 ```
 
