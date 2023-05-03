@@ -6,6 +6,22 @@ from utils.load_file_to_json import load_file_to_json
 from utils.client import get_client
 
 
+def get_or_create_system(client, system_def, update=False):
+    system_id = system_def['id']
+    try:
+        client.systems.getSystem(systemId=system_id)
+        print('system already exists: {}'.format(system_id))
+        if update:
+            client.systems.putSystem(systemId=system_id, **system_def)
+            print('system updated: {}'.format(system_id))
+    except BaseTapyException as e:
+        if 'SYSAPI_NOT_FOUND' in e.message:
+            client.systems.createSystem(**system_def)
+            print('system created: {}'.format(system_id))
+        else:
+            raise
+
+
 def provision(client, systems, apps, args):
     profile = load_file_to_json('systems/tacc-apptainer.json')
     try:
@@ -25,15 +41,12 @@ def provision(client, systems, apps, args):
 
     for system in systems:
         sys_json = load_file_to_json(f'systems/{system}.json')
-        try:
-            client.systems.createSystem(**sys_json)
-            print('system created: {}'.format(system))
-        except BaseTapyException:
-            client.systems.putSystem(systemId=sys_json['id'], **sys_json)
-            print('system updated: {}'.format(system))
-        client.systems.shareSystemPublic(systemId=sys_json['id'])
-        client.files.sharePathPublic(
-            systemId=sys_json['id'], path=sys_json['rootDir'])
+        public = sys_json['effectiveUserId'] == "${apiUserId}"
+        get_or_create_system(client, sys_json, update=public)
+        if public:
+            client.systems.shareSystemPublic(systemId=sys_json['id'])
+            client.files.sharePathPublic(
+                systemId=sys_json['id'], path=sys_json['rootDir'])
 
     for app_name in apps:
         app_json = load_file_to_json(f'applications/{app_name}/app.json')
@@ -59,10 +72,14 @@ def provision(client, systems, apps, args):
         try:
             client.apps.createAppVersion(**app_json)
             print('app created: {}'.format(app_json['id']))
-        except BaseTapyException:
-            client.apps.putApp(
-                appId=app_json['id'], appVersion=app_json['version'], **app_json)
-            print('app updated: {}'.format(app_json['id']))
+        except BaseTapyException as e:
+            if 'APPAPI_APP_EXISTS' in e.message:
+                client.apps.putApp(
+                    appId=app_json['id'], appVersion=app_json['version'], **app_json)
+                print('app updated: {}'.format(app_json['id']))
+            else:
+                raise
+
         client.apps.shareAppPublic(appId=app_json['id'])
 
 
