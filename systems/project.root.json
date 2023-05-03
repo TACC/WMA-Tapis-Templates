@@ -1,0 +1,16 @@
+{
+    "id": "{TENANT_ID}.project.root",
+    "description": "Corral Projects Root System",
+    "systemType": "LINUX",
+    "owner": "{TENANT_ADMIN}",
+    "host": "cloud.data.tacc.utexas.edu",
+    "effectiveUserId": "{TENANT_ADMIN}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/corral-repl/tacc/aci/{TENANT_ID}/projects",
+    "port": 22,
+    "canExec": false,
+    "tags": [],
+    "notes": {
+        "count": 0
+    }
+}
