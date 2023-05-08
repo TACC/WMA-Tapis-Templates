@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/hello-world:latest",
+    "containerImage": "docker://taccaci/hello-world:latest",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
