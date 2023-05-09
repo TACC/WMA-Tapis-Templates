@@ -88,7 +88,7 @@
         "helpUrl": "https://qgis.org/en/docs/index.html",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": "qgis",
+        "icon": null,
         "category": "Data Processing"
     }
 }

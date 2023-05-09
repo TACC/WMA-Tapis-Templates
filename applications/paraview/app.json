@@ -97,7 +97,7 @@
         "helpUrl": "http://www.paraview.org/paraview-guide/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": "paraview",
+        "icon": null,
         "category": "Visualization"
     }
 }
