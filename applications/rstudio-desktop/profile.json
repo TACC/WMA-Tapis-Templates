@@ -4,8 +4,8 @@
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "RstudioDesktop/1.1.423",
-                "Rstats/3.5.1",
+                "RstudioDesktop/1.1.463",
+                "Rstats/4.0.3",
                 "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
