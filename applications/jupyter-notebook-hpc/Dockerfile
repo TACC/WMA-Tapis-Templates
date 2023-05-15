@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:ubuntu-22.04
+FROM jupyter/datascience-notebook:ubuntu-22.04
 
 # The user must be swtiched to root in order to install and update packages with apt-get.
 # See https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile for info.
