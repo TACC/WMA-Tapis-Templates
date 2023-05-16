@@ -6,8 +6,11 @@ echo "TACC: job ${SLURM_JOB_ID} execution at: $(date)"
 SESSION_FILE="delete_me_to_end_session"
 touch $SESSION_FILE
 
-# RUN NOTEBOOK IN BACKGROUND  -->  CAN STAY THE SAME
+# RUN JUPYTER SESSION IN BACKGROUND  -->  CAN STAY THE SAME
 LOCAL_IPY_PORT=8888
+
+# TAP Port
+LOCAL_PORT=5902
 
 NODE_HOSTNAME_PREFIX=$(hostname -s)   # Short Host Name  -->  name of compute node: c###-###
 NODE_HOSTNAME_DOMAIN=$(hostname -d)   # DNS Name  -->  stampede2.tacc.utexas.edu
@@ -28,10 +31,17 @@ else
     exit 1
 fi
 
+# Note: NotebookApp needs some work.
 JUPYTER_SERVER_APP="ServerApp"
+if [ ${JUPYTER_SERVER_APP} == "ServerApp" ]; then
+    JUPYTER_BIN="jupyter-lab"
+elif [ ${JUPYTER_SERVER_APP} == "NotebookApp" ]; then
+    JUPYTER_BIN="jupyter-notebook"
+fi
+echo "JUPYTER_SERVER_APP is $JUPYTER_SERVER_APP"
+echo "JUPYTER_BIN is $JUPYTER_BIN"
 
 NB_SERVERDIR=${HOME}/.jupyter
-IP_CONFIG=${NB_SERVERDIR}/jupyter_notebook_config.py
 
 # make .jupyter dir for logs
 mkdir -p ${NB_SERVERDIR}
@@ -49,7 +59,7 @@ fi
 # bail if we cannot create a token for the session
 TAP_TOKEN=$(tap_get_token)
 if [ -z "${TAP_TOKEN}" ]; then
-    echo "TACC: ERROR - could not generate token for notebook"
+    echo "TACC: ERROR - could not generate token for jupyter session"
     echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
     exit 1
 fi
@@ -57,38 +67,29 @@ echo "TACC: using token ${TAP_TOKEN}"
 
 # create the tap jupyter config if needed
 TAP_JUPYTER_CONFIG="${HOME}/.tap/jupyter_config.py"
-if [ ${JUPYTER_SERVER_APP} == "NotebookApp" ]; then
+
 cat <<- EOF > ${TAP_JUPYTER_CONFIG}
-# Configuration file for TAP jupyter-notebook
+# Configuration file for TAP jupyter session
 import ssl
 c = get_config()
 c.IPKernelApp.pylab = "inline"  # if you want plotting support always
-c.NotebookApp.ip = "0.0.0.0"
-c.NotebookApp.port = 5902
-c.NotebookApp.open_browser = False
-c.NotebookApp.allow_origin = u"*"
-c.NotebookApp.ssl_options={"ssl_version": ssl.PROTOCOL_TLSv1_2}
-c.NotebookApp.mathjax_url = u"https://cdn.mathjax.org/mathjax/latest/MathJax.js"
+c.${JUPYTER_SERVER_APP}.ip = "0.0.0.0"
+c.${JUPYTER_SERVER_APP}.port = $LOCAL_PORT
+c.${JUPYTER_SERVER_APP}.open_browser = False
+c.${JUPYTER_SERVER_APP}.allow_origin = u"*"
+c.${JUPYTER_SERVER_APP}.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
+c.IdentityProvider.token = "${TAP_TOKEN}"
 EOF
-else
-cat <<- EOF > ${TAP_JUPYTER_CONFIG}
-# Configuration file for TAP jupyter-notebook
-import ssl
-c = get_config()
-c.IPKernelApp.pylab = "inline"  # if you want plotting support always
-c.ServerApp.ip = "0.0.0.0"
-c.ServerApp.port = 5902
-c.ServerApp.open_browser = False
-c.ServerApp.allow_origin = u"*"
-c.ServerApp.ssl_options={"ssl_version": ssl.PROTOCOL_TLSv1_2}
-c.NotebookApp.mathjax_url = u"https://cdn.mathjax.org/mathjax/latest/MathJax.js"
-EOF
-fi
 
 # launch jupyter
-JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME}.log
-JUPYTER_BIN="/opt/conda/bin/jupyter-lab"
-JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG} --${JUPYTER_SERVER_APP}.token=${TAP_TOKEN}"
+JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME_PREFIX}.log
+
+# set user symlinks
+ln -s $STOCKYARD "Work"
+ln -s $HOME "Home"
+ln -s $SCRATCH "Scratch"
+
+JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG}"
 echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS}"
 nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
 
@@ -98,6 +99,8 @@ LOGIN_PORT=$(tap_get_port)
 echo "TACC: got login node jupyter port ${LOGIN_PORT}"
 
 JUPYTER_URL="https://${NODE_HOSTNAME_DOMAIN}:${LOGIN_PORT}/?token=${TAP_TOKEN}"
+
+echo "JUPYTER_URL is $JUPYTER_URL"
 
 # verify jupyter is up. if not, give one more try, then bail
 if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
@@ -114,8 +117,6 @@ if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
     echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
     exit 1
 fi
-
-LOCAL_PORT=5902
 
 # Port forwarding is set up for the four login nodes.
 #
@@ -147,7 +148,12 @@ curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owne
 # Delete the session file to kill the job.
 echo $NODE_HOSTNAME_LONG $IPYTHON_PID > $SESSION_FILE
 
-# While the session file remains undeleted, keep Jupyter Notebook running.
+# While the session file remains undeleted, keep Jupyter session running.
 while [ -f $SESSION_FILE ] ; do
     sleep 10
 done
+
+# clean up symlinks
+rm "Work"
+rm "Home"
+rm "Scratch"
