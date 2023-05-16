@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "TACC: job ${SLURM_JOB_ID} execution at: $(date)"
-AGAVE_JOB_OWNER=sal
+
 CURRENT_WORKING_DIR="$PWD"
 USER_MY_DATA=$CURRENT_WORKING_DIR/MyData
 JUPYTERLAB_SETTINGS_DIR=$USER_MY_DATA/.jupyter/lab/user-settings/
