@@ -3,7 +3,7 @@
 echo "TACC: job ${SLURM_JOB_ID} execution at: $(date)"
 
 # This file will be located in the directory mounted by the job.
-SESSION_FILE="delete_me_to_end_session"
+SESSION_FILE="$CURRENT_WORKING_DIR/delete_me_to_end_session"
 touch $SESSION_FILE
 
 # RUN JUPYTER SESSION IN BACKGROUND  -->  CAN STAY THE SAME
@@ -41,7 +41,7 @@ fi
 echo "JUPYTER_SERVER_APP is $JUPYTER_SERVER_APP"
 echo "JUPYTER_BIN is $JUPYTER_BIN"
 
-NB_SERVERDIR=.jupyter
+NB_SERVERDIR=$USER_MY_DATA/.jupyter
 
 # make .jupyter dir for logs
 mkdir -p ${NB_SERVERDIR}
@@ -78,13 +78,15 @@ c.${JUPYTER_SERVER_APP}.port = $LOCAL_PORT
 c.${JUPYTER_SERVER_APP}.open_browser = False
 c.${JUPYTER_SERVER_APP}.allow_origin = u"*"
 c.${JUPYTER_SERVER_APP}.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
+c.${JUPYTER_SERVER_APP}.root_dir = "$CURRENT_WORKING_DIR"
+c.${JUPYTER_SERVER_APP}.preferred_dir = "$CURRENT_WORKING_DIR"
 c.IdentityProvider.token = "${TAP_TOKEN}"
 EOF
 
 # launch jupyter
 JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME_PREFIX}.log
 
-JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG} --notebook-dir=$pwd"
+JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG}"
 echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS}"
 nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
 
