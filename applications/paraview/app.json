@@ -56,7 +56,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "swr -t 8 paraview",
+                    "value": "sleep 20m",
                     "description": "Command passed to XTERM, launched within the interactive session."
                 },
                 {
