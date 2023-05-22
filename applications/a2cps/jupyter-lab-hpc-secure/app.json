@@ -36,7 +36,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,/corral-secure"
+                    "arg": "--bind /share,/corral-secure,/corral-secure/projects/A2CPS/shared/${JobOwner}:$PWD/'My Data'"
                 }
             ],
             "schedulerOptions": [

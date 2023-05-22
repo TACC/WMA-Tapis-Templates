@@ -84,11 +84,6 @@ EOF
 # launch jupyter
 JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME_PREFIX}.log
 
-# set user symlinks
-ln -s $STOCKYARD "Work"
-ln -s $HOME "Home"
-ln -s $SCRATCH "Scratch"
-
 JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG}"
 echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS}"
 nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
@@ -152,8 +147,3 @@ echo $NODE_HOSTNAME_LONG $IPYTHON_PID > $SESSION_FILE
 while [ -f $SESSION_FILE ] ; do
     sleep 10
 done
-
-# clean up symlinks
-rm "Work"
-rm "Home"
-rm "Scratch"

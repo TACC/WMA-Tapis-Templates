@@ -36,7 +36,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share"
+                    "arg": "--bind /share,$STOCKYARD:$PWD/Work',$HOME:$PWD/Home,$SCRATCH:$PWD/Scratch"
                 }
             ],
             "schedulerOptions": [
