@@ -1,7 +1,7 @@
 from tapipy.errors import BaseTapyException
 import os
 import argparse
-from client_secrets import TENANT_NAMES, TAPIS_CLIENTS
+from client_secrets import TAPIS_CLIENTS
 from utils.load_file_to_json import load_file_to_json
 from utils.client import get_client
 
@@ -90,23 +90,35 @@ def main():
                         help='Force recreate scheduler profiles')
     parser.add_argument('-t', '--tenants',
                         help='Comma separated list of tenants')
+    parser.add_argument('-s', '--systems',
+                        help='Comma separated list of systems. Paramater only applies for single tenant case')
+    parser.add_argument('-a', '--apps',
+                        help='Comma separated list of apps. Paramater only applies for single tenant case')
     args = parser.parse_args()
 
     if args.tenants:
         tenant_names = args.tenants.split(',')
     else:
-        tenant_names = TENANT_NAMES
+        tenant_names = list(TAPIS_CLIENTS.keys())
+
+    if len(tenant_names) == 1:
+        apps = args.apps.split(',') if args.apps else None
+        systems = args.systems.split(',') if args.systems else None
+    else:
+        apps = None
+        systems = None
 
     for tenant_name in tenant_names:
         match tenant_name:
             case 'A2CPS':
-                systems = ['secure.frontera', 'secure.corral']
-                apps = ['a2cps/extract-secure', 'a2cps/compress-secure',
-                        'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-notebook-hpc-secure']
+                systems = systems or ['secure.frontera', 'secure.corral']
+                apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure',
+                                'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-lab-hpc-secure']
             case _:
-                systems = ['frontera', 'maverick2', 'ls6', 'cloud.data']
-                apps = ['compress', 'extract', 'matlab', 'qgis', 'rstudio-desktop',
-                        'jupyter-lab-hpc', 'hello-world', 'fiji', 'paraview']
+                systems = systems or ['frontera',
+                                      'maverick2', 'ls6', 'cloud.data']
+                apps = apps or ['compress', 'extract', 'matlab', 'qgis', 'rstudio-desktop',
+                                'jupyter-lab-hpc', 'hello-world', 'fiji', 'paraview']
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
