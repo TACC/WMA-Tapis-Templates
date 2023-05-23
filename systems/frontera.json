@@ -11,6 +11,7 @@
     "port": 22,
     "canExec": true,
     "canRunBatch": true,
+    "enableCmdPrefix": true,
     "jobRuntimes": [
         {
             "runtimeType": "SINGULARITY",

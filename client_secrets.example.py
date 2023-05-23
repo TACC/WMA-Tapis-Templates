@@ -2,10 +2,8 @@
 EXAMPLE FILE; DO NOT AMEND
 """
 
-TENANT_NAMES = ['CEP', 'A2CPS']
-
 TAPIS_CLIENTS = {
-    'CEP': [
+    'PORTALS': [
         {
             'base_url': 'https://portals.develop.tapis.io',
             'client_id': '',
