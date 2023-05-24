@@ -71,7 +71,7 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "Jupyter Lab HPC",
+        "label": "Jupyter Lab HPC (Frontera)",
         "helpUrl": "https://jupyterlab.readthedocs.io/en/stable/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
