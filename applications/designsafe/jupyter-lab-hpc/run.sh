@@ -83,12 +83,15 @@ EOF
 
 # launch jupyter
 JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME_PREFIX}.log
+touch $JUPYTER_LOGFILE
 
 JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG}"
-echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE}"
-nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
+echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS} 2>&1 ${JUPYTER_LOGFILE}"
+nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} 2>&1 ${JUPYTER_LOGFILE} &
 
 JUPYTER_PID=$!
+echo "JUPYTER_PID is $JUPYTER_PID"
+ps -fu ${USER}
 
 LOGIN_PORT=$(tap_get_port)
 echo "TACC: got login node jupyter port ${LOGIN_PORT}"
@@ -101,8 +104,9 @@ echo "JUPYTER_URL is $JUPYTER_URL"
 if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
     # sometimes jupyter has a bad day. give it another chance to be awesome.
     echo "TACC: first jupyter launch failed. Retrying..."
-    nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
+    nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} 2>&1 ${JUPYTER_LOGFILE} &
 fi
+sleep 5m
 if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
     # jupyter will not be working today. sadness.
     echo "TACC: ERROR - jupyter failed to launch"
