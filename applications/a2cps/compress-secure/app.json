@@ -54,7 +54,14 @@
                     "arg": "Archive"
                 }
             ],
-            "containerArgs": [],
+            "containerArgs": [
+                {
+                    "name": "Corral Secure Mount",
+                    "description": "Corral Secure Mount",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /corral-secure"
+                }
+            ],
             "schedulerOptions": [
                 {
                     "name": "TACC Scheduler Profile",
