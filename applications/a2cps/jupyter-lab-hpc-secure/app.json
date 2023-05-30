@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "mkdir $PWD/'My Data';",
+        "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [
@@ -36,7 +36,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,/corral-secure,/corral-secure/projects/A2CPS/shared/${JobOwner}:$PWD/'My Data'"
+                    "arg": "--bind /share,/corral-secure"
                 }
             ],
             "schedulerOptions": [
