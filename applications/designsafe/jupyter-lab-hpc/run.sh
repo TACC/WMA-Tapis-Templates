@@ -78,6 +78,8 @@ c.${JUPYTER_SERVER_APP}.port = $LOCAL_PORT
 c.${JUPYTER_SERVER_APP}.open_browser = False
 c.${JUPYTER_SERVER_APP}.allow_origin = u"*"
 c.${JUPYTER_SERVER_APP}.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
+c.${JUPYTER_SERVER_APP}.root_dir = "$HOME"
+c.${JUPYTER_SERVER_APP}.preferred_dir = "$HOME"
 c.IdentityProvider.token = "${TAP_TOKEN}"
 EOF
 
@@ -86,12 +88,10 @@ JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME_PREFIX}.log
 touch $JUPYTER_LOGFILE
 
 JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG}"
-echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS} 2>&1 ${JUPYTER_LOGFILE}"
-nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} 2>&1 ${JUPYTER_LOGFILE} &
+echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &"
+nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
 
 JUPYTER_PID=$!
-echo "JUPYTER_PID is $JUPYTER_PID"
-ps -fu ${USER}
 
 LOGIN_PORT=$(tap_get_port)
 echo "TACC: got login node jupyter port ${LOGIN_PORT}"
@@ -104,9 +104,9 @@ echo "JUPYTER_URL is $JUPYTER_URL"
 if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
     # sometimes jupyter has a bad day. give it another chance to be awesome.
     echo "TACC: first jupyter launch failed. Retrying..."
-    nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} 2>&1 ${JUPYTER_LOGFILE} &
+    nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
 fi
-sleep 5m
+
 if ! $(ps -fu ${USER} | grep ${JUPYTER_BIN} | grep -qv grep) ; then
     # jupyter will not be working today. sadness.
     echo "TACC: ERROR - jupyter failed to launch"
@@ -137,7 +137,7 @@ if [ $(ps -fu ${USER} | grep ssh | grep login | grep -vc grep) != 4 ]; then
     echo "TACC: ERROR - undo any recent mods in ${HOME}/.ssh"
     echo "TACC: ERROR - or submit a TACC consulting ticket with this error"
     echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
-    # exit 1
+    exit 1
 fi
 
 # Webhook callback url for job ready notification.
