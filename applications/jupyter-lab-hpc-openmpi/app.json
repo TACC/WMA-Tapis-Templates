@@ -53,7 +53,13 @@
                     "arg": "--job-name ${JobName}-tap_"
                 }
             ],
-            "envVariables": [],
+            "envVariables": [
+                {
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "/usr/local/lib",
+                    "description": "LD_LIBRARY_PATH for Open MPI"
+                }
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
