@@ -34,7 +34,7 @@
             "containerArgs": [
                 {
                     "name": "Jupyter Mounts",
-                    "description": "Mount for TAP functions",
+                    "description": "Mount for TAP functions and user dirs",
                     "inputMode": "FIXED",
                     "arg": "--bind /share,$STOCKYARD:$PWD/Work,$HOME:$PWD/Home,$SCRATCH:$PWD/Scratch"
                 }
