@@ -115,8 +115,7 @@ def main():
                 apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure',
                                 'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-lab-hpc-secure']
             case _:
-                systems = systems or ['frontera',
-                                      'maverick2', 'ls6', 'cloud.data']
+                systems = systems or ['frontera', 'ls6', 'cloud.data']
                 apps = apps or ['compress', 'extract', 'matlab', 'qgis', 'rstudio-desktop',
                                 'jupyter-lab-hpc', 'hello-world', 'fiji', 'paraview']
 
