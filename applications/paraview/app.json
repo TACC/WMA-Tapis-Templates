@@ -56,13 +56,18 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "sleep 20m",
+                    "value": "swr -t 8 paraview",
                     "description": "Command passed to XTERM, launched within the interactive session."
                 },
                 {
                     "key": "APPEND_PATH",
                     "value": "$PATH",
                     "description": "Append host $PATH to Singularity container default $PATH."
+                },
+                {
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "/home1/apps/QGIS/qgis_330/plugins/platforms:$LD_LIBRARY_PATH",
+                    "description":"The QT5 widget library must be loaded manually"
                 }
             ],
             "archiveFilter": {
