@@ -11,13 +11,14 @@
 
 ## Creating a client
 1. (Optional) Install Tapipy in a pyenv environemnt
-  a. `pyenv install 3.10`
-  b. `export PYENV_VERSION=3.10.10`
+  a. `pyenv install 3.11`
+  b. `pyenv virtualenv 3.11 tapipy`
+  c. `pyenv local tapipy`
   c. `pip install tapipy`
 2. Install ipython
   a. `pip install ipython`
 3. Initiate an ipython session
-  a. `pyenv exec ipython`
+  a. `ipython`
 4. Create a client
 ```
 from tapipy.tapis import Tapis
