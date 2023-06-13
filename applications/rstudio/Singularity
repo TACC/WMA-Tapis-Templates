@@ -1,0 +1,9 @@
+Bootstrap: docker
+
+From: taccaci/rstudio:latest
+
+%labels
+    Version v0.0.1
+
+%help
+    Interactive rstudio session on TACC HPC systems.
