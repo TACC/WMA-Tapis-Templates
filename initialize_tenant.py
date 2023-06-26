@@ -101,23 +101,22 @@ def main():
     else:
         tenant_names = list(TAPIS_CLIENTS.keys())
 
-    if len(tenant_names) == 1:
-        apps = args.apps.split(',') if args.apps else None
-        systems = args.systems.split(',') if args.systems else None
-    else:
-        apps = None
-        systems = None
-
     for tenant_name in tenant_names:
+
+        if len(tenant_names) == 1:
+            apps = args.apps.split(',') if args.apps else None
+            systems = args.systems.split(',') if args.systems else None
+        else:
+            apps = None
+            systems = None
+
         match tenant_name:
             case 'A2CPS':
                 systems = systems or ['secure.frontera', 'secure.corral']
-                apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure',
-                                'a2cps/matlab-secure', 'a2cps/rstudio-desktop-secure', 'a2cps/jupyter-lab-hpc-secure']
+                apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure', 'a2cps/jupyter-lab-hpc-secure', 'a2cps/matlab-secure']
             case _:
                 systems = systems or ['frontera', 'ls6', 'cloud.data']
-                apps = apps or ['compress', 'extract', 'matlab', 'qgis', 'rstudio-desktop',
-                                'jupyter-lab-hpc', 'hello-world', 'fiji', 'paraview']
+                apps = apps or ['compress', 'extract', 'fiji', 'jupyter-lab-hpc', 'jupyter-lab-hpc-openmpi', 'matlab', 'paraview', 'qgis', 'rstudio']
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
