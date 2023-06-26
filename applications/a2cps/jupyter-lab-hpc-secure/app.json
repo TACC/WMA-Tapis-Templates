@@ -36,7 +36,10 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,/corral-secure"
+                    "arg": "--bind /share,/corral-secure",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "schedulerOptions": [
@@ -44,13 +47,19 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer"
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "name": "TAP Session Substring",
                     "description": "TAP Functions require the substring 'tap_' and in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-tap_"
+                    "arg": "--job-name ${JobName}-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "envVariables": [],
@@ -68,7 +77,7 @@
         "tags": []
     },
     "tags": [
-        "portalName: ALL"
+        "portalName: A2CPS"
     ],
     "notes": {
         "label": "Jupyter Lab HPC (Frontera)",

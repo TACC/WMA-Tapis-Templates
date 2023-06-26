@@ -37,13 +37,19 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer"
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "name": "Slurm job name",
                     "description": "Set the slurm job name to be identical to the Tapis job name.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}"
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "envVariables": [],
