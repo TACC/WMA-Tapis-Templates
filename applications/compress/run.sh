@@ -3,7 +3,7 @@
 CTYPE=$1
 echo "Compression Type is ${CTYPE}"
 
-ARCHIVE_FILE_NAME="$2"
+ARCHIVE_FILE_NAME=$2
 
 replace_special_chars() {
   local string="$1"
