@@ -36,7 +36,10 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions and user dirs",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,$STOCKYARD:$PWD/Work,$HOME:$PWD/Home,$SCRATCH:$PWD/Scratch"
+                    "arg": "--bind /share,$STOCKYARD:$PWD/Work,$HOME:$PWD/Home,$SCRATCH:$PWD/Scratch",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "schedulerOptions": [
@@ -44,13 +47,19 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer"
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "name": "TAP Session Substring",
                     "description": "TAP Functions require the substring 'tap_' and in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-tap_"
+                    "arg": "--job-name ${JobName}-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "envVariables": [

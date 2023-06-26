@@ -36,7 +36,10 @@
                     "name": "Corral Secure Mount",
                     "description": "Corral Secure Mount",
                     "inputMode": "FIXED",
-                    "arg": "--bind /corral-secure"
+                    "arg": "--bind /corral-secure",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "schedulerOptions": [
@@ -44,13 +47,19 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer"
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "name": "Slurm job name",
                     "description": "Set the slurm job name to be identical to the Tapis job name.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}"
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "envVariables": [],
