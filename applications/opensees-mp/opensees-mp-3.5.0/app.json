@@ -1,0 +1,43 @@
+{
+    "id": "opensees-mp-v35",
+    "version": "0.0.1",
+    "description": "An application template for version 3.5.0 of OpenSees MP",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://taccaci/opensees-mp:3.5.0",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
+        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "isMpi": true,
+        "mpiCmd": "mpirun",
+        "parameterSet": {
+            "appArgs": [
+                {"name": "mainProgram", "arg": "OpenSeesMP", "inputMode": "FIXED"},
+                {"name": "inputRedirection", "arg": "<", "inputMode": "FIXED"},
+                {"name": "input1", "arg": "/TapisInput/input_dir/Example.tcl", "inputMode": "REQUIRED"}
+            ] 
+        },
+        "fileInputs": [
+            {
+                "name": "TCL_input_directory",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://<system-id>/<pathto/OpenSees/EXAMPLES/SmallMP>",
+                "targetPath": ".",
+                "description": "TCL input directory that includes the tcl script as well as any other required files."
+            }
+        ]
+    },
+    "tags": [
+        "portalName: ALL"
+    ]
+}

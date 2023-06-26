@@ -1,0 +1,2 @@
+gravX 0.0
+gravY 0.0
