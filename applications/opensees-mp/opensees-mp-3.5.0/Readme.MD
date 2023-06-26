@@ -10,7 +10,7 @@ The output can be found in the output directory specified in the application def
 
 ## Using the OpenSees-MP application
 
-Use the _app.json_ file as a reference for creating the text-summarize application. Simply download the file
+Use the _app.json_ file as a reference for creating the OpenSeesMP application. Simply download the file
 or copy its contents and [create the app](https://tapis.readthedocs.io/en/latest/technical/apps.html#creating-an-application).
 
 Note that an application id must be unique, so in general it is a good idea to use a naming scheme likely to result
