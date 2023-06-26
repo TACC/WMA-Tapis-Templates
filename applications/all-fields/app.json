@@ -57,6 +57,27 @@
                     "arg": "world"
                 },
                 {
+                    "name": "Unrequired Regex Variable",
+                    "description": "This variable is bound by a regex validator, is not required, and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "validator": {
+                            "regex": "^tapis",
+                            "message": "String must start with tapis"
+                        }
+                    }
+                },
+                {
+                    "name": "Unrequired Email Variable",
+                    "description": "This variable is NOT required and does nothing",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": "test@mail.com",
+                    "notes": {
+                        "fieldType": "email"
+                    }
+                },
+                {
                     "name": "Unrequired Bool Variable",
                     "description": "This variable is NOT required and does nothing",
                     "inputMode": "INCLUDE_ON_DEMAND",
@@ -142,16 +163,11 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: CEP"
-    ],
+    "tags": [],
     "notes": {
-        "licenseType": "MATLAB",
-        "label": "Test App Sharing (From Sal)",
-        "isInteractive": true,
-        "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
+        "label": "Test App All Fields",
+        "helpUrl": "https://docs.tacc.utexas.edu/",
         "hideNodeCountAndCoresPerNode": false,
-        "icon": "compress",
         "category": "Test Apps"
     }
 }
