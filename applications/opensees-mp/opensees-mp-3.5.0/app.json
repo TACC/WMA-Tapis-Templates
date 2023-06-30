@@ -31,13 +31,21 @@
             {
                 "name": "TCL_input_directory",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://<system-id>/<pathto/OpenSees/EXAMPLES/SmallMP>",
+                "sourceUrl": "tapis://<system-id>/<pathto_input_tcl>",
                 "targetPath": ".",
-                "description": "TCL input directory that includes the tcl script as well as any other required files."
+                "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp/Example.tcl"
             }
         ]
     },
     "tags": [
         "portalName: ALL"
-    ]
+    ],
+    "notes": {
+        "label": "OpenSeesMP (V 3.5)",
+        "helpUrl": "https://opensees.berkeley.edu/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": false,
+        "icon": null,
+        "category": "Simulation"
+    }
 }

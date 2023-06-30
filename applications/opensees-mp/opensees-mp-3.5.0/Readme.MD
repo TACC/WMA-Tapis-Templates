@@ -35,6 +35,10 @@ If using the job definition template, be sure to replace the *execSystemId* with
 (or remove it entirely), update *appId* with the Id of the application you created and change the "--account" in
 *appArgs* to your specific account allocation.
 
+### TACC system notes
+
+The binary built by the container is similar to the one in Frontera and LoneStar 6. The only difference
+is vectorization. The container image is not using any specific vectorization. Where as, Frontera and LoneStar 6 are using avx 512(512 bit) and avx 2 (256 bit) . There is no performance impact to OpenSees without this vectorization setting in building binary.
 
 ## Handling input files
 

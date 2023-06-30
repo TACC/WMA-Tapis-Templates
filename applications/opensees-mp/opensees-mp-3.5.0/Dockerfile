@@ -8,10 +8,6 @@
 # https://github.com/tapis-project/application-repository/tree/main/opensees-mp
 #
 # This is a vanilla installation of OpenSeesMP 3.5.0 on Ubuntu 20.04 compiled with Intel MPI. 
-# You can run the app demo by running the container with no arguments.
-# 
-# ibrun singularity docker run -it --rm taccaci/opensees-mp:3.5.0
-#
 # To run your own input, mount your data to the /data volume and
 # specify the traditional invocation command
 #
@@ -54,7 +50,6 @@ RUN cd /home/ubuntu && source /entry.sh && git clone https://github.com/OpenSees
     git checkout v3.5.0 && cp ../Makefile.def ./ && \
     PROGRAMMING_MODE=PARALLEL_INTERPRETERS make -j 28 && \
     mv EXAMPLES/SmallMP ../SmallMP && cd .. && rm -rf OpenSees Makefile.def
-COPY inputs /data
 RUN mv /home/ubuntu/SmallMP /data/SmallMP
 RUN chown -R ubuntu:ubuntu /home/ubuntu /data
 ENV HOME=/home/ubuntu \
@@ -63,4 +58,4 @@ USER ubuntu
 WORKDIR /data
 ENV PATH $PATH:/home/ubuntu/bin
 VOLUME ["/data"]
-CMD [ "/bin/sh", "-c", "OpenSeesMP < /data/SimpleCyclicShear/1elem_woutput_debug.tcl" ]
+CMD [ "/bin/sh", "-c", "OpenSeesMP" ]
