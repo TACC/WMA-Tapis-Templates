@@ -1,0 +1,104 @@
+{
+    "id": "matlab_prit_ls6_v2",
+    "version": "9.13.0_prit_ls6_v2",
+    "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://taccaci/interactive-base:1.0.0",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ls6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [
+                {
+                    "name": "Interactive Session and TACC Module Mounts",
+                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/etc,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "MATLAB TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC MATLAB R2022b.",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile matlab_2022b_ls6",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "swr -t 8 matlab",
+                    "description": "Command passed to XTERM, launched within the interactive session."
+                },
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH."
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: ALL"
+    ],
+    "notes": {
+        "licenseType": "MATLAB",
+        "label": "MATLAB R2022b Interactive v2 (LoneStar6)",
+        "helpUrl": "https://docs.tacc.utexas.edu/hpc/lonestar6/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": "matlab",
+        "category": "Data Processing"
+    }
+}
