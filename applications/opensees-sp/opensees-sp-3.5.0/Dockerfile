@@ -4,8 +4,7 @@
 # Tag: taccaci/opensees-sp:3.5.0
 #
 # Attribution: This Dockerfile and corressponding Makefile was modified from original version created by TAPIS-Project; 
-# see the original repository here: 
-# https://github.com/tapis-project/application-repository/tree/main/opensees-sp
+# see the original repository here: https://github.com/wangyinz/opensees-container
 #
 # This is a vanilla installation of OpenSeesSP 3.5.0 on Ubuntu 20.04 compiled with Intel MPI. 
 # To run your own input, mount your data to the /data volume and

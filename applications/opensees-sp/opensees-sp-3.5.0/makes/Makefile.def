@@ -14,10 +14,10 @@
 ############################################################################
 
 
-# you nooed load module petsc in .bashrc
+# you need to load module petsc in .bashrc
 # in the .basrc_user, or .cshrc_user you need to add the following
 # module load petsc
-# PUT YOUR HOME DIRECTOREY HERE IF NOT THE DEFAULT ONE IN
+# PUT YOUR HOME DIRECTORY HERE IF NOT THE DEFAULT ONE IN
 
 HOME  = /home/ubuntu
 
