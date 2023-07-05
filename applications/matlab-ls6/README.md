@@ -6,4 +6,4 @@ The `app.json` contains the basic definition of the application. Use `client.app
 
 Although this application could not be tested in LoneStar6 because of the lack of interactive session, this has been tested in Frontera. The following is the output of the test:
 
-Here's a sample output of the test in frontera system:
+Here's a sample output of the test in frontera system:<img width="1664" alt="Screenshot 2023-07-05 at 11 06 19 AM" src="https://github.com/TACC/WMA-Tapis-Templates/assets/43958517/716cc659-02e4-498b-8698-46d1bc84780a">
