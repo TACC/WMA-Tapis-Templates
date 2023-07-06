@@ -1,5 +1,5 @@
 {
-    "id": "opensees-mp-v35",
+    "id": "opensees-sp-v35",
     "version": "0.0.1",
     "description": "An application template for version 3.5.0 of OpenSees MP",
     "owner": "${apiUserId}",
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/opensees-mp:3.5.0",
+    "containerImage": "docker://taccaci/opensees-sp:3.5.0",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -22,7 +22,7 @@
         "mpiCmd": "mpirun",
         "parameterSet": {
             "appArgs": [
-                {"name": "mainProgram", "arg": "OpenSeesMP", "inputMode": "FIXED"},
+                {"name": "mainProgram", "arg": "OpenSeesSP", "inputMode": "FIXED"},
                 {"name": "inputRedirection", "arg": "<", "inputMode": "FIXED"},
                 {"name": "input1", "arg": "/TapisInput/input_dir/Example.tcl", "inputMode": "REQUIRED"}
             ] 
@@ -31,9 +31,9 @@
             {
                 "name": "TCL_input_directory",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp/",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/",
                 "targetPath": ".",
-                "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp/Example.tcl"
+                "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/Example.tcl"
             }
         ]
     },
@@ -41,7 +41,7 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "OpenSeesMP (V 3.5)",
+        "label": "OpenSeesSP (V 3.5)",
         "helpUrl": "https://opensees.berkeley.edu/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
