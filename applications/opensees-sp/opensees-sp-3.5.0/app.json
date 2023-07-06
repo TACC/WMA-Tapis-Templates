@@ -15,9 +15,12 @@
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
-        "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
-        "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
         "isMpi": true,
         "mpiCmd": "mpirun",
         "parameterSet": {
