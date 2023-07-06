@@ -31,7 +31,7 @@
             {
                 "name": "TCL_input_directory",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://<system-id>/<pathto_input_tcl>",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/",
                 "targetPath": ".",
                 "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/Example.tcl"
             }
