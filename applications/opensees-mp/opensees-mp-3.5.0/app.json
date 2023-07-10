@@ -21,14 +21,40 @@
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
         "isMpi": true,
         "mpiCmd": "mpirun",
         "parameterSet": {
             "appArgs": [
-                {"name": "mainProgram", "arg": "OpenSeesMP", "inputMode": "FIXED"},
-                {"name": "inputRedirection", "arg": "<", "inputMode": "FIXED"},
-                {"name": "input1", "arg": "/TapisInput/input_dir/Example.tcl", "inputMode": "REQUIRED"}
-            ] 
+                {
+                    "name": "mainProgram",
+                    "arg": "OpenSeesSP",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "inputRedirection",
+                    "arg": "<",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "input1",
+                    "arg": "Example.tcl",
+                    "inputMode": "REQUIRED"
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
         },
         "fileInputs": [
             {
@@ -38,7 +64,14 @@
                 "targetPath": ".",
                 "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp/Example.tcl"
             }
-        ]
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 2,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
     },
     "tags": [
         "portalName: ALL"
