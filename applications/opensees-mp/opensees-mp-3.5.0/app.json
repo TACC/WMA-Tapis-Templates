@@ -30,7 +30,7 @@
             "appArgs": [
                 {
                     "name": "mainProgram",
-                    "arg": "OpenSeesSP",
+                    "arg": "OpenSeesMP",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
