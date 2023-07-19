@@ -66,12 +66,20 @@
                 {
                     "key": "_XTERM_CMD",
                     "value": "swr -t 8 ImageJ-linux64 --default-gc",
-                    "description": "Command passed to XTERM, launched within the interactive session."
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "key": "APPEND_PATH",
                     "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH."
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "archiveFilter": {
