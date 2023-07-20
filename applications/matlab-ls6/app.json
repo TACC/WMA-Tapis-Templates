@@ -1,6 +1,6 @@
 {
-    "id": "matlab_prit_ls6_v2",
-    "version": "9.13.0_prit_ls6_v2",
+    "id": "matlab_ls6",
+    "version": "9.13.0",
     "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/interactive-base:1.0.0",
+    "containerImage": "docker://taccaci/interactive-base:1.1.0",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -36,7 +36,7 @@
                     "name": "Interactive Session and TACC Module Mounts",
                     "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin,/etc,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                    "arg": "--bind /bin,/lib,/lib64,/share,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src",
                     "notes": {
                         "isHidden": true
                     }
@@ -94,7 +94,7 @@
     ],
     "notes": {
         "licenseType": "MATLAB",
-        "label": "MATLAB R2022b Interactive v2 (LoneStar6)",
+        "label": "MATLAB R2022b Interactive (LoneStar6)",
         "helpUrl": "https://docs.tacc.utexas.edu/hpc/lonestar6/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
