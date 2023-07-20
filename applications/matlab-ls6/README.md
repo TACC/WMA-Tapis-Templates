@@ -6,4 +6,4 @@ The `app.json` contains the basic definition of the application. Use `client.app
 
 Here's a sample output of the test in LoneStar6 ystem:
 
-<img width="1664" alt="Screenshot 2023-07-05 at 11 06 19 AM" src="https://github.com/TACC/WMA-Tapis-Templates/applications/matlab-ls6/Sample Output- Matlab LS6.png">
+<img width="779" alt="Sample Output- Matlab LS6" src="https://github.com/TACC/WMA-Tapis-Templates/assets/43958517/123ed25d-4644-4fb5-b7bb-13c99b73b07e">
