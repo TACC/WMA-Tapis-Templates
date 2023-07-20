@@ -1,6 +1,6 @@
 {
     "id": "fiji",
-    "version": "2.0.0.1",
+    "version": "2.14.0",
     "description": "Run an interactive Fiji session on Lonestar6.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/interactive-base:1.0.0",
+    "containerImage": "docker://taccaci/fiji:latest",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -36,7 +36,7 @@
                     "name": "Interactive Session and TACC Module Mounts",
                     "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin,/etc,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                    "arg": "--bind /bin,/lib,/lib64,/share,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,13 +65,21 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "swr -t 8 /work/projects/NeuroNex/3DEM/bin/Fiji/fiji-nojre-20170530/Fiji.app/ImageJ-linux64 --system",
-                    "description": "Command passed to XTERM, launched within the interactive session."
+                    "value": "swr -t 8 ImageJ-linux64 --default-gc",
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "key": "APPEND_PATH",
                     "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH."
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "archiveFilter": {

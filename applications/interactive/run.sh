@@ -131,7 +131,7 @@ sleep 3;
 
 # create reverse tunnel port to login nodes.  Make one tunnel for each login so the user can just connect to $HPC_HOST
 for i in `seq 4`; do
-  ssh -q -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
+  ssh -o StrictHostKeyChecking=no -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
 done
 
 echo "TACC: Created reverse ports on $HPC_HOST logins"
