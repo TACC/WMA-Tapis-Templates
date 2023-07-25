@@ -98,12 +98,12 @@
         "tags": []
     },
     "tags": [
-        "portalName: ALL"
+        "portalName: UTRC"
     ],
     "notes": {
         "licenseType": "MATLAB",
         "label": "MATLAB R2022b Interactive (LoneStar6)",
-        "helpUrl": "https://docs.tacc.utexas.edu/hpc/lonestar6/",
+        "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "matlab",

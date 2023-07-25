@@ -66,12 +66,20 @@
                 {
                     "key": "_XTERM_CMD",
                     "value": "swr -t 8 matlab",
-                    "description": "Command passed to XTERM, launched within the interactive session."
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "key": "APPEND_PATH",
                     "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH."
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "archiveFilter": {
@@ -95,7 +103,7 @@
     "notes": {
         "licenseType": "MATLAB",
         "label": "MATLAB R2022b Interactive (Frontera)",
-        "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
+        "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "matlab",
