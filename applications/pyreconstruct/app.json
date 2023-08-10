@@ -1,0 +1,103 @@
+{
+    "id": "pyreconstruct",
+    "version": "0.0.1",
+    "description": "PyReconstruct: A Python initialization of RECONSTRUCT, a 3D Tool for Image Reconstruction on LoneStar 6.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://taccaci/pyreconstruct:0.0.1",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "PyReconstruct: A Python initialization of RECONSTRUCT, a 3D Tool for Image Reconstruction on LoneStar 6.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ls6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [
+                {
+                    "name": "Interactive Session and TACC Module Mounts",
+                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/opt/apps,/opt/intel,/run,/share,/lib,/lib64,/usr/bin,/usr/lib/systemd,/usr/libexec,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src,/usr/lib64",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "PyReconstruct TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC PyReconstruct 0.0.1.",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile PyReconstruct_0.0.1",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [                
+                {
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "/lib:/lib64",
+                    "description": "LD_LIBRARY_PATH"
+                },                
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "/app/wrapper.sh",
+                    "description": "Command passed to XTERM, launched within the interactive session."
+                }
+             ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: 3DEM,CEP"
+    ],
+    "notes": {
+        "label": "PyReconstruct (LoneStar6)",
+        "helpUrl": "https://github.com/tiffanyhuff/PyReconstructApp",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": null,
+        "category": "Interactive Analysis"
+    }
+}
