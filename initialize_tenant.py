@@ -127,6 +127,7 @@ def main():
                     'napari-ls6',
                     'paraview',
                     'pyreconstruct',
+                    'pyreconstruct-dev',
                     'qgis',
                 ]
 
