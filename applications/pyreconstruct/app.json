@@ -75,7 +75,11 @@
                 {
                     "key": "_XTERM_CMD",
                     "value": "/app/wrapper.sh",
-                    "description": "Command passed to XTERM, launched within the interactive session."
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
              ],
             "archiveFilter": {
