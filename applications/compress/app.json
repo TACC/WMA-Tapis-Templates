@@ -1,6 +1,6 @@
 {
     "id": "compress",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Compress a file or folder for download.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/compress:latest",
+    "containerImage": "docker://taccaci/compress:0.0.2",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -49,9 +49,15 @@
                 },
                 {
                     "name": "Archive File Name",
-                    "description": "Output archive file name. The selected Compression Type will be appended to this filename.",
+                    "description": "Output archive file name. The selected Compression Type will be appended to this filename. Keep the file name inside single quotes. Any special characters in the file name will be replaced with an underscore.",
                     "inputMode": "REQUIRED",
-                    "arg": "Archive"
+                    "arg": "Archive",
+                    "notes": {
+                        "validator": {
+                            "regex": "^[a-zA-Z0-9!@#%^*-_.,'? ]+$",
+                            "message": "Must contain valid characters (a-z, A-Z, 0-9, !@#%^*-_.,?) and spaces."
+                        }
+                    }
                 }
             ],
             "containerArgs": [],
