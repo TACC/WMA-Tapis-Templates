@@ -66,7 +66,11 @@
                 {
                     "key": "LD_LIBRARY_PATH",
                     "value": "/usr/local/lib",
-                    "description": "LD_LIBRARY_PATH for Open MPI"
+                    "description": "LD_LIBRARY_PATH for Open MPI",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "archiveFilter": {

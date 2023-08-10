@@ -66,12 +66,20 @@
                 {
                     "key": "LD_LIBRARY_PATH",
                     "value": "/lib:/lib64",
-                    "description": "LD_LIBRARY_PATH"
+                    "description": "LD_LIBRARY_PATH",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 },                
                 {
                     "key": "_XTERM_CMD",
                     "value": "/app/wrapper.sh",
-                    "description": "Command passed to XTERM, launched within the interactive session."
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
              ],
             "archiveFilter": {
