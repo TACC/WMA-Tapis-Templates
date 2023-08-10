@@ -1,0 +1,16 @@
+{
+    "name": "PyReconstruct_0.0.1",
+    "description": "Modules to load for PyReconstruct",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "swr",
+                "tacc-apptainer"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
