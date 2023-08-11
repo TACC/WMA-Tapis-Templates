@@ -67,6 +67,7 @@
                     "key": "_XTERM_CMD",
                     "value": "python /work/03762/eriksf/public/code/PyReconstruct/src/PyReconstruct.py",
                     "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
                     }
