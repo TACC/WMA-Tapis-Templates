@@ -1,0 +1,95 @@
+{
+    "id": "namd",
+    "version": "2.1.3",
+    "description": "NAMD is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://juantacc/namd:2.1.3",
+    "executionType": "HPC",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": false,
+    "jobAttributes": {
+      "description": "Run an NAMD session on Frontera",
+      "dynamicExecSystem": false,
+      "execSystemConstraints": null,
+      "execSystemId": "frontera",
+      "execSystemExecDir": "${JobWorkingDir}",
+      "execSystemInputDir": "${JobWorkingDir}",
+      "execSystemOutputDir": "${JobWorkingDir}/output",
+      "execSystemLogicalQueue": "development",
+      "archiveSystemId": "cloud.data",
+      "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+      "archiveOnAppError": true,
+      "isMpi": true,
+      "mpiCmd": "mpirun",
+      "cmdPrefix": null,
+      "parameterSet": {
+          "appArgs": [
+            {
+                "name": "Configuration file",
+                "description": "The filename only of the NAMD configuration file (also called a config file, .conf file, or .namd file). This file should reside in the Input Directory specified.",
+                "inputMode": "REQUIRED",
+                "arg": "confFile"
+            },
+            {
+                "name": "Tasks per node",
+                "description": "Select the type of compressed file, either a Gzipped TAR file (.tar.gz) or a Zip file (.zip).",
+                "inputMode": "REQUIRED",
+                "arg": "namdCommandLineOptions",
+                "notes": {
+                    "enum_values": [
+                        {
+                            "4": "4 tasks per node"
+                        },
+                        {
+                            "8": "8 tasks per node"
+                        }
+                    ]
+                }
+            }
+          ],
+          "containerArgs": [],
+          "schedulerOptions": [],
+          "envVariables": [],
+          "archiveFilter": {
+              "includes": [],
+              "excludes": [],
+              "includeLaunchFiles": true
+          }
+      },
+      "fileInputs": [
+          {
+              "name": "Input Directory",
+              "description": "The directory containing your NAMD input files as well as your configuration file.",
+              "inputMode": "REQUIRED",
+              "autoMountLocal": true,
+              "sourceUrl": null,
+              "targetPath": "*"
+          }
+      ],
+      "fileInputArrays": [],
+      "nodeCount": 1,
+      "coresPerNode": 1,
+      "memoryMB": 100,
+      "maxMinutes": 120,
+      "subscriptions": [],
+      "tags": []
+  },
+  "tags": [
+      "portalName: 3DEM,CEP,UTRC"
+  ],
+  "notes": {
+      "label": "NAMD",
+      "helpUrl": "https://www.ks.uiuc.edu/Research/namd/",
+      "hideNodeCountAndCoresPerNode": false,
+      "isInteractive": false,
+      "icon": "namd",
+      "category": "Simulation"
+  }
+}
