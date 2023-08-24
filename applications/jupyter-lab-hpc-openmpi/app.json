@@ -36,7 +36,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions and user dirs",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,$STOCKYARD:$PWD/Work,$HOME:$PWD/Home,$SCRATCH:$PWD/Scratch",
+                    "arg": "--bind /share,/opt/intel,$STOCKYARD:$PWD/Work,$HOME:$PWD/Home,$SCRATCH:$PWD/Scratch",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,7 +65,7 @@
             "envVariables": [
                 {
                     "key": "LD_LIBRARY_PATH",
-                    "value": "/usr/local/lib",
+                    "value": "/usr/local/lib:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/lib",
                     "description": "LD_LIBRARY_PATH for Open MPI",
                     "inputMode": "FIXED",
                     "notes": {
