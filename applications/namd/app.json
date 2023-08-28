@@ -9,8 +9,8 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://juantacc/namd:2.1.3",
-    "executionType": "HPC",
+    "containerImage": "docker://taccaci/namd:2.1.3",
+    "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": false,
@@ -22,7 +22,7 @@
       "execSystemExecDir": "${JobWorkingDir}",
       "execSystemInputDir": "${JobWorkingDir}",
       "execSystemOutputDir": "${JobWorkingDir}/output",
-      "execSystemLogicalQueue": "development",
+      "execSystemLogicalQueue": "small",
       "archiveSystemId": "cloud.data",
       "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
       "archiveOnAppError": true,
@@ -31,6 +31,14 @@
       "cmdPrefix": null,
       "parameterSet": {
           "appArgs": [
+            {
+                "name": "mainProgram",
+                "arg": "namd2",
+                "inputMode": "FIXED",
+                "notes": {
+                    "isHidden": true
+                }
+            },
             {
                 "name": "Configuration file",
                 "description": "The filename only of the NAMD configuration file (also called a config file, .conf file, or .namd file). This file should reside in the Input Directory specified.",
@@ -54,7 +62,17 @@
                 }
             }
           ],
-          "containerArgs": [],
+          "containerArgs": [
+            {
+                "name": "NAMD Mounts",
+                "description": "Mount for TAP functions",
+                "inputMode": "FIXED",
+                "arg": "--bind /share",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
           "schedulerOptions": [],
           "envVariables": [],
           "archiveFilter": {

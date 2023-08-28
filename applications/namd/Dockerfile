@@ -26,11 +26,3 @@ RUN cd /home/ubuntu && \
     sed -i 's/OPTC    =.*/OPTC    = -O3 -fopenmp/g' Makefile.inc && \
     make -j mumps_lib && mkdir ../mumps && mv lib ../mumps/lib && mv include ../mumps/include && \
     cd .. && rm -rf MUMPS_5.2.1
-
-COPY run.sh /tapis/run.sh
-
-RUN chmod +x /tapis/run.sh
-
-ENV PATH="/tapis:${PATH}"
-
-ENTRYPOINT [ "run.sh" ] 
