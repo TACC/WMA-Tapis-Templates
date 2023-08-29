@@ -1,10 +1,10 @@
 {
-    "name": "namd-frontera-2.1.3u2",
-    "description": "Modules to load for NAMD 2.1.3u2",
+    "name": "namd-frontera-2.14",
+    "description": "Modules to load for NAMD",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "namd/2.13",
+                "namd",
                 "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
