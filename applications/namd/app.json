@@ -27,18 +27,10 @@
       "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
       "archiveOnAppError": true,
       "isMpi": true,
-      "mpiCmd": "mpirun",
+      "mpiCmd": "ibrun",
       "cmdPrefix": null,
       "parameterSet": {
           "appArgs": [
-            {
-                "name": "mainProgram",
-                "arg": "namd2",
-                "inputMode": "FIXED",
-                "notes": {
-                    "isHidden": true
-                }
-            },
             {
                 "name": "Configuration file",
                 "description": "The filename only of the NAMD configuration file (also called a config file, .conf file, or .namd file). This file should reside in the Input Directory specified.",
@@ -47,7 +39,7 @@
             },
             {
                 "name": "Tasks per node",
-                "description": "Select the type of compressed file, either a Gzipped TAR file (.tar.gz) or a Zip file (.zip).",
+                "description": "TACC staff recommends that users attempt runs with 4 tasks per node and 8 tasks per node (scales better at large number of nodes) and then pick the configuration that provides the best performance.",
                 "inputMode": "REQUIRED",
                 "arg": "namdCommandLineOptions",
                 "notes": {
@@ -67,14 +59,34 @@
                 "name": "NAMD Mounts",
                 "description": "Mount for TAP functions",
                 "inputMode": "FIXED",
-                "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                "arg": "--bind /bin,/etc,/home1/apps,/lib,/opt,/run,/share,/usr,/var",
                 "notes": {
                     "isHidden": true
                 }
             }
         ],
-          "schedulerOptions": [],
-          "envVariables": [],
+          "schedulerOptions": [
+            {
+                "name": "NAMD TACC Scheduler Profile",
+                "description": "Scheduler profile for TACC NAMD 2.14",
+                "inputMode": "FIXED",
+                "arg": "--tapis-profile namd-frontera-2.14",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+          ],
+          "envVariables": [
+            {
+                "key": "LD_LIBRARY_PATH",
+                "value": "/opt/apps/gcc/8.3.0/lib64:/lib:/opt/intel/compilers_and_libraries_2020.1.217/linux/mkl/lib/intel64_lin:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/lib/release:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/libfabric/lib",
+                "description": "LD_LIBRARY_PATH",
+                "inputMode": "FIXED",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+          ],
           "archiveFilter": {
               "includes": [],
               "excludes": [],
@@ -88,7 +100,7 @@
               "inputMode": "REQUIRED",
               "autoMountLocal": true,
               "sourceUrl": null,
-              "targetPath": "*"
+              "targetPath": "dataDir"
           }
       ],
       "fileInputArrays": [],
