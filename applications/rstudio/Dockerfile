@@ -1,24 +1,8 @@
 ### install rstudio ###
-FROM rocker/r-ver:4.3.0
+FROM rocker/rstudio:latest
 
-LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
-      org.opencontainers.image.source="https://github.com/rocker-org/rocker-versioned2" \
-      org.opencontainers.image.vendor="Rocker Project" \
-      org.opencontainers.image.authors="Carl Boettiger <cboettig@ropensci.org>"
+RUN mkdir /var/run/s6
 
-ENV S6_VERSION=v2.1.0.2
-ENV RSTUDIO_VERSION=2023.06.0+421
-ENV DEFAULT_USER=rstudio
-ENV PANDOC_VERSION=default
-ENV QUARTO_VERSION=default
+COPY --from=taccaci/interactive-base:1.1.0 /tapis /tapis
 
-RUN /rocker_scripts/install_rstudio.sh
-RUN /rocker_scripts/install_pandoc.sh
-RUN /rocker_scripts/install_quarto.sh
-
-### run DCV session ###
-FROM taccaci/interactive-base:1.0.0
-
-ENTRYPOINT [ "/tapis/run.sh" ]
-
-CMD ["1280x800"]
+ENTRYPOINT ["/tapis/run.sh"]

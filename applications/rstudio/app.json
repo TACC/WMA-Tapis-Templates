@@ -1,7 +1,7 @@
 {
     "id": "rstudio",
     "version": "4.3.0",
-    "description": "Run an interactive RStudio Desktop session on Lonestar6.",
+    "description": "Run an interactive RStudio Desktop session on Frontera.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -15,10 +15,10 @@
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Run an interactive RStudio Desktop session on Lonestar6.",
+        "description": "Run an interactive RStudio Desktop session on Frontera.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "ls6",
+        "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
@@ -36,7 +36,7 @@
                     "name": "Interactive Session and TACC Module Mounts",
                     "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                    "arg": "--bind /etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,7 +65,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "sleep 20m",
+                    "value": "/init",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -101,7 +101,7 @@
         "portalName: Frontera,UTRC,CEP"
     ],
     "notes": {
-        "label": "RStudio (LS6)",
+        "label": "RStudio (Frontera)",
         "helpUrl": "https://docs.posit.co/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
