@@ -1,7 +1,7 @@
 {
-    "id": "jupyter-lab-hpc-openmpi",
+    "id": "pyreconstruct-dev",
     "version": "0.0.1",
-    "description": "Run an interactive Jupyter Lab session on an HPC compute node with Open MPI installed.",
+    "description": "PyReconstruct Dev: A Python initialization of RECONSTRUCT, a 3D Tool for Image Reconstruction on LoneStar 6. This app uses developer version of image.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -9,16 +9,16 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/jupyter-lab-hpc:openmpi",
+    "containerImage": "docker://taccaci/pyreconstruct-dev:0.0.1",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": null,
+        "description": "PyReconstruct Dev: A Python initialization of RECONSTRUCT, a 3D Tool for Image Reconstruction on LoneStar 6. This app uses developer version of image.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "frontera",
+        "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
@@ -28,15 +28,15 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "mkdir $PWD/Work $PWD/Home $PWD/Scratch;",
+        "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [
                 {
-                    "name": "Jupyter Mounts",
-                    "description": "Mount for TAP functions and user dirs",
+                    "name": "Interactive Session and TACC Module Mounts",
+                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,/opt/intel,$STOCKYARD:$PWD/Work,$HOME:$PWD/Home,$SCRATCH:$PWD/Scratch",
+                    "arg": "--bind /bin,/opt/apps,/opt/intel,/run,/share,/lib,/lib64,/usr/bin,/usr/lib/systemd,/usr/libexec,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src,/usr/lib64",
                     "notes": {
                         "isHidden": true
                     }
@@ -44,19 +44,19 @@
             ],
             "schedulerOptions": [
                 {
-                    "name": "TACC Scheduler Profile",
-                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "name": "PyReconstruct Dev TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC PyReconstruct Dev 0.0.1.",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer",
+                    "arg": "--tapis-profile PyReconstruct-dev_0.0.1",
                     "notes": {
                         "isHidden": true
                     }
                 },
                 {
-                    "name": "TAP Session Substring",
-                    "description": "TAP Functions require the substring 'tap_' and in the slurm job name in order to function.",
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-tap_",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
                     "notes": {
                         "isHidden": true
                     }
@@ -64,15 +64,15 @@
             ],
             "envVariables": [
                 {
-                    "key": "LD_LIBRARY_PATH",
-                    "value": "/usr/local/lib:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/lib",
-                    "description": "LD_LIBRARY_PATH for Open MPI",
+                    "key": "_XTERM_CMD",
+                    "value": "python /work/03762/eriksf/public/code/PyReconstruct/src/PyReconstruct.py",
+                    "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
                     }
                 }
-            ],
+             ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -82,19 +82,21 @@
         "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
     "tags": [
-        "portalName: ALL"
+        "portalName: 3DEM,CEP"
     ],
     "notes": {
-        "label": "Jupyter Lab HPC - Open MPI (Frontera)",
-        "helpUrl": "https://jupyterlab.readthedocs.io/en/stable/",
+        "label": "PyReconstruct Dev (LoneStar6)",
+        "helpUrl": "https://github.com/eriksf/PyReconstructApp",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": "jupyter",
-        "category": "Data Processing"
+        "icon": null,
+        "category": "Interactive Analysis"
     }
 }

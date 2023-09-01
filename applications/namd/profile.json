@@ -1,0 +1,16 @@
+{
+    "name": "namd-frontera-2.14",
+    "description": "Modules to load for NAMD",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "namd",
+                "tacc-apptainer"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

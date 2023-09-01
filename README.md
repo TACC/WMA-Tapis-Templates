@@ -3,6 +3,7 @@
 ## Requirements
 - [Tapipy](https://github.com/tapis-project/tapipy/tree/main/tapipy)
 - (Optional) [pyenv](https://github.com/pyenv/pyenv)
+- (Optional) [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 
 ## Provisioning a Tenant
 1. Create a `client_secrets.py` file with a `CLIENT_USERNAME` and `CLIENT_PASSWORD` (see client_secrets.example.py)
