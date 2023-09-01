@@ -116,12 +116,24 @@ def main():
                 apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure', 'a2cps/jupyter-lab-hpc-secure', 'a2cps/matlab-secure']
             case _:
                 systems = systems or ['frontera', 'ls6', 'cloud.data']
-                apps = apps or ['compress', 'extract', 'fiji', 'jupyter-lab-hpc', 'jupyter-lab-hpc-openmpi', 'matlab', 'paraview', 'qgis', 'rstudio']
+                apps = apps or [
+                    'compress',
+                    'extract',
+                    'fiji',
+                    'jupyter-lab-hpc',
+                    'jupyter-lab-hpc-openmpi',
+                    'matlab',
+                    'matlab-ls6',
+                    'napari-ls6',
+                    'paraview',
+                    'pyreconstruct',
+                    'pyreconstruct-dev',
+                    'qgis',
+                ]
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
             client = get_client(**credentials)
-            client.get_tokens()
             provision(client, systems, apps, args)
 
 
