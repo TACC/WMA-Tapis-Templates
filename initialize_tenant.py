@@ -125,6 +125,8 @@ def main():
                     'matlab',
                     'matlab-ls6',
                     'napari-ls6',
+                    'opensees-mp/opensees-mp-3.5.0',
+                    'opensees-sp/opensees-sp-3.5.0',
                     'paraview',
                     'pyreconstruct',
                     'pyreconstruct-dev',
