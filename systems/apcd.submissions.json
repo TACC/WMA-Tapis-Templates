@@ -1,0 +1,11 @@
+{
+    "id": "apcd.submissions",
+    "description": "APCD Submissions Root System",
+    "systemType": "LINUX",
+    "host": "prod.apcd.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/apcd-uploads",
+    "port": 22,
+    "canExec": false
+}
