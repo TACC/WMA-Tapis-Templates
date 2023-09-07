@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/rstudio:4.3.0",
+    "containerImage": "docker://taccaci/rstudio:4.3",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": null,
+        "cmdPrefix": "mkdir -p run var-lib-rstudio-server; printf 'provider=sqlite\ndirectory=/var/lib/rstudio-server\n' > database.conf;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [
@@ -36,7 +36,7 @@
                     "name": "Interactive Session and TACC Module Mounts",
                     "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
                     "inputMode": "FIXED",
-                    "arg": "--bind /etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr",
+                    "arg": "--bind /bin/python3,/lib,/lib64,/share/doc/slurm/tap_functions,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src,run:/run,var-lib-rstudio-server:/var/lib/rstudio-server,database.conf:/etc/rstudio/database.conf",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,7 +65,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "/init",
+                    "value": "/usr/lib/rstudio-server/bin/rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user=$(whoami)",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
