@@ -124,6 +124,7 @@ def main():
                     'jupyter-lab-hpc-openmpi',
                     'matlab',
                     'matlab-ls6',
+                    'namd',
                     'napari-ls6',
                     'opensees-mp/opensees-mp-3.5.0',
                     'opensees-sp/opensees-sp-3.5.0',
