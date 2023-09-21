@@ -29,7 +29,7 @@ echo "SESSION_URL is $SESSION_URL"
 mkdir -p ${HOME}/.tap # this should exist at this point, but just in case...
 TAP_CERTFILE=${HOME}/.tap/.${SLURM_JOB_ID}
 
-LOCAL_PORT=8787
+LOCAL_PORT=8080
 
 for i in `seq 4`; do
   ssh -o StrictHostKeyChecking=no -f -g -N -R ${LOGIN_PORT}:${NODE_HOSTNAME_PREFIX}:${LOCAL_PORT} login${i}
@@ -59,7 +59,7 @@ END
 
 chmod +x ${workdir}/rsession.sh
 
-export APPTAINER_BIND="${workdir}/run:/run,${workdir}/tmp:/tmp,${workdir}/database.conf:/etc/rstudio/database.conf,${workdir}/rsession.sh:/etc/rstudio/rsession.sh,${workdir}/var/lib/rstudio-server:/var/lib/rstudio-server"
+# export APPTAINER_BIND="${workdir}/run:/run,${workdir}/tmp:/tmp,${workdir}/database.conf:/etc/rstudio/database.conf,${workdir}/rsession.sh:/etc/rstudio/rsession.sh,${workdir}/var/lib/rstudio-server:/var/lib/rstudio-server"
 
 # Do not suspend idle sessions.
 # Alternative to setting session-timeout-minutes=0 in /etc/rstudio/rsession.conf
@@ -72,13 +72,14 @@ echo "username is $APPTAINERENV_USER with password $APPTAINERENV_PASSWORD"
 apptainer shell \
     --cleanenv \
     --contain \
-    --bind \
-        ${workdir}/run:/run,\
-        ${workdir}/tmp:/tmp,\
-        ${workdir}/database.conf:/etc/rstudio/database.conf,\
-        ${workdir}/rsession.sh:/etc/rstudio/rsession.sh,\
-        ${workdir}/var/lib/rstudio-server:/var/lib/rstudio-server,\
-        $(cat ${TAP_CERTFILE}):/etc/nginx/ssl/cert.crt \
+    --fakeroot \
+    --writable-tmpfs \
+    --bind ${workdir}/run:/run \
+    --bind ${workdir}/tmp:/tmp \
+    --bind ${workdir}/database.conf:/etc/rstudio/database.conf \
+    --bind ${workdir}/rsession.sh:/etc/rstudio/rsession.sh \
+    --bind ${workdir}/var/lib/rstudio-server:/var/lib/rstudio-server \
+    --bind $(cat ${TAP_CERTFILE}):/etc/nginx/ssl/session.crt \
     docker://taccaci/rstudio:4.3 \
         /usr/lib/rstudio-server/bin/rserver \
             --www-port 8787 \
