@@ -1,6 +1,15 @@
-### install rstudio ###
 FROM rocker/rstudio:4.3
 
-COPY --from=taccaci/interactive-base:1.1.0 /tapis /tapis
+ARG DEBIAN_FRONTEND=noninteractive
 
-ENTRYPOINT ["/tapis/run.sh"]
+RUN apt-get update && apt-get install -y \
+    curl \
+    nginx \
+    ssh \
+    vim \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY nginx.conf /etc/nginx/sites-available/default
+
+EXPOSE 8080

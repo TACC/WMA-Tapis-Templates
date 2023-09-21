@@ -1,6 +1,6 @@
 {
     "id": "rstudio",
-    "version": "4.3.0",
+    "version": "4.3",
     "description": "Run an interactive RStudio Desktop session on Frontera.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -34,9 +34,9 @@
             "containerArgs": [
                 {
                     "name": "Interactive Session and TACC Module Mounts",
-                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+                    "description": "Mount the required folders in order for TAP and rstudio to function.",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin/python3,/lib,/lib64,/share/doc/slurm/tap_functions,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src,run:/run,var-lib-rstudio-server:/var/lib/rstudio-server,database.conf:/etc/rstudio/database.conf",
+                    "arg": "--bind /share/doc/slurm/tap_functions,run:/run,var-lib-rstudio-server:/var/lib/rstudio-server,database.conf:/etc/rstudio/database.conf",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,17 +65,8 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "/usr/lib/rstudio-server/bin/rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user=$(whoami)",
+                    "value": "/usr/local/bin/run_script.sh && /usr/lib/rstudio-server/bin/rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user=$(whoami)",
                     "description": "Command passed to XTERM, launched within the interactive session.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "key": "APPEND_PATH",
-                    "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH.",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
