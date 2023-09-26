@@ -59,7 +59,7 @@
         },
         "fileInputs": [
             {
-                "name": "TCL_input_directory",
+                "name": "TCL Input Directory",
                 "inputMode": "REQUIRED",
                 "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/",
                 "targetPath": ".",
