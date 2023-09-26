@@ -86,6 +86,7 @@
         "label": "Extract Compressed File",
         "hideNodeCountAndCoresPerNode": true,
         "icon": "extract",
-        "category": "Utilities"
+        "category": "Utilities",
+        "showTargetPath": true
     }
 }
