@@ -33,9 +33,9 @@
             "appArgs": [
                 {
                     "name": "Configuration file",
-                    "description": "The filename only of the NAMD configuration file (also called a config file, .conf file, or .namd file). This file should reside in the Input Directory specified.",
+                    "description": "The filename of the NAMD configuration file, for example a .conf or .namd file. This file should reside in the specified Input Directory.",
                     "inputMode": "REQUIRED",
-                    "arg": "confFile"
+                    "arg": null
                 },
                 {
                     "name": "Tasks per node",
@@ -96,7 +96,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your NAMD input files as well as your configuration file.",
+                "description": "The directory containing your NAMD input files as well as your configuration file. Explore example inputs in tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/namd",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
