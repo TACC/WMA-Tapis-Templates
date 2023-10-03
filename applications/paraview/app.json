@@ -120,7 +120,7 @@
     ],
     "notes": {
         "label": "Paraview (Frontera)",
-        "helpUrl": "http://www.paraview.org/paraview-guide/",
+        "helpUrl": "https://docs.paraview.org/en/latest/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": null,
