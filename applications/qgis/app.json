@@ -98,7 +98,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: UTRC,CEP"
+        "portalName: UTRC",
+        "portalName: CEP"
     ],
     "notes": {
         "label": "QGIS (Frontera)",
