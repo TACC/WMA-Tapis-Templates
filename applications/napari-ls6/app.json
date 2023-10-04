@@ -98,7 +98,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: 3DEM,CEP"
+        "portalName: CEP",
+        "portalName: 3DEM"
     ],
     "notes": {
         "label": "Napari Interactive (LS6)",

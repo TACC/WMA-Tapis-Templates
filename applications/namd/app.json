@@ -112,7 +112,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: CEP,Frontera"
+        "portalName: CEP",
+        "portalName: Frontera"
     ],
     "notes": {
         "label": "NAMD",
