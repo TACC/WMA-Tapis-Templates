@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "source tapisjob.env;./input/rstudio/wrapper.sh;",
+        "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper.sh;",
         "parameterSet": {
             "appArgs": [
                 {
@@ -52,7 +52,7 @@
                 {
                     "name": "Rstudio container mounts",
                     "inputMode": "FIXED",
-                    "arg": "--bind run:/run,tmp:/tmp,database.conf:/etc/rstudio/database.conf,rsession.sh:/etc/rstudio/rsession.sh,rstudio-server:/var/lib/rstudio-server",
+                    "arg": "--bind ${workdir}/run:/run,${workdir}/tmp:/tmp,${workdir}/database.conf:/etc/rstudio/database.conf,${workdir}/rsession.sh:/etc/rstudio/rsession.sh,${workdir}/rstudio-server:/var/lib/rstudio-server",
                     "notes": {
                         "isHidden": true
                     }

@@ -33,8 +33,7 @@ for i in `seq 4`; do
   ssh -o StrictHostKeyChecking=no -f -g -N -R ${LOGIN_PORT}:${NODE_HOSTNAME_PREFIX}:${LOCAL_PORT} login${i}
 done
 
-# workdir=$(python -c 'import tempfile; print(tempfile.mkdtemp())')
-workdir=${_tapisExecSystemExecDir}
+export workdir=$(python -c 'import tempfile; print(tempfile.mkdtemp())')
 
 mkdir -p -m 700 ${workdir}/run ${workdir}/tmp ${workdir}/rstudio-server ${workdir}/nginx-cache
 cat > ${workdir}/database.conf <<END
@@ -67,7 +66,7 @@ chmod +x ${workdir}/rsession.sh
 # https://github.com/rstudio/rstudio/blob/v1.4.1106/src/cpp/server/ServerSessionManager.cpp#L126
 export APPTAINERENV_RSTUDIO_SESSION_TIMEOUT=0
 export APPTAINERENV_USER=$(id -un)
-export APPTAINERENV_PASSWORD=$(openssl rand -base64 15)
+export APPTAINERENV_PASSWORD=$(openssl rand -hex 15)
 export APPTAINERENV_TAP_PORT=$LOGIN_PORT
 echo "username is $APPTAINERENV_USER with password $APPTAINERENV_PASSWORD"
 
@@ -83,6 +82,6 @@ apptainer instance start \
 
 # Webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
-curl -k --data "event_type=interactive_session_ready&address=${SESSION_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}&message='username is $APPTAINERENV_USER with password $APPTAINERENV_PASSWORD'" "${_INTERACTIVE_WEBHOOK_URL}" &
+curl -k --data "event_type=interactive_session_ready&address=${SESSION_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}&message=Connect to session with username $APPTAINERENV_USER and password $APPTAINERENV_PASSWORD" "${_INTERACTIVE_WEBHOOK_URL}" &
 
 # echo "TACC: release port returned $(tap_release_port ${LOGIN_PORT} 2> /dev/null)"
