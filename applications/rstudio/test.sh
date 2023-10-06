@@ -37,11 +37,13 @@ done
 
 workdir=$(python -c 'import tempfile; print(tempfile.mkdtemp())')
 
-mkdir -p -m 700 ${workdir}/run ${workdir}/tmp ${workdir}/var/lib/rstudio-server
+mkdir -p -m 700 ${workdir}/run ${workdir}/tmp ${workdir}/rstudio-server ${workdir}/nginx-cache
 cat > ${workdir}/database.conf <<END
 provider=sqlite
 directory=/var/lib/rstudio-server
 END
+
+touch ${workdir}/nginx.pid
 
 # Set OMP_NUM_THREADS to prevent OpenBLAS (and any other OpenMP-enhanced
 # libraries used by R) from spawning more threads than the number of processors
@@ -67,23 +69,31 @@ chmod +x ${workdir}/rsession.sh
 export APPTAINERENV_RSTUDIO_SESSION_TIMEOUT=0
 export APPTAINERENV_USER=$(id -un)
 export APPTAINERENV_PASSWORD=$(openssl rand -base64 15)
+export APPTAINERENV_TAP_PORT=$LOGIN_PORT
 echo "username is $APPTAINERENV_USER with password $APPTAINERENV_PASSWORD"
 
-apptainer shell \
+sed -i -e "s/TAP_PORT/$LOGIN_PORT/g" input/rstudio/nginx.default.conf
+
+apptainer instance start \
+    --writable-tmpfs \
+    --bind input/rstudio/nginx.default.conf:/etc/nginx/conf.d/default.conf \
+    --bind ${workdir}/nginx-cache:/var/cache/nginx \
+    --bind ${workdir}/nginx.pid:/var/run/nginx.pid \
+    --bind $(cat ${TAP_CERTFILE}):/etc/nginx/ssl/session.crt \
+    library://rstijerina/taccapps/nginx:latest nginx
+
+apptainer run \
     --cleanenv \
-    --contain \
-    --fakeroot \
     --writable-tmpfs \
     --bind ${workdir}/run:/run \
     --bind ${workdir}/tmp:/tmp \
     --bind ${workdir}/database.conf:/etc/rstudio/database.conf \
     --bind ${workdir}/rsession.sh:/etc/rstudio/rsession.sh \
-    --bind ${workdir}/var/lib/rstudio-server:/var/lib/rstudio-server \
-    --bind $(cat ${TAP_CERTFILE}):/etc/nginx/ssl/session.crt \
-    docker://taccaci/rstudio:4.3 \
+    --bind ${workdir}/rstudio-server:/var/lib/rstudio-server \
+    docker://rocker/rstudio:4.3 \
         /usr/lib/rstudio-server/bin/rserver \
             --www-port 8787 \
-            --www-address 0.0.0.0 \
+            --www-address 127.0.0.1 \
             --auth-none=0 \
             --auth-pam-helper-path=pam-helper \
             --server-user=$(whoami) \

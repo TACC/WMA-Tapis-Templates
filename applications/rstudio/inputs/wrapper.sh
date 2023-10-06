@@ -71,17 +71,15 @@ export APPTAINERENV_PASSWORD=$(openssl rand -base64 15)
 export APPTAINERENV_TAP_PORT=$LOGIN_PORT
 echo "username is $APPTAINERENV_USER with password $APPTAINERENV_PASSWORD"
 
-sed -i -e "s/TAP_PORT/$LOGIN_PORT/g" default.conf
+sed -i -e "s/TAP_PORT/$LOGIN_PORT/g" input/rstudio/nginx.default.conf
 
 apptainer instance start \
     --writable-tmpfs \
-    --bind input/default.conf:/etc/nginx/conf.d/default.conf \
+    --bind input/rstudio/nginx.default.conf:/etc/nginx/conf.d/default.conf \
     --bind ${workdir}/nginx-cache:/var/cache/nginx \
     --bind ${workdir}/nginx.pid:/var/run/nginx.pid \
     --bind $(cat ${TAP_CERTFILE}):/etc/nginx/ssl/session.crt \
-    docker://nginx:latest nginx
-
-apptainer run instance://nginx
+    library://rstijerina/taccapps/nginx:latest nginx
 
 # Webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/

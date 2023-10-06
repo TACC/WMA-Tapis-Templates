@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "./input/rstudio/wrapper.sh;",
+        "cmdPrefix": "source tapisjob.env;./input/rstudio/wrapper.sh;",
         "parameterSet": {
             "appArgs": [
                 {
@@ -42,9 +42,17 @@
             ],
             "containerArgs": [
                 {
-                    "name": "Rstudio container mounts and tmpfs",
+                    "name": "tmpfs",
                     "inputMode": "FIXED",
-                    "arg": "--writable-tmpfs --bind run:/run,tmp:/tmp,database.conf:/etc/rstudio/database.conf,rsession.sh:/etc/rstudio/rsession.sh,rstudio-server:/var/lib/rstudio-server",
+                    "arg": "--writable-tmpfs",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Rstudio container mounts",
+                    "inputMode": "FIXED",
+                    "arg": "--bind run:/run,tmp:/tmp,database.conf:/etc/rstudio/database.conf,rsession.sh:/etc/rstudio/rsession.sh,rstudio-server:/var/lib/rstudio-server",
                     "notes": {
                         "isHidden": true
                     }
@@ -80,7 +88,7 @@
         "fileInputs": [
             {
                 "name": "Rstudio input files",
-                "inputMode": "FIXED",
+                "inputMode": "REQUIRED",
                 "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/rstudio",
                 "targetPath": "*",
                 "notes": {
