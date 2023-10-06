@@ -1,12 +1,33 @@
 #!/bin/bash
 
 echo "TACC: job ${SLURM_JOB_ID} execution at: $(date)"
+
+# TAP Port
+LOCAL_PORT=5902
+
+mkdir -p $PWD/Jupyter
+cd Jupyter
+
 # This file will be located in the directory mounted by the job.
 SESSION_FILE="delete_me_to_end_session"
 touch $SESSION_FILE
 
-# TAP Port
-LOCAL_PORT=5902
+# Make symlinks for work, home and scratch
+mkdir -p $PWD/Work $PWD/Home $PWD/Scratch;
+if [ ! -L $PWD/Work ];
+then
+    ln -s $STOCKYARD $PWD/Work
+fi
+
+if [ ! -L $PWD/Home ];
+then
+    ln -s $HOME $PWD/Home
+fi
+
+if [ ! -L $PWD/Scratch ];
+then
+    ln -s $SCRATCH $PWD/Scratch
+fi
 
 TAP_FUNCTIONS="/share/doc/slurm/tap_functions"
 if [ -f ${TAP_FUNCTIONS} ]; then
@@ -115,22 +136,6 @@ c.NotebookApp.mathjax_url = u"https://cdn.mathjax.org/mathjax/latest/MathJax.js"
 EOF
 fi
 
-# Make symlinks for work, home and scratch
-mkdir -p $PWD/Work $PWD/Home $PWD/Scratch;
-if [ ! -L $PWD/Work ];
-then
-    ln -s $STOCKYARD $PWD/Work
-fi
-
-if [ ! -L $PWD/Home ];
-then
-    ln -s $HOME $PWD/Home
-fi
-
-if [ ! -L $PWD/Scratch ];
-then
-    ln -s $SCRATCH $PWD/Scratch
-fi
 
 # launch jupyter
 JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME_PREFIX}.log
