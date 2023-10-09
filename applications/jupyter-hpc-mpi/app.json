@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "source tapisjob.env;/corral/tacc/aci/CEP/applications/v3/jupyter-hub-native/run.sh;",
+        "cmdPrefix": "source tapisjob.env;source jupyter-notebook-native/run.sh;",
         "parameterSet": {
             "appArgs": [
                 {
@@ -68,7 +68,17 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Jupyter input files",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "maxMinutes": 120,
