@@ -121,6 +121,13 @@
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
         "icon": "namd",
-        "category": "Simulation"
+        "category": "Simulation",
+        "queueFilter": [
+            "development",
+            "flex",
+            "normal",
+            "nvdimm",
+            "small"
+        ]
     }
 }
