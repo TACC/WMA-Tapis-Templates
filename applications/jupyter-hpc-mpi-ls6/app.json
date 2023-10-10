@@ -1,5 +1,5 @@
 {
-    "id": "jupyter-hpc-mpi",
+    "id": "jupyter-hpc-mpi-ls6",
     "version": "1.0.1",
     "description": "Run an interactive Jupyter Notebook session with ability to launch mpi jobs.",
     "owner": "${apiUserId}",
@@ -18,7 +18,7 @@
         "description": null,
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "frontera",
+        "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
@@ -90,7 +90,7 @@
         "portalName: MISE"
     ],
     "notes": {
-        "label": "Jupyter Notebook HPC MPI (Frontera)",
+        "label": "Jupyter Notebook HPC MPI (LoneStar6)",
         "helpUrl": "https://jupyter-notebook.readthedocs.io/en/stable/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
