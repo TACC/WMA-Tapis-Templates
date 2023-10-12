@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/jupyter-lab-hpc",
+    "containerImage": "docker://taccaci/jupyter-lab-hpc",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,

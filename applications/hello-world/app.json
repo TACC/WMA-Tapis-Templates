@@ -113,6 +113,7 @@
         "label": "Hello World (Sleep 3m)",
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
         "hideNodeCountAndCoresPerNode": false,
-        "category": "Test Apps"
+        "category": "Utilities",
+        "showTargetPath": true
     }
 }

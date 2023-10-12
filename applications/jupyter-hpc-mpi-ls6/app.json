@@ -1,7 +1,7 @@
 {
-    "id": "extract",
-    "version": "0.0.1",
-    "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
+    "id": "jupyter-hpc-mpi-ls6",
+    "version": "1.0.1",
+    "description": "Run an interactive Jupyter Notebook session with ability to launch mpi jobs.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -9,28 +9,37 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/extract:latest",
+    "containerImage": "docker://debian:bullseye-slim",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
+        "description": null,
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "frontera",
+        "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}/input",
+        "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": false,
+        "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": null,
+        "cmdPrefix": "source tapisjob.env;source jupyter-notebook-native/run.sh;",
         "parameterSet": {
-            "appArgs": [],
+            "appArgs": [
+                {
+                    "name": "launchParameters",
+                    "arg": "echo 'Job is done.'",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
             "containerArgs": [],
             "schedulerOptions": [
                 {
@@ -43,10 +52,10 @@
                     }
                 },
                 {
-                    "name": "Slurm job name",
-                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "name": "TAP Session Substring",
+                    "description": "TAP Functions require the substring 'tap_' and in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}",
+                    "arg": "--job-name ${JobName}-tap_",
                     "notes": {
                         "isHidden": true
                     }
@@ -55,38 +64,37 @@
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [
-                    "tapisjob.out"
-                ],
-                "includeLaunchFiles": false
+                "excludes": [],
+                "includeLaunchFiles": true
             }
         },
         "fileInputs": [
             {
-                "name": "Input File",
-                "description": "The archive file to be extracted.",
+                "name": "Jupyter input files",
                 "inputMode": "REQUIRED",
-                "autoMountLocal": true,
-                "sourceUrl": null,
-                "targetPath": "*"
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
             }
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 1,
-        "memoryMB": 100,
-        "maxMinutes": 10,
+        "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
     "tags": [
-        "portalName: ALL"
+        "portalName: CEP",
+        "portalName: MISE"
     ],
     "notes": {
-        "label": "Extract Compressed File",
-        "hideNodeCountAndCoresPerNode": true,
-        "icon": "extract",
-        "category": "Utilities",
-        "showTargetPath": true
+        "label": "Jupyter Notebook HPC MPI (LoneStar6)",
+        "helpUrl": "https://jupyter-notebook.readthedocs.io/en/stable/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": "jupyter",
+        "category": "Data Processing"
     }
 }

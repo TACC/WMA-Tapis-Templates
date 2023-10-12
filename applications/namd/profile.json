@@ -4,7 +4,7 @@
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "namd",
+                "namd-2.14",
                 "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"

@@ -1,6 +1,6 @@
 {
-    "id": "rstudio-desktop-secure",
-    "version": "1.1.463",
+    "id": "rstudio-secure",
+    "version": "4.3",
     "description": "Run an interactive RStudio Desktop session on Frontera.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/interactive-base:1.0.0",
+    "containerImage": "docker://rocker/rstudio:4.3",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -20,7 +20,7 @@
         "execSystemConstraints": null,
         "execSystemId": "secure.frontera",
         "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "corralextra",
         "archiveSystemId": "secure.frontera",
@@ -28,15 +28,31 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": null,
+        "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper.sh;",
         "parameterSet": {
-            "appArgs": [],
+            "appArgs": [
+                {
+                    "name": "Rstudio apptainer runscript",
+                    "inputMode": "FIXED",
+                    "arg": "/usr/lib/rstudio-server/bin/rserver --www-port 8787 --www-address 127.0.0.1 --auth-none=0 --auth-pam-helper-path=pam-helper --server-user=$(whoami) --auth-stay-signed-in-days=30 --auth-timeout-minutes=0 --rsession-path=/etc/rstudio/rsession.sh",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
             "containerArgs": [
                 {
-                    "name": "Interactive Session and TACC Module Mounts",
-                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+                    "name": "tmpfs",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var,/corral-secure",
+                    "arg": "--writable-tmpfs",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Rstudio container mounts",
+                    "inputMode": "FIXED",
+                    "arg": "--bind ${workdir}/run:/run,${workdir}/tmp:/tmp,${workdir}/database.conf:/etc/rstudio/database.conf,${workdir}/rsession.sh:/etc/rstudio/rsession.sh,${workdir}/rstudio-server:/var/lib/rstudio-server,/corral-secure",
                     "notes": {
                         "isHidden": true
                     }
@@ -44,10 +60,10 @@
             ],
             "schedulerOptions": [
                 {
-                    "name": "RStudio Desktop TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC RStudio Desktop 1.1.463.",
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile RstudioDesktop_1.1.463",
+                    "arg": "--tapis-profile tacc-apptainer",
                     "notes": {
                         "isHidden": true
                     }
@@ -62,33 +78,24 @@
                     }
                 }
             ],
-            "envVariables": [
-                {
-                    "key": "_XTERM_CMD",
-                    "value": "rstudio",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "key": "APPEND_PATH",
-                    "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "envVariables": [],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Rstudio input files",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/rstudio",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
@@ -97,10 +104,14 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [],
+    "tags": [
+        "portalName: Frontera",
+        "portalName: UTRC",
+        "portalName: CEP"
+    ],
     "notes": {
-        "label": "RStudio Desktop (Frontera)",
-        "helpUrl": "https://docs.posit.co/",
+        "label": "RStudio (Frontera)",
+        "helpUrl": "https://docs.posit.co/ide/user/ide/get-started/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "rstudio",

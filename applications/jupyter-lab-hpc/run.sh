@@ -122,9 +122,9 @@ fi
 #   R: Connections to given TCP port/Unix socket on remote (server) host forwarded to local side.
 #
 # Create a reverse tunnel port from the compute node to the login nodes.
-# Make one tunnel for each login so the user can just connect to stampede.tacc.utexas.edu.
-for i in $(seq 4); do
-    ssh -q -f -g -N -R ${LOGIN_PORT}:${NODE_HOSTNAME_PREFIX}:${LOCAL_PORT} login${i}
+# Make one tunnel for each login so the user can just connect to $NODE_HOSTNAME_DOMAIN
+for i in `seq 4`; do
+  ssh -o StrictHostKeyChecking=no -f -g -N -R ${LOGIN_PORT}:${NODE_HOSTNAME_PREFIX}:${LOCAL_PORT} login${i}
 done
 if [ $(ps -fu ${USER} | grep ssh | grep login | grep -vc grep) != 4 ]; then
     # jupyter will not be working today. sadness.

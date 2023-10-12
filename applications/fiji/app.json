@@ -98,7 +98,9 @@
         "tags": []
     },
     "tags": [
-        "portalName: 3DEM,CEP,UTRC"
+        "portalName: 3DEM",
+        "portalName: CEP",
+        "portalName: UTRC"
     ],
     "notes": {
         "label": "Fiji (Lonestar6)",

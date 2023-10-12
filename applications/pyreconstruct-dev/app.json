@@ -72,7 +72,7 @@
                         "isHidden": true
                     }
                 }
-             ],
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -89,7 +89,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: 3DEM,CEP"
+        "portalName: 3DEM",
+        "portalName: CEP"
     ],
     "notes": {
         "label": "PyReconstruct Dev (LoneStar6)",

@@ -15,111 +15,119 @@
     "maxJobsPerUser": -1,
     "strictFileInputs": false,
     "jobAttributes": {
-      "description": "Run an NAMD session on Frontera",
-      "dynamicExecSystem": false,
-      "execSystemConstraints": null,
-      "execSystemId": "frontera",
-      "execSystemExecDir": "${JobWorkingDir}",
-      "execSystemInputDir": "${JobWorkingDir}",
-      "execSystemOutputDir": "${JobWorkingDir}/output",
-      "execSystemLogicalQueue": "small",
-      "archiveSystemId": "cloud.data",
-      "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-      "archiveOnAppError": true,
-      "isMpi": true,
-      "mpiCmd": "ibrun",
-      "cmdPrefix": null,
-      "parameterSet": {
-          "appArgs": [
-            {
-                "name": "Configuration file",
-                "description": "The filename only of the NAMD configuration file (also called a config file, .conf file, or .namd file). This file should reside in the Input Directory specified.",
-                "inputMode": "REQUIRED",
-                "arg": "confFile"
-            },
-            {
-                "name": "Tasks per node",
-                "description": "TACC staff recommends that users attempt runs with 4 tasks per node and 8 tasks per node (scales better at large number of nodes) and then pick the configuration that provides the best performance.",
-                "inputMode": "REQUIRED",
-                "arg": "namdCommandLineOptions",
-                "notes": {
-                    "enum_values": [
-                        {
-                            "4": "4 tasks per node"
-                        },
-                        {
-                            "8": "8 tasks per node"
-                        }
-                    ]
+        "description": "Run an NAMD session on Frontera",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "small",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": true,
+        "mpiCmd": "ibrun",
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Configuration file",
+                    "description": "The filename of the NAMD configuration file, for example a .conf or .namd file. This file should reside in the specified Input Directory.",
+                    "inputMode": "REQUIRED",
+                    "arg": null
+                },
+                {
+                    "name": "Tasks per node",
+                    "description": "TACC staff recommends that users attempt runs with 4 tasks per node and 8 tasks per node (scales better at large number of nodes) and then pick the configuration that provides the best performance.",
+                    "inputMode": "REQUIRED",
+                    "arg": "4",
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "4": "4 tasks per node"
+                            },
+                            {
+                                "8": "8 tasks per node"
+                            }
+                        ]
+                    }
                 }
+            ],
+            "containerArgs": [
+                {
+                    "name": "NAMD Mounts",
+                    "description": "Mounts for NAMD",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/etc,/home1/apps,/lib,/opt,/run,/share,/usr,/var",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "NAMD TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC NAMD 2.14",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile namd-frontera-2.14",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "/opt/apps/gcc/8.3.0/lib64:/lib:/opt/intel/compilers_and_libraries_2020.1.217/linux/mkl/lib/intel64_lin:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/lib/release:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/libfabric/lib",
+                    "description": "LD_LIBRARY_PATH",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
             }
-          ],
-          "containerArgs": [
+        },
+        "fileInputs": [
             {
-                "name": "NAMD Mounts",
-                "description": "Mount for TAP functions",
-                "inputMode": "FIXED",
-                "arg": "--bind /bin,/etc,/home1/apps,/lib,/opt,/run,/share,/usr,/var",
-                "notes": {
-                    "isHidden": true
-                }
+                "name": "Input Directory",
+                "description": "The directory containing your NAMD input files as well as your configuration file. Explore example inputs in tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/namd",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "dataDir"
             }
         ],
-          "schedulerOptions": [
-            {
-                "name": "NAMD TACC Scheduler Profile",
-                "description": "Scheduler profile for TACC NAMD 2.14",
-                "inputMode": "FIXED",
-                "arg": "--tapis-profile namd-frontera-2.14",
-                "notes": {
-                    "isHidden": true
-                }
-            }
-          ],
-          "envVariables": [
-            {
-                "key": "LD_LIBRARY_PATH",
-                "value": "/opt/apps/gcc/8.3.0/lib64:/lib:/opt/intel/compilers_and_libraries_2020.1.217/linux/mkl/lib/intel64_lin:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/lib/release:/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi/intel64/libfabric/lib",
-                "description": "LD_LIBRARY_PATH",
-                "inputMode": "FIXED",
-                "notes": {
-                    "isHidden": true
-                }
-            }
-          ],
-          "archiveFilter": {
-              "includes": [],
-              "excludes": [],
-              "includeLaunchFiles": true
-          }
-      },
-      "fileInputs": [
-          {
-              "name": "Input Directory",
-              "description": "The directory containing your NAMD input files as well as your configuration file.",
-              "inputMode": "REQUIRED",
-              "autoMountLocal": true,
-              "sourceUrl": null,
-              "targetPath": "dataDir"
-          }
-      ],
-      "fileInputArrays": [],
-      "nodeCount": 1,
-      "coresPerNode": 1,
-      "memoryMB": 100,
-      "maxMinutes": 120,
-      "subscriptions": [],
-      "tags": []
-  },
-  "tags": [
-      "portalName: 3DEM,CEP,UTRC"
-  ],
-  "notes": {
-      "label": "NAMD",
-      "helpUrl": "https://www.ks.uiuc.edu/Research/namd/",
-      "hideNodeCountAndCoresPerNode": false,
-      "isInteractive": false,
-      "icon": "namd",
-      "category": "Simulation"
-  }
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: Frontera"
+    ],
+    "notes": {
+        "label": "NAMD",
+        "helpUrl": "https://www.ks.uiuc.edu/Research/namd/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": false,
+        "icon": "namd",
+        "category": "Simulation",
+        "queueFilter": [
+            "development",
+            "flex",
+            "normal",
+            "nvdimm",
+            "small"
+        ]
+    }
 }

@@ -62,7 +62,7 @@
                     }
                 }
             ],
-            "envVariables": [                
+            "envVariables": [
                 {
                     "key": "LD_LIBRARY_PATH",
                     "value": "/lib:/lib64",
@@ -71,7 +71,7 @@
                     "notes": {
                         "isHidden": true
                     }
-                },                
+                },
                 {
                     "key": "_XTERM_CMD",
                     "value": "/app/wrapper.sh",
@@ -81,7 +81,7 @@
                         "isHidden": true
                     }
                 }
-             ],
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -98,7 +98,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: 3DEM,CEP"
+        "portalName: 3DEM",
+        "portalName: CEP"
     ],
     "notes": {
         "label": "PyReconstruct (LoneStar6)",
