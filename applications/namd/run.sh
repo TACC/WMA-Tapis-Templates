@@ -13,6 +13,6 @@ fi
 
 echo "confFile is $confFile"
 echo "namdCommandLineOptions is $namdCommandLineOptions"
-cd output
+cd dataDir
 
 /opt/apps/intel19/impi19_0/namd/2.14/bin/namd2 $namdCommandLineOptions $confFile
