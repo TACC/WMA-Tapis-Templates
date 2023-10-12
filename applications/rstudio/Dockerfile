@@ -1,8 +1,3 @@
-### install rstudio ###
-FROM rocker/rstudio:latest
+FROM rocker/rstudio:4.3
 
-RUN mkdir /var/run/s6
-
-COPY --from=taccaci/interactive-base:1.1.0 /tapis /tapis
-
-ENTRYPOINT ["/tapis/run.sh"]
+ENTRYPOINT ["/usr/lib/rstudio-server/bin/rserver"]

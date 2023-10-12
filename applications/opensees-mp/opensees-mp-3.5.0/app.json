@@ -1,7 +1,7 @@
 {
     "id": "opensees-mp-v35",
     "version": "0.0.1",
-    "description": "An application template for version 3.5.0 of OpenSees MP",
+    "description": "OpenSeesMP is an OpenSees interpreter intended for high performance computers for performing finite element simulations with parameteric studies and very large models on parallel machines. OpenSeesMP requires understanding of parallel processing and the capabilities to write parallel scripts.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -19,13 +19,13 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": true,
-        "mpiCmd": "mpirun",
+        "mpiCmd": "ibrun",
         "parameterSet": {
             "appArgs": [
                 {
@@ -45,7 +45,8 @@
                     }
                 },
                 {
-                    "name": "input1",
+                    "name": "TCL Script",
+                    "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
                     "arg": "Example.tcl",
                     "inputMode": "REQUIRED"
                 }
@@ -58,9 +59,9 @@
         },
         "fileInputs": [
             {
-                "name": "TCL_input_directory",
+                "name": "TCL Input Directory",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp/",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp",
                 "targetPath": ".",
                 "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp/Example.tcl"
             }
@@ -74,7 +75,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: UTRC,CEP"
+        "portalName: UTRC",
+        "portalName: CEP"
     ],
     "notes": {
         "label": "OpenSeesMP (V 3.5)",

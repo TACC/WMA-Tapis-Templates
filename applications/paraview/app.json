@@ -116,11 +116,13 @@
         "tags": []
     },
     "tags": [
-        "portalName: 3DEM,UTRC,CEP"
+        "portalName: 3DEM",
+        "portalName: UTRC",
+        "portalName: CEP"
     ],
     "notes": {
         "label": "Paraview (Frontera)",
-        "helpUrl": "http://www.paraview.org/paraview-guide/",
+        "helpUrl": "https://docs.paraview.org/en/latest/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": null,

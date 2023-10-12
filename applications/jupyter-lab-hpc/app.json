@@ -1,6 +1,6 @@
 {
     "id": "jupyter-lab-hpc",
-    "version": "0.0.1",
+    "version": "1.0.1",
     "description": "Run an interactive Jupyter Lab session on an HPC compute node.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/jupyter-lab-hpc",
+    "containerImage": "docker://taccaci/jupyter-lab-hpc:1.0.1",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
