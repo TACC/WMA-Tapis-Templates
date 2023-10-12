@@ -100,7 +100,7 @@
               "inputMode": "REQUIRED",
               "autoMountLocal": true,
               "sourceUrl": null,
-              "targetPath": "dataDir"
+              "targetPath": "output"
           }
       ],
       "fileInputArrays": [],
