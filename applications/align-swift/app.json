@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": null,
+        "cmdPrefix": "source tapisjob.env;source alignem_swift_ng_dev/run.sh;",
         "parameterSet": {
             "appArgs": [
                 {
@@ -87,7 +87,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: 3DEM,CEP"
+        "portalName: CEP",
+        "portalName: 3DEM"
     ],
     "notes": {
         "label": "AlignEM-Swift NG Dev (LoneStar6)",

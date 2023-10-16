@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 echo "TACC: job $SLURM_JOB_ID execution at: `date`"
 
@@ -254,9 +253,8 @@ export QT_API=pyqt5
 
 export BLOSC_NTHREADS=1
 
-echo "Loading swr and fftw3 modules..."
-ml intel/19.1.1 swr/21.2.5 impi/19.0.9 fftw3/3.3.10
-#ml intel/19.1.1 swr/21.2.5 impi/19.0.9 fftw3/3.3.10
+echo "Loading required modules..."
+ml intel/19.1.1 swr/21.2.5 impi/19.0.9 fftw3/3.3.10 tacc-apptainer
 
 swr glxinfo -B
 
