@@ -1,0 +1,101 @@
+{
+    "id": "alignem_swiftng_dev",
+    "version": "0.0.8u1",
+    "description": "Run an interactive session with the development version of alignEM Swift-ir with Neuroglancer on Lonestar6. Be sure to exit the application when you are finished with the session or any files saved will not be archived with the job.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://alpine:3",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "AlignEM-Swift NG Dev: Run an interactive session with the development version of alignEM Swift-ir with Neuroglancer on Lonestar6. Be sure to exit the application when you are finished with the session or any files saved will not be archived with the job.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ls6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": "source tapisjob.env;source alignem_swift_ng_dev/run.sh;",
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "launchParameters",
+                    "arg": "echo 'Job is done.'",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "AlignEM_SwiftNG_Dev TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC AlignEM_SwiftNG_Dev",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile AlignEM_SwiftNG_Dev_0.0.8u1",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "AlignEM-Swift NG Dev input files",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/alignem_swift_ng_dev",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: 3DEM"
+    ],
+    "notes": {
+        "label": "AlignEM-Swift NG Dev (LoneStar6)",
+        "helpUrl": "https://github.com/mcellteam/swift-ir/tree/development_ng",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": null,
+        "category": "Interactive Analysis"
+    }
+}

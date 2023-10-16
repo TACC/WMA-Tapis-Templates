@@ -1,0 +1,19 @@
+{
+    "name": "AlignEM_SwiftNG_Dev_0.0.8u1",
+    "description": "Modules to load for AlignEM",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "impi/19.0.9",
+                "intel/19.1.1",
+                "swr/21.2.5",
+                "fftw3/3.3.10",
+                "tacc-apptainer"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
