@@ -114,6 +114,6 @@
         "helpUrl": "https://readthedocs.tacc.utexas.edu/hpcugs/frontera/frontera/",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Utilities",
-        "showTargetPath": true
+        "showTargetPath": false
     }
 }
