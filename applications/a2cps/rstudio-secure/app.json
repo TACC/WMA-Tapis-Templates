@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper.sh;",
+        "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper-secure.sh;",
         "parameterSet": {
             "appArgs": [
                 {
@@ -89,7 +89,7 @@
             {
                 "name": "Rstudio input files",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/rstudio",
+                "sourceUrl": "tapis://secure.frontera/corral/tacc/aci/CEP/applications/v3/rstudio",
                 "targetPath": "*",
                 "notes": {
                     "isHidden": true
@@ -105,9 +105,7 @@
         "tags": []
     },
     "tags": [
-        "portalName: Frontera",
-        "portalName: UTRC",
-        "portalName: CEP"
+        "portalName: A2CPS"
     ],
     "notes": {
         "label": "RStudio (Frontera)",
