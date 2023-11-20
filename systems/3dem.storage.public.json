@@ -1,0 +1,11 @@
+{
+    "id": "3dem.storage.public",
+    "description": "Public Data for 3DEM",
+    "systemType": "LINUX",
+    "host": "cloud.data.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/corral-repl/projects/NeuroNex-3DEM/Public",
+    "port": 22,
+    "canExec": false
+}
