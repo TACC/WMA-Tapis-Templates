@@ -18,7 +18,7 @@
         "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "frontera",
+        "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
