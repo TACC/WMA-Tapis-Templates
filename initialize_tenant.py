@@ -121,6 +121,7 @@ def main():
                     'extract',
                     'fiji',
                     'jupyter-lab-hpc',
+                    'jupyter-lab-hpc-ls6',
                     'jupyter-lab-hpc-openmpi',
                     'matlab',
                     'matlab-ls6',
