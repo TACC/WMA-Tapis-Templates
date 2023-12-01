@@ -1,5 +1,5 @@
 {
-    "id": "jupyter-lab-hpc",
+    "id": "jupyter-lab-hpc-ls6",
     "version": "1.1.0",
     "description": "Run an interactive Jupyter Lab session on an HPC compute node.",
     "owner": "${apiUserId}",
@@ -18,7 +18,7 @@
         "description": null,
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "frontera",
+        "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
@@ -80,7 +80,7 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "Jupyter Lab HPC (Frontera)",
+        "label": "Jupyter Lab HPC (LoneStar6)",
         "helpUrl": "https://jupyterlab.readthedocs.io/en/stable/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
