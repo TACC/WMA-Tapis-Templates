@@ -1,0 +1,16 @@
+{
+    "name": "OpenSees_3.5.0",
+    "description": "Modules to load for OpenSees",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "opensees/3.5.0",
+                "tacc-apptainer"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

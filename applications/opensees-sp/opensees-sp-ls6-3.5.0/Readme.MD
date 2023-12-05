@@ -1,6 +1,6 @@
-# OpenSees-SP LoneStar6 version 3.5.1 
+# OpenSees-SP LoneStar6 version 3.5.0
 
-This is an application json file for docker image : taccaci/opensees:3.5.1
+This app uses OpenSees/3.5.0 tacc module. The app uses a base image and mounts the necessary paths to run OpenSees.
 
 ## Details
 
@@ -11,4 +11,4 @@ The output can be found in the directory specified in the application definition
 Outputs for OpenSees are generally in .out files. This also dependens on how the input tcl script executes and
 redirects output.
 
-Deploying application: python3 initialize_tenant.py --tenants=PORTALS --systems=ls6 --apps=opensees-sp/opensees-sp-ls6-3.5.1
+Deploying changes: python3 initialize_tenant.py --tenants=PORTALS --systems=ls6 --apps=opensees-sp/opensees-sp-ls6-3.5.0

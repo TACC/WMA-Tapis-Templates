@@ -1,6 +1,6 @@
 {
     "id": "opensees-mp-ls6",
-    "version": "3.5.1",
+    "version": "3.5.0",
     "description": "OpenSeesMP is an OpenSees interpreter intended for high performance computers for performing finite element simulations with parameteric studies and very large models on parallel machines. OpenSeesMP requires understanding of parallel processing and the capabilities to write parallel scripts.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/opensees:3.5.1",
+    "containerImage": "docker://debian:bookworm-slim",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -30,7 +30,7 @@
             "appArgs": [
                 {
                     "name": "mainProgram",
-                    "arg": "/usr/local/bin/OpenSeesMP",
+                    "arg": "OpenSeesMP",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
@@ -49,6 +49,48 @@
                     "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
                     "arg": "Example.tcl",
                     "inputMode": "REQUIRED"
+                }
+            ],
+            "containerArgs": [
+                {
+                    "name": "TACC Module Mounts",
+                    "description": "Mount the required folders in order for OpenSees TACC modules to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/etc,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "OpenSees TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC OpenSees 3.5.0.",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile OpenSees_3.5.0",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "$LD_LIBRARY_PATH",
+                    "description": "LD_LIBRARY_PATH to bring in path for loaded modules",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "archiveFilter": {
@@ -79,7 +121,7 @@
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSeesMP (V 3.5.1) LS6",
+        "label": "OpenSeesMP (V 3.5.0) LS6",
         "helpUrl": "https://opensees.berkeley.edu/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
