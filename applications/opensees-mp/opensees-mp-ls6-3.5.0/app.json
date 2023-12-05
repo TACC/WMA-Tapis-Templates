@@ -121,7 +121,7 @@
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSeesMP (V 3.5.0) LS6",
+        "label": "OpenSeesMP V3.5 (LoneStar 6)",
         "helpUrl": "https://opensees.berkeley.edu/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,

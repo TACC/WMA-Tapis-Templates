@@ -79,7 +79,7 @@
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSeesSP (V 3.5)",
+        "label": "OpenSeesSP V3.5 (Frontera)",
         "helpUrl": "https://opensees.berkeley.edu/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
