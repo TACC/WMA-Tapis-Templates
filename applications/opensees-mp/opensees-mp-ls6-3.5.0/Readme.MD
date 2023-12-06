@@ -2,6 +2,8 @@
 
 This app uses OpenSees/3.5.0 tacc module. The app uses a base image and mounts the necessary paths to run OpenSees.
 
+Contact: Ian Wang (TACC)
+
 ## Details
 
 The application is non-interactive. Once a job using this app has been submitted, the input files
