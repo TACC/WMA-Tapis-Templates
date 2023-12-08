@@ -92,12 +92,16 @@ c.${JUPYTER_SERVER_APP}.port = $LOCAL_PORT
 c.${JUPYTER_SERVER_APP}.open_browser = False
 c.${JUPYTER_SERVER_APP}.allow_origin = u"*"
 c.${JUPYTER_SERVER_APP}.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
+c.${JUPYTER_SERVER_APP}.root_dir = "${NB_HOME}/work"
+c.${JUPYTER_SERVER_APP}.preferred_dir = "${NB_HOME}/work"
 c.IdentityProvider.token = "${TAP_TOKEN}"
 EOF
 
 JUPYTER_ARGS="--certfile=${TAP_CERTFILE} --config=${TAP_JUPYTER_CONFIG}"
 
 echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS}"
+
+export PATH=$HOME/.local/bin:$PATH
 
 ${JUPYTER_BIN} ${JUPYTER_ARGS}
 
