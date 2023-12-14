@@ -167,6 +167,8 @@ else
   exit 1
 fi
 
+echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
+
 # Webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &

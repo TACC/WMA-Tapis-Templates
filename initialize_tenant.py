@@ -118,9 +118,14 @@ def main():
                 systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud']
                 apps = apps or [
                     'compress',
+                    'compress-ls6',
                     'extract',
+                    'extract-ls6'
                     'fiji',
+                    'jupyter-hpc-mpi',
+                    'jupyter-hpc-mpi-ls6',
                     'jupyter-lab-hpc',
+                    'jupyter-lab-hpc/cuda',
                     'jupyter-lab-hpc-ls6',
                     'jupyter-lab-hpc-openmpi',
                     'matlab',
@@ -133,7 +138,8 @@ def main():
                     'pyreconstruct',
                     'pyreconstruct-dev',
                     'qgis',
-                    'rstudio'
+                    'rstudio',
+                    'rstudio-ls6'
                 ]
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
