@@ -39,6 +39,34 @@
             "maxMinutes": 2880
         },
         {
+            "name": "gpu-a100-dev",
+            "hpcQueueName": "gpu-a100-dev",
+            "maxJobs": -1,
+            "maxJobsPerUser": 1,
+            "minNodeCount": 1,
+            "maxNodeCount": 2,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 120
+        },
+        {
+            "name": "gpu-a100-small",
+            "hpcQueueName": "gpu-a100-small",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 32,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
             "name": "large",
             "hpcQueueName": "large",
             "maxJobs": -1,
