@@ -1,0 +1,131 @@
+{
+    "id": "paraview-ls6",
+    "version": "5.10.0",
+    "description": "Run an interactive Paraview session on Lonestar 6.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://taccaci/interactive-base:1.1.0",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Run an interactive Paraview session on Lonestar 6.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ls6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [
+                {
+                    "name": "Interactive Session and TACC Module Mounts",
+                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/opt/apps,/opt/intel,/run,/share,/lib,/lib64,/usr/bin,/usr/lib/systemd,/usr/libexec,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src,/usr/lib64",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "Paraview TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC Paraview 5.10.0.",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile Paraview_5.10.0_ls6",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "swr -t 8 paraview",
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "$LD_LIBRARY_PATH",
+                    "description": "LD_LIBRARY_PATH to bring in path for loaded modules",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input File or Directory",
+                "description": "The file, or directory containing the files that you want to work on. This input will be copied to where your session runs.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: UTRC",
+        "portalName: CEP",
+        "portalName: PTDATAX"
+    ],
+    "notes": {
+        "label": "Paraview (LoneStar6)",
+        "helpUrl": "https://docs.paraview.org/en/latest/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": null,
+        "category": "Visualization"
+    }
+}
