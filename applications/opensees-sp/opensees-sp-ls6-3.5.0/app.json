@@ -37,14 +37,6 @@
                     }
                 },
                 {
-                    "name": "inputRedirection",
-                    "arg": "<",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
                     "name": "TCL Script",
                     "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
                     "arg": "Example.tcl",

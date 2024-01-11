@@ -1,4 +1,4 @@
-# OpenSees-MP Frontera version 3.5.0
+# OpenSees-SP Frontera version 3.5.0
 
 This app uses OpenSees/3.5.0 tacc module. The app uses a base image and mounts the necessary paths to run OpenSees.
 
@@ -13,4 +13,4 @@ The output can be found in the directory specified in the application definition
 Outputs for OpenSees are generally in .out files. This also dependens on how the input tcl script executes and
 redirects output.
 
-Deploying changes: python3 initialize_tenant.py --tenants=PORTALS --systems=frontera --apps=opensees-mp/opensees-mp-3.5.0
+Deploying changes: python3 initialize_tenant.py --tenants=PORTALS --systems=frontera --apps=opensees-sp/opensees-sp-3.5.0
