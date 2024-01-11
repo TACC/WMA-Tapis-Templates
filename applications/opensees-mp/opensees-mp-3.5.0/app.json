@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/opensees-mp:3.5.0",
+    "containerImage": "docker://debian:bookworm-slim",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -37,18 +37,52 @@
                     }
                 },
                 {
-                    "name": "inputRedirection",
-                    "arg": "<",
+                    "name": "TCL Script",
+                    "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
+                    "arg": "Example.tcl",
+                    "inputMode": "REQUIRED"
+                }
+            ],
+            "containerArgs": [
+                {
+                    "name": "TACC Module Mounts",
+                    "description": "Mount the required folders in order for OpenSees TACC modules to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/etc,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "OpenSees TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC OpenSees 3.5.0.",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile OpenSees_3.5.0",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH.",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
                     }
                 },
                 {
-                    "name": "TCL Script",
-                    "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
-                    "arg": "Example.tcl",
-                    "inputMode": "REQUIRED"
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "$LD_LIBRARY_PATH",
+                    "description": "LD_LIBRARY_PATH to bring in path for loaded modules",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "archiveFilter": {
