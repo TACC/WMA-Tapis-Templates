@@ -94,6 +94,8 @@ def main():
                         help='Comma separated list of systems. Paramater only applies for single tenant case')
     parser.add_argument('-a', '--apps',
                         help='Comma separated list of apps. Paramater only applies for single tenant case')
+    parser.add_argument('-d', '--dev', action='store_false', default=False,
+                        help='Uses Dev Specs when enabled')
     args = parser.parse_args()
 
     if args.tenants:
@@ -144,7 +146,7 @@ def main():
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
-            client = get_client(**credentials)
+            client = get_client(args.dev, **credentials)
             provision(client, systems, apps, args)
 
 
