@@ -6,7 +6,7 @@
     "host": "cloud.data.tacc.utexas.edu",
     "effectiveUserId": "{TENANT_ADMIN}",
     "defaultAuthnMethod": "PKI_KEYS",
-    "rootDir": "/corral-repl/tacc/aci/${PORTAL}/projects",
+    "rootDir": "/corral/tacc/aci/${PORTAL}/projects",
     "port": 22,
     "canExec": false,
     "tags": [],
