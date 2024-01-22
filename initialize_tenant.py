@@ -115,7 +115,18 @@ def main():
         match tenant_name:
             case 'A2CPS':
                 systems = systems or ['secure.frontera', 'secure.corral']
-                apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure', 'a2cps/jupyter-lab-hpc-secure', 'a2cps/matlab-secure', 'a2cps/rstudio-secure']
+                apps = apps or [
+                    'a2cps/extract-secure',
+                    'a2cps/compress-secure',
+                    'a2cps/jupyter-lab-hpc-secure',
+                    'a2cps/matlab-secure',
+                    'a2cps/rstudio-secure'
+                ]
+            case 'DesignSafe':
+                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud', 'designsafe.storage.default']
+                apps = apps or [
+                    'openfoam',
+                ]
             case _:
                 systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud']
                 apps = apps or [
@@ -141,7 +152,7 @@ def main():
                     'pyreconstruct-dev',
                     'qgis',
                     'rstudio',
-                    'rstudio-ls6'
+                    'rstudio-ls6',
                 ]
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
