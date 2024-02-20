@@ -149,6 +149,7 @@ def main():
                     'pyreconstruct',
                     'pyreconstruct-dev',
                     'qgis',
+                    'qgis-ls6',
                     'rstudio',
                     'rstudio-ls6',
                 ]
