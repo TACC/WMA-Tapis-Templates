@@ -65,7 +65,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "export PREFIX=/usr",
+                    "value": "qgis",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
