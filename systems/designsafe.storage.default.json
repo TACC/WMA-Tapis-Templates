@@ -2,7 +2,7 @@
     "id": "designsafe.storage.default",
     "description": "DesignSafe User Storage System",
     "systemType": "LINUX",
-    "host": "cloud.data.tacc.utexas.edu",
+    "host": "c4-cloud.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "PKI_KEYS",
     "rootDir": "/data/designsafe/mydata",
