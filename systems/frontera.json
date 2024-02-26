@@ -10,7 +10,6 @@
     "rootDir": "/",
     "port": 22,
     "useProxy": false,
-    "isDtn": false,
     "canExec": true,
     "canRunBatch": true,
     "enableCmdPrefix": true,

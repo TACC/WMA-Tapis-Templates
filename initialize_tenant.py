@@ -122,13 +122,13 @@ def main():
                     'a2cps/matlab-secure',
                     'a2cps/rstudio-secure'
                 ]
-            case 'DesignSafe':
-                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud', 'designsafe.storage.default']
+            case 'DESIGNSAFE':
+                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud', 'designsafe.storage.default', 'stampede3']
                 apps = apps or [
                     'openfoam',
                 ]
             case _:
-                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud']
+                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud', 'stampede3']
                 apps = apps or [
                     'compress',
                     'compress-ls6',
