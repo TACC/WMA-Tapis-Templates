@@ -65,7 +65,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "qgis",
+                    "value": "ls -R /opt/qgis > /scratch/04920/jm89232/ls.out 2>&1 && /opt/qgis/bin/qgis > /scratch/04920/jm89232/log.out 2>&1",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
