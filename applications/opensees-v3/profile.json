@@ -1,0 +1,15 @@
+{
+    "name": "opensees-v3.6",
+    "description": "Modules to load for OpenSees v3.6",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "opensees/3.6"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

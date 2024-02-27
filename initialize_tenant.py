@@ -115,7 +115,7 @@ def main():
                 systems = systems or ['secure.frontera', 'secure.corral']
                 apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure', 'a2cps/jupyter-lab-hpc-secure', 'a2cps/matlab-secure', 'a2cps/rstudio-secure']
             case _:
-                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud']
+                systems = systems or ['frontera', 'ls6', 'cloud.data']
                 apps = apps or [
                     'compress',
                     'compress-ls6',
@@ -134,12 +134,12 @@ def main():
                     'napari-ls6',
                     'opensees-mp/opensees-mp-3.5.0',
                     'opensees-sp/opensees-sp-3.5.0',
+                    'opensees-v3',
                     'paraview',
                     'pyreconstruct',
                     'pyreconstruct-dev',
                     'qgis',
-                    'rstudio',
-                    'rstudio-ls6'
+                    'rstudio'
                 ]
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
