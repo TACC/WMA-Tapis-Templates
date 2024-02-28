@@ -1,69 +1,44 @@
 {
-    "id": "opensees-docker",
+    "id": "opensees-ds-v3",
     "version": "3.6",
     "description": "A reference application for running OpenSees Express in Tapis v3.",
-    "owner": "ds_admin",
+    "owner": "${apiUserId}",
     "runtime": "DOCKER",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
     "containerImage": "stevemock/docker-opensees:latest",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
     "jobAttributes": {
         "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}/jobs/${JobUUID}",
         "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}/data",
         "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
         "parameterSet": {
-            "appArgs": [
-                {
-                    "name": "mainProgram",
-                    "arg": "OpenSees"
-                },
-                {
-                    "name": "input1",
-                    "arg": "/TapisInput/input.tcl"
-                }
-            ],
+            "appArgs": [],
             "containerArgs": [],
-            "schedulerOptions":[
-                {
-                    "name": "TACC Scheduler Profile",
-                    "description": "Scheduler profile for HPC clusters at TACC",
-                    "inputMode": "FIXED",
-                    "arg": "--tapis-profile opensees-v3.6",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "name": "Slurm job name",
-                    "description": "Set the slurm job name to be identical to the Tapis job name.",
-                    "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
-            "envVariables": [
-                {
-                    "key":"inputScript",
-                    "value":"freeFieldEffective.tcl",
-                    "description":"The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified. To try this out copy and paste in 'freeFieldEffective.tcl'.",
-                    "inputMode":"REQUIRED",
-                    "notes": {
-                        "label": "TCL Script",
-                        "validator": "([^\\s]+(\\.(?i)(tcl))$)"
-                    }
-                }
-            ]
+            "schedulerOptions":[],
+            "envVariables": []
         },
         "fileInputs": [
             {
                 "name": "Input Directory",
                 "description": "The directory containing your OpenSees input files as well as your OpenSees TCL script. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory. To try out sample data copy and paste 'agave://designsafe.storage.community//app_examples/opensees/FreefieldAnalysisEffective/'above.",
                 "inputMode": "REQUIRED",
+                "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "inputDirectory"
             }
         ],
+        "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 56,
         "memoryMB": 192,
