@@ -1,7 +1,7 @@
 {
-    "id": "matlab_ls6",
-    "version": "9.13.0",
-    "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+    "id": "rstudio-ls6",
+    "version": "4.3",
+    "description": "Run an interactive RStudio Desktop session on Lonestar6.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -9,18 +9,18 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/interactive-base:1.1.0",
+    "containerImage": "docker://rocker/rstudio:4.3",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+        "description": "Run an interactive RStudio Desktop session on Lonestar6.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
         "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
@@ -28,15 +28,31 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": null,
+        "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper.sh;",
         "parameterSet": {
-            "appArgs": [],
+            "appArgs": [
+                {
+                    "name": "Rstudio apptainer runscript",
+                    "inputMode": "FIXED",
+                    "arg": "/usr/lib/rstudio-server/bin/rserver --www-port 8787 --www-address 127.0.0.1 --auth-none=0 --auth-pam-helper-path=pam-helper --server-user=$(whoami) --auth-stay-signed-in-days=30 --auth-timeout-minutes=0 --rsession-path=/etc/rstudio/rsession.sh",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
             "containerArgs": [
                 {
-                    "name": "Interactive Session and TACC Module Mounts",
-                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+                    "name": "tmpfs",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin,/lib,/lib64,/share,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src",
+                    "arg": "--writable-tmpfs",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Rstudio container mounts",
+                    "inputMode": "FIXED",
+                    "arg": "--bind ${workdir}/run:/run,${workdir}/tmp:/tmp,${workdir}/database.conf:/etc/rstudio/database.conf,${workdir}/rsession.sh:/etc/rstudio/rsession.sh,${workdir}/rstudio-server:/var/lib/rstudio-server",
                     "notes": {
                         "isHidden": true
                     }
@@ -44,10 +60,10 @@
             ],
             "schedulerOptions": [
                 {
-                    "name": "MATLAB TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC MATLAB R2022b.",
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile matlab_2022b_ls6",
+                    "arg": "--tapis-profile tacc-apptainer",
                     "notes": {
                         "isHidden": true
                     }
@@ -62,33 +78,24 @@
                     }
                 }
             ],
-            "envVariables": [
-                {
-                    "key": "_XTERM_CMD",
-                    "value": "swr -t 8 matlab",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "key": "APPEND_PATH",
-                    "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "envVariables": [],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Rstudio input files",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/rstudio",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
@@ -98,18 +105,17 @@
         "tags": []
     },
     "tags": [
+        "portalName: Frontera",
         "portalName: UTRC",
-        "portalName: 3DEM",
         "portalName: CEP",
         "portalName: PTDATAX"
     ],
     "notes": {
-        "licenseType": "MATLAB",
-        "label": "MATLAB R2022b Interactive (LoneStar6)",
-        "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
+        "label": "RStudio (Lonestar6)",
+        "helpUrl": "https://docs.posit.co/ide/user/ide/get-started/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": "matlab",
+        "icon": "rstudio",
         "category": "Data Processing"
     }
 }

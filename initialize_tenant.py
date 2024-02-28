@@ -94,6 +94,8 @@ def main():
                         help='Comma separated list of systems. Paramater only applies for single tenant case')
     parser.add_argument('-a', '--apps',
                         help='Comma separated list of apps. Paramater only applies for single tenant case')
+    parser.add_argument('-d', '--dev', action='store_false', default=False,
+                        help='Uses Dev Specs when enabled')
     args = parser.parse_args()
 
     if args.tenants:
@@ -113,9 +115,20 @@ def main():
         match tenant_name:
             case 'A2CPS':
                 systems = systems or ['secure.frontera', 'secure.corral']
-                apps = apps or ['a2cps/extract-secure', 'a2cps/compress-secure', 'a2cps/jupyter-lab-hpc-secure', 'a2cps/matlab-secure', 'a2cps/rstudio-secure']
+                apps = apps or [
+                    'a2cps/extract-secure',
+                    'a2cps/compress-secure',
+                    'a2cps/jupyter-lab-hpc-secure',
+                    'a2cps/matlab-secure',
+                    'a2cps/rstudio-secure'
+                ]
+            case 'DESIGNSAFE':
+                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud', 'designsafe.storage.default', 'stampede3']
+                apps = apps or [
+                    'openfoam',
+                ]
             case _:
-                systems = systems or ['frontera', 'ls6', 'cloud.data']
+                systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud', 'stampede3']
                 apps = apps or [
                     'compress',
                     'compress-ls6',
@@ -139,12 +152,13 @@ def main():
                     'pyreconstruct',
                     'pyreconstruct-dev',
                     'qgis',
-                    'rstudio'
+                    'rstudio',
+                    'rstudio-ls6',
                 ]
 
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
-            client = get_client(**credentials)
+            client = get_client(args.dev, **credentials)
             provision(client, systems, apps, args)
 
 
