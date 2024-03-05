@@ -1,0 +1,18 @@
+{
+    "name": "visit",
+    "description": "Modules to load for Visit",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "purge",
+                "load TACC",
+                "load gcc/9.1.0",
+                "load visit/3.3.3"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
