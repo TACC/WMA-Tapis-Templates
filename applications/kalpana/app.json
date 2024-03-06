@@ -106,9 +106,7 @@
       ],
       "archiveFilter": {
         "includes": [],
-        "excludes": [
-            "tapisjob.out"
-        ],
+        "excludes": [],
         "includeLaunchFiles": true
       }
     },
