@@ -9,10 +9,6 @@ echo "TACC: job $SLURM_JOB_ID execution at: `date`"
 # program and command line arguments run within xterm -e command
 XTERM_CMD="${_XTERM_CMD}"
 
-# Webhook callback url for job ready notification.
-# Notifications are sent to INTERACTIVE_WEBHOOK_URL i.e. https://3dem.org/webhooks/interactive/
-INTERACTIVE_WEBHOOK_URL="${_webhook_base_url}"
-
 ########################################################
 ########################################################
 ########################################################
@@ -76,8 +72,8 @@ chmod a+rx $XSTARTUP
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
   # create DCV session for this job
-  DCV_HANDLE="${TAPIS_JOB_ID}-session"
-  dcv create-session --owner ${TAPIS_JOB_OWNER} --init=$XSTARTUP $DCV_HANDLE
+  DCV_HANDLE="${tapisJobUUID}-session"
+  dcv create-session --owner ${tapisJobOwner} --init=$XSTARTUP $DCV_HANDLE
 
   # Wait a few seconds for dcvserver to spin up
   sleep 5;
@@ -106,7 +102,7 @@ if [ "x${SERVER_TYPE}" == "xVNC" ]; then
   echo "TACC: using default VNC server $VNCSERVER_BIN"
 
   TAPIS_PASS=`which vncpasswd`
-  echo -n ${TAPIS_JOB_ID} > tapis_uuid
+  echo -n ${tapisJobUUID} > tapis_uuid
   ${TAPIS_PASS} -f < tapis_uuid > vncp.txt
 
   # launch VNC session
@@ -162,7 +158,7 @@ elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
   WEBSOCKIFY_ARGS="--cert=$(cat ${TAP_CERTFILE}) --ssl-only --ssl-version=tlsv1_2 -D ${WEBSOCKIFY_PORT} localhost:${VNC_PORT}"
   ${WEBSOCKIFY_CMD} ${WEBSOCKIFY_ARGS} # websockify will daemonize
 
-  INTERACTIVE_SESSION_ADDRESS="https://tap.tacc.utexas.edu/noVNC/?host=${HPC_HOST}&port=${LOGIN_PORT}&password=${TAPIS_JOB_ID}&autoconnect=true&encrypt=true&resize=scale"
+  INTERACTIVE_SESSION_ADDRESS="https://tap.tacc.utexas.edu/noVNC/?host=${HPC_HOST}&port=${LOGIN_PORT}&password=${tapisJobUUID}&autoconnect=true&encrypt=true&resize=scale"
 else
   # we should never get this message since we just checked this at LOCAL_PORT
   echo "TACC: "
@@ -176,7 +172,7 @@ fi
 
 # Webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
-curl -k --data "event_type=WEB&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${TAPIS_JOB_OWNER}&job_uuid=${TAPIS_JOB_ID}" $INTERACTIVE_WEBHOOK_URL &
+curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY

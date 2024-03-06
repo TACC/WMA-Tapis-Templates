@@ -6,7 +6,7 @@
     "runtime": "ZIP",
     "runtimeVersion": null,
     "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/visit/visit.zip",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -29,44 +29,32 @@
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
-            "schedulerOptions": [],
-            "envVariables": [
-                {
-                    "key": "desktop_resolution",
-                    "value": "1280x800",
-                    "description": "Set the desktop screen size for your visualization session.",
-                    "inputMode": "REQUIRED",
-                    "notes": {
-                        "label": "Desktop Resolution",
-                        "enum_values": [
-                            {
-                                "800x600": "800x600"
-                              },
-                              {
-                                "1280x800": "1280x800"
-                              },
-                              {
-                                "1920x1080": "1920x1080"
-                              },
-                              {
-                                "1920x1200": "1920x1200"
-                              },
-                              {
-                                "1600x1200": "1600x1200"
-                              },
-                              {
-                                "2560x1600": "2560x1600"
-                              }
-                        ]
-                    }
+            "schedulerOptions": [
+              {
+                "name": "TACC Scheduler Profile",
+                "description": "Scheduler profile for VisIt",
+                "inputMode": "FIXED",
+                "arg": "--tapis-profile visit",
+                "notes": {
+                    "isHidden": true
                 }
-            ]        
+              },
+              {
+                "name": "TACC Interactive Session Substrings",
+                "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                "inputMode": "FIXED",
+                "arg": "--job-name ${JobName}-dcvserver-tap_",
+                "notes": {
+                    "isHidden": true
+                }
+              }
+            ],
+            "envVariables": []        
         },
         "fileInputs": [
             {
                 "name": "Working Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
-                "inputMode": "REQUIRED",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. Click the 'Select Input' button and then select the directory you wish to work from.",                "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "workingDirectory"
@@ -88,6 +76,7 @@
         "label": "VisIt",
         "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/visit/",
         "hideNodeCountAndCoresPerNode": false,
-        "category": "Visualization"
+        "category": "Visualization",
+        "isInteractive": true
     }
 }
