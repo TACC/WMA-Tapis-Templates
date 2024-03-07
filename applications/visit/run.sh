@@ -176,9 +176,8 @@ curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSI
 
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
-xterm -r -ls -geometry 80x24+10+10 -title '*** Exit this window to kill your interactive session ***' -e "${_XTERM_CMD}"
-# ${_XTERM_CMD}
-# Job is done!
+${_XTERM_CMD}
+# Job is done!  
 
 
 echo "TACC: closing ${SERVER_TYPE} session"
