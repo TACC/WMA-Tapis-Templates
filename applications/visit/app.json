@@ -49,7 +49,17 @@
                 }
               }
             ],
-            "envVariables": []        
+            "envVariables": [
+              {
+                "key": "_XTERM_CMD",
+                "value": "visit",
+                "description": null,
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "XTERM Program CMD"
+                }
+              }
+            ]        
         },
         "fileInputs": [
             {
