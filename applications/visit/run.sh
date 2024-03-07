@@ -72,8 +72,8 @@ chmod a+rx $XSTARTUP
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
   # create DCV session for this job
-  DCV_HANDLE="${tapisJobUUID}-session"
-  dcv create-session --owner ${tapisJobOwner} --init=$XSTARTUP $DCV_HANDLE
+  DCV_HANDLE="${_tapisJobUUID}-session"
+  dcv create-session --owner ${_tapisJobOwner} --init=$XSTARTUP $DCV_HANDLE
 
   # Wait a few seconds for dcvserver to spin up
   sleep 5;
@@ -102,7 +102,7 @@ if [ "x${SERVER_TYPE}" == "xVNC" ]; then
   echo "TACC: using default VNC server $VNCSERVER_BIN"
 
   TAPIS_PASS=`which vncpasswd`
-  echo -n ${tapisJobUUID} > tapis_uuid
+  echo -n ${_tapisJobUUID} > tapis_uuid
   ${TAPIS_PASS} -f < tapis_uuid > vncp.txt
 
   # launch VNC session
@@ -158,7 +158,7 @@ elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
   WEBSOCKIFY_ARGS="--cert=$(cat ${TAP_CERTFILE}) --ssl-only --ssl-version=tlsv1_2 -D ${WEBSOCKIFY_PORT} localhost:${VNC_PORT}"
   ${WEBSOCKIFY_CMD} ${WEBSOCKIFY_ARGS} # websockify will daemonize
 
-  INTERACTIVE_SESSION_ADDRESS="https://tap.tacc.utexas.edu/noVNC/?host=${HPC_HOST}&port=${LOGIN_PORT}&password=${tapisJobUUID}&autoconnect=true&encrypt=true&resize=scale"
+  INTERACTIVE_SESSION_ADDRESS="https://tap.tacc.utexas.edu/noVNC/?host=${HPC_HOST}&port=${LOGIN_PORT}&password=${_tapisJobUUID}&autoconnect=true&encrypt=true&resize=scale"
 else
   # we should never get this message since we just checked this at LOCAL_PORT
   echo "TACC: "
@@ -176,9 +176,10 @@ curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSI
 
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
-xterm -r -ls -geometry 80x24+10+10 -title '*** Exit this window to kill your interactive session ***' -e "$XTERM_CMD"
-
+# xterm -r -ls -geometry 80x24+10+10 -title '*** Exit this window to kill your interactive session ***' -e "${_XTERM_CMD}"
+${_XTERM_CMD}
 # Job is done!
+
 
 echo "TACC: closing ${SERVER_TYPE} session"
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
