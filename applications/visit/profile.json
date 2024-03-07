@@ -5,9 +5,9 @@
         {
             "modulesToLoad": [
                 "purge",
-                "load TACC",
-                "load gcc/9.1.0",
-                "load visit/3.3.3"
+                "TACC",
+                "gcc/9.1.0",
+                "visit/3.3.3"
             ],
             "moduleLoadCommand": "module load"
         }
