@@ -19,7 +19,7 @@
     "execSystemId": "frontera",
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
-    "execSystemOutputDir": "HOST_EVAL($WORK)/frontera/jobs/${JobUUID}/output",
+    "execSystemOutputDir": "HOST_EVAL($WORK)/jobs/${JobUUID}/output",
     "execSystemLogicalQueue": "small",
     "archiveSystemId": "cloud.data",
     "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -35,7 +35,7 @@
           "name": "TACC Scheduler Profile",
           "description": "Scheduler profile for HPC clusters at TACC",
           "inputMode": "FIXED",
-          "arg": "--tapis-profile tacc-apptainer",
+          "arg": "--tapis-profile kalpana_v1.0.2",
           "notes": {
             "isHidden": true
           }
@@ -106,20 +106,18 @@
       ],
       "archiveFilter": {
         "includes": [],
-        "excludes": [
-            "workingDirectory"
-        ],
+        "excludes": [],
         "includeLaunchFiles": true
       }
     },
     "fileInputs": [
       {
         "name": "Working Directory",
-        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your kalpana session runs. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
+        "description": "The directory containing the file that you want to work on. This file will be copied to where your kalpana session runs.",
         "inputMode": "REQUIRED",
         "autoMountLocal": true,
-        "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/kalpana",
-        "targetPath": "workingDirectory"
+        "sourceUrl": null,
+        "targetPath": "*"
       }
     ],
     "fileInputArrays": [],
