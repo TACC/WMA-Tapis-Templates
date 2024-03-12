@@ -3,6 +3,7 @@ set -xe
 module load python3
 
 #installing lib
+pip3 install --user --upgrade pip
 pip3 install --user shapely
 pip3 install --user fiona
 pip3 install --user simplekml
