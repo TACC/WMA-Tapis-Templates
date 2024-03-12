@@ -2,17 +2,6 @@ set -x
 
 echo "TACC: job $SLURM_JOB_ID execution at: `date`"
 
-########################################################
-##########     INTERACTIVE WRAPPER CONFIG     ##########
-########################################################
-
-# program and command line arguments run within xterm -e command
-XTERM_CMD="${_XTERM_CMD}"
-
-########################################################
-########################################################
-########################################################
-
 # our node name
 NODE_HOSTNAME=`hostname -s`
 
