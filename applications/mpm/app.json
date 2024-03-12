@@ -72,8 +72,8 @@
                 "description": "The directory containing your MPM input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
-                "sourceUrl": null,
-                "targetPath": ".",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress",
+                "targetPath": "inputDirectory",
                 "envKey": "inputDirectory"
             }
         ],
