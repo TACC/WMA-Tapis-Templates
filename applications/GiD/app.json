@@ -7,7 +7,7 @@
     "runtime": "ZIP",
     "runtimeVersion": null,
     "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/GiD/GiD_15.0.1.zip",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -81,7 +81,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
