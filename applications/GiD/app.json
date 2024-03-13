@@ -102,8 +102,9 @@
     "notes": {
         "icon": "GiD",
         "label": "GiD (Frontera) - v15.0.1",
-        "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/simulation/openfoam/",
+        "helpUrl": "https://www.gidhome.com/support/",
         "hideNodeCountAndCoresPerNode": true,
-        "category": "Simulation"
+        "category": "Simulation",
+        "isInteractive": true
     }
 }
