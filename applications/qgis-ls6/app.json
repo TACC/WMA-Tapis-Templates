@@ -1,7 +1,7 @@
 {
     "id": "qgis-ls6",
     "version": "3.30",
-    "description": "GiD is designed to cover all the common needs in the numerical simulation field from pre to post processing: geometrical modeling, effective definition of analysis data, meshing, data transfer to analysis software, as well as the analysis and visualization of numerical results.",
+    "description": "Run an interactive QGIS session on Frontera.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -72,7 +72,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your Qgis session runs. Click the 'Select Input' button and then select the directory you want to work from.",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
