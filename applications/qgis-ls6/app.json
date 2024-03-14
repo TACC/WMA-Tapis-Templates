@@ -1,7 +1,7 @@
 {
     "id": "qgis-ls6",
     "version": "3.30",
-    "description": "Run an interactive QGIS session on Frontera.",
+    "description": "Run an interactive QGIS session on LS6.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
