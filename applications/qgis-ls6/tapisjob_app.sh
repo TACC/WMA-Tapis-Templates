@@ -1,5 +1,3 @@
-singularity pull docker://qgis/qgis:latest
-
 #!/bin/bash
 set -x
 
@@ -177,6 +175,7 @@ curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSI
 
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
+singularity pull docker://qgis/qgis:latest
 xterm $(apptainer run qgis_latest.sif qgis)
 
 # Job is done!
