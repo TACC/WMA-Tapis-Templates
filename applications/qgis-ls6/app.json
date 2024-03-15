@@ -81,7 +81,7 @@
         "portalName: PTDATAX"
     ],
     "notes": {
-        "label": "QGIS (LS6)",
+        "label": "QGIS (LoneStar6)",
         "helpUrl": "https://qgis.org/en/docs/index.html",
         "hideNodeCountAndCoresPerNode": false,
         "icon": null,
