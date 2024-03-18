@@ -105,7 +105,9 @@
         }
       ],
       "archiveFilter": {
-        "includes": [],
+        "includes": [
+          "${JobWorkingDir}/output"
+        ],
         "excludes": [],
         "includeLaunchFiles": true
       }
