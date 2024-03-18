@@ -16,7 +16,6 @@ git clone https://github.com/TACC/Kalpana.git
 sleep 5
 
 pwd
-mkdir output
 mv ${filetype} output/
 
 cd output/

@@ -19,7 +19,7 @@
     "execSystemId": "frontera",
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
-    "execSystemOutputDir": "HOST_EVAL($WORK)/jobs/${JobUUID}/output",
+    "execSystemOutputDir": "${JobWorkingDir}/output",
     "execSystemLogicalQueue": "small",
     "archiveSystemId": "cloud.data",
     "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -105,9 +105,7 @@
         }
       ],
       "archiveFilter": {
-        "includes": [
-          "${JobWorkingDir}/output"
-        ],
+        "includes": [],
         "excludes": [],
         "includeLaunchFiles": true
       }
