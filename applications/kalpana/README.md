@@ -13,4 +13,4 @@ Kalpana has two main capabilities:
 
 - For developers, run the test job on the development queue for a maximum run time of 5 minutes
 
-- Once the job is finished, there should be a directory called 'windspeed' inside your archived output dir (i.e. the Output Location under Job History)
+- Once the job is finished, there should be a directory called 'wind-speed' inside your archived output dir (i.e. the Output Location under Job History)
