@@ -1,0 +1,98 @@
+{
+    "id": "mpm",
+    "version": "1.1.0",
+    "description": "Material Point Method (MPM) is a particle based method that represents the material as a collection of material points, and their deformations are determined by Newton\u2019s laws of motion.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/mpm/v1.1/mpm.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "normal",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Input Script",
+                    "description": "Please provide the input file name.",
+                    "arg": "mpm.json",
+                    "inputMode": "REQUIRED"
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile mpm",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [
+                    "inputDirectory"
+                ],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing your MPM input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress",
+                "targetPath": "inputDirectory",
+                "envKey": "inputDirectory"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 3,
+        "coresPerNode": 9,
+        "memoryMB": 192,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "icon": "mpm",
+        "label": "MPM(Frontera)",
+        "helpUrl": "https://www.cb-geo.com/research/mpm/#material-point-method",
+        "hideNodeCountAndCoresPerNode": false,
+        "category": "Simulation"
+    }
+}
