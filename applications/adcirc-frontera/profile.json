@@ -1,0 +1,18 @@
+{
+    "name": "adcirc",
+    "description": "Modules to load for ADCIRC",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "adcirc/55.01",
+                "intel/18.0.2",
+                "impi/18.0.2",
+                "netcdf"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
