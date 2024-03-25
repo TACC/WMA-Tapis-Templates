@@ -1,0 +1,89 @@
+{
+  "id": "setfacl-corral-tg458981",
+  "version": "0.0.1",
+  "description": "Add/Remove ACLs on a directory",
+  "owner": "${apiUserId}",
+  "enabled": true,
+  "runtime": "ZIP",
+  "runtimeVersion": null,
+  "runtimeOptions": null,
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/setfacl-corral-tg458981/v001/setfacl-corral-tg458981_v001.zip",
+  "jobType": "FORK",
+  "maxJobs": -1,
+  "maxJobsPerUser": -1,
+  "strictFileInputs": true,
+  "jobAttributes": {
+    "description": "",
+    "dynamicExecSystem": false,
+    "execSystemConstraints": null,
+    "execSystemId": "cloud.data.exec.tg458981",
+    "execSystemExecDir": "${JobWorkingDir}",
+    "execSystemInputDir": "${JobWorkingDir}",
+    "execSystemOutputDir": "${JobWorkingDir}/output",
+    "execSystemLogicalQueue": "small",
+    "archiveSystemId": "cloud.data",
+    "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "archiveOnAppError": true,
+    "isMpi": false,
+    "mpiCmd": null,
+    "cmdPrefix": null,
+    "parameterSet": {
+      "appArgs": [],
+      "containerArgs": [],
+      "schedulerOptions": [],
+      "envVariables": [
+        {
+          "key": "username",
+          "value": "On",
+          "description": "TACC username of user to have ACLs set for",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "username"
+          }
+        },
+        {
+          "key": "directory",
+          "description": "Path on cloud.data.tacc.utexas.edu on which to set ACLs",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "directory"
+          }
+        },
+        {
+          "key": "action",
+          "value": "add",
+          "description": "Action to perform. Either 'add' to add ACLs or 'remove' to remove ACLs",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "action",
+            "enum_values": [
+              {
+                "Add": "add"
+              },
+              {
+                "Remove": "remove"
+              }
+            ]
+          }
+        }
+      ],
+      "archiveFilter": {
+        "includes": ["inputDirectory"],
+        "excludes": [],
+        "includeLaunchFiles": true
+      }
+    },
+    "fileInputs": [],
+    "fileInputArrays": [],
+    "nodeCount": 1,
+    "coresPerNode": 56,
+    "memoryMB": 192,
+    "maxMinutes": 120,
+    "subscriptions": [],
+    "tags": []
+  },
+  "tags": ["portalName: DesignSafe"],
+  "notes": {
+    "label": "setfacls cloud.data"
+  }
+}
