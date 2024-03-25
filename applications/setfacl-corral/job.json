@@ -1,0 +1,26 @@
+{
+  "name": "test-job-setfacl-corral-tg458981",
+  "appId": "setfacl-corral-tg458981",
+  "appVersion": "0.0.1",
+  "description": "Example submission for app setfacl-corral-tg458981",
+  "fileInputs": [],
+  "parameterSet": {
+    "appArgs": [],
+    "schedulerOptions": [],
+    "envVariables": [
+      {
+        "key": "username",
+        "value": "testuser"
+      },
+      {
+        "key": "directory",
+        "value": "/path/to/file"
+      },
+      {
+        "key": "action",
+        "value": "add"
+      }
+    ]
+  },
+  "tags": ["portalName:designsafe"]
+}
