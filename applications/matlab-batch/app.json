@@ -1,0 +1,154 @@
+{
+    "name": "matlab-duvd-20a",
+    "icon": null,
+    "parallelism": "SERIAL",
+    "defaultProcessorsPerNode": 1,
+    "defaultMemoryPerNode": 1,
+    "defaultNodeCount": 1,
+    "defaultMaxRunTime": "24:00:00",
+    "defaultQueue": null,
+    "version": "1.0.0",
+    "isPublic": false,
+    "helpURI": "https://www.designsafe-ci.org/rw/user-guide/workspace/matlab/",
+    "label": "MATLAB Interactive 20a (VM)",
+    "owner": "ds_admin",
+    "shortDescription": "Run an interactive Matlab 2020a session on a virtual machine.",
+    "longDescription": "Run an interactive Matlab 2020a session on a virtual machine. Work directly on your files rather than needing to copy them to and from Stampede2.",
+    "tags": [
+      "Interactive"
+    ],
+    "ontology": [],
+    "executionType": "CLI",
+    "executionSystem": "designsafe.community.exec-01",
+    "deploymentPath": "ds_apps/applications/matlab-duvd-20a",
+    "deploymentSystem": "designsafe.storage.default",
+    "templatePath": "wrapper.sh",
+    "testPath": "test/test.sh",
+    "checkpointable": false,
+    "modules": [],
+    "inputs": [],
+    "parameters": [
+      {
+        "id": "_license",
+        "value": {
+          "visible": true,
+          "required": true,
+          "type": "string",
+          "order": 0,
+          "enquote": false,
+          "default": "",
+          "validator": ""
+        },
+        "details": {
+          "label": "Matlab License File Text",
+          "description": "The text that should be put in the Matlab license file.",
+          "argument": null,
+          "showArgument": false,
+          "repeatArgument": false
+        },
+        "semantics": {
+          "minCardinality": 1,
+          "maxCardinality": 1,
+          "ontology": [
+            "xs:string"
+          ]
+        }
+      },
+      {
+        "id": "desktop_resolution",
+        "value": {
+          "visible": true,
+          "required": true,
+          "type": "enumeration",
+          "order": 0,
+          "enquote": false,
+          "default": "1280x800",
+          "enum_values": [
+            {
+              "800x600": "800x600"
+            },
+            {
+              "1280x800": "1280x800"
+            },
+            {
+              "1920x1080": "1920x1080"
+            },
+            {
+              "1920x1200": "1920x1200"
+            },
+            {
+              "1600x1200": "1600x1200"
+            },
+            {
+              "2560x1600": "2560x1600"
+            }
+          ]
+        },
+        "details": {
+          "label": "Desktop Resolution",
+          "description": "Set the desktop screen size for your visualization session.",
+          "argument": null,
+          "showArgument": false,
+          "repeatArgument": false
+        },
+        "semantics": {
+          "minCardinality": 1,
+          "maxCardinality": 1,
+          "ontology": [
+            "xs:enumeration",
+            "xs:string"
+          ]
+        }
+      },
+      {
+        "id": "_userProjects",
+        "value": {
+          "visible": true,
+          "required": false,
+          "type": "string",
+          "order": 1,
+          "enquote": false,
+          "default": "test",
+          "validator": null
+        },
+        "details": {
+          "label": "User Project UUIDs and Project IDs",
+          "description": null,
+          "argument": null,
+          "showArgument": false,
+          "repeatArgument": false
+        },
+        "semantics": {
+          "minCardinality": 0,
+          "maxCardinality": -1,
+          "ontology": [
+            "xs:string"
+          ]
+        }
+      },
+      {
+        "id": "_webhook_base_url",
+        "value": {
+          "visible": true,
+          "required": false,
+          "type": "string",
+          "order": 1,
+          "enquote": false,
+          "default": null,
+          "validator": null
+        },
+        "details": {
+          "label": "Base portal webhook url.",
+          "description": null,
+          "argument": null,
+          "showArgument": false,
+          "repeatArgument": false
+        },
+        "semantics": {
+          "minCardinality": 0,
+          "maxCardinality": 1,
+          "ontology": [
+            "xs:string"
+          ]
+        }
+      }
