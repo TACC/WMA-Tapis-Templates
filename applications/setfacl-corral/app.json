@@ -34,7 +34,6 @@
       "envVariables": [
         {
           "key": "username",
-          "value": "On",
           "description": "TACC username of user to have ACLs set for",
           "inputMode": "REQUIRED",
           "notes": {
@@ -68,7 +67,7 @@
         }
       ],
       "archiveFilter": {
-        "includes": ["inputDirectory"],
+        "includes": [],
         "excludes": [],
         "includeLaunchFiles": true
       }
