@@ -1,6 +1,6 @@
 {
     "id": "compress-ls6",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Compress a file or folder for download.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/compress:0.0.2",
+    "containerImage": "docker://taccaci/compress:0.0.3",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
