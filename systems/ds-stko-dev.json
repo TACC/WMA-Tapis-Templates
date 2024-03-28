@@ -1,0 +1,34 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "ds-stko-dev",
+    "description": "System for running jobs on the ds-stko-dev VM",
+    "systemType": "LINUX",
+    "host": "ds-stko-dev.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "useProxy": false,
+    "canExec": true,
+    "canRunBatch": false,
+    "enableCmdPrefix": true,
+    "mpiCmd": null,
+    "jobRuntimes": [
+        {
+            "runtimeType": "ZIP",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [],
+    "batchDefaultLogicalQueue": null,
+    "batchSchedulerProfile": null,
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {}
+}
