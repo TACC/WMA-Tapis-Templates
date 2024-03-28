@@ -1,0 +1,36 @@
+{
+  "isPublic": false,
+  "isDynamicEffectiveUser": false,
+  "id": "cloud.data.exec.tg458981",
+  "description": "System for running jobs on cloud.data",
+  "systemType": "LINUX",
+  "host": "cloud.data.tacc.utexas.edu",
+  "effectiveUserId": "tg458981",
+  "defaultAuthnMethod": "PKI_KEYS",
+  "authnCredential": {
+    "privateKey": "CHANGEME",
+    "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0RRA//9Xt5i5E8a4WmcJ7f+q1/GkIVN9hLhtECnwt6/0pMrY+fTo/keHvFJAOVlufcXjMVYb+iJichDjWcVnG4pJbRtTVCk8ahxkG99zvS3K1ln+hY/5EuzuhSlJAWPdjs+PbUCNSHwCkG5vVVpK7X/L8fQXs7Pg4QdbGdhcqy4qTL4BPm8qSrIgIo2SDlu1mkfgL0aypTwnrTIhQA2ohSZ3Q6ozhkTOkAPwu3vUNEoAEbCWD11+aJEWeFW8yzu8/XxbhGARSE6xW/73H9UYxphLUqHE8x8xuZWpNqWixx4YXw0UmKa4FwRkpz+pIs8srxN+/h4TJtl7wJO7Udl47"
+  },
+  "rootDir": "/",
+  "port": 22,
+  "canExec": true,
+  "canRunBatch": false,
+  "enableCmdPrefix": true,
+  "jobRuntimes": [
+    {
+      "runtimeType": "SINGULARITY",
+      "version": null
+    }
+  ],
+  "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
+  "jobEnvVariables": [],
+  "jobMaxJobs": -1,
+  "jobMaxJobsPerUser": -1,
+  "batchScheduler": "SLURM",
+  "batchLogicalQueues": [],
+  "batchDefaultLogicalQueue": "normal",
+  "batchSchedulerProfile": "tacc-apptainer",
+  "jobCapabilities": [],
+  "tags": [],
+  "notes": {}
+}
