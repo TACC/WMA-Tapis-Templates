@@ -1,154 +1,101 @@
 {
-    "name": "matlab-duvd-20a",
-    "icon": null,
-    "parallelism": "SERIAL",
-    "defaultProcessorsPerNode": 1,
-    "defaultMemoryPerNode": 1,
-    "defaultNodeCount": 1,
-    "defaultMaxRunTime": "24:00:00",
-    "defaultQueue": null,
-    "version": "1.0.0",
-    "isPublic": false,
-    "helpURI": "https://www.designsafe-ci.org/rw/user-guide/workspace/matlab/",
-    "label": "MATLAB Interactive 20a (VM)",
-    "owner": "ds_admin",
-    "shortDescription": "Run an interactive Matlab 2020a session on a virtual machine.",
-    "longDescription": "Run an interactive Matlab 2020a session on a virtual machine. Work directly on your files rather than needing to copy them to and from Stampede2.",
-    "tags": [
-      "Interactive"
-    ],
-    "ontology": [],
-    "executionType": "CLI",
-    "executionSystem": "designsafe.community.exec-01",
-    "deploymentPath": "ds_apps/applications/matlab-duvd-20a",
-    "deploymentSystem": "designsafe.storage.default",
-    "templatePath": "wrapper.sh",
-    "testPath": "test/test.sh",
-    "checkpointable": false,
-    "modules": [],
-    "inputs": [],
-    "parameters": [
-      {
-        "id": "_license",
-        "value": {
-          "visible": true,
-          "required": true,
-          "type": "string",
-          "order": 0,
-          "enquote": false,
-          "default": "",
-          "validator": ""
+  "id": "matlab-batch",
+  "version": "23.2",
+  "description": "MATLAB Batch is a non-interactive application to run *.m scipts.  Submit a help ticket to get your license configured or approved.",
+  "owner": "${apiUserId}",
+  "runtime": "ZIP",
+  "runtimeVersion": null,
+  "runtimeOptions": null,
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/matlab-batch/2023b/matlab-batch.zip",
+  "jobType": "BATCH",
+  "maxJobs": -1,
+  "maxJobsPerUser": -1,
+  "strictFileInputs": true,
+  "jobAttributes": {
+    "description": "",
+    "dynamicExecSystem": false,
+    "execSystemConstraints": null,
+    "execSystemId": "stampede3",
+    "execSystemExecDir": "${JobWorkingDir}",
+    "execSystemInputDir": "${JobWorkingDir}",
+    "execSystemOutputDir": "${JobWorkingDir}/output",
+    "execSystemLogicalQueue": "skx-dev",
+    "archiveSystemId": "cloud.data",
+    "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "archiveOnAppError": true,
+    "isMpi": false,
+    "mpiCmd": null,
+    "cmdPrefix": null,
+    "parameterSet": {
+      "appArgs": [],
+      "containerArgs": [],
+      "schedulerOptions": [
+        {
+          "name": "TACC Scheduler Profile",
+          "description": "Scheduler profile for VisIt",
+          "inputMode": "FIXED",
+          "arg": "--tapis-profile matlab-2023b",
+          "notes": {
+            "isHidden": true
+          }
         },
-        "details": {
-          "label": "Matlab License File Text",
-          "description": "The text that should be put in the Matlab license file.",
-          "argument": null,
-          "showArgument": false,
-          "repeatArgument": false
-        },
-        "semantics": {
-          "minCardinality": 1,
-          "maxCardinality": 1,
-          "ontology": [
-            "xs:string"
-          ]
+        {
+          "name": "Slurm job name",
+          "description": "Set the slurm job name to be identical to the Tapis job name.",
+          "inputMode": "FIXED",
+          "arg": "--job-name ${JobName}",
+          "notes": {
+            "isHidden": true
+          }
         }
-      },
-      {
-        "id": "desktop_resolution",
-        "value": {
-          "visible": true,
-          "required": true,
-          "type": "enumeration",
-          "order": 0,
-          "enquote": false,
-          "default": "1280x800",
-          "enum_values": [
-            {
-              "800x600": "800x600"
-            },
-            {
-              "1280x800": "1280x800"
-            },
-            {
-              "1920x1080": "1920x1080"
-            },
-            {
-              "1920x1200": "1920x1200"
-            },
-            {
-              "1600x1200": "1600x1200"
-            },
-            {
-              "2560x1600": "2560x1600"
-            }
-          ]
-        },
-        "details": {
-          "label": "Desktop Resolution",
-          "description": "Set the desktop screen size for your visualization session.",
-          "argument": null,
-          "showArgument": false,
-          "repeatArgument": false
-        },
-        "semantics": {
-          "minCardinality": 1,
-          "maxCardinality": 1,
-          "ontology": [
-            "xs:enumeration",
-            "xs:string"
-          ]
+      ],
+      "envVariables": [
+        {
+          "key": "matlabScriptName",
+          "value": "",
+          "description": "Provide the filename of the MATLAB script to execute, relative to the path of the Working Directory. This file should reside in the Working Directory specified. Example: 'mymatlabtest.m'.",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "MATLAB Script Filename"
+          }
         }
-      },
-      {
-        "id": "_userProjects",
-        "value": {
-          "visible": true,
-          "required": false,
-          "type": "string",
-          "order": 1,
-          "enquote": false,
-          "default": "test",
-          "validator": null
-        },
-        "details": {
-          "label": "User Project UUIDs and Project IDs",
-          "description": null,
-          "argument": null,
-          "showArgument": false,
-          "repeatArgument": false
-        },
-        "semantics": {
-          "minCardinality": 0,
-          "maxCardinality": -1,
-          "ontology": [
-            "xs:string"
-          ]
-        }
-      },
-      {
-        "id": "_webhook_base_url",
-        "value": {
-          "visible": true,
-          "required": false,
-          "type": "string",
-          "order": 1,
-          "enquote": false,
-          "default": null,
-          "validator": null
-        },
-        "details": {
-          "label": "Base portal webhook url.",
-          "description": null,
-          "argument": null,
-          "showArgument": false,
-          "repeatArgument": false
-        },
-        "semantics": {
-          "minCardinality": 0,
-          "maxCardinality": 1,
-          "ontology": [
-            "xs:string"
-          ]
-        }
+      ],
+      "archiveFilter": {
+        "includes": [
+          "workingDirectory"
+        ],
+        "excludes": [],
+        "includeLaunchFiles": true
       }
+    },
+    "fileInputs": [
+      {
+        "name": "Working Directory",
+        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. Click the 'Select Input' button and then select the directory you wish to work from.",
+        "inputMode": "REQUIRED",
+        "autoMountLocal": true,
+        "sourceUrl": null,
+        "targetPath": "workingDirectory",
+        "envKey": "workingDirectory"
+      }
+    ],
+    "fileInputArrays": [],
+    "nodeCount": 1,
+    "coresPerNode": 48,
+    "memoryMB": 192000,
+    "maxMinutes": 120,
+    "subscriptions": [],
+    "tags": []
+  },
+  "tags": [
+    "portalName: DesignSafe"
+  ],
+  "notes": {
+    "icon": "matlab",
+    "label": "MATLAB BATCH 2023b (Stampede3)",
+    "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide/",
+    "hideNodeCountAndCoresPerNode": false,
+    "category": "Analysis",
+    "isInteractive": false
+  }
+}
