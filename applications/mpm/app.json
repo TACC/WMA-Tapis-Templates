@@ -19,7 +19,7 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "normal",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -59,9 +59,7 @@
             ],
             "envVariables": [],
             "archiveFilter": {
-                "includes": [
-                    "inputDirectory"
-                ],
+                "includes": [],
                 "excludes": [],
                 "includeLaunchFiles": true
             }
@@ -86,11 +84,11 @@
         "tags": []
     },
     "tags": [
-        "portalName: DesignSafe"
+        "portalName: CEP, DesignSafe"
     ],
     "notes": {
         "icon": "mpm",
-        "label": "MPM(Frontera)",
+        "label": "MPM (Frontera)",
         "helpUrl": "https://www.cb-geo.com/research/mpm/#material-point-method",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Simulation"
