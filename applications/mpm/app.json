@@ -60,7 +60,7 @@
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [],
+                "excludes": ["mpm.zip"],
                 "includeLaunchFiles": true
             }
         },
