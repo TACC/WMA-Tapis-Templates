@@ -19,7 +19,7 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "small",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -59,10 +59,8 @@
             ],
             "envVariables": [],
             "archiveFilter": {
-                "includes": [
-                    "inputDirectory"
-                ],
-                "excludes": [],
+                "includes": [],
+                "excludes": ["figuregen_serial.zip"],
                 "includeLaunchFiles": true
             }
         },
@@ -89,7 +87,7 @@
     ],
     "notes": {
         "icon": "FigureGen",
-        "label": "FigureGen Serial (Stampede)",
+        "label": "FigureGen Serial (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/figuregen/",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Visualization"

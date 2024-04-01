@@ -19,7 +19,7 @@
         "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -62,8 +62,8 @@
                 }
             ],
             "archiveFilter": {
-                "includes": ["inputDirectory"],
-                "excludes": [],
+                "includes": [],
+                "excludes": ["qgis*.zip"],
                 "includeLaunchFiles": true
             }
         },
