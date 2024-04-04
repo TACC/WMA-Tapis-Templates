@@ -19,7 +19,7 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "small",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -59,10 +59,8 @@
             ],
             "envVariables": [],
             "archiveFilter": {
-                "includes": [
-                    "inputDirectory"
-                ],
-                "excludes": [],
+                "includes": [],
+                "excludes": ["figuregen_parallel.zip"],
                 "includeLaunchFiles": true
             }
         },
@@ -72,7 +70,7 @@
                 "description": "The directory containing your FigureGen input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory. To try this out with example data, copy and paste 'tapis://designsafe.storage.community//app_examples/figuregen/input'above.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
-                "sourceUrl": null,
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/figuregen/input",
                 "targetPath": "inputDirectory"
             }
         ],
@@ -89,7 +87,7 @@
     ],
     "notes": {
         "icon": "FigureGen",
-        "label": "FigureGen Parallel (Stampede)",
+        "label": "FigureGen Parallel (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/figuregen/",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Visualization"

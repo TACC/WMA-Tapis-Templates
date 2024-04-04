@@ -31,7 +31,7 @@ if [ "$CTYPE" = "tgz" ]; then
   tar -czvf "${_tapisExecSystemOutputDir}/$modified_archive_file_name.tar.gz" .
 else
   echo 'zipping'
-  zip "${_tapisExecSystemOutputDir}/$modified_archive_file_name.zip" ./*
+  zip -r "${_tapisExecSystemOutputDir}/$modified_archive_file_name.zip" .
 fi
 
 if [ ! $? ]; then
