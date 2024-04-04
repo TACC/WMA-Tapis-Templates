@@ -10,7 +10,7 @@ sed -e "4s/.*/                                                   ! Path where GM
 sed -e "5s/.*/                                                   ! Path where GhostScript executable is located./" -i ${inputfile}
 
 
-apptainer exec library://georgiastuart/figuregen/figuregen-serial figuregen -I ${inputfile} -O fig.out
+apptainer exec library://georgiastuart/figuregen/figuregen-serial figuregen -I ${inputfile}
 cd ..
 
 if [ ! $? ]; then
