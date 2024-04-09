@@ -156,12 +156,22 @@ def main():
                 )
                 apps = (
                     [
-                        "openfoam",
-                        "visit",
+                        "compress",
+                        "extract",
                         "figuregen/serial",
                         "figuregen/parallel",
+                        "GiD",
+                        "jupyter-lab-hpc",
+                        "jupyter-lab-hpc/gpu",
                         "kalpana",
+                        "matlab",
                         "mpm",
+                        "openfoam",
+                        "opensees-mp/opensees-mp-3.5.0",
+                        "opensees-sp/opensees-sp-3.5.0",
+                        "paraview",
+                        "qgis",
+                        "visit",
                     ]
                     if apps == ["ALL"]
                     else apps
@@ -185,17 +195,23 @@ def main():
                         "compress-ls6",
                         "extract",
                         "extract-ls6",
+                        "figuregen/serial",
+                        "figuregen/parallel",
                         "fiji",
+                        "GiD",
                         "jupyter-hpc-mpi",
                         "jupyter-hpc-mpi-ls6",
                         "jupyter-lab-hpc",
                         "jupyter-lab-hpc/gpu",
                         "jupyter-lab-hpc-ls6",
                         "jupyter-lab-hpc-openmpi",
+                        "kalpana",
                         "matlab",
                         "matlab-ls6",
+                        "mpm",
                         "namd",
                         "napari-ls6",
+                        "openfoam",
                         "opensees-mp/opensees-mp-3.5.0",
                         "opensees-sp/opensees-sp-3.5.0",
                         "paraview",
@@ -204,6 +220,7 @@ def main():
                         "qgis",
                         "rstudio",
                         "rstudio-ls6",
+                        "visit",
                     ]
                     if apps == ["ALL"]
                     else apps
