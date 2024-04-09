@@ -60,7 +60,9 @@
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
-                "excludes": ["figuregen_serial.zip"],
+                "excludes": [
+                    "figuregen_serial.zip"
+                ],
                 "includeLaunchFiles": true
             }
         },
@@ -76,8 +78,8 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 1,
-        "memoryMB": 192,
+        "coresPerNode": 56,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
