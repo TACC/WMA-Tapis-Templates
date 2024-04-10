@@ -19,7 +19,7 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "small",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -52,10 +52,11 @@
             ],
             "envVariables": [],
             "archiveFilter": {
-                "includes": [
-                    "inputDirectory"
+                "includes": [],
+                "excludes": [
+                    "adcirc*.zip",
+                    "tapisjob.env"
                 ],
-                "excludes": [],
                 "includeLaunchFiles": true
             }
         },
@@ -66,7 +67,7 @@
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "inputDirectory",
+                "targetPath": "adcirc-inputs",
                 "envKey": "inputDirectory"
             }
         ],
