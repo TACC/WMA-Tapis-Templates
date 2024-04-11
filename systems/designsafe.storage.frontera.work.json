@@ -1,0 +1,11 @@
+{
+    "id": "designsafe.storage.frontera.work",
+    "description": "Frontera Work storage host for DesignSafe-CI users",
+    "systemType": "LINUX",
+    "host": "frontera.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/work/00849/tg458981/designsafe-work/",
+    "port": 22,
+    "canExec": false
+}

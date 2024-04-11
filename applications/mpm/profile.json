@@ -1,0 +1,19 @@
+{
+    "name": "mpm",
+    "description": "Modules to load for MPM",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "intel/19.1.1",
+                "impi/19.0.9",
+                "boost",
+                "hdf5",
+                "swr/20.0.5"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

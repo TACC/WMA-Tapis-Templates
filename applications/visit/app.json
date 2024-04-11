@@ -1,0 +1,93 @@
+{
+  "id": "visit",
+  "version": "3.3.3",
+  "description": "VisIt is an Open Source, interactive, scalable, visualization, animation and analysis tool. From Unix, Windows or Mac workstations, users can interactively visualize and analyze data ranging in scale from small (<10 core) desktop-sized projects to large (>100000 core) leadership-class computing facility simulation campaigns. Users can quickly generate visualizations, animate them through time, manipulate them with a variety of operators and mathematical expressions, and save the resulting images and animations for presentations.",
+  "owner": "${apiUserId}",
+  "runtime": "ZIP",
+  "runtimeVersion": null,
+  "runtimeOptions": null,
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
+  "jobType": "BATCH",
+  "maxJobs": -1,
+  "maxJobsPerUser": -1,
+  "strictFileInputs": true,
+  "jobAttributes": {
+    "description": "",
+    "dynamicExecSystem": false,
+    "execSystemConstraints": null,
+    "execSystemId": "frontera",
+    "execSystemExecDir": "${JobWorkingDir}",
+    "execSystemInputDir": "${JobWorkingDir}",
+    "execSystemOutputDir": "${JobWorkingDir}/output",
+    "execSystemLogicalQueue": "small",
+    "archiveSystemId": "cloud.data",
+    "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "archiveOnAppError": true,
+    "isMpi": false,
+    "mpiCmd": null,
+    "cmdPrefix": null,
+    "parameterSet": {
+      "appArgs": [],
+      "containerArgs": [],
+      "schedulerOptions": [
+        {
+          "name": "TACC Scheduler Profile",
+          "description": "Scheduler profile for VisIt",
+          "inputMode": "FIXED",
+          "arg": "--tapis-profile visit-3.3.3",
+          "notes": {
+            "isHidden": true
+          }
+        },
+        {
+          "name": "TACC Interactive Session Substrings",
+          "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+          "inputMode": "FIXED",
+          "arg": "--job-name ${JobName}-dcvserver-tap_",
+          "notes": {
+            "isHidden": true
+          }
+        }
+      ],
+      "envVariables": [
+        {
+          "key": "_XTERM_CMD",
+          "value": "visit",
+          "description": null,
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "XTERM Program CMD"
+          }
+        }
+      ]
+    },
+    "fileInputs": [
+      {
+        "name": "Working Directory",
+        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. Click the 'Select Input' button and then select the directory you wish to work from.",
+        "inputMode": "REQUIRED",
+        "autoMountLocal": true,
+        "sourceUrl": null,
+        "targetPath": "workingDirectory"
+      }
+    ],
+    "fileInputArrays": [],
+    "nodeCount": 1,
+    "coresPerNode": 56,
+    "memoryMB": 192000,
+    "maxMinutes": 120,
+    "subscriptions": [],
+    "tags": []
+  },
+  "tags": [
+    "portalName: DesignSafe"
+  ],
+  "notes": {
+    "icon": "VisIt",
+    "label": "VisIt",
+    "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/visit/",
+    "hideNodeCountAndCoresPerNode": false,
+    "category": "Visualization",
+    "isInteractive": true
+  }
+}
