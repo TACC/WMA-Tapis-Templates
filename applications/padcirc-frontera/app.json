@@ -20,7 +20,7 @@
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}",
-        "execSystemLogicalQueue": "small",
+        "execSystemLogicalQueue": "normal",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
@@ -35,7 +35,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile padcirc",
+                    "arg": "--tapis-profile padcirc_v55",
                     "notes": {
                         "isHidden": true
                     }
@@ -72,9 +72,9 @@
             }
         ],
         "fileInputArrays": [],
-        "nodeCount": 1,
+        "nodeCount": 3,
         "coresPerNode": 56,
-        "memoryMB": 192,
+        "memoryMB": 192000,
         "maxMinutes": 600,
         "subscriptions": [],
         "tags": []
