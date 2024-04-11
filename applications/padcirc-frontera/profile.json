@@ -1,5 +1,5 @@
 {
-    "name": "padcirc",
+    "name": "padcirc_v55",
     "description": "Modules to load for PADCIRC",
     "moduleLoads": [
         {

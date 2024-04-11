@@ -1,5 +1,5 @@
 {
-    "name": "adcirc",
+    "name": "adcirc_v55",
     "description": "Modules to load for ADCIRC",
     "moduleLoads": [
         {
