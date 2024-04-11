@@ -1,0 +1,34 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "wma-exec-01",
+    "description": "System for running jobs on the wma-exec-01 VM",
+    "systemType": "LINUX",
+    "host": "wma-exec-01.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "useProxy": false,
+    "canExec": true,
+    "canRunBatch": false,
+    "enableCmdPrefix": true,
+    "mpiCmd": null,
+    "jobRuntimes": [
+        {
+            "runtimeType": "ZIP",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [],
+    "batchDefaultLogicalQueue": null,
+    "batchSchedulerProfile": null,
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {}
+}

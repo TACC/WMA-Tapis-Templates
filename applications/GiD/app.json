@@ -1,28 +1,26 @@
 {
-    "id": "matlab_ls6",
-    "version": "9.13.0",
-    "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+    "id": "GiD",
+    "version": "15.0.1",
+    "description": "GiD is designed to cover all the common needs in the numerical simulation field from pre to post processing: geometrical modeling, effective definition of analysis data, meshing, data transfer to analysis software, as well as the analysis and visualization of numerical results.",
     "owner": "${apiUserId}",
     "enabled": true,
-    "runtime": "SINGULARITY",
+    "runtime": "ZIP",
     "runtimeVersion": null,
-    "runtimeOptions": [
-        "SINGULARITY_RUN"
-    ],
-    "containerImage": "docker://taccaci/interactive-base:1.1.0",
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+        "description": "",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "ls6",
+        "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "development",
+        "execSystemLogicalQueue": "small",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
@@ -31,23 +29,13 @@
         "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [],
-            "containerArgs": [
-                {
-                    "name": "Interactive Session and TACC Module Mounts",
-                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
-                    "inputMode": "FIXED",
-                    "arg": "--bind /bin,/lib,/lib64,/share,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "containerArgs": [],
             "schedulerOptions": [
                 {
-                    "name": "MATLAB TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC MATLAB R2022b.",
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile matlab_2022b_ls6",
+                    "arg": "--tapis-profile tacc-apptainer",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,7 +53,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "swr -t 8 matlab",
+                    "value": "/work/projects/wma_apps/frontera/gid/15.0.1/gid",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -88,28 +76,33 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "inputDirectory"
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 128,
-        "memoryMB": 256000,
+        "coresPerNode": 56,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
     "tags": [
-        "portalName: UTRC",
-        "portalName: 3DEM",
-        "portalName: CEP",
-        "portalName: PTDATAX"
+        "portalName: DesignSafe"
     ],
     "notes": {
-        "licenseType": "MATLAB",
-        "label": "MATLAB R2022b Interactive (LoneStar6)",
-        "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
-        "hideNodeCountAndCoresPerNode": false,
-        "isInteractive": true,
-        "icon": "matlab",
-        "category": "Data Processing"
+        "icon": "GiD",
+        "label": "GiD (Frontera) - v15.0.1",
+        "helpUrl": "https://www.gidhome.com/support/",
+        "hideNodeCountAndCoresPerNode": true,
+        "category": "Simulation",
+        "isInteractive": true
     }
 }
