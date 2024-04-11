@@ -228,6 +228,7 @@ def main():
                     if apps == ["ALL"]
                     else apps
                 )
+
         for credentials in TAPIS_CLIENTS.get(tenant_name, []):
             print(f"provisioning tenant: {credentials['base_url']}")
             client = get_client(args.dev, **credentials)
