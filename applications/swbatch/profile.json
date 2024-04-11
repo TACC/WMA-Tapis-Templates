@@ -1,0 +1,16 @@
+{
+    "name": "swbatch",
+    "description": "Modules to load for swbatch",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "swbatch"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
+
