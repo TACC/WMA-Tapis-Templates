@@ -130,6 +130,7 @@ def main():
             case _:
                 systems = systems or ['frontera', 'ls6', 'cloud.data', 'c4-cloud', 'stampede3']
                 apps = apps or [
+                    'adcirc-frontera',
                     'compress',
                     'compress-ls6',
                     'extract',
@@ -147,6 +148,8 @@ def main():
                     'napari-ls6',
                     'opensees-mp/opensees-mp-3.5.0',
                     'opensees-sp/opensees-sp-3.5.0',
+                    'padcirc-frontera',
+                    'padcirc-swan-frontera',
                     'paraview',
                     'pyreconstruct',
                     'pyreconstruct-dev',
