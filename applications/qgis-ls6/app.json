@@ -1,27 +1,25 @@
 {
-    "id": "matlab_ls6",
-    "version": "9.13.0",
-    "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+    "id": "qgis-ls6",
+    "version": "3.34.4",
+    "description": "Run an interactive QGIS session on LS6.",
     "owner": "${apiUserId}",
     "enabled": true,
-    "runtime": "SINGULARITY",
+    "runtime": "ZIP",
     "runtimeVersion": null,
-    "runtimeOptions": [
-        "SINGULARITY_RUN"
-    ],
-    "containerImage": "docker://taccaci/interactive-base:1.1.0",
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/qgis/qgis_3.34.4.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
+        "description": "",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
         "execSystemId": "ls6",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -31,23 +29,13 @@
         "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [],
-            "containerArgs": [
-                {
-                    "name": "Interactive Session and TACC Module Mounts",
-                    "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
-                    "inputMode": "FIXED",
-                    "arg": "--bind /bin,/lib,/lib64,/share,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "containerArgs": [],
             "schedulerOptions": [
                 {
-                    "name": "MATLAB TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC MATLAB R2022b.",
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile matlab_2022b_ls6",
+                    "arg": "--tapis-profile tacc-apptainer",
                     "notes": {
                         "isHidden": true
                     }
@@ -64,15 +52,6 @@
             ],
             "envVariables": [
                 {
-                    "key": "_XTERM_CMD",
-                    "value": "swr -t 8 matlab",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
                     "key": "APPEND_PATH",
                     "value": "$PATH",
                     "description": "Append host $PATH to Singularity container default $PATH.",
@@ -84,11 +63,12 @@
             ],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [],
+                "excludes": [
+                    "qgis*.zip"
+                ],
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 128,
@@ -98,18 +78,16 @@
         "tags": []
     },
     "tags": [
-        "portalName: UTRC",
-        "portalName: 3DEM",
         "portalName: CEP",
+        "portalName: UTRC",
         "portalName: PTDATAX"
     ],
     "notes": {
-        "licenseType": "MATLAB",
-        "label": "MATLAB R2022b Interactive (LoneStar6)",
-        "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
+        "label": "QGIS (LoneStar6)",
+        "helpUrl": "https://qgis.org/en/docs/index.html",
         "hideNodeCountAndCoresPerNode": false,
-        "isInteractive": true,
-        "icon": "matlab",
-        "category": "Data Processing"
+        "icon": null,
+        "category": "Data Processing",
+        "isInteractive": true
     }
 }
