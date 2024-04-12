@@ -1,0 +1,15 @@
+{
+    "name": "matlab-2023b",
+    "description": "Modules to load for matlab-2023b",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "matlab/2023b"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
