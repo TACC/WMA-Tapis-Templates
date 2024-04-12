@@ -18,7 +18,7 @@
     "execSystemId": "stampede3",
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
-    "execSystemOutputDir": "${JobWorkingDir}/output",
+    "execSystemOutputDir": "${JobWorkingDir}",
     "execSystemLogicalQueue": "skx-dev",
     "archiveSystemId": "cloud.data",
     "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -32,7 +32,7 @@
       "schedulerOptions": [
         {
           "name": "TACC Scheduler Profile",
-          "description": "Scheduler profile for VisIt",
+          "description": "Scheduler profile for MATLAB Batch",
           "inputMode": "FIXED",
           "arg": "--tapis-profile matlab-2023b",
           "notes": {
@@ -61,10 +61,10 @@
         }
       ],
       "archiveFilter": {
-        "includes": [
-          "workingDirectory"
+        "includes": [],
+        "excludes": [
+          "matlab-batch.zip"
         ],
-        "excludes": [],
         "includeLaunchFiles": true
       }
     },
