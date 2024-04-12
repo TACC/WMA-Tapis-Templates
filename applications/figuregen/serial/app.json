@@ -1,0 +1,97 @@
+{
+    "id": "FigureGen-Serial",
+    "version": "51.0.0",
+    "description": "FigureGen is a Fortran program that creates images for ADCIRC files. It reads mesh files (fort.14, etc.), nodal attributes files (fort.13, etc.) and output files (fort.63, fort.64, maxele.63, etc.). It plots contours, contour lines, and vectors. Using FigureGen, you can go directly from the ADCIRC input and output files to a presentation-quality figure, for one or multiple time snaps. This application supports netCDF formatted files as well.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/figuregen/v51/serial/figuregen_serial.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "small",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Input file",
+                    "description": "FigureGen input file (.inp). You can drag and drop file from the left or just type in the file name. To test this out type in 'FG51.inp'.",
+                    "arg": "FG51.inp",
+                    "inputMode": "REQUIRED"
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile figuregen_serial_v51",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "figuregen_serial.zip"
+                ],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing your FigureGen input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/figuregen/input",
+                "targetPath": "inputDirectory"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 56,
+        "memoryMB": 192000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "icon": "FigureGen",
+        "label": "FigureGen Serial (Frontera)",
+        "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/figuregen/",
+        "hideNodeCountAndCoresPerNode": false,
+        "category": "Visualization"
+    }
+}

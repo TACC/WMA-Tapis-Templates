@@ -98,8 +98,8 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 1,
-        "memoryMB": 100,
+        "coresPerNode": 128,
+        "memoryMB": 256000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
