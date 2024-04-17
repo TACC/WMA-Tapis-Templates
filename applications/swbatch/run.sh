@@ -74,6 +74,5 @@ echo "Job Complete">>3_text/transfer.log
 # Callback failure
 if [ ! $? ]; then
         echo "SWbatch exited with an error status. $?" >&2
-        ${AGAVE_JOB_CALLBACK_FAILURE}
         exit
 fi
