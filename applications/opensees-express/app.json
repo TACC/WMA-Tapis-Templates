@@ -80,10 +80,7 @@
             }
         ],
         "fileInputArrays": [],
-        "nodeCount": null,
-        "coresPerNode": null,
-        "memoryMB": null,
-        "maxMinutes": null,
+        "maxMinutes": 2880,
         "subscriptions": [],
         "tags": []
     },
