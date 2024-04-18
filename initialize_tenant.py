@@ -191,6 +191,7 @@ def main():
                 )
                 apps = (
                     [
+                        "adcirc-frontera",
                         "compress",
                         "compress-ls6",
                         "extract",
@@ -214,6 +215,8 @@ def main():
                         "openfoam",
                         "opensees-mp/opensees-mp-3.5.0",
                         "opensees-sp/opensees-sp-3.5.0",
+                        "padcirc-frontera",
+                        "padcirc-swan-frontera",
                         "paraview",
                         "pyreconstruct",
                         "pyreconstruct-dev",
