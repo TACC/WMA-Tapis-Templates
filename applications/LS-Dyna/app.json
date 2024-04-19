@@ -1,13 +1,13 @@
 {
-    "id": "ls-pre-post",
-    "version": "11.0.0",
-    "description": "LS-PrePost is interactive advanced pre- and post-processor and model editor from LSTC.",
+    "id": "LS-Dyna",
+    "version": "2023R2",
+    "description": "LS-DYNA is an advanced general-purpose multiphysics simulation software package.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
     "runtimeVersion": null,
     "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
+    "containerImage": "tapis://cloud.data//corral/tacc/aci/CEP/applications/v3/ls-dyna/ls-dyna.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -19,7 +19,7 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "small",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
@@ -28,23 +28,30 @@
         "mpiCmd": null,
         "cmdPrefix": null,
         "parameterSet": {
-            "appArgs": [],
+            "appArgs": [
+                {
+                    "name": "Input file",
+                    "description": "Please enter the input file to run the case. The format of the file should be *.k, In the text file please add the path in the next line add the case name followed be next case path and case name.",
+                    "arg": "constrained.linear.plate1.k",
+                    "inputMode": "REQUIRED"
+                }
+            ],
             "containerArgs": [],
             "schedulerOptions": [
                 {
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer",
+                    "arg": "--tapis-profile ls-dyna-2023R2",
                     "notes": {
                         "isHidden": true
                     }
                 },
                 {
-                    "name": "TACC Interactive Session Substrings",
-                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be identical to the Tapis job name.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "arg": "--job-name ${JobName}",
                     "notes": {
                         "isHidden": true
                     }
@@ -52,36 +59,30 @@
             ],
             "envVariables": [
                 {
-                    "key": "_XTERM_CMD",
-                    "value": "/work/projects/wma_apps/frontera/ls-dyna/ls-dyna_11.0.0/lsprepost4.5_centos7/lsprepost",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
-                    "inputMode": "FIXED",
+                    "key": "pre",
+                    "value": "S",
+                    "description": "Please choose the precision for the solver. S = Single Precision and D = Double Precision. Default is Single Precision.",
+                    "inputMode": "REQUIRED",
                     "notes": {
-                        "isHidden": true
+                      "label": "Precision",
+                      "enum_values": [
+                        {
+                          "S": "S"
+                        },
+                        {
+                          "D": "D"
+                        }
+                      ]
                     }
-                },
-                {
-                    "key": "APPEND_PATH",
-                    "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "key": "LD_LIBRARY_PATH",
-                    "value": "$LD_LIBRARY_PATH:/work/projects/wma_apps/frontera/ls-dyna/ls-dyna_11.0.0/lsprepost4.5_centos7/lib",
-                    "description": "LD_LIBRARY_PATH",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
+                  }
             ],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [],
+                "excludes": [
+                    "tapisjob_app.sh",
+                    "ls-dyna.zip",
+                    "tapisjob.env"
+                ],
                 "includeLaunchFiles": true
             }
         },
@@ -89,16 +90,16 @@
             {
                 "name": "Input Directory",
                 "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
-                "inputMode": "OPTIONAL",
+                "inputMode": "REQUIRED",
                 "autoMountLocal": true,
-                "sourceUrl": null,
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/ls-dyna",
                 "targetPath": "inputDirectory"
             }
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 56,
-        "memoryMB": 192000,
+        "memoryMB": 128000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
@@ -107,11 +108,11 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "LS_Pre_Post",
-        "label": "LS_Pre_Post (Frontera) - v11.0.0",
-        "helpUrl": "https://www.lsoptsupport.com/howtos/integrating-pre-processor/ls-prepost",
-        "hideNodeCountAndCoresPerNode": true,
+        "icon": "LS-Dyna",
+        "label": "LS-Dyna (Frontera)",
+        "helpUrl": "https://docs.tacc.utexas.edu/software/ansys/",
+        "hideNodeCountAndCoresPerNode": false,
         "category": "Simulation",
-        "isInteractive": true
+        "isInteractive": false
     }
 }
