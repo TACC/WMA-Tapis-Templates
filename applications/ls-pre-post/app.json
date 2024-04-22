@@ -88,7 +88,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your LS-Pre/Post session runs. Click the 'Select Input' button and then select the directory you want to work from.",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
