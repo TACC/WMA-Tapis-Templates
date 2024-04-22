@@ -31,9 +31,15 @@
             "appArgs": [
                 {
                     "name": "Input file",
-                    "description": "Please enter the input file to run the case. The format of the file should be *.k, In the text file please add the path in the next line add the case name followed be next case path and case name.",
-                    "arg": "constrained.linear.plate1.k",
-                    "inputMode": "REQUIRED"
+                    "description": "Please enter the input file in .txt format. Add one .k case file per line if there are multiple case files.",
+                    "arg": "myfilename.txt",
+                    "inputMode": "REQUIRED",
+                    "notes": {
+                        "validator": {
+                            "regex": "\\.txt$",
+                            "message": "The input file must be a .txt file."
+                        }
+                    }
                 }
             ],
             "containerArgs": [],
