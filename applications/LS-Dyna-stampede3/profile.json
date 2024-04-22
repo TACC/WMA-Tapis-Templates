@@ -1,0 +1,17 @@
+{
+    "name": "ls-dyna-2023R2",
+    "description": "Modules to load for LS-DYNA 2023R2",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "ansys/21.2",
+                "intel/23.1.0",
+                "impi/21.9.0"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
