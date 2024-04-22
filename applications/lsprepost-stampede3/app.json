@@ -1,7 +1,7 @@
 {
-    "id": "ls-pre-post",
-    "version": "4.10.3",
-    "description": "LS-PrePost is interactive advanced preand post-processor and model editor from LSTC.",
+    "id": "lsprepost-stampede3",
+    "version": "4.10.6",
+    "description": "LS-PrePost is interactive advanced pre and post-processor and model editor from LSTC.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -16,11 +16,11 @@
         "description": "",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "frontera",
+        "execSystemId": "stampede3",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "small",
+        "execSystemLogicalQueue": "skx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
@@ -53,7 +53,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "/home1/apps/ANSYS/2023R2/v232/ansys/bin/lsprepost4.10_common/lsprepost",
+                    "value": "/home1/apps/ANSYS/2024R1/v241/ansys/bin/lsprepost4.10_common/lsprepost",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -71,7 +71,7 @@
                 },
                 {
                     "key": "LD_LIBRARY_PATH",
-                    "value": "$LD_LIBRARY_PATH:/home1/apps/ANSYS/2023R2/v232/ansys/bin/lsprepost4.10_common/lib2",
+                    "value": "$LD_LIBRARY_PATH:/home1/apps/ANSYS/2024R1/v241/ansys/bin/lsprepost4.10_common/lib2",
                     "description": "LD_LIBRARY_PATH",
                     "inputMode": "FIXED",
                     "notes": {
@@ -97,7 +97,7 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 56,
+        "coresPerNode": 48,
         "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
@@ -108,8 +108,8 @@
     ],
     "notes": {
         "icon": "LS-PrePost",
-        "label": "LS-PrePost (Frontera) - v4.10.3",
-        "helpUrl": "https://lsdyna.ansys.com/products-d23/",
+        "label": "LS-PrePost (Stampede3) - v4.10.6",
+        "helpUrl": "https://www.lsoptsupport.com/howtos/integrating-pre-processor/ls-prepost",
         "hideNodeCountAndCoresPerNode": true,
         "category": "Simulation",
         "isInteractive": true
