@@ -1,0 +1,108 @@
+{
+    "id": "GiD-stampede3",
+    "version": "16.1.0",
+    "description": "GiD is designed to cover all the common needs in the numerical simulation field from pre to post processing: geometrical modeling, effective definition of analysis data, meshing, data transfer to analysis software, as well as the analysis and visualization of numerical results.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "stampede3",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "skx-dev",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "/work/projects/wma_apps/stampede3/gid16.1.10/gid",
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "inputDirectory"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 48,
+        "memoryMB": 192000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "icon": "GiD",
+        "label": "GiD (Stampede3) - v16.1.0",
+        "helpUrl": "https://www.gidhome.com/support/",
+        "hideNodeCountAndCoresPerNode": true,
+        "category": "Simulation",
+        "isInteractive": true
+    }
+}
