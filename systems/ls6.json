@@ -141,5 +141,7 @@
     "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],
-    "notes": {}
+    "notes": {
+        "label": "Lonestar6"
+      }
 }

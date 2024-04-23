@@ -57,5 +57,7 @@
     "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],
-    "notes": {}
+    "notes": {
+        "label": "Frontera Secure"
+      }
 }
