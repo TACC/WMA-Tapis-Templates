@@ -34,5 +34,7 @@
     "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
-    "notes": {}
+    "notes": {
+        "label": "Virtual Machine"
+      }
 }

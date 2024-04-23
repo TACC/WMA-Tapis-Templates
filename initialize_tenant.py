@@ -150,6 +150,7 @@ def main():
                         "designsafe.storage.frontera.work",
                         "stampede3",
                         "wma-exec-01",
+                        "wma-dcv-01",
                     ]
                     if systems == ["ALL"]
                     else systems
