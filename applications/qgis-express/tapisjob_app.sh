@@ -1,5 +1,13 @@
+handle_error() {
+  local EXITCODE=$1
+  echo "QGIS job exited with an error status. $EXITCODE" >&2
+  echo "$EXITCODE" > "${_tapisExecSystemOutputDir}/tapisjob.exitcode"
+  exit $EXITCODE
+}
+
 set -x
 echo "TACC: job $_tapisJobUUID execution at: `date`"
+ln -sfn "/corral/main/projects/NHERI" "$HOME/NHERI"
 
 # confirm DCV server is alive
 DCV_SERVER_UP=`systemctl is-active dcvserver`
@@ -10,7 +18,7 @@ if [ $DCV_SERVER_UP != "active" ]; then
   echo "TACC: ERROR - https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
   echo "TACC:"
   echo "TACC: job $_tapisJobUUID execution finished at: `date`"
-  exit 1
+  handle_error 1
 fi
 
 # Run this script on session startup
@@ -19,7 +27,7 @@ DCV_HANDLE="${_tapisJobUUID}-session"
 cat <<- EOF > $DCV_STARTUP
 #!/bin/sh
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/qgis/3.36/lib
-/opt/qgis/3.36/bin/qgis --noversioncheck --profiles-path ~/.qgis --code /opt/qgis/3.36/startup.py
+/opt/qgis/3.36/bin/qgis --noversioncheck --profiles-path ~/.qgis --code /opt/qgis/3.36/startup.py || exit 1
 
 dcv close-session ${DCV_HANDLE}
 EOF
@@ -38,7 +46,7 @@ if ! `dcv list-sessions | grep -q ${_tapisJobUUID}`; then
   echo "TACC: https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
   echo "TACC: "
   echo "TACC: job $_tapisJobUUID execution finished at: `date`"
-  exit 1
+  handle_error 1
 fi
 
 LOCAL_PORT="8443"  # default DCV port
