@@ -1,5 +1,5 @@
 {
-    "name": "ls-dyna-stampede3",
+    "name": "ls-dyna-2024R1",
     "description": "Modules to load for LS-DYNA 2023R2",
     "moduleLoads": [
         {

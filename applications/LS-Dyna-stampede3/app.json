@@ -48,7 +48,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile ls-dyna-stampede3",
+                    "arg": "--tapis-profile ls-dyna-2024R1",
                     "notes": {
                         "isHidden": true
                     }
