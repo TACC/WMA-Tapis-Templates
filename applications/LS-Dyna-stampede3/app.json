@@ -1,5 +1,5 @@
 {
-    "id": "LS-Dyna-stampede3",
+    "id": "ls-dyna-stampede3",
     "version": "2024R1",
     "description": "LS-DYNA is an advanced general-purpose multiphysics simulation software package.",
     "owner": "${apiUserId}",
@@ -48,7 +48,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile ls-dyna-2023R2",
+                    "arg": "--tapis-profile ls-dyna-stampede3",
                     "notes": {
                         "isHidden": true
                     }
@@ -86,7 +86,7 @@
                 "includes": [],
                 "excludes": [
                     "tapisjob_app.sh",
-                    "ls-dyna.zip",
+                    "ls-dyna-stampede3.zip",
                     "tapisjob.env"
                 ],
                 "includeLaunchFiles": true
@@ -95,10 +95,10 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from. Copy and paste to try an example input: tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/ls-dyna",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/ls-dyna",
+                "sourceUrl": null,
                 "targetPath": "inputDirectory"
             }
         ],
@@ -114,9 +114,9 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "LS-Dyna",
+        "icon": "ls-Dyna",
         "label": "LS-Dyna (Stampede3)",
-        "helpUrl": "https://docs.tacc.utexas.edu/software/ansys/",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/lsdyna/",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Simulation",
         "isInteractive": false
