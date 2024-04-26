@@ -1,0 +1,124 @@
+{
+    "id": "ls-dyna",
+    "version": "2023R2",
+    "description": "LS-DYNA is an advanced general-purpose multiphysics simulation software package.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data//corral/tacc/aci/CEP/applications/v3/ls-dyna/ls-dyna.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "small",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Input file",
+                    "description": "Please enter the input file in .txt format. Add one .k case file per line if there are multiple case files.",
+                    "arg": "myfilename.txt",
+                    "inputMode": "REQUIRED",
+                    "notes": {
+                        "validator": {
+                            "regex": "\\.txt$",
+                            "message": "The input file must be a .txt file."
+                        }
+                    }
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile ls-dyna-2023R2",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "pre",
+                    "value": "S",
+                    "description": "Please choose the precision for the solver. S = Single Precision and D = Double Precision. Default is Single Precision.",
+                    "inputMode": "REQUIRED",
+                    "notes": {
+                      "label": "Precision",
+                      "enum_values": [
+                        {
+                          "S": "S"
+                        },
+                        {
+                          "D": "D"
+                        }
+                      ]
+                    }
+                  }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "tapisjob_app.sh",
+                    "ls-dyna.zip",
+                    "tapisjob.env"
+                ],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from. Copy and paste to try an example input: tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/ls-dyna",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "inputDirectory"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 56,
+        "memoryMB": 128000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "icon": "LS-DYNA",
+        "label": "LS-Dyna (Frontera)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/lsdyna/",
+        "hideNodeCountAndCoresPerNode": false,
+        "category": "Simulation",
+        "isInteractive": false
+    }
+}
