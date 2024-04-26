@@ -114,7 +114,7 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "ls-Dyna",
+        "icon": "LS-DYNA",
         "label": "LS-Dyna (Stampede3)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/lsdyna/",
         "hideNodeCountAndCoresPerNode": false,
