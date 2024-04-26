@@ -29,26 +29,7 @@
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
-            "schedulerOptions": [
-              {
-                "name": "TACC Scheduler Profile",
-                "description": "Scheduler profile for swbatch",
-                "inputMode": "FIXED",
-                "arg": "--tapis-profile swbatch",
-                "notes": {
-                    "isHidden": true
-                }
-              },
-              {
-                "name": "TACC Interactive Session Substrings",
-                "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
-                "inputMode": "FIXED",
-                "arg": "--job-name ${JobName}-dcvserver-tap_",
-                "notes": {
-                    "isHidden": true
-                }
-              }
-            ],
+            "schedulerOptions": [],
             "envVariables": [
               {
                 "key": "name",
