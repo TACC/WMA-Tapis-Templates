@@ -107,7 +107,7 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "LS-PrePost",
+        "icon": "LS-DYNA",
         "label": "LS-PrePost (Frontera) - v4.10.3",
         "helpUrl": "https://lsdyna.ansys.com/products-d23/",
         "hideNodeCountAndCoresPerNode": true,
