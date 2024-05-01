@@ -1,15 +1,15 @@
 {
-    "id": "cloud.data",
-    "description": "Corral Community Storage System",
+    "id": "designsafe.storage.work",
+    "description": "Work storage host for DesignSafe-CI users",
     "systemType": "LINUX",
     "host": "cloud.data.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "PKI_KEYS",
-    "rootDir": "/",
+    "rootDir": "/work/00849/tg458981/designsafe-work/",
     "port": 22,
     "canExec": false,
     "notes": {
-        "label": "Corral",
+        "label": "HPC Work",
         "keyservice": true
     }
 }

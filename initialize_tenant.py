@@ -23,7 +23,7 @@ def get_or_create_system(client, system_def, update=False):
 
 
 def provision(client, systems, apps, args):
-    profile = load_file_to_json("systems/tacc-apptainer.json")
+    profile = load_file_to_json("profiles/tacc-apptainer.json")
     try:
         client.systems.createSchedulerProfile(**profile)
         print("profile created: {}".format(profile["name"]))
@@ -116,6 +116,17 @@ def main():
     else:
         tenant_names = list(TAPIS_CLIENTS.keys())
 
+    all_systems = [
+        "c4-cloud",
+        "cloud.data",
+        "frontera",
+        "ls6",
+        "maverick2",
+        "stampede3",
+        "wma-dcv-01",
+        "wma-exec-01",
+    ]
+
     for tenant_name in tenant_names:
 
         apps = args.apps.split(",") if args.apps else []
@@ -124,7 +135,7 @@ def main():
         match tenant_name:
             case "A2CPS":
                 systems = (
-                    ["secure.frontera", "secure.corral"]
+                    ["a2cps/secure.frontera", "a2cps/secure.corral"]
                     if systems == ["ALL"]
                     else systems
                 )
@@ -141,16 +152,16 @@ def main():
                 )
             case "DESIGNSAFE":
                 systems = (
-                    [
-                        "frontera",
-                        "ls6",
-                        "cloud.data",
-                        "c4-cloud",
-                        "designsafe.storage.default",
-                        "designsafe.storage.frontera.work",
-                        "stampede3",
-                        "wma-exec-01",
-                        "wma-dcv-01",
+                    all_systems
+                    + [
+                        "designsafe/designsafe.storage.default",
+                        "designsafe/designsafe.storage.community",
+                        "designsafe/designsafe.storage.frontera.work",
+                        "designsafe/designsafe.storage.projects",
+                        "designsafe/designsafe.storage.published",
+                        "designsafe/designsafe.storage.work",
+                        "designsafe/nees.public",
+                        "designsafe/ds-stko-dev",
                     ]
                     if systems == ["ALL"]
                     else systems
@@ -178,18 +189,7 @@ def main():
                     else apps
                 )
             case _:
-                systems = (
-                    [
-                        "frontera",
-                        "ls6",
-                        "cloud.data",
-                        "c4-cloud",
-                        "stampede3",
-                        "wma-exec-01",
-                    ]
-                    if systems == ["ALL"]
-                    else systems
-                )
+                systems = all_systems if systems == ["ALL"] else systems
                 apps = (
                     [
                         "adcirc-frontera",
