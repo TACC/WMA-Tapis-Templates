@@ -31,7 +31,7 @@ def provision(client, systems, apps, args):
         if "SYSAPI_PRF_EXISTS" in e.message:
             print("profile already exists: {}".format(profile["name"]))
 
-            if args.force:
+            if args.update_profiles:
                 print("recreating profile {}".format(profile["name"]))
                 client.systems.deleteSchedulerProfile(name=profile["name"])
                 client.systems.createSchedulerProfile(**profile)
@@ -42,7 +42,7 @@ def provision(client, systems, apps, args):
     for system in systems:
         sys_json = load_file_to_json(f"systems/{system}.json")
         public = sys_json["effectiveUserId"] == "${apiUserId}"
-        get_or_create_system(client, sys_json, update=public)
+        get_or_create_system(client, sys_json, update=args.update_systems)
         if public:
             client.systems.shareSystemPublic(systemId=sys_json["id"])
             client.files.sharePathPublic(
@@ -60,7 +60,7 @@ def provision(client, systems, apps, args):
                 if "SYSAPI_PRF_EXISTS" in e.message:
                     print("profile already exists: {}".format(profile["name"]))
 
-                    if args.force:
+                    if args.update_profiles:
                         print("recreating profile {}".format(profile["name"]))
                         client.systems.deleteSchedulerProfile(name=profile["name"])
                         client.systems.createSchedulerProfile(**profile)
@@ -73,10 +73,13 @@ def provision(client, systems, apps, args):
             print("app created: {}".format(app_json["id"]))
         except BaseTapyException as e:
             if "APPAPI_APP_EXISTS" in e.message:
-                client.apps.putApp(
-                    appId=app_json["id"], appVersion=app_json["version"], **app_json
-                )
-                print("app updated: {}".format(app_json["id"]))
+                print("app already exists: {}".format(app_json["id"]))
+
+                if args.update_apps:
+                    client.apps.putApp(
+                        appId=app_json["id"], appVersion=app_json["version"], **app_json
+                    )
+                    print("app updated: {}".format(app_json["id"]))
             else:
                 raise
 
@@ -88,19 +91,34 @@ def main():
         prog="Initialize Tenant",
         description="Provision or update a tenant with systems, apps, and scheduler profiles",
     )
-    parser.add_argument(
-        "-f", "--force", action="store_true", help="Force recreate scheduler profiles"
-    )
     parser.add_argument("-t", "--tenants", help="Comma separated list of tenants")
+    parser.add_argument(
+        "-up",
+        "--update-profiles",
+        action="store_true",
+        help="Force recreate scheduler profiles",
+    )
     parser.add_argument(
         "-s",
         "--systems",
         help="Comma separated list of systems.",
     )
     parser.add_argument(
+        "-us",
+        "--update-systems",
+        action="store_true",
+        help="Update systems if they already exist.",
+    )
+    parser.add_argument(
         "-a",
         "--apps",
         help="Comma separated list of apps.",
+    )
+    parser.add_argument(
+        "-ua",
+        "--update-apps",
+        action="store_true",
+        help="Update apps if they already exist.",
     )
     parser.add_argument(
         "-d",
