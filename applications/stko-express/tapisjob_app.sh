@@ -1,6 +1,6 @@
 handle_error() {
   local EXITCODE=$1
-  echo "QGIS job exited with an error status. $EXITCODE" >&2
+  echo "STKO job exited with an error status. $EXITCODE" >&2
   echo "$EXITCODE" > "${_tapisExecSystemOutputDir}/tapisjob.exitcode"
   exit $EXITCODE
 }
@@ -29,14 +29,14 @@ DCV_HANDLE="${_tapisJobUUID}-session"
 cat <<- EOF > $DCV_STARTUP
 #!/bin/sh
 pip install PySide2 matplotlib scipy
-/snap/stko/current/STKORun.sh
+/snap/stko/current/STKORun.sh  || exit 1
 
 dcv close-session ${DCV_HANDLE}
 EOF
 chmod a+rx $DCV_STARTUP
 
 # create DCV session for this job
-dcv create-session --owner ${AGAVE_JOB_OWNER} --init ${DCV_STARTUP} $DCV_HANDLE
+dcv create-session --owner ${_tapisJobOwner} --init ${DCV_STARTUP} $DCV_HANDLE
 if ! `dcv list-sessions | grep -q ${_tapisJobUUID}`; then
   echo "TACC:"
   echo "TACC: WARNING - could not find a DCV session for this job"
@@ -58,7 +58,7 @@ LOCAL_PORT="8443"  # default DCV port
 INTERACTIVE_WEBHOOK_URL="${_webhook_base_url}"
 
 #connect to DCV session on VM
-curl -k --data "event_type=WEB&address=https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${AGAVE_JOB_OWNER}&job_uuid=${_tapisJobUUID}" $INTERACTIVE_WEBHOOK_URL &
+curl -k --data "event_type=WEB&address=https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" $INTERACTIVE_WEBHOOK_URL &
 
 echo "TACC: Your DCV session is now running!"
 echo "TACC: Connect to your session at: https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}"
