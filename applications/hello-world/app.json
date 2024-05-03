@@ -115,9 +115,6 @@
         "hideNodeCountAndCoresPerNode": false,
         "category": "Utilities",
         "showTargetPath": true,
-        "dynamicExecSystems": {
-                "frontera": "Frontera",
-                "ls6": "Lonestar6"
-        }
+        "dynamicExecSystems": ["frontera", "ls6"]
     }
 }
