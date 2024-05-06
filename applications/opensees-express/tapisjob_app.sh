@@ -7,9 +7,10 @@ apptainer run \
     /bin/sh -c \
         "cd /data; OpenSees < /data/$tclScript"
 
-if [ ! $? ]; then
-    EXITCODE=$?
-	echo "Apptainer container exited with an error status. $EXITCODE" >&2
+EXITCODE=$?
+if [ $EXITCODE -ne 0 ]; then
+    # Command failed
+    echo "Apptainer container exited with an error status. $EXITCODE" >&2
 
     # https://tapis.readthedocs.io/en/latest/technical/jobs.html#monitoring-the-application
     echo $EXITCODE > ${_tapisExecSystemOutputDir}/tapisjob.exitcode
