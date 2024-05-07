@@ -30,12 +30,7 @@
     "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
-<<<<<<< HEAD:systems/ds-stko-dev.json
-    "notes": {}
-}
-=======
     "notes": {
         "label": "DesignSafe STKO VM"
       }
 }
->>>>>>> main:systems/designsafe/ds-stko-dev.json
