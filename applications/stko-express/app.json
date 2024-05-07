@@ -30,37 +30,8 @@
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
-            "schedulerOptions": [
-                {
-                    "name": "TACC Scheduler Profile",
-                    "description": "Scheduler profile for HPC clusters at TACC",
-                    "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
-            "envVariables": [
-                {
-                    "key": "_XTERM_CMD",
-                    "value": "/snap/stko/current/STKORun.sh",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "key": "APPEND_PATH",
-                    "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "schedulerOptions": [],
+            "envVariables": [],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
