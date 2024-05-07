@@ -122,13 +122,15 @@
     ],
     "fileInputArrays": [],
     "nodeCount": 1,
-    "coresPerNode": 16,
-    "memoryMB": 92,
-    "maxMinutes": 60,
+    "coresPerNode": 56,
+    "memoryMB": 192000,
+    "maxMinutes": 120,
     "subscriptions": [],
     "tags": []
   },
-  "tags": ["portalName: DesignSafe"],
+  "tags": [
+    "portalName: DesignSafe"
+  ],
   "notes": {
     "icon": null,
     "label": "Kalpana",

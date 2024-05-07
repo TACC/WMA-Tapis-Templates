@@ -120,7 +120,11 @@
             ],
             "archiveFilter": {
                 "includes": [],
-                "excludes": ["openfoam_v9.zip"],
+                "excludes": [
+                    "openfoam_v9.zip",
+                    "inputDirectory/pisoFoam.log",
+                    "tapisjob.env"
+                ],
                 "includeLaunchFiles": true
             }
         },
@@ -137,7 +141,7 @@
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 56,
-        "memoryMB": 192,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []

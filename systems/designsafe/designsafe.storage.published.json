@@ -1,0 +1,15 @@
+{
+    "id": "designsafe.storage.published",
+    "description": "DesignSafe Published Data storage system",
+    "systemType": "LINUX",
+    "host": "cloud.data.tacc.utexas.edu",
+    "effectiveUserId": "tg458981",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "authnCredential": {
+        "privateKey": "CHANGEME",
+        "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAf6NHLPQ1oyYqWQh1VAZlaBi7R9jUyryIDMBmiUjYqig3chNXh4cGas0hspwBCaw9M6LtdKDPP0hIZ5oGuqxmd7ZTiyXQpIUDfzRvk/v7b4xDstkJqMguATajeyEgwqcCw8GN7MjnFIzVg3MnBtpvoUX7RMx8xJQNa+vgG5czfZKaPw3JCv6rS3QZfs5qQaspzBw/i53VxI6EgGq1e2o0Yi6Jvxhq9bhF7g0cjf3Kea63LByAmEPKG7WIGR5+o1i9ETz0gp1AKflyH+2igKKmjbIy1uyX4ungL2EkVAj4eatNOF3OCSDtdDCJIxXrAQ0q1WsgsVDJkvQDuMpXS3d02Drgeq3wrUb9ymXMsLik8PuxMc6enP9tIYtyd2HI8FmroY6v1YEdk9DnpVt2jqn1ztL4amWVigAUQ8vOshGqtRTqP6d/YuN03QBEzhbv9mOR1nShaQ7fGDS4F8A8NJcGXfj5BdhhKGstorLGXRyC6yLYofdJXwZYEh4q0N6ZZjiWgRthHFD1GQpm7VP1z013Y8jceQ3+SlApRGNZwQF5BlEg3cqkTlSv7AvMP+pEgzwk8Xpf7UqhlS4INJNhhmoTD08AGcHZrf+hl23N+dDZ4ivZzhCwUcG9MMa1CU4x5cIIFxE6OJuP0eq9lgpLP/3d4OKCoNcT8QiHr+ivpO0ptw== tg458981@c4-cloud"
+    },
+    "rootDir": "/corral/projects/NHERI/published",
+    "port": 22,
+    "canExec": false
+}
