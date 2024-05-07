@@ -23,7 +23,7 @@ def get_or_create_system(client, system_def, update=False):
 
 
 def provision(client, systems, apps, args):
-    profile = load_file_to_json("systems/tacc-apptainer.json")
+    profile = load_file_to_json("profiles/tacc-apptainer.json")
     try:
         client.systems.createSchedulerProfile(**profile)
         print("profile created: {}".format(profile["name"]))
@@ -31,7 +31,7 @@ def provision(client, systems, apps, args):
         if "SYSAPI_PRF_EXISTS" in e.message:
             print("profile already exists: {}".format(profile["name"]))
 
-            if args.force:
+            if args.update_profiles:
                 print("recreating profile {}".format(profile["name"]))
                 client.systems.deleteSchedulerProfile(name=profile["name"])
                 client.systems.createSchedulerProfile(**profile)
@@ -42,7 +42,7 @@ def provision(client, systems, apps, args):
     for system in systems:
         sys_json = load_file_to_json(f"systems/{system}.json")
         public = sys_json["effectiveUserId"] == "${apiUserId}"
-        get_or_create_system(client, sys_json, update=public)
+        get_or_create_system(client, sys_json, update=args.update_systems)
         if public:
             client.systems.shareSystemPublic(systemId=sys_json["id"])
             client.files.sharePathPublic(
@@ -60,7 +60,7 @@ def provision(client, systems, apps, args):
                 if "SYSAPI_PRF_EXISTS" in e.message:
                     print("profile already exists: {}".format(profile["name"]))
 
-                    if args.force:
+                    if args.update_profiles:
                         print("recreating profile {}".format(profile["name"]))
                         client.systems.deleteSchedulerProfile(name=profile["name"])
                         client.systems.createSchedulerProfile(**profile)
@@ -73,10 +73,13 @@ def provision(client, systems, apps, args):
             print("app created: {}".format(app_json["id"]))
         except BaseTapyException as e:
             if "APPAPI_APP_EXISTS" in e.message:
-                client.apps.putApp(
-                    appId=app_json["id"], appVersion=app_json["version"], **app_json
-                )
-                print("app updated: {}".format(app_json["id"]))
+                print("app already exists: {}".format(app_json["id"]))
+
+                if args.update_apps:
+                    client.apps.putApp(
+                        appId=app_json["id"], appVersion=app_json["version"], **app_json
+                    )
+                    print("app updated: {}".format(app_json["id"]))
             else:
                 raise
 
@@ -88,19 +91,34 @@ def main():
         prog="Initialize Tenant",
         description="Provision or update a tenant with systems, apps, and scheduler profiles",
     )
-    parser.add_argument(
-        "-f", "--force", action="store_true", help="Force recreate scheduler profiles"
-    )
     parser.add_argument("-t", "--tenants", help="Comma separated list of tenants")
+    parser.add_argument(
+        "-up",
+        "--update-profiles",
+        action="store_true",
+        help="Force recreate scheduler profiles",
+    )
     parser.add_argument(
         "-s",
         "--systems",
         help="Comma separated list of systems.",
     )
     parser.add_argument(
+        "-us",
+        "--update-systems",
+        action="store_true",
+        help="Update systems if they already exist.",
+    )
+    parser.add_argument(
         "-a",
         "--apps",
         help="Comma separated list of apps.",
+    )
+    parser.add_argument(
+        "-ua",
+        "--update-apps",
+        action="store_true",
+        help="Update apps if they already exist.",
     )
     parser.add_argument(
         "-d",
@@ -116,6 +134,17 @@ def main():
     else:
         tenant_names = list(TAPIS_CLIENTS.keys())
 
+    all_systems = [
+        "c4-cloud",
+        "cloud.data",
+        "frontera",
+        "ls6",
+        "maverick2",
+        "stampede3",
+        "wma-dcv-01",
+        "wma-exec-01",
+    ]
+
     for tenant_name in tenant_names:
 
         apps = args.apps.split(",") if args.apps else []
@@ -124,7 +153,7 @@ def main():
         match tenant_name:
             case "A2CPS":
                 systems = (
-                    ["secure.frontera", "secure.corral"]
+                    ["a2cps/secure.frontera", "a2cps/secure.corral"]
                     if systems == ["ALL"]
                     else systems
                 )
@@ -141,40 +170,16 @@ def main():
                 )
             case "DESIGNSAFE":
                 systems = (
-                    [
-                        "frontera",
-                        "ls6",
-                        "cloud.data",
-                        "c4-cloud",
-                        "designsafe.storage.default",
-                        "designsafe.storage.frontera.work",
-                        "stampede3",
-                        "wma-exec-01",
-                    ]
-                    if systems == ["ALL"]
-                    else systems
-                )
-                apps = (
-                    [
-                        "openfoam",
-                        "visit",
-                        "figuregen/serial",
-                        "figuregen/parallel",
-                        "kalpana",
-                        "mpm",
-                    ]
-                    if apps == ["ALL"]
-                    else apps
-                )
-            case _:
-                systems = (
-                    [
-                        "frontera",
-                        "ls6",
-                        "cloud.data",
-                        "c4-cloud",
-                        "stampede3",
-                        "wma-exec-01",
+                    all_systems
+                    + [
+                        "designsafe/designsafe.storage.default",
+                        "designsafe/designsafe.storage.community",
+                        "designsafe/designsafe.storage.frontera.work",
+                        "designsafe/designsafe.storage.projects",
+                        "designsafe/designsafe.storage.published",
+                        "designsafe/designsafe.storage.work",
+                        "designsafe/nees.public",
+                        "designsafe/ds-stko-dev",
                     ]
                     if systems == ["ALL"]
                     else systems
@@ -182,28 +187,62 @@ def main():
                 apps = (
                     [
                         "compress",
+                        "extract",
+                        "figuregen/serial",
+                        "figuregen/parallel",
+                        "GiD",
+                        "jupyter-lab-hpc",
+                        "jupyter-lab-hpc/gpu",
+                        "kalpana",
+                        "matlab",
+                        "mpm",
+                        "openfoam",
+                        "opensees-mp/opensees-mp-3.5.0",
+                        "opensees-sp/opensees-sp-3.5.0",
+                        "paraview",
+                        "qgis",
+                        "visit",
+                    ]
+                    if apps == ["ALL"]
+                    else apps
+                )
+            case _:
+                systems = all_systems if systems == ["ALL"] else systems
+                apps = (
+                    [
+                        "adcirc-frontera",
+                        "compress",
                         "compress-ls6",
                         "extract",
                         "extract-ls6",
+                        "figuregen/serial",
+                        "figuregen/parallel",
                         "fiji",
+                        "GiD",
                         "jupyter-hpc-mpi",
                         "jupyter-hpc-mpi-ls6",
                         "jupyter-lab-hpc",
                         "jupyter-lab-hpc/gpu",
                         "jupyter-lab-hpc-ls6",
                         "jupyter-lab-hpc-openmpi",
+                        "kalpana",
                         "matlab",
                         "matlab-ls6",
+                        "mpm",
                         "namd",
                         "napari-ls6",
+                        "openfoam",
                         "opensees-mp/opensees-mp-3.5.0",
                         "opensees-sp/opensees-sp-3.5.0",
+                        "padcirc-frontera",
+                        "padcirc-swan-frontera",
                         "paraview",
                         "pyreconstruct",
                         "pyreconstruct-dev",
                         "qgis",
                         "rstudio",
                         "rstudio-ls6",
+                        "visit",
                     ]
                     if apps == ["ALL"]
                     else apps

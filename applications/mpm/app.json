@@ -60,7 +60,9 @@
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
-                "excludes": ["mpm.zip"],
+                "excludes": [
+                    "mpm.zip"
+                ],
                 "includeLaunchFiles": true
             }
         },
@@ -77,8 +79,8 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 3,
-        "coresPerNode": 9,
-        "memoryMB": 192,
+        "coresPerNode": 56,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []

@@ -7,5 +7,9 @@
     "defaultAuthnMethod": "PKI_KEYS",
     "rootDir": "/",
     "port": 22,
-    "canExec": false
+    "canExec": false,
+    "notes": {
+        "label": "Corral",
+        "keyservice": true
+    }
 }

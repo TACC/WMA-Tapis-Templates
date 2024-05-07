@@ -7,5 +7,9 @@
     "defaultAuthnMethod": "PKI_KEYS",
     "rootDir": "/corral-repl/projects/NeuroNex-3DEM/Public",
     "port": 22,
-    "canExec": false
+    "canExec": false,
+    "notes": {
+        "label": "Public Data",
+        "keyservice": true
+    }
 }

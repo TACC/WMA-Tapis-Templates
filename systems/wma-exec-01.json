@@ -16,6 +16,10 @@
     "mpiCmd": null,
     "jobRuntimes": [
         {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        },
+        {
             "runtimeType": "ZIP",
             "version": null
         }
@@ -24,11 +28,13 @@
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
-    "batchScheduler": "SLURM",
+    "batchScheduler": null,
     "batchLogicalQueues": [],
     "batchDefaultLogicalQueue": null,
     "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
-    "notes": {}
+    "notes": {
+        "label": "Virtual Machine"
+      }
 }

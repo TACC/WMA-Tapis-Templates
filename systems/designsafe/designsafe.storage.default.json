@@ -1,11 +1,15 @@
 {
     "id": "designsafe.storage.default",
-    "description": "DesignSafe User Storage System",
+    "description": "DesignSafe default user storage system",
     "systemType": "LINUX",
-    "host": "c4-cloud.tacc.utexas.edu",
+    "host": "cloud.data.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "PKI_KEYS",
     "rootDir": "/data/designsafe/mydata",
     "port": 22,
-    "canExec": false
+    "canExec": false,
+    "notes": {
+        "label": "My Data",
+        "keyservice": true
+    }
 }

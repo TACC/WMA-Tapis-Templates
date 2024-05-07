@@ -7,7 +7,7 @@
   "runtime": "ZIP",
   "runtimeVersion": null,
   "runtimeOptions": null,
-  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/setfacl-corral-tg458981/v001/setfacl-corral-tg458981_v001.zip",
+  "containerImage": "tapis://designsafe.storage.default/wma_prtl/applications/v3/setfacl-corral-tg458981/v001/setfacl-corral-tg458981_v001.zip",
   "jobType": "FORK",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -20,9 +20,9 @@
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
     "execSystemOutputDir": "${JobWorkingDir}/output",
-    "execSystemLogicalQueue": "small",
-    "archiveSystemId": "cloud.data",
-    "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "execSystemLogicalQueue": "development",
+    "archiveSystemId": "designsafe.storage.default",
+    "archiveSystemDir": "/wma_prtl/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
     "archiveOnAppError": true,
     "isMpi": false,
     "mpiCmd": null,
@@ -76,12 +76,14 @@
     "fileInputArrays": [],
     "nodeCount": 1,
     "coresPerNode": 56,
-    "memoryMB": 192,
+    "memoryMB": 192000,
     "maxMinutes": 120,
     "subscriptions": [],
     "tags": []
   },
-  "tags": ["portalName: DesignSafe"],
+  "tags": [
+    "portalName: DesignSafe"
+  ],
   "notes": {
     "label": "setfacls cloud.data"
   }
