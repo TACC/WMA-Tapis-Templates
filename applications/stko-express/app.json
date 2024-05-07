@@ -1,0 +1,70 @@
+{
+    "id": "stko-express-1.0.0",
+    "version": "3.3.0",
+    "description": "Run an interactive STKO (Scientific ToolKit for OpenSees) desktop session on a virtual machine (Ubuntu 18.04 bionic).",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/stko-express/stko-express.zip",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ds-stko-dev",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": null,
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "inputDirectory"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 192000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "icon": "STKO",
+        "label": "STKO Express",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/stko/",
+        "hideNodeCountAndCoresPerNode": true,
+        "category": "Visualization",
+        "isInteractive": true
+    }
+}
