@@ -1,0 +1,91 @@
+{
+    "id": "potree-converter",
+    "version": "2.1.1",
+    "description": "Convert pointclouds to Potree format.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/potree-converter/potree-converter.zip",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "wma-dcv-01",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/converter-output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "schedulerOptions": [
+            ],
+            "envVariables": [
+                {
+                  "key": "samplingMethod",
+                  "value": "poisson",
+                  "description": "Potree converter's default sampling method is Poisson - optionally, you can select 'random' sampling above.",
+                  "inputMode": "REQUIRED",
+                  "notes": {
+                    "label": "Sampling Method",
+                    "enum_values": [
+                        {
+                          "poisson": "poisson"
+                        },
+                        {
+                          "random": "random"
+                        }
+                      ]
+          
+                  }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input to be converted",
+                "description": "File/Folder to be converted. You can drag the link from the Data Browser on the left, or click the 'Select Input' button and then select the input.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": ".",
+                "envKey": "converterInput"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 256000,
+        "maxMinutes": 1440,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "label": "Potree Converter (VM)",
+        "helpUrl": "https://github.com/potree/PotreeConverter",
+        "hideNodeCountAndCoresPerNode": true,
+        "icon": null,
+        "category": "Visualization",
+        "isInteractive": true
+    }
+}
