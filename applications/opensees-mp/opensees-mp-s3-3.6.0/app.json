@@ -1,7 +1,7 @@
 {
     "id": "opensees-mp-s3",
     "version": "3.6.0",
-    "description": "OpenSeesMP is an OpenSees interpreter intended for high performance computers for performing finite element simulations with parameteric studies and very large models on parallel machines. OpenSeesMP requires understanding of parallel processing and the capabilities to write parallel scripts.",
+    "description": "Runs all the processors in parallel. Requires understanding of parallel processing and the capabilities to write parallel scripts.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -83,8 +83,8 @@
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSeesMP V3.6 (Stampede 3)",
-        "helpUrl": "https://opensees.berkeley.edu/",
+        "label": "OpenSees",
+        "helpUrl": "/use-designsafe/tools-applications/simulation/opensees",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
         "icon": null,

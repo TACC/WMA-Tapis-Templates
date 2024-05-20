@@ -1,7 +1,7 @@
 {
     "id": "mpm",
     "version": "1.1.0",
-    "description": "Material Point Method (MPM) is a particle based method that represents the material as a collection of material points, and their deformations are determined by Newton\u2019s laws of motion.",
+    "description": "Material Point Method (MPM) is a particle based method that represents the material as a collection of material points, and their deformations are determined by Newton’s laws of motion.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -89,9 +89,9 @@
         "portalName: CEP, DesignSafe"
     ],
     "notes": {
-        "icon": "mpm",
-        "label": "MPM (Frontera)",
-        "helpUrl": "https://www.cb-geo.com/research/mpm/#material-point-method",
+        "icon": "MPM",
+        "label": "MPM",
+        "helpUrl": "/use-designsafe/tools-applications/simulation/mpm/",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Simulation"
     }

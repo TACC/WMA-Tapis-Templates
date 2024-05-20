@@ -1,7 +1,7 @@
 {
     "id": "FigureGen-Parallel",
     "version": "51.0.0",
-    "description": "FigureGen is a Fortran program that creates images for ADCIRC files. It reads mesh files (fort.14, etc.), nodal attributes files (fort.13, etc.) and output files (fort.63, fort.64, maxele.63, etc.). It plots contours, contour lines, and vectors. Using FigureGen, you can go directly from the ADCIRC input and output files to a presentation-quality figure, for one or multiple time snaps. This application supports netCDF formatted files as well.",
+    "description": "Creates images for ADCIRC files. Processes in parallel.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -88,9 +88,9 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "FigureGen",
-        "label": "FigureGen Parallel (Stampede3)",
-        "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/figuregen/",
+        "icon": "Generic: Visualization",
+        "label": "FigureGen Parallel",
+        "helpUrl": "/use-designsafe/tools-applications/visualization/figuregen",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Visualization"
     }

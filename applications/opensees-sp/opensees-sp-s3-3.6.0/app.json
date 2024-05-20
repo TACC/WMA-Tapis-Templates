@@ -1,7 +1,7 @@
 {
     "id": "opensees-sp-s3",
     "version": "3.6.0",
-    "description": "OpenSeesSP 3.6 is an OpenSees interpreter intended for high performance computers for performing finite element simulations of very large models on parallel machines. OpenSeesSP is easy to use even with limited knowledge about parallel computing. It only requires minimal changes to input scripts to make them consistent with the parallel process logic.",
+    "description": "Parallel version driven by a single processor. Easy to use even with limited knowledge about parallel computing.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -83,8 +83,8 @@
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSeesSP V3.6 (Stampede 3)",
-        "helpUrl": "https://opensees.berkeley.edu/",
+        "label": "OpenSees",
+        "helpUrl": "/use-designsafe/tools-applications/simulation/opensees",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
         "icon": null,
