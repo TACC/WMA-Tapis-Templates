@@ -91,7 +91,7 @@
     "portalName: DesignSafe"
   ],
   "notes": {
-    "icon": "matlab",
+    "icon": "MATLAB",
     "label": "MATLAB Batch",
     "helpUrl": "/use-designsafe/tools-applications/analysis/matlab/",
     "hideNodeCountAndCoresPerNode": false,
