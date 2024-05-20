@@ -1,7 +1,7 @@
 {
   "id": "visit",
   "version": "3.3.3",
-  "description": "VisIt is an Open Source, interactive, scalable, visualization, animation and analysis tool. From Unix, Windows or Mac workstations, users can interactively visualize and analyze data ranging in scale from small (<10 core) desktop-sized projects to large (>100000 core) leadership-class computing facility simulation campaigns. Users can quickly generate visualizations, animate them through time, manipulate them with a variety of operators and mathematical expressions, and save the resulting images and animations for presentations.",
+  "description": "Build configurable visualizations to analyze large datasets.",
   "owner": "${apiUserId}",
   "runtime": "ZIP",
   "runtimeVersion": null,
@@ -83,9 +83,9 @@
     "portalName: DesignSafe"
   ],
   "notes": {
-    "icon": "VisIt",
+    "icon": "Generic-Vis",
     "label": "VisIt",
-    "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/visit/",
+    "helpUrl": "https://www.designsafe-ci.org/rw/use-designsafe/tools-applications/visualization/visit/",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Visualization",
     "isInteractive": true
