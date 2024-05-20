@@ -186,23 +186,31 @@ def main():
                 )
                 apps = (
                     [
+                        "adcirc-frontera",
                         "compress",
                         "extract",
                         "figuregen/serial",
                         "figuregen/parallel",
-                        "GiD",
+                        "GiD-stampede3",
                         "jupyter-lab-hpc",
                         "jupyter-lab-hpc/gpu",
                         "kalpana",
+                        "LS-Dyna-stampede3",
+                        "ls-pre-post-stampede3",
                         "matlab",
+                        "matlab-batch",
+                        "matlab-express",
                         "mpm",
                         "openfoam",
+                        "opensees-express",
                         "opensees-mp/opensees-mp-3.5.0",
                         "opensees-sp/opensees-sp-3.5.0",
+                        "padcirc-frontera",
+                        "padcirc-swan-frontera",
                         "paraview",
                         "qgis",
                         "qgis-express",
-                        "matlab-express",
+                        "stko-express",
                         "visit",
                     ]
                     if apps == ["ALL"]
