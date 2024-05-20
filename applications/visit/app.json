@@ -1,7 +1,7 @@
 {
   "id": "visit",
   "version": "3.3.3",
-  "description": "Straightforward and user-friendly, good for new users to get started with basic visualization",
+  "description": "Build configurable visualizations to analyze large datasets.",
   "owner": "${apiUserId}",
   "runtime": "ZIP",
   "runtimeVersion": null,
