@@ -1,7 +1,7 @@
 {
   "id": "matlab_express",
   "version": "9.13",
-  "description": "Run an interactive MATLAB 2022b session on Virtual Machine. Submit a help ticket to get your license configured or approved.",
+  "description": "Run an interactive MATLAB 2022b session on Virtual Machine.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
@@ -52,11 +52,11 @@
   ],
   "notes": {
       "licenseType": "MATLAB",
-      "label": "MATLAB R2022b (VM)",
-      "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
+      "label": "MATLAB Interactive (VM)",
+      "helpUrl": "/use-designsafe/tools-applications/analysis/matlab/",
       "hideNodeCountAndCoresPerNode": true,
-      "icon": "matlab",
-      "category": "Data Processing",
+      "icon": "MATLAB",
+      "category": "Analysis",
       "isInteractive": true
   }
 }

@@ -1,7 +1,7 @@
 {
     "id": "qgis_express",
     "version": "3.36.0",
-    "description": "Run an interactive QGIS desktop session on VM.",
+    "description": "Run an interactive QGIS session on a virtual machine. Work directly on your files rather than needing to copy them to and from Stampede3.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -51,11 +51,11 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "label": "QGIS (VM)",
+        "label": "QGIS Desktop 3.16",
         "helpUrl": "https://qgis.org/en/docs/index.html",
         "hideNodeCountAndCoresPerNode": true,
-        "icon": null,
-        "category": "Data Processing",
+        "icon": "QGIS",
+        "category": "GIS Tools",
         "isInteractive": true
     }
 }
