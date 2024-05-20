@@ -88,7 +88,7 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "Generic: Visualization",
+        "icon": "Generic-Vis",
         "label": "FigureGen Serial",
         "helpUrl": "/use-designsafe/tools-applications/visualization/figuregen",
         "hideNodeCountAndCoresPerNode": false,
