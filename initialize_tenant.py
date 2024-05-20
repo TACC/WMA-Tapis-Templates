@@ -208,6 +208,7 @@ def main():
                         "padcirc-frontera",
                         "padcirc-swan-frontera",
                         "paraview",
+                        "paraview-ls6",
                         "qgis",
                         "qgis-express",
                         "stko-express",
