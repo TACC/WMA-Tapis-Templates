@@ -1,0 +1,126 @@
+{
+    "id": "opensees-mp",
+    "version": "3.5.0",
+    "description": "OpenSeesMP is an OpenSees interpreter intended for high performance computers for performing finite element simulations with parameteric studies and very large models on parallel machines. OpenSeesMP requires understanding of parallel processing and the capabilities to write parallel scripts.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://debian:bookworm-slim",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "execSystemConstraints": null,
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": true,
+        "mpiCmd": "ibrun",
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "mainProgram",
+                    "arg": "OpenSeesMP",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TCL Script",
+                    "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
+                    "arg": "Example.tcl",
+                    "inputMode": "REQUIRED"
+                }
+            ],
+            "containerArgs": [
+                {
+                    "name": "TACC Module Mounts",
+                    "description": "Mount the required folders in order for OpenSees TACC modules to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /bin,/etc,/lib,/lib64,/opt,/run,/share,/usr,/var",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "OpenSees TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC OpenSees 3.5.0.",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile OpenSees_3.5.0",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "key": "LD_LIBRARY_PATH",
+                    "value": "$LD_LIBRARY_PATH",
+                    "description": "LD_LIBRARY_PATH to bring in path for loaded modules",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "TCL Input Directory",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp",
+                "targetPath": ".",
+                "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp/Example.tcl"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 2,
+        "coresPerNode": 128,
+        "memoryMB": 256000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: UTRC",
+        "portalName: CEP"
+    ],
+    "notes": {
+        "label": "OpenSeesMP V3.5 (Frontera/LoneStar 6)",
+        "helpUrl": "https://opensees.berkeley.edu/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": false,
+        "icon": null,
+        "category": "Simulation",
+        "dynamicExecSystems":[
+            "frontera",
+            "ls6"
+        ]
+    }
+}
