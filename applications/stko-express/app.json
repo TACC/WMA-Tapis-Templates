@@ -1,7 +1,7 @@
 {
-    "id": "stko-express-1.0.0",
+    "id": "stko-express",
     "version": "3.3.0",
-    "description": "Run an interactive STKO (Scientific ToolKit for OpenSees) desktop session on a virtual machine (Ubuntu 18.04 bionic).",
+    "description": "Run an interactive STKO (Scientific ToolKit for OpenSees) desktop session on a virtual machine.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",

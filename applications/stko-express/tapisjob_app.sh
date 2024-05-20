@@ -58,7 +58,7 @@ LOCAL_PORT="8443"  # default DCV port
 INTERACTIVE_WEBHOOK_URL="${_webhook_base_url}"
 
 #connect to DCV session on VM
-curl -k --data "event_type=WEB&address=https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" $INTERACTIVE_WEBHOOK_URL &
+curl -k --data "event_type=interactive_session_ready&address=https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" $INTERACTIVE_WEBHOOK_URL &
 
 echo "TACC: Your DCV session is now running!"
 echo "TACC: Connect to your session at: https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}"

@@ -100,7 +100,7 @@
     "notes": {
         "icon": "GiD",
         "label": "GiD (Stampede3) - v16.1.0",
-        "helpUrl": "https://www.gidhome.com/support/",
+        "helpUrl": "/use-designsafe/tools-applications/visualization/gid",
         "hideNodeCountAndCoresPerNode": true,
         "category": "Simulation",
         "isInteractive": true
