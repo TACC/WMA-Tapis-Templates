@@ -201,6 +201,8 @@ def main():
                         "opensees-sp/opensees-sp-3.5.0",
                         "paraview",
                         "qgis",
+                        "qgis-express",
+                        "matlab-express",
                         "visit",
                     ]
                     if apps == ["ALL"]
