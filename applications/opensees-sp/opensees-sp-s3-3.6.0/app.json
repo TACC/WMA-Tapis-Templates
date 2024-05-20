@@ -83,11 +83,11 @@
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSees",
+        "label": "OpenSeesSP",
         "helpUrl": "/use-designsafe/tools-applications/simulation/opensees",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
-        "icon": null,
+        "icon": "OpenSees",
         "category": "Simulation"
     }
 }
