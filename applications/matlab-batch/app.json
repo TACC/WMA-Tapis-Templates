@@ -1,7 +1,7 @@
 {
   "id": "matlab-batch",
   "version": "23.2",
-  "description": "MATLAB Batch is a non-interactive application to run *.m scipts.  Submit a help ticket to get your license configured or approved.",
+  "description": "MATLAB Batch is a non-interactive application to run *.m scipts, these sessions run on single node with 56 cores on Frontera.",
   "owner": "${apiUserId}",
   "runtime": "ZIP",
   "runtimeVersion": null,
@@ -92,8 +92,8 @@
   ],
   "notes": {
     "icon": "matlab",
-    "label": "MATLAB BATCH 2023b (Stampede3)",
-    "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide/",
+    "label": "MATLAB Batch",
+    "helpUrl": "/use-designsafe/tools-applications/analysis/matlab/",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Analysis",
     "isInteractive": false
