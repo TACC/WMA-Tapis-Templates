@@ -17,9 +17,7 @@ while [ "$quit" -ne 1 ]; do
 done
 echo "Using LOGIN_PORT=$LOGIN_PORT"
 
-INTERACTIVE_WEBHOOK_URL="${_webhook_base_url}"
-
-DOCKER_IMAGE="taccaci/opensees-interactive:3.6.0"
+DOCKER_IMAGE="taccaci/opensees-interactive:3.6.0-a"
 
 apptainer run \
     --cleanenv \

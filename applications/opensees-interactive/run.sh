@@ -2,19 +2,9 @@
 
 echo "TACC: job ${_tapisJobUUID} execution at: $(date)"
 
-# This file will be located in the directory mounted by the job.
-SESSION_FILE=delete_me_to_end_session
-touch $SESSION_FILE
-
-
-NODE_HOSTNAME_PREFIX=$(hostname -s)   # Short Host Name  -->  name of compute node: c###-###
-NODE_HOSTNAME_LONG=$(hostname -f)     # Fully Qualified Domain Name  -->  c###-###.stampede2.tacc.utexas.edu
-
-JUPYTER_BIN="jupyter-lab"
-
 NB_SERVERDIR=$HOME/work/MyData/.jupyter
 
-# make .jupyter dir for logs
+# make .jupyter dir for config
 mkdir -p ${NB_SERVERDIR}
 
 # create the jupyter config
@@ -49,29 +39,20 @@ c.ServerApp.preferred_dir = "$HOME/work"
 c.ServerApp.token = "${SESSION_TOKEN}"
 EOF
 
-# launch jupyter
-JUPYTER_LOGFILE=${NB_SERVERDIR}/${NODE_HOSTNAME_PREFIX}.log
-touch $JUPYTER_LOGFILE
-
-JUPYTER_ARGS="--certfile=/etc/nginx/ssl/nginx.crt --keyfile=/etc/nginx/ssl/nginx.key --config=${JUPYTER_CONFIG}"
-echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &"
-nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} &
-
-JUPYTER_PID=$!
-
 JUPYTER_URL="https://${VM_HOST}:${LOGIN_PORT}/?token=${SESSION_TOKEN}"
+echo "TACC:     JUPYTER_URL is $JUPYTER_URL"
 
-echo "JUPYTER_URL is $JUPYTER_URL"
-
-
-# Webhook callback url for job ready notification.
+# Wait a few seconds for jupyter to boot up and send webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
-curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+(
+    sleep 5 &&
+    curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+) &
 
-# Delete the session file to kill the job.
-echo $NODE_HOSTNAME_LONG $IPYTHON_PID > $SESSION_FILE
+# launch jupyter
+JUPYTER_ARGS="--certfile=/etc/nginx/ssl/nginx.crt --keyfile=/etc/nginx/ssl/nginx.key --config=${JUPYTER_CONFIG}"
+echo "TACC: using jupyter command: jupyter-lab ${JUPYTER_ARGS}"
 
-# While the session file remains undeleted, keep Jupyter session running.
-while [ -f $SESSION_FILE ] ; do
-    sleep 10
-done
+export PATH=$HOME/.local/bin:$PATH
+
+${JUPYTER_BIN} ${JUPYTER_ARGS}
