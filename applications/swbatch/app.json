@@ -168,9 +168,7 @@
               }
             ],
             "archiveFilter": {
-                "includes": [
-                    "workingDirectory"
-                ],
+                "includes": [],
                 "excludes": [],
                 "includeLaunchFiles": true
               }        
