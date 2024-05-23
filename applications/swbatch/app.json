@@ -197,7 +197,7 @@
     "portalName: DesignSafe"
   ],
   "notes": {
-    "icon": "swbatch",
+    "icon": "SWBatch",
     "label": "SWBatch",
     "helpUrl": "https://github.com/jpvantassel/swbatch",
     "hideNodeCountAndCoresPerNode": false,
