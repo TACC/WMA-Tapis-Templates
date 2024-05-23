@@ -11,5 +11,9 @@
     },
     "rootDir": "/corral/projects/NHERI/published",
     "port": 22,
-    "canExec": false
+    "canExec": false,
+    "notes": {
+        "label": "Published",
+        "portalNames": ["DesignSafe"]
+    }
 }
