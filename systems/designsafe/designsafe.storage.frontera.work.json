@@ -11,6 +11,7 @@
     "notes": {
         "label": "HPC Work",
         "keyservice": true,
-        "isMyData": true
+        "isMyData": true,
+        "portalNames": ["DesignSafe"]
     }
 }
