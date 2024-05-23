@@ -11,6 +11,7 @@
     "notes": {
         "label": "My Data",
         "keyservice": true,
-        "isMyData": true
+        "isMyData": true,
+        "portalNames": ["DesignSafe"]
     }
 }
