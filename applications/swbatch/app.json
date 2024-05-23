@@ -1,0 +1,206 @@
+{
+    "id": "swbatch",
+    "version": "0.4.1",
+    "description": "swbatch v0.4.1 executes on a single node of the Frontera cluster. swbatch v0.4.1 uses geopsy v3.4.2 as its inversion engine, therefore all .target and .param inversion input files must be created with a compatible version of geopsy. The best way to ensure compatible input files is to use the example inversion workflow provided with the latest version of the open-source Python package swprepost.",
+    "owner": "${apiUserId}",
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/swbatch/swbatch.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "stampede3",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "skx-dev",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [
+              {
+                "key": "name",
+                "value": "",
+                "description": "Analysis name that is brief, memorable, and descriptive. Each output file will begin with this string of characters. No spaces or special characters are permitted.",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Analysis name"
+                }
+              },
+              {
+                "key": "ntrial",
+                "value": "3",
+                "description": "Number (positive integer) of inversion trials to perform per parameterization. (3 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of inversion trials"
+                }
+              },
+              {
+                "key": "ns0",
+                "value": "10000",
+                "description": "Number (positive integer) of randomly sampled models to attempt before the first Neighborhood-Algorithm iteration. (10000 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of initial random models"
+                }
+              },
+              {
+                "key": "ns",
+                "value": "50000",
+                "description": "Number (positive integer) of Neighborhood-Algorithm-selected models to consider per inversion. (50000 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of Neighborhood models"
+                }
+              },
+              {
+                "key": "nr",
+                "value": "100",
+                "description": "Number (positive integer) of best models to consider when resampling. (100 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of best models to consider when resampling"
+                }
+              },
+              {
+                "key": "nmodels",
+                "value": "100",
+                "description": "Number (positive integer) of ground models/dispersion curves/ellipticity curves to export. (100 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of ground models/dispersion curves/ellipticity curves to export"
+                }
+              },
+              {
+                "key": "nrayleigh",
+                "value": "1",
+                "description": "Number (positive integer) of Rayleigh wave modes to export. If no dispersion curves are desired set both the number of Rayleigh and Love modes to 0. (1 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of Rayleigh wave modes to export"
+                }
+              },
+              {
+                "key": "nlove",
+                "value": "1",
+                "description": "Number (positive integer) of Love wave modes to export. If no dispersion curves are desired set both the number of Rayleigh and Love modes to 0. (1 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of Love wave modes to export"
+                }
+              },
+              {
+                "key": "dcfmin",
+                "value": "",
+                "description": "Number (positive float) for minimum frequency of exported dispersion curve(s) in Hz. Selecting a value slightly less than the minimum frequency of your experimental dispersion data is recommended.",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Minimum frequency of exported dispersion curve(s) in Hz"
+                }
+              },
+              {
+                "key": "dcfmax",
+                "value": "",
+                "description": "Number (positive float) for maximum frequency of exported dispersion curve(s) in Hz. Selecting a value slightly larger than the maximum frequency of your experimental dispersion data is recommended.",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Maximum frequency of exported dispersion curve(s) in Hz"
+                }
+              },
+              {
+                "key": "dcfnum",
+                "value": "30",
+                "description": "Number (positive integer) of frequency points in the exported dispersion curve(s). (30 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of frequency points in exported dispersion curve(s)"
+                }
+              },
+              {
+                "key": "nellipticity",
+                "value": "1",
+                "description": "Number (positive integer) of Rayleigh modes to include in exported ellipticity. If no ellipticity curves are desired set this value to 0. (1 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of Rayleigh modes to include in exported ellipticity"
+                }
+              },
+              {
+                "key": "ellfmin",
+                "value": "",
+                "description": "Number (positive float) for minimum frequency of exported Rayleigh wave ellipticity curve(s) in Hz. Selecting a value less than the site's resonant frequency is recommended.",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Minimum frequency of exported Rayleigh wave ellipticity in Hz"
+                }
+              },
+              {
+                "key": "ellfmax",
+                "value": "",
+                "description": "Number (positive float) for maximum frequency of exported Rayleigh wave ellipticity curve(s) in Hz. Selecting a value greater than the site's resonant frequency is recommended.",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Maximum frequency of exported Rayleigh wave ellipticity in Hz"
+                }
+              },
+              {
+                "key": "ellfnum",
+                "value": "64",
+                "description": "Number (positive integer) of frequency points in exported Rayleigh wave ellipticity curve(s). (64 is recommended)",
+                "inputMode": "REQUIRED",
+                "notes": {
+                  "label": "Number of frequency points in exported Rayleigh wave ellipticity curve(s)"
+                }
+              }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+              }        
+        },
+        "fileInputs": [
+            {
+                "name": "Working Directory",
+                "description": "The directory containing the target (i.e., 0_targets) and parameter (i.e., 1_parameters) directories, see documentation for details. If using the portal interface (i.e., not using Jupyter) you can drag the link for the directory from the Data Depot Browser on the left, or click the 'Select' button to select the desired directory.",                
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "workingDirectory",
+                "envKey": "workingDirectory"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 48,
+        "memoryMB": 1,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "icon": "swbatch",
+        "label": "swbatch",
+        "helpUrl": "https://github.com/jpvantassel/swbatch",
+        "hideNodeCountAndCoresPerNode": false,
+        "category": "Hazard Apps",
+        "isInteractive": false
+    }
+}
