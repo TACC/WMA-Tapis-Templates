@@ -71,7 +71,7 @@
     "fileInputs": [
       {
         "name": "Working Directory",
-        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. Click the 'Select Input' button and then select the directory you wish to work from.",
+        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
         "inputMode": "REQUIRED",
         "autoMountLocal": true,
         "sourceUrl": null,

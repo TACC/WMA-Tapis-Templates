@@ -31,7 +31,7 @@
             "appArgs": [
                 {
                     "name": "Input file",
-                    "description": "FigureGen input file (.inp). You can drag and drop file from the left or just type in the file name. To test this out type in 'FG51.inp'.",
+                    "description": "FigureGen input file (.inp). To test this out type in 'FG51.inp'.",
                     "arg": "FG51.inp",
                     "inputMode": "REQUIRED"
                 }
@@ -69,7 +69,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your FigureGen input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
+                "description": "The directory containing your FigureGen input files.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/figuregen/input",
