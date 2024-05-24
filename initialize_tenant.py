@@ -212,6 +212,7 @@ def main():
                         "qgis",
                         "qgis-express",
                         "stko-express",
+                        "swbatch",
                         "visit",
                     ]
                     if apps == ["ALL"]
