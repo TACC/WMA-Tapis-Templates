@@ -91,6 +91,7 @@
     "portalName: DesignSafe"
   ],
   "notes": {
+    "licenseType": "MATLAB",
     "icon": "MATLAB",
     "label": "MATLAB Batch",
     "helpUrl": "/use-designsafe/tools-applications/analysis/matlab/",
