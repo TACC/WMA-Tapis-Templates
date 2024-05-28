@@ -211,6 +211,7 @@ def main():
                         "paraview-ls6",
                         "qgis",
                         "qgis-express",
+                        "qgis-s3",
                         "stko-express",
                         "swbatch",
                         "visit",
