@@ -6,8 +6,10 @@ echo "Potree Converter 2.1.1"
 /opt/PotreeConverter/build/PotreeConverter ${converterInput} -o ${_tapisExecSystemOutputDir} -m ${samplingMethod}
 
 if [ ! $? ]; then
-      echo "PotreeConverter exited with an error status. $?" >&2
-      exit
+    EXITCODE=$1
+    echo "PotreeConverter exited with an error status. $EXITCODE" >&2
+    echo "$EXITCODE" > "${_tapisExecSystemOutputDir}/tapisjob.exitcode"
+    exit $EXITCODE
 fi
 
 exit 0
