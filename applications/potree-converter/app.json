@@ -84,7 +84,7 @@
         "label": "Potree Converter (VM)",
         "helpUrl": "https://github.com/potree/PotreeConverter",
         "hideNodeCountAndCoresPerNode": true,
-        "icon": null,
+        "icon": "Potree",
         "category": "Visualization",
         "isInteractive": true
     }
