@@ -63,7 +63,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your ADCIRC input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory.",
+                "description": "The directory containing your ADCIRC input files.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,

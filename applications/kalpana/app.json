@@ -132,9 +132,9 @@
     "portalName: DesignSafe"
   ],
   "notes": {
-    "icon": null,
+    "icon": "Generic-Vis",
     "label": "Kalpana",
-    "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/kalpana/",
+    "helpUrl": "https://www.designsafe-ci.org/use-designsafe/tools-applications/visualization/kalpana",
     "hideNodeCountAndCoresPerNode": true,
     "category": "Visualization"
   }

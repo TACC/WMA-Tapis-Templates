@@ -28,7 +28,7 @@
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
-    "batchScheduler": null,
+    "batchScheduler": "SLURM",
     "batchLogicalQueues": [],
     "batchDefaultLogicalQueue": null,
     "batchSchedulerProfile": null,
@@ -36,5 +36,5 @@
     "tags": [],
     "notes": {
         "label": "Virtual Machine"
-      }
+    }
 }

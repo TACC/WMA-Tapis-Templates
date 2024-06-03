@@ -106,7 +106,7 @@
         "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": "matlab",
-        "category": "Data Processing"
+        "icon": "MATLAB",
+        "category": "Analysis"
     }
 }

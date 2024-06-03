@@ -1,14 +1,12 @@
 handle_error() {
   local EXITCODE=$1
-  echo "STKO job exited with an error status. $EXITCODE" >&2
+  echo "Matlab job exited with an error status. $EXITCODE" >&2
   echo "$EXITCODE" > "${_tapisExecSystemOutputDir}/tapisjob.exitcode"
   exit $EXITCODE
 }
 
 set -x
-
 echo "TACC: job $_tapisJobUUID execution at: `date`"
-
 ln -sfn "/corral/main/projects/NHERI" "$HOME/NHERI"
 
 # confirm DCV server is alive
@@ -23,14 +21,12 @@ if [ $DCV_SERVER_UP != "active" ]; then
   handle_error 1
 fi
 
-# Invoke DCV on session startup
+# Run this script on session startup
 DCV_STARTUP="/tmp/dcv-startup-${_tapisJobUUID}"
 DCV_HANDLE="${_tapisJobUUID}-session"
 cat <<- EOF > $DCV_STARTUP
 #!/bin/sh
-pip install PySide2 matplotlib scipy
-/snap/stko/current/STKORun.sh || exit 1
-
+xterm -geometry 80x24+100+100 -e "/opt/MATLAB/R2022b/bin/matlab -c 10280@matlab.shared.utexas.edu"
 dcv close-session ${DCV_HANDLE}
 EOF
 chmod a+rx $DCV_STARTUP
@@ -54,13 +50,14 @@ fi
 LOCAL_PORT="8443"  # default DCV port
 
 # Webhook callback url for job ready notification
-# (notifications sent to _INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
+# (notifications sent to INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
+INTERACTIVE_WEBHOOK_URL="${_INTERACTIVE_WEBHOOK_URL}"
 
 #connect to DCV session on VM
-curl -k --data "event_type=interactive_session_ready&address=https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+curl -k --data "event_type=interactive_session_ready&address=https://wma-dcv-01.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" $INTERACTIVE_WEBHOOK_URL &
 
 echo "TACC: Your DCV session is now running!"
-echo "TACC: Connect to your session at: https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}"
+echo "TACC: Connect to your session at: https://wma-dcv-01.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}"
 
 # Keep script running while dcv session is active
 while dcv list-sessions | grep -q ${DCV_HANDLE}; do

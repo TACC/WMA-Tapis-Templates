@@ -131,7 +131,7 @@
         "fileInputs": [
             {
                 "name": "Case Directory",
-                "description": "The directory containing your OpenFOAM case. This should contain your '0', 'constant', and 'system' directories. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory. To try out a sample dataset copy and paste 'tapis://cloud.data/corral/projects/NHERI/community/app_examples/openfoam/openfoam_DH1' above.",
+                "description": "The directory containing your OpenFOAM case. This should contain your '0', 'constant', and 'system' directories. To try out a sample dataset copy and paste 'tapis://cloud.data/corral/projects/NHERI/community/app_examples/openfoam/openfoam_DH1' above.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
