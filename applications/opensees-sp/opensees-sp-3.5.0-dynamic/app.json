@@ -1,5 +1,5 @@
 {
-    "id": "opensees-sp",
+    "id": "opensees-sp-dynamicexecsystem",
     "version": "3.5.0",
     "description": "OpenSeesSP 3.5 is an OpenSees interpreter intended for high performance computers for performing finite element simulations of very large models on parallel machines. OpenSeesSP is easy to use even with limited knowledge about parallel computing. It only requires minimal changes to input scripts to make them consistent with the parallel process logic.",
     "owner": "${apiUserId}",
