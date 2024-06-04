@@ -1,5 +1,5 @@
 {
-    "id": "opensees-mp",
+    "id": "opensees-mp-dynamicexecsystem",
     "version": "3.5.0",
     "description": "OpenSeesMP is an OpenSees interpreter intended for high performance computers for performing finite element simulations with parameteric studies and very large models on parallel machines. OpenSeesMP requires understanding of parallel processing and the capabilities to write parallel scripts.",
     "owner": "${apiUserId}",
@@ -112,7 +112,7 @@
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSeesMP V3.5 (Frontera/LoneStar6)",
+        "label": "OpenSeesMP V3.5 (Frontera/LoneStar 6)",
         "helpUrl": "https://opensees.berkeley.edu/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
