@@ -32,7 +32,7 @@
                 {
                     "name": "Input file",
                     "description": "Please enter the input file in .txt format. Add one .k case file per line if there are multiple case files.",
-                    "arg": "myfilename.txt",
+                    "arg": null,
                     "inputMode": "REQUIRED",
                     "notes": {
                         "validator": {
