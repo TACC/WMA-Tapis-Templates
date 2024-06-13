@@ -3,7 +3,7 @@ set -x
 
 echo "Potree Converter 2.1.1"
 
-/opt/PotreeConverter/build/PotreeConverter ${converterInput} -o ${_tapisExecSystemOutputDir} -m ${samplingMethod}
+/opt/PotreeConverter/build/PotreeConverter ${converterInput} -o ${_tapisExecSystemOutputDir} --generate-page index ${addArgs}
 
 if [ ! $? ]; then
     EXITCODE=$1

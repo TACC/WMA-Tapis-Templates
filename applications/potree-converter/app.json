@@ -29,25 +29,14 @@
         "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [],
-            "schedulerOptions": [
-            ],
             "envVariables": [
                 {
-                  "key": "samplingMethod",
-                  "value": "poisson",
-                  "description": "Potree converter's default sampling method is Poisson - optionally, you can select 'random' sampling above.",
-                  "inputMode": "REQUIRED",
+                  "key": "addArgs",
+                  "value": "",
+                  "description": "Please specify any additional converter arguments here. You can find all command-line argument options here: https://github.com/potree/PotreeConverter/blob/c2328c433c7776e231d86712bb4074c82659e366/Converter/src/main.cpp#L24. Please pass all additional arguments in a single line i.e. '-m poisson --projection'",
+                  "inputMode": "INCLUDE_BY_DEFAULT",
                   "notes": {
-                    "label": "Sampling Method",
-                    "enum_values": [
-                        {
-                          "poisson": "poisson"
-                        },
-                        {
-                          "random": "random"
-                        }
-                      ]
-          
+                    "label": "Additional converter arguments"
                   }
                 }
             ],
@@ -82,6 +71,7 @@
     ],
     "notes": {
         "label": "Potree Converter (VM)",
+        "shortLabel": "Potree Converter",
         "helpUrl": "https://github.com/potree/PotreeConverter",
         "hideNodeCountAndCoresPerNode": true,
         "icon": "Potree",
