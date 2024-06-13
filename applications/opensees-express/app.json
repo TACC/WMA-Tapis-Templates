@@ -71,12 +71,12 @@
         },
         "fileInputs": [
             {
-                "name": "TCL Input Directory",
+                "name": "Input Directory",
                 "inputMode": "REQUIRED",
                 "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp",
                 "targetPath": "*",
                 "envKey": "inputDirectory",
-                "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/Example.tcl"
+                "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/Example.tcl"
             }
         ],
         "fileInputArrays": [],
