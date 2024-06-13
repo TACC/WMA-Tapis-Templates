@@ -219,6 +219,20 @@ def main():
                     if apps == ["ALL"]
                     else apps
                 )
+            case "APCD":
+                systems = (
+                    all_systems
+                    [
+                        "apcd/apcd.submissions",
+                    ]
+                    if systems == ["ALL"]
+                    else systems
+                )
+                apps = (
+                    []
+                    if apps == ["ALL"]
+                    else apps
+                )
             case _:
                 systems = all_systems if systems == ["ALL"] else systems
                 apps = (
