@@ -25,7 +25,14 @@ fi
 DCV_STARTUP="/tmp/dcv-startup-${_tapisJobUUID}"
 DCV_HANDLE="${_tapisJobUUID}-session"
 cat <<- EOF > $DCV_STARTUP
-#!/bin/sh
+#!/bin/bash
+cleanup() {
+    kill $LXDE_PID
+}
+trap cleanup EXIT
+lxsession &
+LXDE_PID=$!
+sleep 5
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/qgis/3.36/lib
 /opt/qgis/3.36/bin/qgis --noversioncheck --profiles-path ~/.qgis --code /opt/qgis/3.36/startup.py || exit 1
 
