@@ -69,10 +69,10 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your FigureGen input files.",
+                "description": "The directory containing your FigureGen input files. To try this out with example data, copy and paste 'tapis://designsafe.storage.community//app_examples/figuregen/input'above.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/figuregen/input",
+                "sourceUrl": null,
                 "targetPath": "inputDirectory"
             }
         ],
