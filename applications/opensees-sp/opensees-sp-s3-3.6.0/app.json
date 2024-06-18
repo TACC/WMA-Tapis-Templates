@@ -36,8 +36,8 @@
                 },
                 {
                     "name": "TCL Script",
-                    "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
-                    "arg": "Example.tcl",
+                    "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified. To use with test input, use 'Example.tcl'",
+                    "arg": null,
                     "inputMode": "REQUIRED"
                 }
             ],
@@ -64,7 +64,7 @@
             {
                 "name": "Input Directory",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp",
+                "sourceUrl": null,
                 "targetPath": "inputDirectory",
                 "envKey":"inputDirectory",
                 "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/Example.tcl"
