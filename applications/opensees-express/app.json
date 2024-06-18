@@ -47,13 +47,14 @@
                             {
                                 "OpenSeesMP": "OpenSeesMP"
                             }
-                        ]
+                        ],
+                        "isHidden": true
                     }
                 },
                 {
                     "key": "tclScript",
                     "value": "",
-                    "description": "The filename of the OpenSees TCL script to execute, e.g. \"freeFieldEffective.tcl\". This file should reside in the TCL Input Directory specified.",
+                    "description": "The filename of the OpenSees TCL script to execute, e.g. \"freeFieldEffective.tcl\". This file should reside in the Input Directory specified. To use with test input, use 'Example.tcl'",
                     "inputMode": "REQUIRED",
                     "notes": {
                         "label": "TCL Script"
@@ -91,7 +92,7 @@
     "notes": {
         "label": "OpenSees-EXPRESS (VM)",
         "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/simulation/opensees/",
-        "hideNodeCountAndCoresPerNode": false,
+        "hideNodeCountAndCoresPerNode": true,
         "isInteractive": false,
         "icon": "OpenSees",
         "category": "Simulation"
