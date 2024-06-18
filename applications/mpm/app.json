@@ -31,8 +31,8 @@
             "appArgs": [
                 {
                     "name": "Input Script",
-                    "description": "Please provide the input file name.",
-                    "arg": "mpm.json",
+                    "description": "Please provide the input file name. Example input file is mpm.json",
+                    "arg": null,
                     "inputMode": "REQUIRED"
                 }
             ],
@@ -69,10 +69,10 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your MPM input files.",
+                "description": "The directory containing your MPM input files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress",
+                "sourceUrl": null,
                 "targetPath": "inputDirectory",
                 "envKey": "inputDirectory"
             }
