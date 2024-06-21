@@ -68,7 +68,10 @@
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "*"
+                "targetPath": "*",
+                "notes": {
+                    "selectionMode": "file"
+                }
             }
         ],
         "fileInputArrays": [],

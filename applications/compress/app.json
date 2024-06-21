@@ -97,7 +97,10 @@
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "*"
+                "targetPath": "*",
+                "notes": {
+                    "selectionMode": "both"
+                }
             }
         ],
         "fileInputArrays": [],
