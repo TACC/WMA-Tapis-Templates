@@ -5,7 +5,7 @@ Kalpana has two main capabilities:
 2) Create contours as polylines based on the maximum flooding (maxele.63.nc) or wind velocity (maxwvel.63.nc) outputs from ADCIRC, then export the polylines as a .shp file.
 
 ### Testing Steps
-- For the Working Directory go to 'Community Data' and navigate to app_examples/kalpana and select the maxwvel.63.nc file path as your working directory
+- For the Working Directory go to 'Community Data' and navigate to app_examples/adcirc_outputs and select the maxwvel.63.nc file path as your working directory
 - For the 'filetype' input type in maxwvel.63.nc
 - For the 'polytype' input select polygon from the dropdown menu
 - For the 'contour' input select contourlevel from the dropdown menu
