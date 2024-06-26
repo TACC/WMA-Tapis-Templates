@@ -1,0 +1,115 @@
+{
+    "id": "jupyter-lab-hpc-cuda-ds",
+    "version": "1.0.0",
+    "description": "Run an interactive Jupyter Lab session on a Frontera GPU node.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://taccaci/jupyter-lab-hpc:ubuntu-22.04-cuda",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": null,
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "rtx-dev",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": "mkdir work;",
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [
+                {
+                    "name": "Jupyter Mounts",
+                    "description": "Mount for TAP functions and user dirs",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /share,$PWD/work:/home/jovyan/work,$STOCKYARD:/home/jovyan/work/Work,$HOME:/home/jovyan/work/Home,$SCRATCH:/home/jovyan/work/Scratch",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "NVIDIA Flag",
+                    "description": "Flag to enable NVIDIA cuda",
+                    "inputMode": "FIXED",
+                    "arg": "--nv",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TAP Session Substring",
+                    "description": "TAP Functions require the substring 'tap_' and in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "APPTAINER_PWD",
+                    "value": "/home/jovyan/work",
+                    "description": "Start terminals in the working directory where host volumes are mounted.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 16,
+        "memoryMB": 128000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: ALL"
+    ],
+    "notes": {
+        "label": "Jupyter Lab HPC CUDA (Frontera)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": "Jupyter",
+        "category": "Analysis",
+        "queueFilter": [
+            "rtx-dev",
+            "rtx"
+        ]
+    }
+}
