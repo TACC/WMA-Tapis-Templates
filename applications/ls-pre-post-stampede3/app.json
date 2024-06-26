@@ -88,7 +88,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your LS-Pre/Post session runs.",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your LS-Pre/Post session runs. Copy and paste to try an example input: tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/ls-prepost/",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
@@ -109,7 +109,7 @@
     "notes": {
         "icon": "LS-DYNA",
         "label": "LS-PrePost (Stampede3) - v4.10.6",
-        "helpUrl": "https://www.lsoptsupport.com/howtos/integrating-pre-processor/ls-prepost",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/lsdyna/",
         "hideNodeCountAndCoresPerNode": true,
         "category": "Simulation",
         "isInteractive": true
