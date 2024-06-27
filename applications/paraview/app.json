@@ -99,12 +99,15 @@
         },
         "fileInputs": [
             {
-                "name": "Input File or Directory",
+                "name": "Working Directory",
                 "description": "The file, or directory containing the files that you want to work on. This input will be copied to where your session runs.",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "*"
+                "targetPath": "*",
+                "notes": {
+                    "selectionMode": "directory"
+                }
             }
         ],
         "fileInputArrays": [],
