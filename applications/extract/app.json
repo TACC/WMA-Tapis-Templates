@@ -86,10 +86,11 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "Extract Compressed File",
-        "hideNodeCountAndCoresPerNode": true,
-        "icon": "extract",
-        "category": "Utilities",
-        "showTargetPath": true
+      "label": "Extract Compressed File",
+      "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/hazard/#compress-extract",
+      "hideNodeCountAndCoresPerNode": true,
+      "icon": "Extract",
+      "category": "Utilities",
+      "showTargetPath": true
     }
 }
