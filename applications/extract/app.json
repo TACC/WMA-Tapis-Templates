@@ -91,6 +91,7 @@
       "hideNodeCountAndCoresPerNode": true,
       "icon": "Extract",
       "category": "Utilities",
-      "showTargetPath": true
+      "showTargetPath": true,
+      "hideQueue": true
     }
 }
