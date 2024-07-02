@@ -13,88 +13,85 @@
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "execSystemConstraints": null,
-        "execSystemId": "wma-exec-01",
-        "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}",
-        "execSystemLogicalQueue": null,
-        "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
-        "isMpi": false,
-        "mpiCmd": null,
-        "cmdPrefix": null,
-        "parameterSet": {
-            "appArgs": [],
-            "containerArgs": [],
-            "schedulerOptions": [],
-            "envVariables": [
+      "execSystemConstraints": null,
+      "execSystemId": "wma-exec-01",
+      "execSystemExecDir": "${JobWorkingDir}",
+      "execSystemInputDir": "${JobWorkingDir}",
+      "execSystemOutputDir": "${JobWorkingDir}",
+      "execSystemLogicalQueue": null,
+      "archiveSystemId": "cloud.data",
+      "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+      "archiveOnAppError": true,
+      "isMpi": false,
+      "mpiCmd": null,
+      "cmdPrefix": null,
+      "parameterSet": {
+        "appArgs": [],
+        "containerArgs": [],
+        "schedulerOptions": [],
+        "envVariables": [
+          {
+            "key": "mainProgram",
+            "value": "OpenSees",
+            "description": "Choose the OpenSees binary to use.",
+            "inputMode": "REQUIRED",
+            "notes": {
+              "label": "Main Program",
+              "enum_values": [
                 {
-                    "key": "mainProgram",
-                    "value": "OpenSees",
-                    "description": "Choose the OpenSees binary to use.",
-                    "inputMode": "REQUIRED",
-                    "notes": {
-                        "label": "Main Program",
-                        "enum_values": [
-                            {
-                                "OpenSees": "OpenSees"
-                            },
-                            {
-                                "OpenSeesSP": "OpenSeesSP"
-                            },
-                            {
-                                "OpenSeesMP": "OpenSeesMP"
-                            }
-                        ],
-                        "isHidden": true
-                    }
+                  "OpenSees": "OpenSees"
                 },
                 {
-                    "key": "tclScript",
-                    "value": "",
-                    "description": "The filename of the OpenSees TCL script to execute, e.g. \"freeFieldEffective.tcl\". This file should reside in the Input Directory specified. To use with test input, use 'Example.tcl'",
-                    "inputMode": "REQUIRED",
-                    "notes": {
-                        "label": "TCL Script"
-                    }
+                  "OpenSeesSP": "OpenSeesSP"
+                },
+                {
+                  "OpenSeesMP": "OpenSeesMP"
                 }
-            ],
-            "archiveFilter": {
-                "includes": [],
-                "excludes": [
-                    "opensees-express.zip",
-                    "tapisjob.env"
-                ],
-                "includeLaunchFiles": true
+              ],
+              "isHidden": true
             }
-        },
-        "fileInputs": [
-            {
-                "name": "Input Directory",
-                "inputMode": "REQUIRED",
-                "sourceUrl": null,
-                "targetPath": "*",
-                "envKey": "inputDirectory",
-                "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/"
+          },
+          {
+            "key": "tclScript",
+            "value": "",
+            "description": "The filename of the OpenSees TCL script to execute, e.g. \"freeFieldEffective.tcl\".",
+            "inputMode": "REQUIRED",
+            "notes": {
+              "label": "Main Script"
             }
+          }
         ],
-        "fileInputArrays": [],
-        "maxMinutes": 2880,
-        "subscriptions": [],
-        "tags": []
+        "archiveFilter": {
+          "includes": [],
+          "excludes": ["opensees-express.zip", "tapisjob.env"],
+          "includeLaunchFiles": true
+        }
+      },
+      "fileInputs": [
+        {
+          "name": "Input Directory",
+          "inputMode": "REQUIRED",
+          "sourceUrl": null,
+          "targetPath": "*",
+          "envKey": "inputDirectory",
+          "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesEXPRESS"
+        }
+      ],
+      "fileInputArrays": [],
+      "maxMinutes": 2880,
+      "subscriptions": [],
+      "tags": []
     },
     "tags": [
         "portalName: DesignSafe",
         "portalName: CEP"
     ],
     "notes": {
-        "label": "OpenSees-EXPRESS (VM)",
-        "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/simulation/opensees/",
-        "hideNodeCountAndCoresPerNode": true,
-        "isInteractive": false,
-        "icon": "OpenSees",
-        "category": "Simulation"
+      "label": "OpenSees-EXPRESS (VM)",
+      "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
+      "hideNodeCountAndCoresPerNode": true,
+      "isInteractive": false,
+      "icon": "OpenSees",
+      "category": "Simulation"
     }
 }
