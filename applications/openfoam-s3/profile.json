@@ -1,0 +1,15 @@
+{
+    "name": "openfoam_v9",
+    "description": "Modules to load for OpenFOAM v9",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "openfoam/9.0"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
