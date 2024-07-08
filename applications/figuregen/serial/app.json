@@ -16,11 +16,11 @@
         "description": "",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "stampede3",
+        "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}",
-        "execSystemLogicalQueue": "skx-dev",
+        "execSystemLogicalQueue": "small",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
@@ -32,7 +32,7 @@
                 {
                     "name": "Input file",
                     "description": "FigureGen input file (.inp). To test this out type in 'FG51.inp'.",
-                    "arg": "FG51.inp",
+                    "arg": null,
                     "inputMode": "REQUIRED"
                 }
             ],
