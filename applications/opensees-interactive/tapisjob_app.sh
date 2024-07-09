@@ -17,12 +17,11 @@ while [ "$quit" -ne 1 ]; do
 done
 echo "Using LOGIN_PORT=$LOGIN_PORT"
 
-DOCKER_IMAGE="taccaci/opensees-interactive:3.6.0-a"
+DOCKER_IMAGE="docker://taccaci/opensees-interactive:3.6.0-a"
 
 apptainer run \
     --cleanenv \
     --writable-tmpfs \
-    --net --network-args "portmap=$LOGIN_PORT:8888/tcp" \
     --env LOGIN_PORT=$LOGIN_PORT \
     --env VM_HOST=$VM_HOST \
     --env _tapisJobOwner="${_tapisJobOwner}" \
@@ -44,5 +43,3 @@ if [ $EXITCODE -ne 0 ]; then
     # https://tapis.readthedocs.io/en/latest/technical/jobs.html#monitoring-the-application
     echo $EXITCODE > ${_tapisExecSystemOutputDir}/tapisjob.exitcode
 fi
-
-

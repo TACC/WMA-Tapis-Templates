@@ -30,7 +30,7 @@ import ssl
 c = get_config()
 c.IPKernelApp.pylab = "inline"  # if you want plotting support always
 c.ServerApp.ip = "0.0.0.0"
-c.ServerApp.port = 8888
+c.ServerApp.port = ${LOGIN_PORT}
 c.ServerApp.open_browser = False
 c.ServerApp.allow_origin = u"*"
 c.ServerApp.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
@@ -55,4 +55,4 @@ echo "TACC: using jupyter command: jupyter-lab ${JUPYTER_ARGS}"
 
 export PATH=$HOME/.local/bin:$PATH
 
-${JUPYTER_BIN} ${JUPYTER_ARGS}
+jupyter-lab ${JUPYTER_ARGS}
