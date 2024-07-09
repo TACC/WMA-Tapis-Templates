@@ -103,7 +103,7 @@
     "notes": {
         "label": "Jupyter Lab HPC CUDA (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide",
-        "hideNodeCountAndCoresPerNode": false,
+        "hideNodeCountAndCoresPerNode": true,
         "isInteractive": true,
         "icon": "Jupyter",
         "category": "Analysis",

@@ -83,8 +83,8 @@
     ],
     "notes": {
         "label": "QGIS (Stampede3)",
-        "helpUrl": "https://qgis.org/en/docs/index.html",
-        "hideNodeCountAndCoresPerNode": false,
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/qgis/",
+        "hideNodeCountAndCoresPerNode": true,
         "icon": "QGIS",
         "category": "Data Processing",
         "isInteractive": true
