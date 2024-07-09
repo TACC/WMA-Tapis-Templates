@@ -46,7 +46,8 @@
           "description": "Number (positive integer) of inversion trials to perform per parameterization. (3 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of inversion trials"
+            "label": "Number of inversion trials",
+            "fieldType": "number"
           }
         },
         {
@@ -55,7 +56,8 @@
           "description": "Number (positive integer) of randomly sampled models to attempt before the first Neighborhood-Algorithm iteration. (10000 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of initial random models"
+            "label": "Number of initial random models",
+            "fieldType": "number"
           }
         },
         {
@@ -64,7 +66,8 @@
           "description": "Number (positive integer) of Neighborhood-Algorithm-selected models to consider per inversion. (50000 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of Neighborhood models"
+            "label": "Number of Neighborhood models",
+            "fieldType": "number"
           }
         },
         {
@@ -73,7 +76,8 @@
           "description": "Number (positive integer) of best models to consider when resampling. (100 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of best models to consider when resampling"
+            "label": "Number of best models to consider when resampling",
+            "fieldType": "number"
           }
         },
         {
@@ -82,7 +86,8 @@
           "description": "Number (positive integer) of ground models/dispersion curves/ellipticity curves to export. (100 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of ground models/dispersion curves/ellipticity curves to export"
+            "label": "Number of ground models/dispersion curves/ellipticity curves to export",
+            "fieldType": "number"
           }
         },
         {
@@ -91,7 +96,8 @@
           "description": "Number (positive integer) of Rayleigh wave modes to export. If no dispersion curves are desired set both the number of Rayleigh and Love modes to 0. (1 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of Rayleigh wave modes to export"
+            "label": "Number of Rayleigh wave modes to export",
+            "fieldType": "number"
           }
         },
         {
@@ -100,7 +106,8 @@
           "description": "Number (positive integer) of Love wave modes to export. If no dispersion curves are desired set both the number of Rayleigh and Love modes to 0. (1 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of Love wave modes to export"
+            "label": "Number of Love wave modes to export",
+            "fieldType": "number"
           }
         },
         {
@@ -127,7 +134,8 @@
           "description": "Number (positive integer) of frequency points in the exported dispersion curve(s). (30 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of frequency points in exported dispersion curve(s)"
+            "label": "Number of frequency points in exported dispersion curve(s)",
+            "fieldType": "number"
           }
         },
         {
@@ -136,8 +144,9 @@
           "description": "Number (positive integer) of Rayleigh modes to include in exported ellipticity. If no ellipticity curves are desired set this value to 0. (1 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of Rayleigh modes to include in exported ellipticity"
-          }
+            "label": "Number of Rayleigh modes to include in exported ellipticity",
+            "fieldType": "number"
+         }
         },
         {
           "key": "ellfmin",
@@ -163,7 +172,8 @@
           "description": "Number (positive integer) of frequency points in exported Rayleigh wave ellipticity curve(s). (64 is recommended)",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "Number of frequency points in exported Rayleigh wave ellipticity curve(s)"
+            "label": "Number of frequency points in exported Rayleigh wave ellipticity curve(s)",
+            "fieldType": "number"
           }
         }
       ],
