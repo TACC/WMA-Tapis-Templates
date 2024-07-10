@@ -88,7 +88,17 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Working Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "workingDirectory",
+                "envKey": "workingDirectory"
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 56,
@@ -103,7 +113,7 @@
     "notes": {
         "licenseType": "MATLAB",
         "label": "MATLAB R2022b Interactive (Frontera)",
-        "helpUrl": "https://docs.tacc.utexas.edu/software/matlab/",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "MATLAB",

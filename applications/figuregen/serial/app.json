@@ -16,11 +16,11 @@
         "description": "",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "stampede3",
+        "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}",
-        "execSystemLogicalQueue": "skx-dev",
+        "execSystemLogicalQueue": "small",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
@@ -32,7 +32,7 @@
                 {
                     "name": "Input file",
                     "description": "FigureGen input file (.inp). To test this out type in 'FG51.inp'.",
-                    "arg": "FG51.inp",
+                    "arg": null,
                     "inputMode": "REQUIRED"
                 }
             ],
@@ -78,7 +78,7 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 48,
+        "coresPerNode": 56,
         "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
@@ -90,7 +90,7 @@
     "notes": {
         "icon": "Generic-Vis",
         "label": "FigureGen Serial",
-        "helpUrl": "/use-designsafe/tools-applications/visualization/figuregen",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#figuregen-user-guide",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Visualization"
     }

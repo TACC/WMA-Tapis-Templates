@@ -117,7 +117,8 @@
     "notes": {
         "label": "Compress",
         "hideNodeCountAndCoresPerNode": true,
-        "icon": "compress",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/hazard/#compress-extract",
+        "icon": "Compress",
         "category": "Utilities",
         "hideQueue": true
     }
