@@ -91,10 +91,10 @@
     "portalName: DesignSafe"
   ],
   "notes": {
+    "licenseType": "MATLAB",
     "icon": "MATLAB",
     "label": "MATLAB Batch",
     "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
-    "licenseType": "MATLAB",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Analysis",
     "isInteractive": false
