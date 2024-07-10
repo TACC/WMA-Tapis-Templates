@@ -72,7 +72,7 @@
     "notes": {
         "label": "Potree Converter (VM)",
         "shortLabel": "Potree Converter",
-        "helpUrl": "https://github.com/potree/PotreeConverter",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/potree-converter/",
         "hideNodeCountAndCoresPerNode": true,
         "icon": "Potree",
         "category": "Visualization",
