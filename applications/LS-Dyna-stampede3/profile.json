@@ -5,8 +5,8 @@
         {
             "modulesToLoad": [
                 "ansys/24.1",
-                "intel/23.1.0",
-                "impi/21.9.0"
+                "intel/23.1",
+                "impi/21.9"
             ],
             "moduleLoadCommand": "module load"
         }

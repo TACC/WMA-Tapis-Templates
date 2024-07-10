@@ -1,7 +1,7 @@
 {
-    "id": "stko-express-1.0.0",
+    "id": "stko-express",
     "version": "3.3.0",
-    "description": "Run an interactive STKO (Scientific ToolKit for OpenSees) desktop session on a virtual machine (Ubuntu 18.04 bionic).",
+    "description": "Run an interactive STKO (Scientific ToolKit for OpenSees) desktop session on a virtual machine.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -41,7 +41,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your GiD session runs. Click the 'Select Input' button and then select the directory you want to work from.",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,

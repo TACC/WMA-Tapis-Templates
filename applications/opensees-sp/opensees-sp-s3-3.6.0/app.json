@@ -1,93 +1,90 @@
 {
-    "id": "opensees-sp-s3",
-    "version": "3.6.0",
-    "description": "OpenSeesSP 3.6 is an OpenSees interpreter intended for high performance computers for performing finite element simulations of very large models on parallel machines. OpenSeesSP is easy to use even with limited knowledge about parallel computing. It only requires minimal changes to input scripts to make them consistent with the parallel process logic.",
-    "owner": "${apiUserId}",
-    "enabled": true,
-    "runtime": "ZIP",
-    "runtimeVersion": null,
-    "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.6.0/OpenSees/opensees.zip",
-    "jobType": "BATCH",
-    "maxJobs": -1,
-    "maxJobsPerUser": -1,
-    "strictFileInputs": true,
-    "jobAttributes": {
-        "execSystemConstraints": null,
-        "execSystemId": "stampede3",
-        "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}",
-        "execSystemLogicalQueue": "skx-dev",
-        "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
-        "isMpi": false,
-        "mpiCmd": null,
-        "parameterSet": {
-            "appArgs": [
-                {
-                    "name": "mainProgram",
-                    "arg": "OpenSeesSP",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "name": "TCL Script",
-                    "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified.",
-                    "arg": "Example.tcl",
-                    "inputMode": "REQUIRED"
-                }
-            ],
-            "containerArgs": [],
-            "schedulerOptions": [
-                {
-                    "name": "OpenSees TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC OpenSees 3.6.0.",
-                    "inputMode": "FIXED",
-                    "arg": "--tapis-profile OpenSees_3.6.0",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
-            "envVariables": [],
-            "archiveFilter": {
-                "includes": [],
-                "excludes": [],
-                "includeLaunchFiles": true
-            }
+  "id": "opensees-sp-s3",
+  "version": "3.6.0",
+  "description": "Parallel version driven by a single processor. Easy to use even with limited knowledge about parallel computing.",
+  "owner": "${apiUserId}",
+  "enabled": true,
+  "runtime": "ZIP",
+  "runtimeVersion": null,
+  "runtimeOptions": null,
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.6.0/OpenSees/opensees.zip",
+  "jobType": "BATCH",
+  "maxJobs": -1,
+  "maxJobsPerUser": -1,
+  "strictFileInputs": true,
+  "jobAttributes": {
+    "execSystemConstraints": null,
+    "execSystemId": "stampede3",
+    "execSystemExecDir": "${JobWorkingDir}",
+    "execSystemInputDir": "${JobWorkingDir}",
+    "execSystemOutputDir": "${JobWorkingDir}",
+    "execSystemLogicalQueue": "skx-dev",
+    "archiveSystemId": "cloud.data",
+    "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "archiveOnAppError": true,
+    "isMpi": false,
+    "mpiCmd": null,
+    "parameterSet": {
+      "appArgs": [
+        {
+          "name": "mainProgram",
+          "arg": "OpenSeesSP",
+          "inputMode": "FIXED",
+          "notes": {
+            "isHidden": true
+          }
         },
-        "fileInputs": [
-            {
-                "name": "TCL Input Directory",
-                "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp",
-                "targetPath": "inputDirectory",
-                "envKey":"inputDirectory",
-                "description": "TCL input directory that includes the tcl script as well as any other required files. Example input is in tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-sp/examples/smallsp/Example.tcl"
-            }
-        ],
-        "fileInputArrays": [],
-        "nodeCount": 1,
-        "coresPerNode": 4,
-        "memoryMB": 192000,
-        "maxMinutes": 120,
-        "subscriptions": [],
-        "tags": []
+        {
+          "name": "Main Script",
+          "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified. To use with test input, use 'freeFieldEffective.tcl'",
+          "arg": null,
+          "inputMode": "REQUIRED"
+        }
+      ],
+      "containerArgs": [],
+      "schedulerOptions": [
+        {
+          "name": "OpenSees TACC Scheduler Profile",
+          "description": "Scheduler profile for TACC OpenSees 3.6.0.",
+          "inputMode": "FIXED",
+          "arg": "--tapis-profile OpenSees_3.6.0",
+          "notes": {
+            "isHidden": true
+          }
+        }
+      ],
+      "envVariables": [],
+      "archiveFilter": {
+        "includes": [],
+        "excludes": [],
+        "includeLaunchFiles": true
+      }
     },
-    "tags": [
-        "portalName: DesignSafe",
-        "portalName: CEP"
+    "fileInputs": [
+      {
+        "name": "Input Directory",
+        "inputMode": "REQUIRED",
+        "sourceUrl": null,
+        "targetPath": "inputDirectory",
+        "envKey": "inputDirectory",
+        "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesSP"
+      }
     ],
-    "notes": {
-        "label": "OpenSeesSP V3.6 (Stampede 3)",
-        "helpUrl": "https://opensees.berkeley.edu/",
-        "hideNodeCountAndCoresPerNode": false,
-        "isInteractive": false,
-        "icon": null,
-        "category": "Simulation"
-    }
+    "fileInputArrays": [],
+    "nodeCount": 1,
+    "coresPerNode": 4,
+    "memoryMB": 192000,
+    "maxMinutes": 120,
+    "subscriptions": [],
+    "tags": []
+  },
+  "tags": ["portalName: DesignSafe", "portalName: CEP"],
+  "notes": {
+    "label": "OpenSeesSP",
+    "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
+    "hideNodeCountAndCoresPerNode": false,
+    "isInteractive": false,
+    "icon": "OpenSees",
+    "category": "Simulation"
+  }
 }

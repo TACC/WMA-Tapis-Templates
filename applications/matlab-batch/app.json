@@ -1,7 +1,7 @@
 {
   "id": "matlab-batch",
   "version": "23.2",
-  "description": "MATLAB Batch is a non-interactive application to run *.m scipts.  Submit a help ticket to get your license configured or approved.",
+  "description": "MATLAB Batch is a non-interactive application to run *.m scipts, these sessions run on single node with 56 cores on Frontera.",
   "owner": "${apiUserId}",
   "runtime": "ZIP",
   "runtimeVersion": null,
@@ -71,7 +71,7 @@
     "fileInputs": [
       {
         "name": "Working Directory",
-        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. Click the 'Select Input' button and then select the directory you wish to work from.",
+        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
         "inputMode": "REQUIRED",
         "autoMountLocal": true,
         "sourceUrl": null,
@@ -94,6 +94,7 @@
     "icon": "MATLAB",
     "label": "MATLAB Batch",
     "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
+    "licenseType": "MATLAB",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Analysis",
     "isInteractive": false

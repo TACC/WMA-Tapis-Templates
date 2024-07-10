@@ -1,7 +1,7 @@
 {
     "id": "FigureGen-Parallel",
     "version": "51.0.0",
-    "description": "FigureGen is a Fortran program that creates images for ADCIRC files. It reads mesh files (fort.14, etc.), nodal attributes files (fort.13, etc.) and output files (fort.63, fort.64, maxele.63, etc.). It plots contours, contour lines, and vectors. Using FigureGen, you can go directly from the ADCIRC input and output files to a presentation-quality figure, for one or multiple time snaps. This application supports netCDF formatted files as well.",
+    "description": "Creates images for ADCIRC files. Processes in parallel.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -31,7 +31,7 @@
             "appArgs": [
                 {
                     "name": "Input file",
-                    "description": "FigureGen input file (.inp). You can drag and drop file from the left or just type in the file name. To test this out type in 'FG51.inp'.",
+                    "description": "FigureGen input file (.inp). To test this out type in 'FG51.inp'.",
                     "arg": "FG51.inp",
                     "inputMode": "REQUIRED"
                 }
@@ -69,10 +69,10 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your FigureGen input files. You can drag the link for the directory from the Data Browser on the left, or click the 'Select Input' button and then select the directory. To try this out with example data, copy and paste 'tapis://designsafe.storage.community//app_examples/figuregen/input'above.",
+                "description": "The directory containing your FigureGen input files. To try this out with example data, copy and paste 'tapis://designsafe.storage.community//app_examples/figuregen/input'above.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/figuregen/input",
+                "sourceUrl": null,
                 "targetPath": "inputDirectory"
             }
         ],
@@ -88,9 +88,9 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "FigureGen",
-        "label": "FigureGen Parallel (Stampede3)",
-        "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/visualization/figuregen/",
+        "icon": "Generic-Vis",
+        "label": "FigureGen Parallel",
+        "helpUrl": "/use-designsafe/tools-applications/visualization/figuregen",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Visualization"
     }

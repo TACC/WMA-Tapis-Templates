@@ -29,7 +29,7 @@ DCV_HANDLE="${_tapisJobUUID}-session"
 cat <<- EOF > $DCV_STARTUP
 #!/bin/sh
 pip install PySide2 matplotlib scipy
-/snap/stko/current/STKORun.sh  || exit 1
+/snap/stko/current/STKORun.sh || exit 1
 
 dcv close-session ${DCV_HANDLE}
 EOF
@@ -54,11 +54,10 @@ fi
 LOCAL_PORT="8443"  # default DCV port
 
 # Webhook callback url for job ready notification
-# (notifications sent to INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
-INTERACTIVE_WEBHOOK_URL="${_webhook_base_url}"
+# (notifications sent to _INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
 
 #connect to DCV session on VM
-curl -k --data "event_type=WEB&address=https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" $INTERACTIVE_WEBHOOK_URL &
+curl -k --data "event_type=interactive_session_ready&address=https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
 echo "TACC: Your DCV session is now running!"
 echo "TACC: Connect to your session at: https://ds-stko-dev.tacc.utexas.edu:${LOCAL_PORT}/#${DCV_HANDLE}"

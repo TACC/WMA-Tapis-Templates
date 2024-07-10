@@ -10,6 +10,8 @@
     "canExec": false,
     "notes": {
         "label": "HPC Work",
-        "keyservice": true
+        "keyservice": true,
+        "isMyData": true,
+        "portalNames": []
     }
 }

@@ -24,8 +24,16 @@ fi
 # Run this script on session startup
 DCV_STARTUP="/tmp/dcv-startup-${_tapisJobUUID}"
 DCV_HANDLE="${_tapisJobUUID}-session"
-cat <<- EOF > $DCV_STARTUP
-#!/bin/sh
+
+cat << 'EOF' > $DCV_STARTUP
+#!/bin/bash
+cleanup() {
+    kill $LXDE_PID
+}
+trap cleanup EXIT
+lxsession &
+LXDE_PID=$!
+sleep 5
 xterm -geometry 80x24+100+100 -e "/opt/MATLAB/R2022b/bin/matlab -c 10280@matlab.shared.utexas.edu"
 dcv close-session ${DCV_HANDLE}
 EOF

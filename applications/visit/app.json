@@ -56,7 +56,8 @@
           "description": null,
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "XTERM Program CMD"
+            "label": "XTERM Program CMD",
+            "isHidden": true
           }
         }
       ]
@@ -64,7 +65,7 @@
     "fileInputs": [
       {
         "name": "Working Directory",
-        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. Click the 'Select Input' button and then select the directory you wish to work from.",
+        "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
         "inputMode": "REQUIRED",
         "autoMountLocal": true,
         "sourceUrl": null,
@@ -84,7 +85,7 @@
   ],
   "notes": {
     "icon": "Generic-Vis",
-    "label": "VisIt",
+    "label": "VisIt (Frontera)",
     "helpUrl": "https://www.designsafe-ci.org/rw/use-designsafe/tools-applications/visualization/visit/",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Visualization",

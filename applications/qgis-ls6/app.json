@@ -84,8 +84,8 @@
     ],
     "notes": {
         "label": "QGIS (LoneStar6)",
-        "helpUrl": "https://qgis.org/en/docs/index.html",
-        "hideNodeCountAndCoresPerNode": false,
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/qgis/",
+        "hideNodeCountAndCoresPerNode": true,
         "icon": null,
         "category": "Data Processing",
         "isInteractive": true

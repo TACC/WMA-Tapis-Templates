@@ -1,13 +1,13 @@
 {
-    "id": "ls-pre-post",
-    "version": "4.10.3",
-    "description": "LS-PrePost is interactive advanced preand post-processor and model editor from LSTC.",
+    "id": "qgis-s3",
+    "version": "3.34.4",
+    "description": "Run an interactive QGIS session on Stampede3.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
     "runtimeVersion": null,
     "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/qgis/qgis_3.34.4.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -16,11 +16,11 @@
         "description": "",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "frontera",
+        "execSystemId": "stampede3",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "small",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "skx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
@@ -52,27 +52,9 @@
             ],
             "envVariables": [
                 {
-                    "key": "_XTERM_CMD",
-                    "value": "/home1/apps/ANSYS/2023R2/v232/ansys/bin/lsprepost4.10_common/lsprepost",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
                     "key": "APPEND_PATH",
                     "value": "$PATH",
                     "description": "Append host $PATH to Singularity container default $PATH.",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "key": "LD_LIBRARY_PATH",
-                    "value": "$LD_LIBRARY_PATH:/home1/apps/ANSYS/2023R2/v232/ansys/bin/lsprepost4.10_common/lib2",
-                    "description": "LD_LIBRARY_PATH",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
@@ -81,37 +63,30 @@
             ],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [],
+                "excludes": [
+                    "qgis*.zip"
+                ],
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [
-            {
-                "name": "Input Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your LS-Pre/Post session runs.",
-                "inputMode": "OPTIONAL",
-                "autoMountLocal": true,
-                "sourceUrl": null,
-                "targetPath": "inputDirectory"
-            }
-        ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 56,
+        "coresPerNode": 48,
         "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
     "tags": [
+        "portalName: CEP",
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "LS-DYNA",
-        "label": "LS-PrePost (Frontera) - v4.10.3",
-        "helpUrl": "https://lsdyna.ansys.com/products-d23/",
+        "label": "QGIS (Stampede3)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/qgis/",
         "hideNodeCountAndCoresPerNode": true,
-        "category": "Simulation",
+        "icon": "QGIS",
+        "category": "Data Processing",
         "isInteractive": true
     }
 }

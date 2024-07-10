@@ -99,12 +99,15 @@
         },
         "fileInputs": [
             {
-                "name": "Input File or Directory",
-                "description": "The file, or directory containing the files that you want to work on. This input will be copied to where your session runs.",
+                "name": "Working Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your Paraview session runs.",
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "*"
+                "targetPath": "*",
+                "notes": {
+                    "selectionMode": "directory"
+                }
             }
         ],
         "fileInputArrays": [],
@@ -125,7 +128,7 @@
         "helpUrl": "https://docs.paraview.org/en/latest/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": null,
+        "icon": "Paraview",
         "category": "Visualization"
     }
 }

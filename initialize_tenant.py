@@ -12,7 +12,7 @@ def get_or_create_system(client, system_def, update=False):
         client.systems.getSystem(systemId=system_id)
         print("system already exists: {}".format(system_id))
         if update:
-            client.systems.putSystem(systemId=system_id, **system_def)
+            client.systems.patchSystem(systemId=system_id, **system_def)
             print("system updated: {}".format(system_id))
     except BaseTapyException as e:
         if "SYSAPI_NOT_FOUND" in e.message:
@@ -186,23 +186,50 @@ def main():
                 )
                 apps = (
                     [
+                        "adcirc-frontera",
                         "compress",
                         "extract",
                         "figuregen/serial",
                         "figuregen/parallel",
-                        "GiD",
+                        "GiD-stampede3",
                         "jupyter-lab-hpc",
                         "jupyter-lab-hpc/gpu",
                         "kalpana",
+                        "LS-Dyna-stampede3",
+                        "ls-pre-post-stampede3",
                         "matlab",
+                        "matlab-batch",
+                        "matlab-express",
                         "mpm",
                         "openfoam",
+                        "opensees-express",
                         "opensees-mp/opensees-mp-3.5.0",
                         "opensees-sp/opensees-sp-3.5.0",
+                        "padcirc-frontera",
+                        "padcirc-swan-frontera",
                         "paraview",
+                        "paraview-ls6",
                         "qgis",
+                        "qgis-express",
+                        "qgis-s3",
+                        "stko-express",
+                        "swbatch",
                         "visit",
                     ]
+                    if apps == ["ALL"]
+                    else apps
+                )
+            case "APCD":
+                systems = (
+                    all_systems
+                    [
+                        "apcd/apcd.submissions",
+                    ]
+                    if systems == ["ALL"]
+                    else systems
+                )
+                apps = (
+                    []
                     if apps == ["ALL"]
                     else apps
                 )

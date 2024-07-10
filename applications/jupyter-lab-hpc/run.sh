@@ -62,8 +62,6 @@ done
 JUPYTER_URL="https://${NODE_HOSTNAME_DOMAIN}:${LOGIN_PORT}/?token=${TAP_TOKEN}"
 echo "TACC:     JUPYTER_URL is $JUPYTER_URL"
 
-INTERACTIVE_WEBHOOK_URL="${_webhook_base_url}"
-
 # Wait a few seconds for jupyter to boot up and send webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 (
