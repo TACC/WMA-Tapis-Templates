@@ -115,10 +115,10 @@
         "portalName: ALL"
     ],
     "notes": {
-      "label": "Compress",
-      "hideNodeCountAndCoresPerNode": true,
-      "icon": "compress",
-      "category": "Utilities",
-      "hideQueue": true
+        "label": "Compress",
+        "hideNodeCountAndCoresPerNode": true,
+        "icon": "compress",
+        "category": "Utilities",
+        "hideQueue": true
     }
 }
