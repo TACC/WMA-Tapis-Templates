@@ -1,0 +1,81 @@
+{
+    "id": "potree-converter",
+    "version": "2.1.1",
+    "description": "Convert pointclouds to Potree format.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/potree-converter/potree-converter.zip",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "wma-exec-01",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/converter-output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "envVariables": [
+                {
+                  "key": "addArgs",
+                  "value": "",
+                  "description": "Please specify any additional converter arguments here. You can find all command-line argument options here: https://github.com/potree/PotreeConverter/blob/c2328c433c7776e231d86712bb4074c82659e366/Converter/src/main.cpp#L24. Please pass all additional arguments in a single line i.e. '-m poisson --projection'",
+                  "inputMode": "INCLUDE_BY_DEFAULT",
+                  "notes": {
+                    "label": "Additional converter arguments"
+                  }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input to be converted",
+                "description": "File/Folder to be converted. You can drag the link from the Data Browser on the left, or click the 'Select Input' button and then select the input.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": ".",
+                "envKey": "converterInput"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 256000,
+        "maxMinutes": 1440,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "label": "Potree Converter (VM)",
+        "shortLabel": "Potree Converter",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/potree-converter/",
+        "hideNodeCountAndCoresPerNode": true,
+        "icon": "Potree",
+        "category": "Visualization",
+        "isInteractive": true
+    }
+}
