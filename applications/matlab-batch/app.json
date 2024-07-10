@@ -91,9 +91,9 @@
     "portalName: DesignSafe"
   ],
   "notes": {
-    "icon": "matlab",
-    "label": "MATLAB BATCH 2023b (Stampede3)",
-    "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide/",
+    "icon": "MATLAB",
+    "label": "MATLAB Batch",
+    "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Analysis",
     "isInteractive": false
