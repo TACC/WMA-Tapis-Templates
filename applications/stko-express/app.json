@@ -61,8 +61,8 @@
     ],
     "notes": {
         "icon": "STKO",
-        "label": "STKO Express",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/stko/",
+        "label": "STKO",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#stko-user-guide",
         "hideNodeCountAndCoresPerNode": true,
         "category": "Visualization",
         "isInteractive": true
