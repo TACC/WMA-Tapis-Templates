@@ -18,7 +18,7 @@
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
     "execSystemOutputDir": "${JobWorkingDir}",
-    "execSystemLogicalQueue": "skx-dev",
+    "execSystemLogicalQueue": "skx",
     "archiveSystemId": "cloud.data",
     "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
     "archiveOnAppError": true,
@@ -72,13 +72,16 @@
     ],
     "fileInputArrays": [],
     "nodeCount": 1,
-    "coresPerNode": 4,
+    "coresPerNode": 48,
     "memoryMB": 192000,
     "maxMinutes": 120,
     "subscriptions": [],
     "tags": []
   },
-  "tags": ["portalName: DesignSafe", "portalName: CEP"],
+  "tags": [
+    "portalName: DesignSafe",
+    "portalName: CEP"
+  ],
   "notes": {
     "label": "OpenSeesSP",
     "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",

@@ -94,7 +94,7 @@
     "notes": {
         "icon": "MPM",
         "label": "MPM",
-        "helpUrl": "/use-designsafe/tools-applications/simulation/mpm/",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/usecases/#running-the-mpm-code",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Simulation"
     }

@@ -83,7 +83,7 @@
         "portalName: DesignSafe"
     ],
     "notes": {
-        "icon": "adcirc",
+        "icon": "Water",
         "label": "PADCIRC SWAN (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#adcirc-user-guide",
         "hideNodeCountAndCoresPerNode": false,

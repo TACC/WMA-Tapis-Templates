@@ -56,7 +56,7 @@
           "description": "Provide the filename of the MATLAB script to execute, relative to the path of the Working Directory. This file should reside in the Working Directory specified. Example: 'mymatlabtest.m'.",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "MATLAB Script Filename"
+            "label": "MATLAB Script"
           }
         }
       ],
@@ -94,7 +94,7 @@
     "licenseType": "MATLAB",
     "icon": "MATLAB",
     "label": "MATLAB Batch",
-    "helpUrl": "/use-designsafe/tools-applications/analysis/matlab/",
+    "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Analysis",
     "isInteractive": false
