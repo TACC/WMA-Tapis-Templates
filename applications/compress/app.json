@@ -94,7 +94,7 @@
             {
                 "name": "Target path to be compressed",
                 "description": "The directory or file to be compressed.",
-                "inputMode": "OPTIONAL",
+                "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "*",
@@ -115,7 +115,7 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "Compress",
+        "label": "Compress Files/Folders",
         "hideNodeCountAndCoresPerNode": true,
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/hazard/#compress-extract",
         "icon": "Compress",
