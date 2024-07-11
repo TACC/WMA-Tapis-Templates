@@ -93,7 +93,7 @@
   "notes": {
     "licenseType": "MATLAB",
     "icon": "MATLAB",
-    "label": "MATLAB Batch",
+    "label": "MATLAB R2023b Batch",
     "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
     "hideNodeCountAndCoresPerNode": false,
     "category": "Analysis",
