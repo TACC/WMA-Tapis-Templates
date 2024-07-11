@@ -33,10 +33,10 @@
                 {
                   "key": "addArgs",
                   "value": "",
-                  "description": "Please specify any additional converter arguments here. You can find all command-line argument options here: https://github.com/potree/PotreeConverter/blob/c2328c433c7776e231d86712bb4074c82659e366/Converter/src/main.cpp#L24. Please pass all additional arguments in a single line i.e. '-m poisson --projection'",
+                  "description": "Extra arguments passed into the converter. For example: '-p index --outdir OUTPUT_DIR_NAME --material ELEVATION'. To use the PotreeViewer App, you must add '-p index' in the arguments.",
                   "inputMode": "INCLUDE_BY_DEFAULT",
                   "notes": {
-                    "label": "Additional converter arguments"
+                    "label": "Extra arguments passed into the converter."
                   }
                 }
             ],
@@ -48,8 +48,8 @@
         },
         "fileInputs": [
             {
-                "name": "Input to be converted",
-                "description": "File/Folder to be converted. You can drag the link from the Data Browser on the left, or click the 'Select Input' button and then select the input.",
+                "name": "File/Folder to be converted",
+                "description": "File/Folder to be converted. Click the 'Select' button and then select the input.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
