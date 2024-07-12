@@ -34,7 +34,7 @@ c.ServerApp.port = ${LOGIN_PORT}
 c.ServerApp.open_browser = False
 c.ServerApp.allow_origin = u"*"
 c.ServerApp.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
-c.ServerApp.root_dir = "$HOME"
+c.ServerApp.root_dir = "$HOME/work"
 c.ServerApp.preferred_dir = "$HOME/work"
 c.ServerApp.token = "${SESSION_TOKEN}"
 EOF
