@@ -32,7 +32,8 @@
             "schedulerOptions": [],
             "envVariables": [],
             "archiveFilter": {
-                "includeLaunchFiles": true
+                "excludes": ["build", "libs"],
+                "includeLaunchFiles": false
             }
         },
         "fileInputs": [
