@@ -21,6 +21,19 @@ while [ "$quit" -ne 1 ]; do
 done
 echo "Using port=$LOGIN_PORT"
 
+POTREE_INSTANCE_NAME="potree-viewer-${_tapisJobUUID}"
+
+apptainer instance run \
+    --writable-tmpfs \
+    --memory 1G \
+    --bind ${_tapisExecSystemInputDir}:/data \
+    --bind /opt/potree:/potree \
+    --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/cert.pem:/etc/nginx/ssl/nginx.crt \
+    --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/privkey.pem:/etc/nginx/ssl/nginx.key \
+    --env LOGIN_PORT=$LOGIN_PORT \
+    docker://taccaci/potree-viewer:1.8.2 $POTREE_INSTANCE_NAME \
+    /bin/bash -c "cp -r /potree/{build,libs} /data/ && envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
 # Webhook callback url for job ready notification
 # (notifications sent to INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
 INTERACTIVE_WEBHOOK_URL="${_INTERACTIVE_WEBHOOK_URL}"
@@ -31,20 +44,6 @@ curl -k --data "event_type=interactive_session_ready&address=https://wma-exec-01
 echo "TACC: Your interactive session is now running!"
 echo "TACC: Connect to your session at: https://wma-exec-01.tacc.utexas.edu:${LOGIN_PORT}/"
 
-
-apptainer run \
-    --writable-tmpfs \
-    --memory 1G \
-    --bind ${_tapisExecSystemInputDir}:/data \
-    --bind /opt/potree:/potree \
-    --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/cert.pem:/etc/nginx/ssl/nginx.crt \
-    --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/privkey.pem:/etc/nginx/ssl/nginx.key \
-    --env LOGIN_PORT=$LOGIN_PORT \
-    docker://taccaci/potree-viewer:1.8.2 \
-    /bin/bash -c "cp -r /potree/{build,libs} /data/ && envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
-
-CONTAINER_PID=$!
-
 if [ ! $? ]; then
     handle_error 1
     exit
@@ -52,8 +51,7 @@ fi
 
 # Keep container running while session is active
 
-sleep ${_tapisMaxMinutes}m
-kill $CONTAINER_PID
-kill $$
+sleep $((_tapisMaxMinutes - 2))m
+apptainer instance stop $POTREE_INSTANCE_NAME
 
 echo "TACC: job $_tapisJobUUID execution finished at: `date`"
