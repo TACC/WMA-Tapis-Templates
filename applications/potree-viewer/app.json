@@ -1,0 +1,69 @@
+{
+    "id": "potree-viewer",
+    "version": "1.8.2",
+    "description": "View pointclouds in Potree format.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/potree-viewer/potree-viewer.zip",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": false,
+    "jobAttributes": {
+        "description": "",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "wma-exec-01",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [],
+            "archiveFilter": {
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input file/folder",
+                "description": "File/folder to view in Potree. You can drag the link from the Data Browser on the left, or click the 'Select Input' button and then select the input.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": ".",
+                "envKey": "viewerInput"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 256000,
+        "maxMinutes": 1440,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "label": "Potree Viewer (VM)",
+        "helpUrl": "https://github.com/potree/potree/",
+        "hideNodeCountAndCoresPerNode": true,
+        "icon": "Potree",
+        "category": "Visualization",
+        "isInteractive": true
+    }
+}

@@ -1,0 +1,59 @@
+handle_error() {
+  local EXITCODE=$1
+  echo "Potree Viewer job exited with an error status. $EXITCODE" >&2
+  echo "$EXITCODE" > "${_tapisExecSystemOutputDir}/tapisjob.exitcode"
+  exit $EXITCODE
+}
+
+set -x
+echo "TACC: job $_tapisJobUUID execution at: `date`"
+
+LOGIN_PORT=$(( ((RANDOM<<15)|RANDOM) % 100 + 5900 ))
+quit=0
+
+while [ "$quit" -ne 1 ]; do
+  netstat -a | grep $LOGIN_PORT >> /dev/null
+  if [ $? -gt 0 ]; then
+    quit=1
+  else
+    LOGIN_PORT=`expr $LOGIN_PORT + 1`
+  fi
+done
+echo "Using port=$LOGIN_PORT"
+
+# Webhook callback url for job ready notification
+# (notifications sent to INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
+INTERACTIVE_WEBHOOK_URL="${_INTERACTIVE_WEBHOOK_URL}"
+
+#connect to interactive session on VM
+curl -k --data "event_type=interactive_session_ready&address=https://wma-exec-01.tacc.utexas.edu:${LOGIN_PORT}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+
+echo "TACC: Your interactive session is now running!"
+echo "TACC: Connect to your session at: https://wma-exec-01.tacc.utexas.edu:${LOGIN_PORT}/"
+
+
+apptainer run \
+    --writable-tmpfs \
+    --memory 1G \
+    --bind ${_tapisExecSystemInputDir}:/data \
+    --bind /opt/potree:/potree \
+    --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/cert.pem:/etc/nginx/ssl/nginx.crt \
+    --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/privkey.pem:/etc/nginx/ssl/nginx.key \
+    --env LOGIN_PORT=$LOGIN_PORT \
+    docker://taccaci/potree-viewer:1.8.2 \
+    /bin/bash -c "cp -r /potree/{build,libs} /data/ && envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+CONTAINER_PID=$!
+
+if [ ! $? ]; then
+    handle_error 1
+    exit
+fi
+
+# Keep container running while session is active
+
+sleep ${_tapisMaxMinutes}m
+kill $CONTAINER_PID
+kill $$
+
+echo "TACC: job $_tapisJobUUID execution finished at: `date`"
