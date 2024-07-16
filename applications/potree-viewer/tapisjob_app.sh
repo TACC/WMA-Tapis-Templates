@@ -36,8 +36,6 @@ apptainer instance run \
 
 # Webhook callback url for job ready notification
 # (notifications sent to INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
-INTERACTIVE_WEBHOOK_URL="${_INTERACTIVE_WEBHOOK_URL}"
-
 #connect to interactive session on VM
 curl -k --data "event_type=interactive_session_ready&address=https://wma-exec-01.tacc.utexas.edu:${LOGIN_PORT}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
