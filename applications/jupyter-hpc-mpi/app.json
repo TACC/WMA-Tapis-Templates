@@ -46,7 +46,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer",
+                    "arg": "--tapis-profile python3-3.9.2",
                     "notes": {
                         "isHidden": true
                     }
