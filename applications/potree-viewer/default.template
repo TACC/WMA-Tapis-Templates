@@ -1,0 +1,10 @@
+server {
+    listen              ${LOGIN_PORT} ssl;
+    ssl_certificate     /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+    ssl_protocols       TLSv1.2;
+    location / {
+        root   /data;
+        index  index.html index.htm;
+    }
+}
