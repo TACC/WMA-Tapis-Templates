@@ -92,6 +92,7 @@
         "icon": "Extract",
         "category": "Utilities",
         "showTargetPath": true,
-        "hideQueue": true
+        "hideQueue": true,
+        "hideAllocation": true
     }
 }
