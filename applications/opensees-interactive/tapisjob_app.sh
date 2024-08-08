@@ -17,7 +17,7 @@ while [ "$quit" -ne 1 ]; do
 done
 echo "Using LOGIN_PORT=$LOGIN_PORT"
 
-DOCKER_IMAGE="docker://taccaci/opensees-interactive:3.6.0-a"
+DOCKER_IMAGE="docker://taccaci/opensees-interactive:3.7.0"
 
 mkdir $HOME/work
 
