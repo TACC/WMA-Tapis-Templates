@@ -101,7 +101,7 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "Jupyter Lab HPC (GPU)",
+        "label": "Jupyter Lab HPC GPU (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide",
         "hideNodeCountAndCoresPerNode": true,
         "isInteractive": true,
