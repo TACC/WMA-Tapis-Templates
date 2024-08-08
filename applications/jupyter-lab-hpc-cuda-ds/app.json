@@ -36,7 +36,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions and user dirs",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,$PWD/work:/home/jovyan/work,$STOCKYARD:/home/jovyan/work/Work,$HOME:/home/jovyan/work/Home,$SCRATCH:/home/jovyan/work/Scratch",
+                    "arg": "--bind /share,$PWD/work:/home/jovyan/work,/work/00849/tg458981/designsafe-work/${JobOwner}:/home/jovyan/work/Work,$HOME:/home/jovyan/work/Home,$SCRATCH:/home/jovyan/work/Scratch",
                     "notes": {
                         "isHidden": true
                     }
@@ -101,7 +101,7 @@
         "portalName: ALL"
     ],
     "notes": {
-        "label": "Jupyter Lab HPC GPU (Frontera)",
+        "label": "Jupyter Lab HPC (GPU)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide",
         "hideNodeCountAndCoresPerNode": true,
         "isInteractive": true,
