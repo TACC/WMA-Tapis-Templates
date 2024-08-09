@@ -7,7 +7,9 @@ handle_error() {
 
 set -x
 echo "TACC: job $_tapisJobUUID execution at: `date`"
-ln -sfn "/corral/main/projects/NHERI" "$HOME/NHERI"
+ln -sfn "/corral/main/projects/NHERI/shared/${_tapisJobOwner}" "$HOME/mydata"
+ln -sfn "/corral/main/projects/NHERI/public/projects" "$HOME/projects"
+ln -sfn "/corral/main/projects/NHERI/community" "$HOME/community"
 
 # confirm DCV server is alive
 DCV_SERVER_UP=`systemctl is-active dcvserver`
