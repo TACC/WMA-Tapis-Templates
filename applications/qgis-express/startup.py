@@ -6,9 +6,10 @@ from qgis.core import QgsExpressionContextUtils, QgsMessageLog
 # Define directories
 new_favorite_directory = os.getcwd()
 
-mydata = os.path.join(os.environ['HOME'], 'mydata')
-projects = os.path.join(os.environ['HOME'], 'projects')
-community = os.path.join(os.environ['HOME'], 'community')
+mydata = os.path.join(os.environ['HOME'], 'MyData')
+nees = os.path.join(os.environ['HOME'], 'NEES')
+nheriPublished = os.path.join(os.environ['HOME'], 'NHERI-Published')
+community = os.path.join(os.environ['HOME'], 'CommunityData')
 
 base_directory = os.path.dirname(new_favorite_directory)
 
@@ -24,7 +25,7 @@ def setup_favorites():
             index = browser_model.index(i, 0, favorite_index)
             path = index.data()
             dirname = os.path.dirname(path)
-            if base_directory == dirname or path in favorites_map:
+            if base_directory == dirname or path in ['MyData', 'NEES', 'NHERI-Published','CommunityData']:
                 to_be_removed.append(index)
         for remove_index in to_be_removed:
             browser_model.removeFavorite(remove_index)
@@ -35,7 +36,8 @@ def setup_favorites():
     try:
         
         browser_model.addFavoriteDirectory(mydata)
-        browser_model.addFavoriteDirectory(projects)
+        browser_model.addFavoriteDirectory(nees)
+        browser_model.addFavoriteDirectory(nheriPublished)
         browser_model.addFavoriteDirectory(community)
     except Exception as e:
         QgsMessageLog.logMessage(f"Error adding new favorites: {str(e)}", level=QgsMessageLog.CRITICAL)
