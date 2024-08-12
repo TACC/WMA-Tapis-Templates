@@ -1,0 +1,94 @@
+{
+    "id": "matlab-batch-express",
+    "version": "1.0.0",
+    "description": "MATLAB Batch Express is a non-interactive application to run small *.m scipts, these sessions run on a VM.",
+    "owner": "${apiUserId}",
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/matlab-batch-express/matlab-batch-express.zip",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+      "description": "",
+      "dynamicExecSystem": false,
+      "execSystemConstraints": null,
+      "execSystemId": "wma-exec-01",
+      "execSystemExecDir": "${JobWorkingDir}",
+      "execSystemInputDir": "${JobWorkingDir}",
+      "execSystemOutputDir": "${JobWorkingDir}",
+      "execSystemLogicalQueue": "development",
+      "archiveSystemId": "cloud.data",
+      "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+      "archiveOnAppError": true,
+      "isMpi": false,
+      "mpiCmd": null,
+      "cmdPrefix": null,
+      "parameterSet": {
+        "appArgs": [],
+        "containerArgs": [],
+        "schedulerOptions": [],
+        "envVariables": [
+          {
+            "key": "matlabScriptName",
+            "value": "",
+            "description": "Provide the filename of the MATLAB script to execute, relative to the path of the Working Directory. This file should reside in the Working Directory specified. Example: 'mymatlabtest.m'.",
+            "inputMode": "REQUIRED",
+            "notes": {
+              "label": "MATLAB Script"
+            }
+          },
+          {
+            "key": "_license",
+            "value": "",
+            "description": "MATLAB License",
+            "inputMode": "REQUIRED",
+            "notes": {
+              "isHidden": true
+            }
+          }
+        ],
+        "archiveFilter": {
+          "includes": [],
+          "excludes": [
+            "matlab-batch-express.zip",
+            ".matlab_license"
+          ],
+          "includeLaunchFiles": true
+        }
+      },
+      "fileInputs": [
+        {
+          "name": "Working Directory",
+          "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
+          "inputMode": "REQUIRED",
+          "autoMountLocal": true,
+          "sourceUrl": null,
+          "targetPath": "workingDirectory",
+          "envKey": "workingDirectory"
+        }
+      ],
+      "fileInputArrays": [],
+      "nodeCount": 1,
+      "coresPerNode": 1,
+      "memoryMB": 256000,
+      "maxMinutes": 120,
+      "subscriptions": [],
+      "tags": []
+    },
+    "tags": [
+      "portalName: DesignSafe"
+    ],
+    "notes": {
+      "licenseType": "MATLAB",
+      "icon": "MATLAB",
+      "label": "MATLAB Batch Express",
+      "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
+      "hideNodeCountAndCoresPerNode": false,
+      "category": "Analysis",
+      "isInteractive": false
+    }
+  }
+  
