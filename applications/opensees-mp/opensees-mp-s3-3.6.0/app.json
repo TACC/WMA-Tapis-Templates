@@ -67,7 +67,10 @@
         "sourceUrl": null,
         "targetPath": "inputDirectory",
         "envKey": "inputDirectory",
-        "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesMP"
+        "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesMP",
+        "notes": {
+            "selectionMode": "directory"
+        }
       }
     ],
     "fileInputArrays": [],
