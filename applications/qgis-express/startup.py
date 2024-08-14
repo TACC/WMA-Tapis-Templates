@@ -9,6 +9,7 @@ mydata = os.path.join(os.environ['HOME'], 'MyData')
 nees = os.path.join(os.environ['HOME'], 'NEES')
 nheriPublished = os.path.join(os.environ['HOME'], 'NHERI-Published')
 community = os.path.join(os.environ['HOME'], 'CommunityData')
+myprojects = os.path.join(os.environ['HOME'], 'MyProjects')
 
 base_directory = os.path.dirname(new_favorite_directory)
 
@@ -34,6 +35,8 @@ def setup_favorites():
             browser_model.addFavoriteDirectory(nheriPublished)
         if os.path.normpath(community) not in existing_favorites:
             browser_model.addFavoriteDirectory(community)
+        if os.path.normpath(myprojects) not in existing_favorites:
+            browser_model.addFavoriteDirectory(myprojects)
     except Exception as e:
         QgsMessageLog.logMessage(f"Error adding new favorites: {str(e)}", level=QgsMessageLog.CRITICAL)
 
