@@ -12,6 +12,7 @@ echo "TACC: job $_tapisJobUUID execution at: `date`"
 # set up license file
 cat << EOT >> .matlab_license
 ${_license}
+USE_SERVER
 EOT
 
 cat .matlab_license
@@ -19,10 +20,10 @@ export LM_LICENSE_FILE=`pwd`/.matlab_license
 echo "LM_LICENSE_FILE is : $LM_LICENSE_FILE"
 
 cd ${workingDirectory}
-CWD=${workingDirectory}
 
 echo "Directory is `pwd`"
 echo "File is ${matlabScriptName}"
+formattedInputFile="$( basename ${inputfile} .m )"
 
 apptainer run \
   --writable-tmpfs \
@@ -30,7 +31,7 @@ apptainer run \
 	--bind "`pwd`":"/data/" \
 	--bind ${LM_LICENSE_FILE}:/licenses/matlab.lic \
 	--env MLM_LICENSE_FILE=/licenses/matlab.lic \
-	docker://mathworks/matlab:latest /bin/sh -c "cd /data; matlab -batch ${matlabScriptName}"
+	docker://mathworks/matlab:latest /bin/sh -c "cd /data; matlab -batch ${formattedInputFile}"
 
 
 if [ ! $? ]; then
@@ -43,9 +44,6 @@ echo job $_tapisJobUUID execution finished at: `date`
 cd ..
 rm -rf .matlab_license
 rm -rf vncp.txt
-
-pwd
-ls -alrt
 
 #sleep to let the files get cleaned up
 sleep 2
