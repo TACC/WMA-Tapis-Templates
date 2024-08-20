@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -x
 
 # our vm hostname
@@ -19,7 +21,26 @@ echo "Using LOGIN_PORT=$LOGIN_PORT"
 
 DOCKER_IMAGE="docker://taccaci/opensees-interactive:3.7.0"
 
-mkdir $HOME/work
+mkdir -p $HOME/work/MyProjects
+
+projects_dir="$HOME/work/MyProjects"
+IFS=' ' read -r -a projects <<< "${_UserProjects}"
+for project in "${projects[@]}"; do
+    IFS=',' read -r uuid projectId <<< "$project"
+    target_path="/corral/main/projects/NHERI/projects/$uuid"
+    symlink_path="$projects_dir/$projectId"
+
+    if [ -e "$target_path" ]; then
+        if [ ! -e "$symlink_path" ]; then
+            ln -s "$target_path" "$symlink_path"
+            echo "TACC: Project Links: Created symlink: $symlink_path -> $target_path"
+        else
+            echo "TACC: Project Links: Symlink already exists: $symlink_path"
+        fi
+    else
+        echo "TACC: Project Links: Target path does not exist: $target_path"
+    fi
+done
 
 apptainer run \
     --cleanenv \
@@ -31,7 +52,9 @@ apptainer run \
     --env _tapisJobOwner="${_tapisJobOwner}" \
     --env _tapisJobUUID="${_tapisJobUUID}" \
     --env _INTERACTIVE_WEBHOOK_URL="${_INTERACTIVE_WEBHOOK_URL}" \
+    --bind /corral/main/projects/NHERI/projects:/corral/main/projects/NHERI/projects \
     --bind "/data/designsafe/mydata/${_tapisJobOwner}":$HOME/work/MyData \
+    --bind $projects_dir:$HOME/work/MyProjects \
     --bind /corral/main/projects/NHERI/public/projects:$HOME/work/NEES:ro \
     --bind /corral/main/projects/NHERI/community:$HOME/work/CommunityData:ro \
     --bind /corral/main/projects/NHERI/published:$HOME/work/NHERI-Published:ro \

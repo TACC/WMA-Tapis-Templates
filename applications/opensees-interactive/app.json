@@ -29,7 +29,17 @@
             "appArgs": [],
             "containerArgs": [],
             "schedulerOptions": [],
-            "envVariables": [],
+            "envVariables": [
+                {
+                    "key": "_UserProjects",
+                    "value": "",
+                    "description": "User Project UUIDs and Project IDs",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [
