@@ -2,13 +2,8 @@
 
 echo "TACC: job ${_tapisJobUUID} execution at: $(date)"
 
-NB_SERVERDIR=$HOME/work/MyData/.jupyter
-
-# make .jupyter dir for config
-mkdir -p ${NB_SERVERDIR}
-
 # create the jupyter config
-JUPYTER_CONFIG="$NB_SERVERDIR/jupyter_config.py"
+JUPYTER_CONFIG="/tmp/jupyter_config.py"
 
 function session_get_token()
 {
@@ -34,8 +29,8 @@ c.ServerApp.port = ${LOGIN_PORT}
 c.ServerApp.open_browser = False
 c.ServerApp.allow_origin = u"*"
 c.ServerApp.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
-c.ServerApp.root_dir = "$HOME/work"
-c.ServerApp.preferred_dir = "$HOME/work"
+c.ServerApp.root_dir = "${HOME}"
+c.ServerApp.preferred_dir = "${HOME}"
 c.ServerApp.token = "${SESSION_TOKEN}"
 EOF
 

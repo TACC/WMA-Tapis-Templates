@@ -19,11 +19,9 @@ while [ "$quit" -ne 1 ]; do
 done
 echo "Using LOGIN_PORT=$LOGIN_PORT"
 
-DOCKER_IMAGE="docker://taccaci/opensees-interactive:3.7.0"
-
-mkdir -p $HOME/work/MyProjects
-
-projects_dir="$HOME/work/MyProjects"
+# create MyProjects directory and symlink user projects
+mkdir -p "${_tapisJobWorkingDir}/MyProjects"
+PROJECTS_DIR="${_tapisJobWorkingDir}/MyProjects"
 IFS=' ' read -r -a projects <<< "${_UserProjects}"
 for project in "${projects[@]}"; do
     IFS=',' read -r uuid projectId <<< "$project"
@@ -42,25 +40,46 @@ for project in "${projects[@]}"; do
     fi
 done
 
+# N.B.
+#   APPTAINER_HOME allows us to define a $HOME for the user outside of the container.
+#   Here, pip installs initiated inside the container are persisted in the $APPTAINER_HOME/.local directory!
+#
+#   APPTAINER_PWD allows us to define the directory open in a terminal within the container at runtime.
+#
+#   See: https://apptainer.org/docs/user/main/appendix.html
+export APPTAINER_HOME="${HOME}"
+export APPTAINER_PWD="${HOME}"
+
+# N.B.
+#   The tmpfs apptainer creates is only 64MB in size, so we need a new tmp space mapped for pip to be able
+#   to install packages at $TMPDIR
+mkdir -p -m 700 "${_tapisJobWorkingDir}/tmp"
+
+# Define container binds
+USER_MYDATA="/data/designsafe/mydata/${_tapisJobOwner}"
+CONTAINER_HOME="${USER_MYDATA}/.opensees-interactive"
+mkdir "${CONTAINER_HOME}/MyData" "${CONTAINER_HOME}/MyProjects" "${CONTAINER_HOME}/NEES" "${CONTAINER_HOME}/CommunityData" "${CONTAINER_HOME}/NHERI-Published"
+
 apptainer run \
     --cleanenv \
     --writable-tmpfs \
     --containall \
-    --env PWD=$HOME/work \
-    --env LOGIN_PORT=$LOGIN_PORT \
-    --env VM_HOST=$VM_HOST \
+    --env LOGIN_PORT="${LOGIN_PORT}" \
+    --env VM_HOST="${VM_HOST}" \
     --env _tapisJobOwner="${_tapisJobOwner}" \
     --env _tapisJobUUID="${_tapisJobUUID}" \
     --env _INTERACTIVE_WEBHOOK_URL="${_INTERACTIVE_WEBHOOK_URL}" \
-    --bind /corral/main/projects/NHERI/projects:/corral/main/projects/NHERI/projects \
-    --bind "/data/designsafe/mydata/${_tapisJobOwner}":$HOME/work/MyData \
-    --bind $projects_dir:$HOME/work/MyProjects \
-    --bind /corral/main/projects/NHERI/public/projects:$HOME/work/NEES:ro \
-    --bind /corral/main/projects/NHERI/community:$HOME/work/CommunityData:ro \
-    --bind /corral/main/projects/NHERI/published:$HOME/work/NHERI-Published:ro \
+    --env TMPDIR="${_tapisJobWorkingDir}/tmp" \
+    --bind "${CONTAINER_HOME}:${HOME}" \
+    --bind /corral/main/projects/NHERI/projects \
+    --bind "${USER_MYDATA}:${HOME}/MyData" \
+    --bind "${PROJECTS_DIR}:${HOME}/MyProjects" \
+    --bind "/corral/main/projects/NHERI/public/projects:${HOME}/NEES:ro" \
+    --bind "/corral/main/projects/NHERI/community:${HOME}/CommunityData:ro" \
+    --bind "/corral/main/projects/NHERI/published:${HOME}/NHERI-Published:ro" \
     --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/cert.pem:/etc/nginx/ssl/nginx.crt \
     --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/privkey.pem:/etc/nginx/ssl/nginx.key \
-    "${DOCKER_IMAGE}"
+    "${_DOCKER_IMAGE}"
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
@@ -68,5 +87,5 @@ if [ $EXITCODE -ne 0 ]; then
     echo "Apptainer container exited with an error status. $EXITCODE" >&2
 
     # https://tapis.readthedocs.io/en/latest/technical/jobs.html#monitoring-the-application
-    echo $EXITCODE > ${_tapisExecSystemOutputDir}/tapisjob.exitcode
+    echo $EXITCODE > "${_tapisExecSystemOutputDir}/tapisjob.exitcode"
 fi

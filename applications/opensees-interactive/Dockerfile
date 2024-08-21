@@ -30,12 +30,17 @@ RUN apt-get update && apt-get install -y \
     libscalapack-openmpi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade \
+RUN pip install --upgrade --no-cache-dir \
     pip \
     setuptools \
-    wheel
+    wheel \
+    jupyterlab \
+    jupyterlab_server \
+    jupyter_server \
+    traitlets \
+    nbformat
 
-RUN pip install \
+RUN pip install --no-cache-dir \
     h5py \
     openseespy \
     numpy \
@@ -54,6 +59,8 @@ COPY --from=taccaci/opensees:3.7.0 /usr/local/lib/tcl8.6 /usr/local/lib/tcl8.6
 COPY run.sh /tapis/run.sh
 
 RUN chmod +x /tapis/run.sh
+
+USER 1000
 
 ENTRYPOINT [ "/tapis/run.sh" ]
 
