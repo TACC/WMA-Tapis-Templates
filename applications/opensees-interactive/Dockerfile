@@ -45,6 +45,8 @@ RUN pip install --no-cache-dir \
     openseespy \
     numpy \
     pandas \
+    plotly \
+    pyvista \
     matplotlib \
     mpi4py \
     ipywidgets \
