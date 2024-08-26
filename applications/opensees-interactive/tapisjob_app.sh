@@ -58,7 +58,7 @@ mkdir -p -m 700 "${_tapisJobWorkingDir}/tmp"
 # Define container binds
 USER_MYDATA="/data/designsafe/mydata/${_tapisJobOwner}"
 CONTAINER_HOME="${USER_MYDATA}/.opensees-interactive"
-mkdir "${CONTAINER_HOME}/MyData" "${CONTAINER_HOME}/MyProjects" "${CONTAINER_HOME}/NEES" "${CONTAINER_HOME}/CommunityData" "${CONTAINER_HOME}/NHERI-Published"
+mkdir -p "${CONTAINER_HOME}/MyData" "${CONTAINER_HOME}/MyProjects" "${CONTAINER_HOME}/NEES" "${CONTAINER_HOME}/CommunityData" "${CONTAINER_HOME}/NHERI-Published"
 
 apptainer run \
     --cleanenv \
