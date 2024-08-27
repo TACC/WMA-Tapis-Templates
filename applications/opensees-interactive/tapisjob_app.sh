@@ -26,7 +26,7 @@ IFS=' ' read -r -a projects <<< "${_UserProjects}"
 for project in "${projects[@]}"; do
     IFS=',' read -r uuid projectId <<< "$project"
     target_path="/corral/main/projects/NHERI/projects/$uuid"
-    symlink_path="$projects_dir/$projectId"
+    symlink_path="${PROJECTS_DIR}/$projectId"
 
     if [ -e "$target_path" ]; then
         if [ ! -e "$symlink_path" ]; then
