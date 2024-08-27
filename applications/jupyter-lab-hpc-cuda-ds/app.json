@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/jupyter-lab-hpc-cuda:1.1.1",
+    "containerImage": "library://rstijerina/taccapps/jupyter-lab-hpc-cuda:1.1.1",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -92,7 +92,9 @@
             ],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [],
+                "excludes": [
+                    "tmp"
+                ],
                 "includeLaunchFiles": true
             }
         },

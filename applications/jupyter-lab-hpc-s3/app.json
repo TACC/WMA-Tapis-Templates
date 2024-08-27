@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/jupyter-lab-hpc:1.1.1",
+    "containerImage": "library://rstijerina/taccapps/jupyter-lab-hpc:1.1.1",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -42,7 +42,7 @@
                 },
                 {
                     "name": "Jupyter Mounts",
-                    "description": "Mount for TAP functions and user dirs",
+                    "description": "Mount for user work and persistent jupyter env",
                     "inputMode": "FIXED",
                     "arg": "--bind $HOME/.jupyter-lab-hpc:/home/jovyan/work,/work/00849/tg458981/designsafe-work/${JobOwner}:/home/jovyan/work/Work",
                     "notes": {
@@ -83,7 +83,9 @@
             ],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [],
+                "excludes": [
+                    "tmp"
+                ],
                 "includeLaunchFiles": true
             }
         },
