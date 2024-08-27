@@ -1,6 +1,6 @@
 {
     "id": "jupyter-lab-hpc-cuda-ds",
-    "version": "1.0.0",
+    "version": "1.1.1",
     "description": "Run an interactive Jupyter Lab session on a Frontera GPU node.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/jupyter-lab-hpc:ubuntu-22.04-cuda",
+    "containerImage": "docker://taccaci/jupyter-lab-hpc-cuda:1.1.1",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -21,22 +21,30 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "rtx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "mkdir work;",
+        "cmdPrefix": "source tapisjob.env; source tap.sh; export APPTAINER_HOME=/home/jovyan/work; export APPTAINER_PWD=/home/jovyan/work; mkdir -p ${_tapisJobWorkingDir}/tmp $HOME/.jupyter-lab-hpc/Work;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [
                 {
-                    "name": "Jupyter Mounts",
-                    "description": "Mount for TAP functions and user dirs",
+                    "name": "tmpfs",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,$PWD/work:/home/jovyan/work,/work/00849/tg458981/designsafe-work/${JobOwner}:/home/jovyan/work/Work,$HOME:/home/jovyan/work/Home,$SCRATCH:/home/jovyan/work/Scratch",
+                    "arg": "--writable-tmpfs",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Jupyter Mounts",
+                    "description": "Mount for user work and persistent jupyter env",
+                    "inputMode": "FIXED",
+                    "arg": "--bind $HOME/.jupyter-lab-hpc:/home/jovyan/work,/work/00849/tg458981/designsafe-work/${JobOwner}:/home/jovyan/work/Work",
                     "notes": {
                         "isHidden": true
                     }
@@ -73,9 +81,9 @@
             ],
             "envVariables": [
                 {
-                    "key": "APPTAINER_PWD",
-                    "value": "/home/jovyan/work",
-                    "description": "Start terminals in the working directory where host volumes are mounted.",
+                    "key": "TMPDIR",
+                    "value": "${_tapisJobWorkingDir}/tmp",
+                    "description": "tmp dir for apptainer",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true

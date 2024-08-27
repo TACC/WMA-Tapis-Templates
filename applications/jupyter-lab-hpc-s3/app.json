@@ -1,6 +1,6 @@
 {
     "id": "jupyter-lab-hpc-s3",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Run an interactive Jupyter Lab session on an HPC compute node.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/jupyter-lab-hpc:1.1.0",
+    "containerImage": "docker://taccaci/jupyter-lab-hpc:1.1.1",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -21,22 +21,30 @@
         "execSystemId": "stampede3",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemOutputDir": "${JobWorkingDir}",
         "execSystemLogicalQueue": "skx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "mkdir work;",
+        "cmdPrefix": "source tapisjob.env; source tap.sh; export APPTAINER_HOME=/home/jovyan/work; export APPTAINER_PWD=/home/jovyan/work; mkdir -p ${_tapisJobWorkingDir}/tmp $HOME/.jupyter-lab-hpc/Work;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [
                 {
+                    "name": "tmpfs",
+                    "inputMode": "FIXED",
+                    "arg": "--writable-tmpfs",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
                     "name": "Jupyter Mounts",
                     "description": "Mount for TAP functions and user dirs",
                     "inputMode": "FIXED",
-                    "arg": "--bind /share,$PWD/work:/home/jovyan/work,/work/00849/tg458981/designsafe-work/${JobOwner}:/home/jovyan/work/Work,$HOME:/home/jovyan/work/Home,$SCRATCH:/home/jovyan/work/Scratch",
+                    "arg": "--bind $HOME/.jupyter-lab-hpc:/home/jovyan/work,/work/00849/tg458981/designsafe-work/${JobOwner}:/home/jovyan/work/Work",
                     "notes": {
                         "isHidden": true
                     }
@@ -64,9 +72,9 @@
             ],
             "envVariables": [
                 {
-                    "key": "APPTAINER_PWD",
-                    "value": "/home/jovyan/work",
-                    "description": "Start terminals in the working directory where host volumes are mounted.",
+                    "key": "TMPDIR",
+                    "value": "${_tapisJobWorkingDir}/tmp",
+                    "description": "tmp dir for apptainer",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
@@ -79,7 +87,17 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "TAP script",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 48,
