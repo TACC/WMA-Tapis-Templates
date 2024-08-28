@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "library://rstijerina/taccapps/jupyter-lab-hpc-cuda:1.1.1",
+    "containerImage": "/corral/tacc/aci/CEP/applications/v3/jupyter-lab-hpc/jupyter-lab-hpc-cuda_1.1.1.sif",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -98,7 +98,17 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "TAP script",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 16,
