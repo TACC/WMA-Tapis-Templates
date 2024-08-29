@@ -1,0 +1,19 @@
+{
+    "name": "visit-3.4.1",
+    "description": "Modules to load for Visit",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "purge",
+                "TACC",
+                "intel/24.0",
+                "impi/21.11",
+                "visit/3.4.1"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
