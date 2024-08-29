@@ -1,5 +1,5 @@
 {
-    "name": "visit-4.2.1",
+    "name": "visit-3.4.1",
     "description": "Modules to load for Visit",
     "moduleLoads": [
         {
@@ -7,7 +7,7 @@
                 "purge",
                 "TACC",
                 "gcc/13.2.0",
-                "visit/4.2.1"
+                "visit/3.4.1"
             ],
             "moduleLoadCommand": "module load"
         }

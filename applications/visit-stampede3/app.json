@@ -1,6 +1,6 @@
 {
     "id": "visit-stampede3",
-    "version": "4.2.1",
+    "version": "3.4.1",
     "description": "Build configurable visualizations to analyze large datasets.",
     "owner": "${apiUserId}",
     "runtime": "ZIP",
@@ -34,7 +34,7 @@
             "name": "TACC Scheduler Profile",
             "description": "Scheduler profile for VisIt",
             "inputMode": "FIXED",
-            "arg": "--tapis-profile visit-4.2.1",
+            "arg": "--tapis-profile visit-3.4.1",
             "notes": {
               "isHidden": true
             }
