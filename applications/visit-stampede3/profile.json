@@ -6,7 +6,8 @@
             "modulesToLoad": [
                 "purge",
                 "TACC",
-                "gcc/13.2.0",
+                "intel/24.0",
+                "impi/21.11",
                 "visit/3.4.1"
             ],
             "moduleLoadCommand": "module load"
