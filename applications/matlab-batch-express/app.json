@@ -34,7 +34,7 @@
           {
             "key": "matlabScriptName",
             "value": "",
-            "description": "Provide the filename of the MATLAB script to execute, relative to the path of the Working Directory. This file should reside in the Working Directory specified. Example: 'mymatlabtest.m'.",
+            "description": "Provide the filename of the MATLAB script to execute, relative to the path of the Working Directory. This file should reside in the Working Directory specified. If using the community data example, this would be 'matlab_test.m'.",
             "inputMode": "REQUIRED",
             "notes": {
               "label": "MATLAB Script"
@@ -62,12 +62,15 @@
       "fileInputs": [
         {
           "name": "Working Directory",
-          "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
+          "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs. An example can be run by using 'tapis://designsafe.storage.community/app_examples/matlab-batch/matlab_test.m'.",
           "inputMode": "REQUIRED",
           "autoMountLocal": true,
           "sourceUrl": null,
           "targetPath": "*",
-          "envKey": "workingDirectory"
+          "envKey": "workingDirectory",
+          "notes": {
+            "selectionMode": "directory"
+          }
         }
       ],
       "fileInputArrays": [],
