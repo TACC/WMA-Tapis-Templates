@@ -7,7 +7,10 @@ handle_error() {
 
 set -x
 echo "TACC: job $_tapisJobUUID execution at: `date`"
-ln -sfn "/corral/main/projects/NHERI" "$HOME/NHERI"
+ln -sfn "/corral/main/projects/NHERI/shared/${_tapisJobOwner}" "${_tapisJobWorkingDir}/MyData"
+ln -sfn "/corral/main/projects/NHERI/public/projects" "${_tapisJobWorkingDir}/NEES"
+ln -sfn "/corral/main/projects/NHERI/published" "${_tapisJobWorkingDir}/NHERI-Published"
+ln -sfn "/corral/main/projects/NHERI/community" "${_tapisJobWorkingDir}/CommunityData"
 
 # confirm DCV server is alive
 DCV_SERVER_UP=`systemctl is-active dcvserver`
@@ -25,7 +28,7 @@ fi
 DCV_STARTUP="/tmp/dcv-startup-${_tapisJobUUID}"
 DCV_HANDLE="${_tapisJobUUID}-session"
 
-cat << 'EOF' > $DCV_STARTUP
+cat << EOF > $DCV_STARTUP
 #!/bin/bash
 cleanup() {
     kill $LXDE_PID
@@ -34,7 +37,7 @@ trap cleanup EXIT
 lxsession &
 LXDE_PID=$!
 sleep 5
-xterm -geometry 80x24+100+100 -e "/opt/MATLAB/R2022b/bin/matlab -c 10280@matlab.shared.utexas.edu"
+xterm -geometry 80x24+100+100 -e "/opt/MATLAB/R2022b/bin/matlab -c 10280@matlab.shared.utexas.edu -sd \"${_tapisJobWorkingDir}\""
 dcv close-session ${DCV_HANDLE}
 EOF
 chmod a+rx $DCV_STARTUP

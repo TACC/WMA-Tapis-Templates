@@ -68,7 +68,10 @@
                 "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "padcircSwan-inputs",
-                "envKey": "inputDirectory"
+                "envKey": "inputDirectory",
+                "notes": {
+                    "selectionMode": "directory"
+                }
             }
         ],
         "fileInputArrays": [],

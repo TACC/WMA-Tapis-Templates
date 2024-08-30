@@ -96,7 +96,10 @@
                 "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "workingDirectory",
-                "envKey": "workingDirectory"
+                "envKey": "workingDirectory",
+                "notes": {
+                    "selectionMode": "directory"
+                }
             }
         ],
         "fileInputArrays": [],

@@ -3,7 +3,7 @@ set -x
 apptainer run \
     --cleanenv \
     --bind "${inputDirectory}":/data \
-    docker://taccaci/opensees:3.6.0 \
+    docker://taccaci/opensees:3.7.0 \
     /bin/sh -c \
         "cd /data; OpenSees < /data/$tclScript"
 

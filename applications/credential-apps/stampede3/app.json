@@ -1,13 +1,14 @@
 {
-    "id": "qgis_express",
-    "version": "3.36",
-    "description": "Run an interactive QGIS session on a virtual machine. Work directly on your files rather than needing to copy them to and from Stampede3.",
+    "id": "stampede3-credential",
+    "version": "1.0.0",
+    "description": "Credential application for Stampede3",
     "owner": "${apiUserId}",
-    "enabled": true,
-    "runtime": "ZIP",
+    "runtime": "SINGULARITY",
     "runtimeVersion": null,
-    "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/qgis_express/qgis_express.zip",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://alpine:latest",
     "jobType": "FORK",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -16,55 +17,54 @@
         "description": "",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "wma-dcv-01",
+        "execSystemId": "stampede3",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
-        "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "development",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "skx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
+        "archiveOnAppError": false,
         "isMpi": false,
         "mpiCmd": null,
         "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [],
-            "schedulerOptions": [],
-            "envVariables": [
+            "containerArgs": [],
+            "schedulerOptions": [
                 {
-                    "key": "_UserProjects",
-                    "value": "",
-                    "description": "User Project UUIDs and Project IDs",
-                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc-apptainer",
                     "notes": {
                         "isHidden": true
                     }
                 }
             ],
+            "envVariables": [],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
+        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
-        "memoryMB": 256000,
-        "maxMinutes": 1440,
+        "memoryMB": 1,
+        "maxMinutes": 1,
         "subscriptions": [],
         "tags": []
     },
     "tags": [
-        "portalName: CEP",
         "portalName: DesignSafe"
     ],
     "notes": {
-        "label": "QGIS Desktop 3.36 (VM)",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/qgis/",
+        "label": "Create Stampede3 Credential",
         "hideNodeCountAndCoresPerNode": true,
-        "icon": "QGIS",
-        "category": "GIS Tools",
+        "category": "Utilities",
         "isInteractive": true
     }
 }

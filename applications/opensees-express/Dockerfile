@@ -46,19 +46,29 @@ RUN git clone https://github.com/OpenSees/mumps.git \
     && cmake .. -Darith=d \
     && cmake --build .
 
+# Clone OpenSees repository
 RUN git clone https://github.com/OpenSees/OpenSees.git \
     && cd OpenSees \
-    && mkdir build \
-    && cd build \
-    && conan install .. --build missing \
-    && cmake .. -DMUMPS_DIR=$PWD/../../mumps/build -DOPENMPI=TRUE -DSCALAPACK_LIBRARIES="/usr/lib/x86_64-linux-gnu/libscalapack-openmpi.so.2.1" \
-    && cmake --build . --config Release --target OpenSees \
-    && cmake --build . --config Release --target OpenSeesPy \
-    && cmake --build . --config Release --target OpenSeesSP \
-    && cmake --build . --config Release --target OpenSeesMP \
-    && cp ./bin/* /usr/local/bin \
-    && cp -r ./lib/tcl8.6 /usr/local/lib \
-    && cd ../.. \
+    && mkdir build
+
+WORKDIR /opensees/OpenSees/build
+
+# Install OpenSees dependencies
+RUN conan install .. --build missing \
+    && cmake .. -DMUMPS_DIR=$PWD/../../mumps/build -DOPENMPI=TRUE -DSCALAPACK_LIBRARIES="/usr/lib/x86_64-linux-gnu/libscalapack-openmpi.so.2.1"
+
+# BUILD OpenSees binaries
+RUN cmake --build . --config Release --target OpenSees
+RUN cmake --build . --config Release --target OpenSeesSP
+RUN cmake --build . --config Release --target OpenSeesMP
+# RUN cmake --build . --config Release --target OpenSeesPy
+
+# Move OpenSees binaries to /usr/local/bin and tcl to /usr/local/lib
+RUN cp ./bin/* /usr/local/bin \
+    && cp -r ./lib/tcl8.6 /usr/local/lib
+
+# Clean up
+WORKDIR /opensees \
     && rm -rf OpenSees \
     && rm -rf hdf5 \
     && rm -rf hdf5 mumps

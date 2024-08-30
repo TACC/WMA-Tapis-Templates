@@ -1,97 +1,103 @@
 {
     "id": "opensees-express",
-    "version": "3.6.0",
+    "version": "3.7.0",
     "description": "OpenSees-EXPRESS provides users with a sequential OpenSees interpreter. It is ideal to run small sequential scripts on DesignSafe resources freeing up your own machine.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
     "runtimeVersion": null,
     "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.6.0/OpenSees-EXPRESS/opensees_express.zip",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.7.0/OpenSees-EXPRESS/opensees_express.zip",
     "jobType": "FORK",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-      "execSystemConstraints": null,
-      "execSystemId": "wma-exec-01",
-      "execSystemExecDir": "${JobWorkingDir}",
-      "execSystemInputDir": "${JobWorkingDir}",
-      "execSystemOutputDir": "${JobWorkingDir}",
-      "execSystemLogicalQueue": null,
-      "archiveSystemId": "cloud.data",
-      "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-      "archiveOnAppError": true,
-      "isMpi": false,
-      "mpiCmd": null,
-      "cmdPrefix": null,
-      "parameterSet": {
-        "appArgs": [],
-        "containerArgs": [],
-        "schedulerOptions": [],
-        "envVariables": [
-          {
-            "key": "mainProgram",
-            "value": "OpenSees",
-            "description": "Choose the OpenSees binary to use.",
-            "inputMode": "REQUIRED",
-            "notes": {
-              "label": "Main Program",
-              "enum_values": [
+        "execSystemConstraints": null,
+        "execSystemId": "wma-exec-01",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": null,
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [
                 {
-                  "OpenSees": "OpenSees"
+                    "key": "mainProgram",
+                    "value": "OpenSees",
+                    "description": "Choose the OpenSees binary to use.",
+                    "inputMode": "REQUIRED",
+                    "notes": {
+                        "label": "Main Program",
+                        "enum_values": [
+                            {
+                                "OpenSees": "OpenSees"
+                            },
+                            {
+                                "OpenSeesSP": "OpenSeesSP"
+                            },
+                            {
+                                "OpenSeesMP": "OpenSeesMP"
+                            }
+                        ],
+                        "isHidden": true
+                    }
                 },
                 {
-                  "OpenSeesSP": "OpenSeesSP"
-                },
-                {
-                  "OpenSeesMP": "OpenSeesMP"
+                    "key": "tclScript",
+                    "value": "",
+                    "description": "The filename of the OpenSees TCL script to execute, e.g. \"freeFieldEffective.tcl\".",
+                    "inputMode": "REQUIRED",
+                    "notes": {
+                        "label": "Main Script"
+                    }
                 }
-              ],
-              "isHidden": true
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "opensees-express.zip",
+                    "tapisjob.env"
+                ],
+                "includeLaunchFiles": true
             }
-          },
-          {
-            "key": "tclScript",
-            "value": "",
-            "description": "The filename of the OpenSees TCL script to execute, e.g. \"freeFieldEffective.tcl\".",
-            "inputMode": "REQUIRED",
-            "notes": {
-              "label": "Main Script"
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "inputMode": "REQUIRED",
+                "sourceUrl": null,
+                "targetPath": "*",
+                "envKey": "inputDirectory",
+                "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesEXPRESS",
+                "notes": {
+                    "selectionMode": "directory"
+                }
             }
-          }
         ],
-        "archiveFilter": {
-          "includes": [],
-          "excludes": ["opensees-express.zip", "tapisjob.env"],
-          "includeLaunchFiles": true
-        }
-      },
-      "fileInputs": [
-        {
-          "name": "Input Directory",
-          "inputMode": "REQUIRED",
-          "sourceUrl": null,
-          "targetPath": "*",
-          "envKey": "inputDirectory",
-          "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesEXPRESS"
-        }
-      ],
-      "fileInputArrays": [],
-      "maxMinutes": 2880,
-      "subscriptions": [],
-      "tags": []
+        "fileInputArrays": [],
+        "maxMinutes": 2880,
+        "subscriptions": [],
+        "tags": []
     },
     "tags": [
         "portalName: DesignSafe",
         "portalName: CEP"
     ],
     "notes": {
-      "label": "OpenSees-EXPRESS (VM)",
-      "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
-      "hideNodeCountAndCoresPerNode": true,
-      "isInteractive": false,
-      "icon": "OpenSees",
-      "category": "Simulation"
+        "label": "OpenSees-EXPRESS (VM)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
+        "hideNodeCountAndCoresPerNode": true,
+        "isInteractive": false,
+        "icon": "OpenSees",
+        "category": "Simulation"
     }
 }
