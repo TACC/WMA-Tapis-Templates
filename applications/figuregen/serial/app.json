@@ -73,7 +73,10 @@
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "inputDirectory"
+                "targetPath": "inputDirectory",
+                "notes": {
+                    "selectionMode": "directory"
+                }
             }
         ],
         "fileInputArrays": [],

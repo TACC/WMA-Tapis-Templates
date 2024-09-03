@@ -45,7 +45,10 @@
                 "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "inputDirectory"
+                "targetPath": "inputDirectory",
+                "notes": {
+                    "selectionMode": "directory"
+                }
             }
         ],
         "fileInputArrays": [],
