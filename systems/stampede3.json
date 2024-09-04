@@ -13,7 +13,6 @@
     "canExec": true,
     "canRunBatch": true,
     "enableCmdPrefix": true,
-    "mpiCmd": null,
     "jobRuntimes": [
         {
             "runtimeType": "SINGULARITY",
@@ -67,6 +66,34 @@
             "maxMemoryMB": 192000,
             "minMinutes": 1,
             "maxMinutes": 120
+        },
+        {
+            "name": "pvc",
+            "hpcQueueName": "pvc",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 96,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 128000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "spr",
+            "hpcQueueName": "spr",
+            "maxJobs": -1,
+            "maxJobsPerUser": 36,
+            "minNodeCount": 1,
+            "maxNodeCount": 32,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 112,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 128000,
+            "minMinutes": 1,
+            "maxMinutes": 1440
         }
     ],
     "batchDefaultLogicalQueue": "skx",
