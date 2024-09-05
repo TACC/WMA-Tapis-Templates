@@ -6,11 +6,11 @@ set -x
 VM_HOST=`hostname -f`
 echo "running on VM $VM_HOST"
 
-LOGIN_PORT=$(( ((RANDOM<<15)|RANDOM) % 100 + 5900 ))
+LOGIN_PORT=$(( ((RANDOM<<15)|RANDOM) % 1000 + 7000 ))
 quit=0
 
 while [ "$quit" -ne 1 ]; do
-    netstat -a | grep $LOGIN_PORT >> /dev/null
+    netstat -an | grep $LOGIN_PORT >> /dev/null
     if [ $? -gt 0 ]; then
         quit=1
     else
@@ -82,6 +82,10 @@ apptainer run \
     "${_DOCKER_IMAGE}"
 
 EXITCODE=$?
+
+# Release port
+fuser -k $LOGIN_PORT/tcp
+
 if [ $EXITCODE -ne 0 ]; then
     # Command failed
     echo "Apptainer container exited with an error status. $EXITCODE" >&2

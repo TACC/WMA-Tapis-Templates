@@ -5,6 +5,7 @@ echo "TACC: job ${_tapisJobUUID} execution at: $(date)"
 # copy default jupyter .bashrc and .profile to $HOME if it doesn't exist
 if [ ! -f $HOME/.bashrc ]; then
     cp /home/jovyan/.bashrc $HOME
+    source $HOME/.bashrc
 fi
 if [ ! -f $HOME/.profile ]; then
     cp /home/jovyan/.profile $HOME
