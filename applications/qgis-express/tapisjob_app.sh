@@ -1,3 +1,5 @@
+#!/bin/bash
+
 handle_error() {
   local EXITCODE=$1
   echo "QGIS job exited with an error status. $EXITCODE" >&2
@@ -7,10 +9,31 @@ handle_error() {
 
 set -x
 echo "TACC: job $_tapisJobUUID execution at: `date`"
-ln -sfn "/corral/main/projects/NHERI/shared/${_tapisJobOwner}" "$HOME/MyData"
-ln -sfn "/corral/main/projects/NHERI/public/projects" "$HOME/NEES"
-ln -sfn "/corral/main/projects/NHERI/published" "$HOME/NHERI-Published"
-ln -sfn "/corral/main/projects/NHERI/community" "$HOME/CommunityData"
+ln -sfn "/corral/main/projects/NHERI/shared/${_tapisJobOwner}" "${_tapisJobWorkingDir}/MyData"
+ln -sfn "/corral/main/projects/NHERI/public/projects" "${_tapisJobWorkingDir}/NEES"
+ln -sfn "/corral/main/projects/NHERI/published" "${_tapisJobWorkingDir}/NHERI-Published"
+ln -sfn "/corral/main/projects/NHERI/community" "${_tapisJobWorkingDir}/CommunityData"
+
+projects_dir="${_tapisJobWorkingDir}/MyProjects"
+
+mkdir -p "$projects_dir"
+IFS=' ' read -r -a projects <<< "${_UserProjects}"
+for project in "${projects[@]}"; do
+    IFS=',' read -r uuid projectId <<< "$project"
+    target_path="/corral/main/projects/NHERI/projects/$uuid"
+    symlink_path="$projects_dir/$projectId"
+
+    if [ -e "$target_path" ]; then
+        if [ ! -e "$symlink_path" ]; then
+            ln -s "$target_path" "$symlink_path"
+            echo "TACC: Project Links: Created symlink: $symlink_path -> $target_path"
+        else
+            echo "TACC: Project Links: Symlink already exists: $symlink_path"
+        fi
+    else
+        echo "TACC: Project Links: Target path does not exist: $target_path"
+    fi
+done
 
 # confirm DCV server is alive
 DCV_SERVER_UP=`systemctl is-active dcvserver`
@@ -37,6 +60,7 @@ lxsession &
 LXDE_PID=$!
 sleep 5
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/qgis/3.36/lib
+export TAPIS_WORKING_DIR=$_tapisJobWorkingDir
 /opt/qgis/3.36/bin/qgis --noversioncheck --profiles-path ~/.qgis --code /opt/qgis/3.36/startup.py || exit 1
 
 dcv close-session ${DCV_HANDLE}
