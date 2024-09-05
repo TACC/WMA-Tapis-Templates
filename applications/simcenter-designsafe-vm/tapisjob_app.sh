@@ -22,7 +22,7 @@ fi
 DATADIR_NAME="${dataDirectory##*/}"
 DATADIR=`python3 get_folder_mount_path.py $dataDirectory`
 
-DATADIR_MOUNT="--bind ${DATADIR}:/home/jovyan/work/projects/$DATADIR_NAME"
+DATADIR_MOUNT="--bind ${DATADIR}:/home/${_tapisJobOwner}/work/projects/$DATADIR_NAME"
 if [ -z ${dataDirectory} ]; then
     projects_dir="$HOME/MyProjects"
 
@@ -44,7 +44,7 @@ if [ -z ${dataDirectory} ]; then
             echo "TACC: Project Links: Target path does not exist: $target_path"
         fi
     done
-    DATADIR_MOUNT="--bind ${projects_dir}:/home/jovyan/work/projects"
+    DATADIR_MOUNT="--bind ${projects_dir}:/home/${_tapisJobOwner}/work/projects"
 fi
 
 echo "Running $PBESCRIPT"
@@ -53,10 +53,10 @@ apptainer run \
     --writable-tmpfs \
     --memory 10G \
     --bind $INPUTDIR:"/data/" \
-    --bind "/corral/main/projects/NHERI/shared/${_tapisJobOwner}":"/home/jovyan/work/MyData" \
-    --bind /corral/main/projects/NHERI/public/projects:/home/jovyan/work/NEES:ro \
-    --bind /corral/main/projects/NHERI/community:/home/jovyan/work/CommunityData:ro \
-    --bind /corral/main/projects/NHERI/published:/home/jovyan/work/NHERI-Published:ro \
+    --bind "/corral/main/projects/NHERI/shared/${_tapisJobOwner}":"/home/${_tapisJobOwner}/work/MyData" \
+    --bind /corral/main/projects/NHERI/public/projects:/home/NEES:ro \
+    --bind /corral/main/projects/NHERI/community:/home/CommunityData:ro \
+    --bind /corral/main/projects/NHERI/published:/home/NHERI-Published:ro \
     --bind /corral/main/projects/NHERI/projects \
     $DATADIR_MOUNT \
     docker://taccaci/designsafe-simcenter-vm:0.0.1 /bin/sh -c "cd /data; python3 /data/$PBESCRIPT"
