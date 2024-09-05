@@ -1,0 +1,107 @@
+{
+    "id": "quofem-dcv",
+    "version": "0.4.0.0",
+    "description": "quoFem Interactive (DCV)",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": null,
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "stampede3-simcenter",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "simcenter",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "/data/designsafe/mydata/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "apptainer exec --cleanenv --containall --writable-tmpfs --bind $PWD:$HOME --env LD_LIBRARY_PATH=$LD_LIBRARY_PATH --env DISPLAY=:0 docker://fmckenna/quo-fem:0.4.0.0 /simcenter/quoFEM/build/quoFEM",
+                    "description": null,
+                    "inputMode": "REQUIRED",
+                    "notes": {
+                        "label": "XTERM Program CMD",
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "interactive.zip",
+                    "workingDirectory",
+                    "Documents"
+                ],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Working Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "workingDirectory",
+                "notes": {
+                    "selectionMode": "directory"
+                }
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 48,
+        "memoryMB": 128000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: ALL"
+    ],
+    "notes": {
+        "label": "quofem Interactive (DCV)",
+        "helpUrl": "https://simcenter.designsafe-ci.org/research-tools/quofem-application/",
+        "hideNodeCountAndCoresPerNode": true,
+        "isInteractive": true,
+        "icon": "Generic-Vis",
+        "category": "Visualization"
+    }
+}
