@@ -53,7 +53,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "apptainer exec --cleanenv --containall --writable-tmpfs --bind $PWD:$HOME --env LD_LIBRARY_PATH=$LD_LIBRARY_PATH --env DISPLAY=:0 docker://fmckenna/quo-fem:0.4.0.0 /simcenter/quoFEM/build/quoFEM",
+                    "value": "apptainer exec --cleanenv --containall --writable-tmpfs --bind /work/00849/tg458981/designsafe-work/${_tapisJobOwner}:$HOME --env LD_LIBRARY_PATH=$LD_LIBRARY_PATH --env DISPLAY=:0 docker://fmckenna/quo-fem:0.4.0.0 /simcenter/quoFEM/build/quoFEM",
                     "description": null,
                     "inputMode": "REQUIRED",
                     "notes": {
@@ -66,25 +66,12 @@
                 "includes": [],
                 "excludes": [
                     "interactive.zip",
-                    "workingDirectory",
                     "Documents"
                 ],
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [
-            {
-                "name": "Working Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
-                "inputMode": "REQUIRED",
-                "autoMountLocal": true,
-                "sourceUrl": null,
-                "targetPath": "workingDirectory",
-                "notes": {
-                    "selectionMode": "directory"
-                }
-            }
-        ],
+        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 48,
