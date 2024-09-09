@@ -65,7 +65,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "/home1/apps/QGIS/qgis_330/bin/qgis --profiles-path $STOCKYARD/qgis --code /work/projects/wma_apps/frontera/qgis/set_favorite_dir.py",
+                    "value": "/home1/apps/QGIS/qgis_330/bin/qgis --profiles-path $STOCKYARD/qgis --code /work/projects/wma_apps/stampede2/qgis/set_favorite_dir.py",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {

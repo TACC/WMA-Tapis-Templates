@@ -2,13 +2,14 @@
 
 echo "TACC: job ${_tapisJobUUID} execution at: $(date)"
 
-NB_SERVERDIR=$HOME/work/MyData/.jupyter
-
-# make .jupyter dir for config
-mkdir -p ${NB_SERVERDIR}
-
-# create the jupyter config
-JUPYTER_CONFIG="$NB_SERVERDIR/jupyter_config.py"
+# copy default jupyter .bashrc and .profile to $HOME if it doesn't exist
+if [ ! -f $HOME/.bashrc ]; then
+    cp /home/jovyan/.bashrc $HOME
+    source $HOME/.bashrc
+fi
+if [ ! -f $HOME/.profile ]; then
+    cp /home/jovyan/.profile $HOME
+fi
 
 function session_get_token()
 {
@@ -16,13 +17,17 @@ function session_get_token()
     echo ${TAP_TOKEN}
 }
 
-# bail if we cannot create a token for the session
+# create jupyter session token
 SESSION_TOKEN=$(session_get_token)
 if [ -z "${SESSION_TOKEN}" ]; then
     echo "TACC: ERROR - could not generate token for jupyter session"
     exit 1
 fi
 echo "TACC: using token ${SESSION_TOKEN}"
+
+
+# define jupyter config file
+JUPYTER_CONFIG="/tmp/jupyter_config.py"
 
 cat <<- EOF > ${JUPYTER_CONFIG}
 # Configuration file for jupyter session
@@ -34,9 +39,10 @@ c.ServerApp.port = ${LOGIN_PORT}
 c.ServerApp.open_browser = False
 c.ServerApp.allow_origin = u"*"
 c.ServerApp.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
-c.ServerApp.root_dir = "$HOME/work"
-c.ServerApp.preferred_dir = "$HOME/work"
+c.ServerApp.root_dir = "${HOME}"
+c.ServerApp.preferred_dir = "${HOME}"
 c.ServerApp.token = "${SESSION_TOKEN}"
+c.ServerApp.terminado_settings = {'shell_command': ['/bin/bash', '--login', '-i']}
 EOF
 
 JUPYTER_URL="https://${VM_HOST}:${LOGIN_PORT}/?token=${SESSION_TOKEN}"

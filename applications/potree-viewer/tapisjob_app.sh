@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -x
+
 handle_error() {
   local EXITCODE=$1
   echo "Potree Viewer job exited with an error status. $EXITCODE" >&2
@@ -5,14 +9,13 @@ handle_error() {
   exit $EXITCODE
 }
 
-set -x
 echo "TACC: job $_tapisJobUUID execution at: `date`"
 
-LOGIN_PORT=$(( ((RANDOM<<15)|RANDOM) % 100 + 5900 ))
+LOGIN_PORT=$(( ((RANDOM<<15)|RANDOM) % 1000 + 7000 ))
 quit=0
 
 while [ "$quit" -ne 1 ]; do
-  netstat -a | grep $LOGIN_PORT >> /dev/null
+  netstat -an | grep $LOGIN_PORT >> /dev/null
   if [ $? -gt 0 ]; then
     quit=1
   else
@@ -51,5 +54,8 @@ fi
 
 sleep $((_tapisMaxMinutes - 2))m
 apptainer instance stop $POTREE_INSTANCE_NAME
+
+# Release port
+fuser -k $LOGIN_PORT/tcp
 
 echo "TACC: job $_tapisJobUUID execution finished at: `date`"

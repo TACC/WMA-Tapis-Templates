@@ -38,6 +38,15 @@
                     "notes": {
                         "isHidden": true
                     }
+                },
+                {
+                    "key": "_DOCKER_IMAGE",
+                    "value": "docker://taccaci/opensees-interactive:3.7.0",
+                    "description": "Docker image to use for the job",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "archiveFilter": {

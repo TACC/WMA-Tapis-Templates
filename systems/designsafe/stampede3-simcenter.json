@@ -1,7 +1,7 @@
 {
     "isPublic": true,
     "isDynamicEffectiveUser": true,
-    "id": "stampede3",
+    "id": "stampede3-simcenter",
     "description": "System for running jobs on the Stampede3 HPC system.",
     "systemType": "LINUX",
     "host": "stampede3.tacc.utexas.edu",
@@ -25,6 +25,20 @@
     "jobMaxJobsPerUser": -1,
     "batchScheduler": "SLURM",
     "batchLogicalQueues": [
+        {
+            "name": "simcenter",
+            "hpcQueueName": "simcenter",
+            "maxJobs": -1,
+            "maxJobsPerUser": 3,
+            "minNodeCount": 1,
+            "maxNodeCount": 8,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 48,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 192000,
+            "minMinutes": 1,
+            "maxMinutes": 120
+        },
         {
             "name": "icx",
             "hpcQueueName": "icx",
@@ -96,11 +110,11 @@
             "maxMinutes": 1440
         }
     ],
-    "batchDefaultLogicalQueue": "skx",
+    "batchDefaultLogicalQueue": "simcenter",
     "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Stampede3"
+        "label": "Stampede3 (SimCenter)"
     }
 }

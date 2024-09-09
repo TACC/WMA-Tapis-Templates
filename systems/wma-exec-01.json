@@ -13,7 +13,7 @@
     "canExec": true,
     "canRunBatch": false,
     "enableCmdPrefix": true,
-    "mpiCmd": null,
+    "mpiCmd": "",
     "jobRuntimes": [
         {
             "runtimeType": "SINGULARITY",
@@ -24,17 +24,20 @@
             "version": null
         }
     ],
-    "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
+    "jobWorkingDir": "/tmp/tapis-${JobOwner}/${JobCreateDate}/${JobUUID}",
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
     "batchScheduler": "SLURM",
     "batchLogicalQueues": [],
-    "batchDefaultLogicalQueue": null,
+    "batchDefaultLogicalQueue": "",
     "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Virtual Machine"
+        "label": "Virtual Machine",
+        "allocations": [
+            "DesignSafe-DCV"
+        ]
     }
 }
