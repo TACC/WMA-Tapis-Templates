@@ -4,8 +4,8 @@ set -x
 chmod +x ./getUID.sh
 chmod +x ./JSON.sh
 
-# username is either an individual username or comma-separated list
-IFS=',' read -ra USERNAMES <<< ${username}
+# usernames is either an individual username or comma-separated list
+IFS=',' read -ra USERNAMES <<< ${usernames}
 
 ACL_COMMANDS=()
 for delimitedUser in ${USERNAMES[@]};

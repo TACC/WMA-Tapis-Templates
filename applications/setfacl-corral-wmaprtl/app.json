@@ -33,11 +33,11 @@
       "schedulerOptions": [],
       "envVariables": [
         {
-          "key": "username",
-          "description": "TACC username of user to have ACLs set for",
+          "key": "usernames",
+          "description": "Either an individual TACC username or comma-separated list of TACC usernames to have ACLs set for",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "username"
+            "label": "usernames"
           }
         },
         {
