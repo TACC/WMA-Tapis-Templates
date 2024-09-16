@@ -1,3 +1,5 @@
+#!/bin/bash
+
 handle_error() {
   local EXITCODE=$1
   echo "Matlab job exited with an error status. $EXITCODE" >&2
