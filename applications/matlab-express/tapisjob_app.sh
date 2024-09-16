@@ -12,6 +12,27 @@ ln -sfn "/corral/main/projects/NHERI/public/projects" "${_tapisJobWorkingDir}/NE
 ln -sfn "/corral/main/projects/NHERI/published" "${_tapisJobWorkingDir}/NHERI-Published"
 ln -sfn "/corral/main/projects/NHERI/community" "${_tapisJobWorkingDir}/CommunityData"
 
+projects_dir="${_tapisJobWorkingDir}/MyProjects"
+
+mkdir -p "$projects_dir"
+IFS=' ' read -r -a projects <<< "${_UserProjects}"
+for project in "${projects[@]}"; do
+    IFS=',' read -r uuid projectId <<< "$project"
+    target_path="/corral/main/projects/NHERI/projects/$uuid"
+    symlink_path="$projects_dir/$projectId"
+
+    if [ -e "$target_path" ]; then
+        if [ ! -e "$symlink_path" ]; then
+            ln -s "$target_path" "$symlink_path"
+            echo "TACC: Project Links: Created symlink: $symlink_path -> $target_path"
+        else
+            echo "TACC: Project Links: Symlink already exists: $symlink_path"
+        fi
+    else
+        echo "TACC: Project Links: Target path does not exist: $target_path"
+    fi
+done
+
 # confirm DCV server is alive
 DCV_SERVER_UP=`systemctl is-active dcvserver`
 if [ $DCV_SERVER_UP != "active" ]; then
