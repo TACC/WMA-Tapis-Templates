@@ -1,6 +1,6 @@
 {
     "id": "cloud.data",
-    "description": "Corral Community Storage System",
+    "description": "Community Storage System",
     "systemType": "LINUX",
     "host": "cloud.data.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
@@ -9,7 +9,11 @@
     "port": 22,
     "canExec": false,
     "notes": {
-        "label": "Corral",
-        "keyservice": true
+        "label": "Data Files",
+        "hasWork": true,
+        "keyservice": true,
+        "portalNames": [
+            "DesignSafe"
+        ]
     }
 }
