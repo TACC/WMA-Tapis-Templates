@@ -1,4 +1,4 @@
-How to install
+### How to install
 
 * Go to https://matlab.mathworks.com
 * create an account with tacc email
@@ -11,3 +11,7 @@ How to install
 * Set install location to /opt/MATLAB
 * After install is done, in the install folder in /opt, delete licenses folder.
 * Launch the app using command with this argument -c 10280@matlab.shared.utexas.edu, which is license for unix group in TACC.
+
+
+### How to install add-ons
+* See details in internal wiki for WMA Apps
