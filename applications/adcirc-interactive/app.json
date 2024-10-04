@@ -1,6 +1,6 @@
 {
     "id": "adcirc-interactive",
-    "version": "1.0.0",
+    "version": "56.00",
     "description": "ADCIRC Interactive provides users with a JupyterLab environment running on a small VM with pre-installed adcirc/padcirc for testing before submitting HPC jobs.",
     "owner": "${apiUserId}",
     "enabled": true,
