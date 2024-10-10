@@ -60,7 +60,7 @@
         },
         "fileInputs": [],
         "fileInputArrays": [],
-        "maxMinutes": 1440,
+        "maxMinutes": 2880,
         "subscriptions": [],
         "tags": []
     },
