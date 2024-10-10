@@ -52,10 +52,11 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [
-                    "opensees-express.zip",
-                    "tapisjob.env"
+                    "opensees-interactive.zip",
+                    "tapisjob.env",
+                    "tmp"
                 ],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
         "fileInputs": [],

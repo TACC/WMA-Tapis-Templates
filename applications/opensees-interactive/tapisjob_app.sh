@@ -49,6 +49,7 @@ done
 #   See: https://apptainer.org/docs/user/main/appendix.html
 export APPTAINER_HOME="${HOME}"
 export APPTAINER_PWD="${HOME}"
+export APPTAINER_TMPDIR="${_tapisJobWorkingDir}/tmp"
 
 # N.B.
 #   The tmpfs apptainer creates is only 64MB in size, so we need a new tmp space mapped for pip to be able
@@ -69,7 +70,7 @@ apptainer run \
     --env _tapisJobOwner="${_tapisJobOwner}" \
     --env _tapisJobUUID="${_tapisJobUUID}" \
     --env _INTERACTIVE_WEBHOOK_URL="${_INTERACTIVE_WEBHOOK_URL}" \
-    --env TMPDIR="${_tapisJobWorkingDir}/tmp" \
+    --bind ${APPTAINER_TMPDIR}:/tmp \
     --bind "${CONTAINER_HOME}:${HOME}" \
     --bind /corral/main/projects/NHERI/projects \
     --bind "${USER_MYDATA}:${HOME}/MyData" \
