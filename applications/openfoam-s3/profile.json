@@ -1,0 +1,17 @@
+{
+    "name": "openfoam_v12",
+    "description": "Modules to load for OpenFOAM v12",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "intel/24.0",
+                "impi/21.11",
+                "openfoam/12"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
