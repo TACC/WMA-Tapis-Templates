@@ -1,0 +1,15 @@
+{
+    "name": "python3-3.9.2",
+    "description": "Scheduler profile for Python 3.9.2 on TACC clusters",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "python3/3.9.2"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

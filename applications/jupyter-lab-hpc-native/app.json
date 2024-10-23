@@ -1,11 +1,10 @@
 {
     "id": "jupyter-lab-hpc-native",
-    "version": "2.0.0",
-    "description": "Run an interactive Jupyter Lab session with the ability to load and run MPI jobs or any other modules dynamically.",
+    "version": "1.0.2",
+    "description": "Run an interactive Jupyter Notebook session on an HPC node, with optional MPI support from within the notebook.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
-    "runtimeVersion": null,
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
@@ -17,18 +16,16 @@
     "jobAttributes": {
         "description": null,
         "dynamicExecSystem": false,
-        "execSystemConstraints": null,
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
-        "isMpi": true,  
-        "mpiCmd": "mpiexec",  
-        "cmdPrefix": "source tapisjob.env; source /etc/profile.d/modules.sh; jupyter-lab --ip=0.0.0.0 --no-browser --allow-root",
+        "isMpi": false,  
+        "mpiCmd": null,  
+        "cmdPrefix": "source jupyter-notebook-native/run.sh;",  
         "parameterSet": {
             "appArgs": [
                 {
@@ -44,9 +41,9 @@
             "schedulerOptions": [
                 {
                     "name": "TACC Scheduler Profile",
-                    "description": "Scheduler profile for Python 3.7.0",
+                    "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile python3-3.7.0",
+                    "arg": "--tapis-profile python3-3.9.2",
                     "notes": {
                         "isHidden": true
                     }
@@ -61,12 +58,7 @@
                     }
                 }
             ],
-            "envVariables": [
-                {
-                    "key": "ENABLE_MPI",
-                    "value": "${isMpi}"  
-                }
-            ],
+            "envVariables": [],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -91,8 +83,8 @@
         "tags": []
     },
     "tags": [
-        "portalName: DesignSafe"
-        ],
+        "portalName: DESIGNSAFE"
+    ],
     "notes": {
         "label": "Jupyter Lab HPC Native (Frontera)",
         "helpUrl": "https://jupyter-notebook.readthedocs.io/en/stable/",
