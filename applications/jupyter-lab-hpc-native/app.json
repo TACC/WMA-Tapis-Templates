@@ -1,0 +1,104 @@
+{
+    "id": "jupyter-lab-hpc-native",
+    "version": "2.0.0",
+    "description": "Run an interactive Jupyter Lab session with the ability to load and run MPI jobs or any other modules dynamically.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://debian:bullseye-slim",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": null,
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "frontera",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": true,  
+        "mpiCmd": "mpiexec",  
+        "cmdPrefix": "source tapisjob.env; source /etc/profile.d/modules.sh; jupyter-lab --ip=0.0.0.0 --no-browser --allow-root",
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "launchParameters",
+                    "arg": "echo 'Job is done.'",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for Python 3.7.0",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile python3-3.7.0",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TAP Session Substring",
+                    "description": "TAP Functions require the substring 'tap_' in the SLURM job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "ENABLE_MPI",
+                    "value": "${isMpi}"  
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Jupyter input files",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe"
+        ],
+    "notes": {
+        "label": "Jupyter Lab HPC Native (Frontera)",
+        "helpUrl": "https://jupyter-notebook.readthedocs.io/en/stable/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": "jupyter",
+        "category": "Data Processing"
+    }
+}
