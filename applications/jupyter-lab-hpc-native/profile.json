@@ -4,7 +4,8 @@
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "python3/3.9.2"
+                "python3/3.9.2",
+                "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
         }

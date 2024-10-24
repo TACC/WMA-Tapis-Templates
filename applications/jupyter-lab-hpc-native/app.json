@@ -1,7 +1,7 @@
 {
     "id": "jupyter-lab-hpc-native",
     "version": "1.0.2",
-    "description": "Run an interactive Jupyter Notebook session on an HPC node, with optional MPI support from within the notebook.",
+    "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -23,9 +23,8 @@
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
-        "isMpi": false,  
-        "mpiCmd": null,  
-        "cmdPrefix": "source jupyter-notebook-native/run.sh;",  
+        "isMpi": false,
+        "cmdPrefix": "source tapisjob.env;source run.sh;",
         "parameterSet": {
             "appArgs": [
                 {
@@ -69,8 +68,8 @@
             {
                 "name": "Jupyter input files",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native",
-                "targetPath": "*",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native/run.sh",
+                "targetPath": "run.sh",
                 "notes": {
                     "isHidden": true
                 }
