@@ -76,6 +76,6 @@
         "hideNodeCountAndCoresPerNode": true,
         "icon": "Potree",
         "category": "Visualization",
-        "isInteractive": true
+        "isInteractive": false
     }
 }
