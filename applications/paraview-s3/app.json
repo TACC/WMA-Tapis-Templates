@@ -1,5 +1,5 @@
 {
-    "id": "paraview",
+    "id": "paraview-s3",
     "version": "5.10.0",
     "description": "Run an interactive Paraview session on Stampede 3.",
     "owner": "${apiUserId}",
@@ -20,7 +20,7 @@
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "development",
+        "execSystemLogicalQueue": "skx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
@@ -110,18 +110,13 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 56,
+        "coresPerNode": 48,
         "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: 3DEM",
-        "portalName: UTRC",
-        "portalName: PTDATAX",
-        "portalName: CEP"
-    ],
+    "tags": ["portalName: DesignSafe"],
     "notes": {
         "label": "Paraview (Stampede 3)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#paraview-user-guide",
