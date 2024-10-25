@@ -24,7 +24,7 @@
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
-        "cmdPrefix": "source tapisjob.env;source run.sh;",
+        "cmdPrefix": "source tapisjob.env; source /corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native/run.sh;",
         "parameterSet": {
             "appArgs": [
                 {
