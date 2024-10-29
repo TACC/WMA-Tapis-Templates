@@ -1,0 +1,15 @@
+{
+    "name": "jupyter-lab-hpc-native",
+    "description": "Modules to load for Jupyter Lab HPC Native",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "python3/3.9.2"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

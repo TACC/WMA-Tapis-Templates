@@ -21,7 +21,7 @@
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
-        "cmdPrefix": "source tapisjob.env; module load python3/3.9.2; jupyter-lab --no-browser --ip=0.0.0.0",
+        "cmdPrefix": null,
         "parameterSet": {
             "appArgs": [
                 {
