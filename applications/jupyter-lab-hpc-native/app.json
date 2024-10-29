@@ -61,17 +61,7 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [
-            {
-                "name": "Jupyter input files",
-                "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native/run.sh",
-                "targetPath": "run.sh",
-                "notes": {
-                    "isHidden": true
-                }
-            }
-        ],
+        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
         "maxMinutes": 120,
