@@ -1,5 +1,5 @@
 {
-    "name": "Paraview_5.10.0",
+    "name": "Paraview_5.12.0",
     "description": "Modules to load for Paraview",
     "moduleLoads": [
         {
@@ -14,7 +14,5 @@
             "moduleLoadCommand": "module load"
         }
     ],
-    "hiddenOptions": [
-        "MEM"
-    ]
+    "hiddenOptions": ["MEM"]
 }
