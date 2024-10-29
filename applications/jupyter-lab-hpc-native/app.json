@@ -61,7 +61,17 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Working Directory",
+                "description": "The directory containing the target (i.e., 0_targets) and parameter (i.e., 1_parameters) directories, see documentation for details.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "workingDirectory",
+                "envKey": "workingDirectory"
+            }
+            ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "maxMinutes": 120,
