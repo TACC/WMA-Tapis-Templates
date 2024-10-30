@@ -29,6 +29,15 @@ DCV_HANDLE="${_tapisJobUUID}-session"
 cat <<- EOF > $DCV_STARTUP
 #!/bin/sh
 pip install PySide2 matplotlib scipy
+
+cleanup() {
+    kill $LXDE_PID
+}
+trap cleanup EXIT
+lxsession &
+LXDE_PID=$!
+sleep 5
+
 /snap/stko/current/STKORun.sh || exit 1
 
 dcv close-session ${DCV_HANDLE}
