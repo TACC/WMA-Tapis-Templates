@@ -55,7 +55,7 @@ echo "Running $PBESCRIPT"
 
 apptainer run \
     --writable-tmpfs \
-    --memory 10G \
+    --memory 5G \
     --bind $INPUTDIR:"/data/" \
     --bind "/corral/main/projects/NHERI/shared/${_tapisJobOwner}":"/home/${_tapisJobOwner}/MyData" \
     --bind /corral/main/projects/NHERI/public/projects:/home/NEES:ro \
