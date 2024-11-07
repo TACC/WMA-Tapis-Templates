@@ -38,7 +38,10 @@
           "name": "Main Script",
           "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified. To use with test input, use 'freeFieldEffective.tcl'",
           "arg": null,
-          "inputMode": "REQUIRED"
+          "inputMode": "REQUIRED",
+          "notes": {
+            "inputType": "fileInput"
+          }
         }
       ],
       "containerArgs": [],

@@ -1,7 +1,7 @@
 {
-    "id": "qgis-ls6",
-    "version": "3.34.4",
-    "description": "Run an interactive QGIS session on LS6.",
+    "id": "quofem-dcv",
+    "version": "0.4.0.0",
+    "description": "quoFem Interactive (DCV)",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -13,20 +13,20 @@
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "",
+        "description": null,
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "ls6",
+        "execSystemId": "stampede3-simcenter",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}",
-        "execSystemLogicalQueue": "development",
+        "execSystemLogicalQueue": "simcenter",
         "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemDir": "/data/designsafe/mydata/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": null,
+        "cmdPrefix": "mkdir $PWD/Work;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
@@ -53,9 +53,9 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "apptainer run docker://qgis/qgis:final-3_34_4 qgis --profiles-path $STOCKYARD/qgis --code /work/projects/wma_apps/stampede2/qgis/set_favorite_dir.py --noversioncheck",
+                    "value": "apptainer exec --cleanenv --containall --writable-tmpfs --bind $PWD:$HOME --bind ${STOCKYARD}:$HOME/Work --env LD_LIBRARY_PATH=$LD_LIBRARY_PATH --env DISPLAY=:0 docker://fmckenna/quo-fem:0.4.0.0 /simcenter/quoFEM/build/quoFEM",
                     "description": null,
-                    "inputMode": "FIXED",
+                    "inputMode": "REQUIRED",
                     "notes": {
                         "label": "XTERM Program CMD",
                         "isHidden": true
@@ -65,30 +65,30 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [
-                    "qgis*.zip"
+                    "interactive.zip",
+                    "Documents"
                 ],
                 "includeLaunchFiles": true
             }
         },
+        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 128,
-        "memoryMB": 256000,
+        "coresPerNode": 48,
+        "memoryMB": 128000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
     "tags": [
-        "portalName: CEP",
-        "portalName: UTRC",
-        "portalName: PTDATAX"
+        "portalName: ALL"
     ],
     "notes": {
-        "label": "QGIS (LoneStar6)",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/qgis/",
+        "label": "quofem Interactive (DCV)",
+        "helpUrl": "https://simcenter.designsafe-ci.org/research-tools/quofem-application/",
         "hideNodeCountAndCoresPerNode": true,
-        "icon": null,
-        "category": "Data Processing",
-        "isInteractive": true
+        "isInteractive": true,
+        "icon": "Generic-Vis",
+        "category": "Visualization"
     }
 }

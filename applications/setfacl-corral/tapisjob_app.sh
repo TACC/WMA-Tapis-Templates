@@ -1,15 +1,17 @@
 #!/bin/bash
 
 set -x
+chmod +x ./getUID.sh
+chmod +x ./JSON.sh
 
 # username is either an individual username or comma-separated list
 IFS=',' read -ra USERNAMES <<< ${username}
 
 ACL_ADD_COMMANDS=()
 ACL_REMOVE_COMMANDS=()
-for delimitedUser in $USERNAMES;
+for delimitedUser in ${USERNAMES[@]};
     do
-        USER_ID=$(id -u ${delimitedUser})
+        USER_ID=$(./getUID.sh ${delimitedUser})
         echo "user id: $USER_ID"
         ACL_ADD_COMMANDS+=("d:u:${USER_ID}:rwX,u:${USER_ID}:rwX")
         ACL_REMOVE_COMMANDS+=("d:u:${USER_ID},u:${USER_ID}")

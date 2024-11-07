@@ -52,10 +52,11 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [
-                    "opensees-express.zip",
-                    "tapisjob.env"
+                    "opensees-interactive.zip",
+                    "tapisjob.env",
+                    "tmp"
                 ],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
         "fileInputs": [],
@@ -72,6 +73,7 @@
         "label": "Interactive VM for OpenSees - v3.7.0",
         "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/simulation/opensees/",
         "hideNodeCountAndCoresPerNode": true,
+        "hideMaxMinutes": true,
         "isInteractive": true,
         "icon": "OpenSees",
         "category": "Simulation"

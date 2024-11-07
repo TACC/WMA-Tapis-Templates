@@ -1,13 +1,13 @@
 {
-  "id": "setfacl-corral-tg458981",
-  "version": "0.0.2",
+  "id": "setfacl-corral-wmaprtl",
+  "version": "0.0.1",
   "description": "Add/Remove ACLs on a directory",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
   "runtimeVersion": null,
   "runtimeOptions": null,
-  "containerImage": "tapis://designsafe.storage.default/wma_prtl/applications/v3/setfacl-corral-tg458981/v002/setfacl-corral-tg458981_v002.zip",
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/setfacl-corral-wmaprtl/setfacl-corral.zip",
   "jobType": "FORK",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -16,13 +16,13 @@
     "description": "",
     "dynamicExecSystem": false,
     "execSystemConstraints": null,
-    "execSystemId": "cloud.data.exec.tg458981",
+    "execSystemId": "cloud.data.exec.wma_prtl",
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
     "execSystemOutputDir": "${JobWorkingDir}/output",
     "execSystemLogicalQueue": "development",
-    "archiveSystemId": "designsafe.storage.default",
-    "archiveSystemDir": "/wma_prtl/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "archiveSystemId": "cloud.data",
+    "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
     "archiveOnAppError": true,
     "isMpi": false,
     "mpiCmd": null,
@@ -33,11 +33,11 @@
       "schedulerOptions": [],
       "envVariables": [
         {
-          "key": "username",
-          "description": "TACC username of user to have ACLs set for",
+          "key": "usernames",
+          "description": "Either an individual TACC username or comma-separated list of TACC usernames to have ACLs set for",
           "inputMode": "REQUIRED",
           "notes": {
-            "label": "username"
+            "label": "usernames"
           }
         },
         {
@@ -64,6 +64,26 @@
               }
             ]
           }
+        },
+        {
+          "key": "role",
+          "value": "writer",
+          "description": "ACL Role - can be reader, writer or none.",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "Role",
+            "enum_values": [
+              {
+                "Reader": "reader"
+              },
+              {
+                "Writer": "writer"
+              },
+              {
+                "None": "none"
+              }
+            ]
+          }
         }
       ],
       "archiveFilter": {
@@ -82,7 +102,7 @@
     "tags": []
   },
   "tags": [
-    "portalName: DesignSafe"
+    "portalName: CEP"
   ],
   "notes": {
     "label": "setfacls cloud.data"

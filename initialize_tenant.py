@@ -272,6 +272,7 @@ def main():
                         "padcirc-swan-frontera",
                         "paraview",
                         "paraview-ls6",
+                        "paraview-s3",
                         "qgis",
                         "qgis-express",
                         "qgis-s3",
