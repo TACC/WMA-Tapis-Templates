@@ -16,23 +16,14 @@
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "development",
+        "execSystemLogicalQueue": "rtx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "cmdPrefix": null,
         "parameterSet": {
-            "appArgs": [
-                {
-                    "name": "launchParameters",
-                    "arg": "echo 'Job is done.'",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "appArgs": [],
             "containerArgs": [],
             "schedulerOptions": [
                 {
@@ -48,7 +39,7 @@
                     "name": "TAP Session Substring",
                     "description": "TAP Functions require the substring 'tap_' in the SLURM job name.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-tap_",
+                    "arg": "--job-name ${JobName}-tap_dsmydata",
                     "notes": {
                         "isHidden": true
                     }
@@ -64,6 +55,8 @@
         "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
+        "coresPerNode": 16,
+        "memoryMB": 128000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
@@ -72,8 +65,8 @@
         "portalName: DESIGNSAFE"
     ],
     "notes": {
-        "label": "Jupyter Lab HPC Native (Frontera)",
-        "helpUrl": "https://jupyter-notebook.readthedocs.io/en/stable/",
+        "label": "Jupyter Lab HPC Native (GPU)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "jupyter",

@@ -8,20 +8,26 @@ LOCAL_PORT=5902
 mkdir -p $PWD/Jupyter
 cd Jupyter
 
-# This file will be located in the directory mounted by the job.
-SESSION_FILE="delete_me_to_end_session"
-touch $SESSION_FILE
+# Launch jupyter-lab and hang the job on this process directly
+jupyter-lab ${JUPYTER_ARGS}
 
-# Make symlinks for work, home and scratch
-mkdir -p $PWD/Work $PWD/Home $PWD/Scratch
+# Make symlinks for work, home, scratch, and mydata
+mkdir -p $PWD/Work $PWD/Home $PWD/Scratch $PWD/MyData
+
 if [ ! -L $PWD/Work ]; then
     ln -s $STOCKYARD $PWD/Work
 fi
+
 if [ ! -L $PWD/Home ]; then
     ln -s $HOME $PWD/Home
 fi
+
 if [ ! -L $PWD/Scratch ]; then
     ln -s $SCRATCH $PWD/Scratch
+fi
+
+if [ ! -L $PWD/MyData ]; then
+    ln -s /data/designsafe/mydata/${_tapisJobOwner} $PWD/MyData
 fi
 
 TAP_FUNCTIONS="/share/doc/slurm/tap_functions"
@@ -109,7 +115,6 @@ JUPYTER_ARGS="--certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG} -
 echo "TACC: using jupyter command: ${JUPYTER_BIN} ${JUPYTER_ARGS}"
 nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> ${JUPYTER_LOGFILE} && rm ${TAP_LOCKFILE} &
 JUPYTER_PID=$!
-LOCAL_PORT=5902
 
 LOGIN_PORT=$(tap_get_port)
 echo "TACC: got login node jupyter port ${LOGIN_PORT}"
@@ -146,13 +151,6 @@ source "${_tapisJobWorkingDir}/tapisjob.env"
 
 echo "TACC: Your jupyter-lab server is now running at ${JUPYTER_URL}"
 curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}"
-
-echo $NODE_HOSTNAME_LONG $JUPYTER_PID > $SESSION_FILE
-
-# Keep Jupyter session running while session file exists
-while [ -f $SESSION_FILE ]; do
-    sleep 10
-done
 
 echo "TACC: release port returned $(tap_release_port ${LOGIN_PORT})"
 sleep 1
