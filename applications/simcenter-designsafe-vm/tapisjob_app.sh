@@ -22,8 +22,12 @@ fi
 DATADIR_NAME="${dataDirectory##*/}"
 DATADIR=`python3 get_folder_mount_path.py $dataDirectory`
 
-DATADIR_MOUNT="--bind ${DATADIR}:/home/${_tapisJobOwner}/work/projects/$DATADIR_NAME"
-if [ -z ${dataDirectory} ]; then
+DATADIR_MOUNT="--bind ${DATADIR}:/home/${_tapisJobOwner}/projects/$DATADIR_NAME"
+if [ -z ${dataDirectory} || -z ${DATADIR} ]; then
+    
+    if [ -z ${DATADIR} ]; then
+        echo "No valid mount found for Data Directory specified in job request; defaulting to mounting your projects."
+    fi
     projects_dir="$HOME/MyProjects"
 
     mkdir -p "$projects_dir"
@@ -44,7 +48,7 @@ if [ -z ${dataDirectory} ]; then
             echo "TACC: Project Links: Target path does not exist: $target_path"
         fi
     done
-    DATADIR_MOUNT="--bind ${projects_dir}:/home/${_tapisJobOwner}/work/projects"
+    DATADIR_MOUNT="--bind ${projects_dir}:/home/${_tapisJobOwner}/projects"
 fi
 
 echo "Running $PBESCRIPT"
@@ -53,7 +57,7 @@ apptainer run \
     --writable-tmpfs \
     --memory 10G \
     --bind $INPUTDIR:"/data/" \
-    --bind "/corral/main/projects/NHERI/shared/${_tapisJobOwner}":"/home/${_tapisJobOwner}/work/MyData" \
+    --bind "/corral/main/projects/NHERI/shared/${_tapisJobOwner}":"/home/${_tapisJobOwner}/MyData" \
     --bind /corral/main/projects/NHERI/public/projects:/home/NEES:ro \
     --bind /corral/main/projects/NHERI/community:/home/CommunityData:ro \
     --bind /corral/main/projects/NHERI/published:/home/NHERI-Published:ro \
