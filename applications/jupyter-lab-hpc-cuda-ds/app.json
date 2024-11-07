@@ -28,7 +28,7 @@
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
-        "cmdPrefix": "source tapisjob.env; source tap.sh; export APPTAINER_HOME=/home/jovyan/work; export APPTAINER_PWD=/home/jovyan/work; mkdir -p ${_tapisJobWorkingDir}/tmp $HOME/.jupyter-lab-hpc/Work;",
+        "cmdPrefix": "source tapisjob.env; source tap.sh; export APPTAINER_HOME=/home/jovyan/work; export APPTAINER_PWD=/home/jovyan/work; mkdir -p ${_tapisJobWorkingDir}/tmp $HOME/.jupyter-lab-hpc/Work $HOME/.jupyter-lab-hpc/MyData;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [
@@ -44,7 +44,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for user work and persistent jupyter env",
                     "inputMode": "FIXED",
-                    "arg": "--bind $HOME/.jupyter-lab-hpc:/home/jovyan/work,/work/00849/tg458981/designsafe-work/${JobOwner}:/home/jovyan/work/Work",
+                    "arg": "--bind $HOME/.jupyter-lab-hpc:/home/jovyan/work,${STOCKYARD}:/home/jovyan/work/Work,/data/designsafe/mydata/${_tapisJobOwner}:/home/jovyan/work/MyData",
                     "notes": {
                         "isHidden": true
                     }
@@ -73,7 +73,7 @@
                     "name": "TAP Session Substring",
                     "description": "TAP Functions require the substring 'tap_' and in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-tap_",
+                    "arg": "--job-name ${JobName}-tap_dsmydata",
                     "notes": {
                         "isHidden": true
                     }

@@ -1,0 +1,35 @@
+{
+    "isPublic": false,
+    "isDynamicEffectiveUser": false,
+    "id": "cloud.data.exec.wma_prtl",
+    "description": "System for running jobs on cloud.data",
+    "systemType": "LINUX",
+    "host": "cloud.data.tacc.utexas.edu",
+    "effectiveUserId": "wma_prtl",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "authnCredential": {
+        "privateKey": "CHANGEME",
+        "publicKey": "CHANGEME"
+    },
+    "rootDir": "/",
+    "port": 22,
+    "canExec": true,
+    "canRunBatch": false,
+    "enableCmdPrefix": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [],
+    "batchDefaultLogicalQueue": "normal",
+    "batchSchedulerProfile": "tacc-apptainer",
+    "jobCapabilities": [],
+    "tags": []
+}

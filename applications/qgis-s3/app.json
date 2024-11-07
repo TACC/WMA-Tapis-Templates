@@ -7,7 +7,7 @@
     "runtime": "ZIP",
     "runtimeVersion": null,
     "runtimeOptions": null,
-    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/qgis/qgis_3.34.4.zip",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -52,11 +52,12 @@
             ],
             "envVariables": [
                 {
-                    "key": "APPEND_PATH",
-                    "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "key": "_XTERM_CMD",
+                    "value": "apptainer run docker://qgis/qgis:final-3_34_4 qgis --profiles-path $STOCKYARD/qgis --code /work/projects/wma_apps/stampede2/qgis/set_favorite_dir.py --noversioncheck",
+                    "description": null,
                     "inputMode": "FIXED",
                     "notes": {
+                        "label": "XTERM Program CMD",
                         "isHidden": true
                     }
                 }

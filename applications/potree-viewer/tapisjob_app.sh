@@ -25,6 +25,9 @@ done
 echo "Using port=$LOGIN_PORT"
 
 POTREE_INSTANCE_NAME="potree-viewer-${_tapisJobUUID}"
+export POTREE_USER=$(id -un)
+export POTREE_PASSWORD=$(openssl rand -hex 15)
+echo "username is $POTREE_USER with password $POTREE_PASSWORD"
 
 apptainer instance run \
     --writable-tmpfs \
@@ -35,12 +38,12 @@ apptainer instance run \
     --bind /etc/letsencrypt/live/wma-exec-01.tacc.utexas.edu/privkey.pem:/etc/nginx/ssl/nginx.key \
     --env LOGIN_PORT=$LOGIN_PORT \
     docker://taccaci/potree-viewer:1.8.2 $POTREE_INSTANCE_NAME \
-    /bin/bash -c "cp -r /potree/{build,libs} /data/ && envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    /bin/bash -c "cp -r /potree/{build,libs} /data/ && htpasswd -bc /etc/nginx/.htpasswd \"$POTREE_USER\" \"$POTREE_PASSWORD\" && envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
 # Webhook callback url for job ready notification
 # (notifications sent to INTERACTIVE_WEBHOOK_URL (i.e. https://3dem.org/webhooks/interactive/))`
 #connect to interactive session on VM
-curl -k --data "event_type=interactive_session_ready&address=https://wma-exec-01.tacc.utexas.edu:${LOGIN_PORT}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+curl -k --data "event_type=interactive_session_ready&address=https://wma-exec-01.tacc.utexas.edu:${LOGIN_PORT}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}&message=Connect to Potree Viewer with username $POTREE_USER and password $POTREE_PASSWORD" "${_INTERACTIVE_WEBHOOK_URL}" &
 
 echo "TACC: Your interactive session is now running!"
 echo "TACC: Connect to your session at: https://wma-exec-01.tacc.utexas.edu:${LOGIN_PORT}/"

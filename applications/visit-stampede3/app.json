@@ -87,7 +87,7 @@
       "portalName: DesignSafe"
     ],
     "notes": {
-      "icon": "Generic-Vis",
+      "icon": "Generic-Visualization",
       "label": "VisIt (Stampede3)",
       "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#visit-user-guide",
       "hideNodeCountAndCoresPerNode": false,
