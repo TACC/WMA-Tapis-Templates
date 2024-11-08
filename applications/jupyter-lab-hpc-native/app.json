@@ -1,6 +1,6 @@
 {
     "id": "jupyter-lab-hpc-native",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
     "owner": "${apiUserId}",
     "enabled": true,
