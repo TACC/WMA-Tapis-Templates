@@ -1,0 +1,100 @@
+{
+    "id": "SimCenter-DesignSafeVM",
+    "version": "0.0.1",
+    "description": "An app for extracting the physics-based motion from OpenSees results.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/simcenter-designsafe-vm/simcenter-designsafe-vm.zip",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Extract the physics-based motion of your OpenSees results on a virtual machine.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "wma-exec-01",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [
+                {
+                    "key": "inputScript",
+                    "value": "",
+                    "description": "The filename of the main OpenSees input script.",
+                    "inputMode": "REQUIRED",
+                    "notes": {
+                        "label": "Main Script"
+                    }
+                },
+                {
+                    "key": "dataDirectory",
+                    "value": "",
+                    "description": "The path directory containing your data to be processed. Defaults to My Projects if not provided.",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "label": "Data Directory",
+                        "selectionMode": "directory"
+                    }
+                },
+                {
+                    "key": "_UserProjects",
+                    "value": "",
+                    "description": "User Project UUIDs and Project IDs",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing your main OpenSees script and all necessary files. Defaults to My Data if not provided.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*",
+                "envKey": "inputDirectory"
+            }
+          ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 256000,
+        "maxMinutes": 1440,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: DesignSafe"
+    ],
+    "notes": {
+        "label": "SimCenter DesignSafe (VM)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/opensees/opensees/",
+        "hideNodeCountAndCoresPerNode": true,
+        "icon": null,
+        "category": "Analysis",
+        "isInteractive": false
+    }
+}
