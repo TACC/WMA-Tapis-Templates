@@ -34,7 +34,8 @@ fi
 echo "TACC: using token ${TAP_TOKEN}"
 
 # Define Jupyter Arguments
-JUPYTER_ARGS="--port=${LOCAL_PORT} --certfile=$(cat ${TAP_CERTFILE}) --config=${TAP_JUPYTER_CONFIG} --ServerApp.token=${TAP_TOKEN}"
+# Define Jupyter Arguments
+JUPYTER_ARGS="--port=${LOCAL_PORT} --certfile=$(cat ${TAP_CERTFILE}) --ServerApp.allow_remote_access=True --ServerApp.token=${TAP_TOKEN}"
 
 # Set up Jupyter configuration
 TAP_JUPYTER_CONFIG="${HOME}/.tap/jupyter_config.py"
@@ -54,28 +55,10 @@ EOF
 echo "Jupyter configuration file contents:"
 cat ${TAP_JUPYTER_CONFIG}
 
-# Use Jupyter binary, exit if not found
-JUPYTER_BIN=$(which jupyter-lab 2> /dev/null)
-if [ -z "${JUPYTER_BIN}" ]; then
-    echo "TACC: ERROR - could not find jupyter-lab install"
-    exit 1
-fi
-echo "TACC: using jupyter binary ${JUPYTER_BIN}"
-
-# Launch JupyterLab with nohup
-nohup ${JUPYTER_BIN} ${JUPYTER_ARGS} &> "${HOME}/.jupyter/jupyter_${SLURM_JOB_ID}.log" &
-JUPYTER_PID=$!
-
-# Validate JupyterLab launch
-if ! ps -p ${JUPYTER_PID} > /dev/null; then
-    echo "TACC: ERROR - Jupyter failed to launch."
-    exit 1
-fi
-
 # Create reverse SSH tunnel for each login node
 NUM_LOGINS=4
 for i in $(seq ${NUM_LOGINS}); do
-    ssh -o StrictHostKeyChecking=no -q -f -g -N -R ${LOGIN_PORT}:${NODE_HOSTNAME_PREFIX}:${LOCAL_PORT} login${i}
+    ssh -o StrictHostKeyChecking=no -q -f -g -N -R ${LOGIN_PORT}:127.0.0.1:${LOCAL_PORT} login${i}
 done
 
 if [ $(ps -fu ${USER} | grep ssh | grep login | grep -vc grep) != ${NUM_LOGINS} ]; then
@@ -84,9 +67,28 @@ if [ $(ps -fu ${USER} | grep ssh | grep login | grep -vc grep) != ${NUM_LOGINS} 
 fi
 echo "TACC: created reverse ports on system logins"
 
-# Final URL and webhook notification
+# Prepare the final URL for the JupyterLab server
 JUPYTER_URL="https://${NODE_HOSTNAME_DOMAIN}:${LOGIN_PORT}/?token=${TAP_TOKEN}"
-curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}"
+
+# Schedule webhook notification to allow Jupyter to start
+(
+    sleep 5 &&
+    curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+) &
+
+# Use Jupyter binary, exit if not found
+JUPYTER_BIN=$(which jupyter-lab 2> /dev/null)
+if [ -z "${JUPYTER_BIN}" ]; then
+    echo "TACC: ERROR - could not find jupyter-lab install"
+    exit 1
+fi
+echo "TACC: using jupyter binary ${JUPYTER_BIN}"
+
+# Launch JupyterLab in the foreground
+${JUPYTER_BIN} ${JUPYTER_ARGS} 
+
+# Release TAP port
+tap_release_port ${LOGIN_PORT}
 
 echo "TACC: Your JupyterLab server is now running at ${JUPYTER_URL}"
 echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
