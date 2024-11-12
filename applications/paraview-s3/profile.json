@@ -3,14 +3,7 @@
     "description": "Modules to load for Paraview",
     "moduleLoads": [
         {
-            "modulesToLoad": [
-                "gcc/9.1.0",
-                "qt5/5.14.2",
-                "swr/21.2.5",
-                "oneapi_rk/2021.4.0",
-                "paraview/5.12.0",
-                "tacc-apptainer"
-            ],
+            "modulesToLoad": ["paraview/5.12.0", "tacc-apptainer"],
             "moduleLoadCommand": "module load"
         }
     ],
