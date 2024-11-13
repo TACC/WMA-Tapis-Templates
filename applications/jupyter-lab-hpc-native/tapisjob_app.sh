@@ -5,9 +5,6 @@ echo "TACC: job ${SLURM_JOB_ID} execution at: $(date)"
 # TAP Port
 LOCAL_PORT=5902
 
-module load python3/3.9.2
-module load jupyterlab
-
 # Ensure TAP functions are available
 TAP_FUNCTIONS="/share/doc/slurm/tap_functions"
 if [ -f ${TAP_FUNCTIONS} ]; then

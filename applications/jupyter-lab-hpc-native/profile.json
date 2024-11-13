@@ -4,8 +4,7 @@
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "python3/3.9.2",
-                "jupyterlab"
+                "python3/3.9.2"
             ],
             "moduleLoadCommand": "module load"
         }
