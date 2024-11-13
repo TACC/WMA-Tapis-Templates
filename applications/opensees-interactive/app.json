@@ -1,6 +1,6 @@
 {
     "id": "opensees-interactive",
-    "version": "3.7.0-matlab",
+    "version": "3.7.0",
     "description": "OpenSees Interactive provides users with a sequential OpenSees interpreter (version 3.7.0). It is ideal to run small sequential scripts on DesignSafe resources freeing up your own machine.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -52,7 +52,10 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [
-                    "opensees-interactive.zip",
+                    "opensees_interactive.zip",
+                    "tapisjob_app.sh",
+                    "tapisjob.sh",
+                    "tapisjob.pid",
                     "tapisjob.env",
                     "tmp"
                 ],
