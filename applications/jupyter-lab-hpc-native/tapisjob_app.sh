@@ -5,6 +5,9 @@ echo "TACC: job ${SLURM_JOB_ID} execution at: $(date)"
 # TAP Port
 LOCAL_PORT=5902
 
+module load python3/3.9.2
+module load jupyterlab
+
 # Ensure TAP functions are available
 TAP_FUNCTIONS="/share/doc/slurm/tap_functions"
 if [ -f ${TAP_FUNCTIONS} ]; then
@@ -33,7 +36,6 @@ if [ -z "${TAP_TOKEN}" ]; then
 fi
 echo "TACC: using token ${TAP_TOKEN}"
 
-# Define Jupyter Arguments
 # Define Jupyter Arguments
 JUPYTER_ARGS="--port=${LOCAL_PORT} --certfile=$(cat ${TAP_CERTFILE}) --ServerApp.allow_remote_access=True --ServerApp.token=${TAP_TOKEN}"
 
@@ -76,6 +78,7 @@ JUPYTER_URL="https://${NODE_HOSTNAME_DOMAIN}:${LOGIN_PORT}/?token=${TAP_TOKEN}"
     curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 ) &
 
+module list  # Show loaded modules for debugging
 # Use Jupyter binary, exit if not found
 JUPYTER_BIN=$(which jupyter-lab 2> /dev/null)
 if [ -z "${JUPYTER_BIN}" ]; then
