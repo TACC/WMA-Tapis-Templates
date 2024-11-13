@@ -1,6 +1,6 @@
 {
     "id": "opensees-interactive",
-    "version": "3.7.0",
+    "version": "3.7.0-matlab",
     "description": "OpenSees Interactive provides users with a sequential OpenSees interpreter (version 3.7.0). It is ideal to run small sequential scripts on DesignSafe resources freeing up your own machine.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -41,8 +41,8 @@
                 },
                 {
                     "key": "_DOCKER_IMAGE",
-                    "value": "docker://taccaci/opensees-interactive:3.7.0",
-                    "description": "Docker image to use for the job",
+                    "value": "/opt/apptainer-images/opensees-interactive-matlab.sif",
+                    "description": "Apptainer image to use for the job",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
