@@ -34,7 +34,7 @@ fi
 echo "TACC: using token ${TAP_TOKEN}"
 
 # Define Jupyter Arguments
-JUPYTER_ARGS="--port=${LOCAL_PORT} --certfile=$(cat ${TAP_CERTFILE}) --ServerApp.allow_remote_access=True --ServerApp.token=${TAP_TOKEN}"
+JUPYTER_ARGS="--certfile=${TAP_CERTFILE} --config=${TAP_JUPYTER_CONFIG}"
 
 # Set up Jupyter configuration
 TAP_JUPYTER_CONFIG="${HOME}/.tap/jupyter_config.py"
@@ -47,6 +47,8 @@ c.ServerApp.ip = "0.0.0.0"
 c.ServerApp.port = ${LOCAL_PORT}
 c.ServerApp.open_browser = False
 c.ServerApp.allow_origin = u"*"
+c.ServerApp.allow_remote_access = True  # Add this here
+c.ServerApp.token = "${TAP_TOKEN}"      # Add the token here
 c.ServerApp.ssl_options={"ssl_version": ssl.PROTOCOL_TLSv1_2}
 c.ServerApp.mathjax_url = u"https://cdn.mathjax.org/mathjax/latest/MathJax.js"
 EOF
@@ -69,26 +71,24 @@ echo "TACC: created reverse ports on system logins"
 # Prepare the final URL for the JupyterLab server
 JUPYTER_URL="https://${NODE_HOSTNAME_DOMAIN}:${LOGIN_PORT}/?token=${TAP_TOKEN}"
 
-# Schedule webhook notification to allow Jupyter to start
-(
-    sleep 5 &&
-    curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
-) &
+# Install JupyterLab and add .local/bin to PATH
+pip install --user jupyterlab
+export PATH=$HOME/.local/bin:$PATH
 
-module list  # Show loaded modules for debugging
 # Use Jupyter binary, exit if not found
 JUPYTER_BIN=$(which jupyter-lab 2> /dev/null)
-if [ -z "${JUPYTER_BIN}" ]; then
+if [ -z "${JUPYTER_BIN}" ]; theni
     echo "TACC: ERROR - could not find jupyter-lab install"
     exit 1
 fi
 echo "TACC: using jupyter binary ${JUPYTER_BIN}"
 
-# Launch JupyterLab in the foreground
-${JUPYTER_BIN} ${JUPYTER_ARGS} 
-
 # Release TAP port
 tap_release_port ${LOGIN_PORT}
 
 echo "TACC: Your JupyterLab server is now running at ${JUPYTER_URL}"
+
+# Launch JupyterLab in the foreground
+${JUPYTER_BIN} ${JUPYTER_ARGS} 
+
 echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
