@@ -123,7 +123,7 @@ sleep 3;
 
 # create reverse tunnel port to login nodes.  Make one tunnel for each login so the user can just connect to $HPC_HOST
 for i in `seq 4`; do
-  ssh -q -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
+  ssh -o StrictHostKeyChecking=no -q -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
 done
 
 echo "TACC: Created reverse ports on $HPC_HOST logins"
@@ -166,7 +166,7 @@ curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSI
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
 ${_XTERM_CMD}
-# Job is done!  
+# Job is done!
 
 
 echo "TACC: closing ${SERVER_TYPE} session"

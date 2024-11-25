@@ -28,7 +28,7 @@
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
-    "batchScheduler": "SLURM",
+    "batchScheduler": "",
     "batchLogicalQueues": [],
     "batchDefaultLogicalQueue": "",
     "batchSchedulerProfile": null,
