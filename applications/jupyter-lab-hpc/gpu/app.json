@@ -103,7 +103,7 @@
     "notes": {
         "label": "Jupyter Lab HPC CUDA (Frontera)",
         "helpUrl": "https://jupyterlab.readthedocs.io/en/stable/",
-        "hideNodeCountAndCoresPerNode": false,
+        "hideNodeCountAndCoresPerNode": true,
         "isInteractive": true,
         "icon": "jupyter",
         "category": "Data Processing",
