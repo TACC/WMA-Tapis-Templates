@@ -1,11 +1,10 @@
 {
-    "name": "matlab_2022b",
-    "description": "Modules to load for MATLAB R2022b",
+    "name": "matlab_2023b_interactive",
+    "description": "Modules to load for MATLAB R2023b",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "swr/21.2.5",
-                "matlab/2022b",
+                "matlab/2023b",
                 "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
