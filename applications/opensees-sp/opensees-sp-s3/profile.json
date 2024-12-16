@@ -1,10 +1,11 @@
 {
-    "name": "OpenSees_3.6.0",
-    "description": "Modules to load for OpenSees 3.6.0",
+    "name": "OpenSees_3.7.0",
+    "description": "Modules to load for OpenSees 3.7.0",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "opensees/3.6.0"
+                "hdf5/1.14.4",
+                "opensees/3.7.0"
             ],
             "moduleLoadCommand": "module load"
         }
