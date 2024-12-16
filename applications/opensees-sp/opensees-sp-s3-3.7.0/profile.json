@@ -1,0 +1,16 @@
+{
+    "name": "OpenSees_3.7.0",
+    "description": "Modules to load for OpenSees 3.7.0",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "hdf5/1.14.4",
+                "opensees/3.7.0"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
