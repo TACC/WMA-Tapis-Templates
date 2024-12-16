@@ -8,6 +8,10 @@ LOCAL_PORT=5902
 mkdir -p $PWD/Jupyter
 cd Jupyter
 
+# This file will be located in the directory mounted by the job.
+SESSION_FILE="delete_me_to_end_session"
+touch $SESSION_FILE
+
 # Make symlinks for work, home and scratch
 mkdir -p $PWD/Work $PWD/Home $PWD/Scratch;
 if [ ! -L $PWD/Work ];
