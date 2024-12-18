@@ -61,4 +61,6 @@ echo "TACC: using jupyter command: jupyter-lab ${JUPYTER_ARGS}"
 
 export PATH=$HOME/.local/bin:$PATH
 
+pip install --upgrade pip jupyterlab notebook
+
 jupyter-lab ${JUPYTER_ARGS}
