@@ -1,0 +1,15 @@
+{
+    "name": "python3",
+    "description": "Modules to load for python3",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "python3/3.9.2"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
