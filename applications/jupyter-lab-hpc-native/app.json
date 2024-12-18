@@ -15,6 +15,7 @@
         "dynamicExecSystem": false,
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "rtx-dev",
         "archiveSystemId": "cloud.data",
