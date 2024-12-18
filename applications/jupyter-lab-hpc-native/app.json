@@ -15,13 +15,14 @@
         "dynamicExecSystem": false,
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "rtx-dev",
         "archiveSystemId": "cloud.data",
         "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
-        "cmdPrefix": null,
+        "cmdPrefix": "source tap.sh;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
@@ -30,7 +31,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile jupyter-lab-hpc-native",
+                    "arg": "--tapis-profile python3",
                     "notes": {
                         "isHidden": true
                     }
@@ -52,7 +53,17 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "TAP script",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 16,

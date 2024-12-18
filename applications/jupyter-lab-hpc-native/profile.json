@@ -1,6 +1,6 @@
 {
-    "name": "jupyter-lab-hpc-native",
-    "description": "Modules to load for Jupyter Lab HPC Native",
+    "name": "python3",
+    "description": "Modules to load for python3",
     "moduleLoads": [
         {
             "modulesToLoad": [
