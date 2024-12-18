@@ -127,7 +127,7 @@
     "notes": {
         "label": "Paraview (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#paraview-user-guide",
-        "hideNodeCountAndCoresPerNode": false,
+        "hideNodeCountAndCoresPerNode": true,
         "isInteractive": true,
         "icon": "Paraview",
         "category": "Visualization"

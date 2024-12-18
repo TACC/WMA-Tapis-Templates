@@ -1,13 +1,13 @@
 {
-  "id": "opensees-mp-s3",
-  "version": "3.6.0",
-  "description": "Runs all the processors in parallel. Requires understanding of parallel processing and the capabilities to write parallel scripts.",
+  "id": "opensees-sp-s3",
+  "version": "3.7.0",
+  "description": "Parallel version driven by a single processor. Easy to use even with limited knowledge about parallel computing.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
   "runtimeVersion": null,
   "runtimeOptions": null,
-  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.6.0/OpenSees/opensees.zip",
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.7.0/OpenSees/opensees.zip",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -28,7 +28,7 @@
       "appArgs": [
         {
           "name": "mainProgram",
-          "arg": "OpenSeesMP",
+          "arg": "OpenSeesSP",
           "inputMode": "FIXED",
           "notes": {
             "isHidden": true
@@ -36,7 +36,7 @@
         },
         {
           "name": "Main Script",
-          "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified. To use with test input, use 'freeFieldEffective.tcl'",
+          "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified. To use with test input, use 'Example.tcl'",
           "arg": null,
           "inputMode": "REQUIRED",
           "notes": {
@@ -48,9 +48,9 @@
       "schedulerOptions": [
         {
           "name": "OpenSees TACC Scheduler Profile",
-          "description": "Scheduler profile for TACC OpenSees 3.6.0.",
+          "description": "Scheduler profile for TACC OpenSees 3.7.0.",
           "inputMode": "FIXED",
-          "arg": "--tapis-profile OpenSees_3.6.0",
+          "arg": "--tapis-profile OpenSees_3.7.0",
           "notes": {
             "isHidden": true
           }
@@ -70,14 +70,14 @@
         "sourceUrl": null,
         "targetPath": "inputDirectory",
         "envKey": "inputDirectory",
-        "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesMP",
+        "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesSP",
         "notes": {
-            "selectionMode": "directory"
+          "selectionMode": "directory"
         }
       }
     ],
     "fileInputArrays": [],
-    "nodeCount": 2,
+    "nodeCount": 1,
     "coresPerNode": 48,
     "memoryMB": 192000,
     "maxMinutes": 120,
@@ -89,7 +89,7 @@
     "portalName: CEP"
   ],
   "notes": {
-    "label": "OpenSeesMP",
+    "label": "OpenSeesSP",
     "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
     "hideNodeCountAndCoresPerNode": false,
     "isInteractive": false,

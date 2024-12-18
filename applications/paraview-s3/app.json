@@ -1,7 +1,7 @@
 {
-    "id": "matlab",
-    "version": "9.15.0",
-    "description": "Run an interactive MATLAB 2023b session on Stampede3. Submit a help ticket to get your license configured or approved.",
+    "id": "paraview-s3",
+    "version": "5.12.0",
+    "description": "Run an interactive Paraview session on Stampede 3.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -13,7 +13,7 @@
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Run an interactive MATLAB 2023b session on Stampede3. Submit a help ticket to get your license configured or approved.",
+        "description": "Run an interactive Paraview session on Stampede 3.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
         "execSystemId": "stampede3",
@@ -32,10 +32,10 @@
             "containerArgs": [],
             "schedulerOptions": [
                 {
-                    "name": "MATLAB TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC MATLAB R2023b.",
+                    "name": "Paraview TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC Paraview 5.12.0.",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile matlab_2023b_interactive",
+                    "arg": "--tapis-profile Paraview_5.12.0",
                     "notes": {
                         "isHidden": true
                     }
@@ -53,7 +53,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "matlab -desktop",
+                    "value": "paraview",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -79,12 +79,11 @@
         "fileInputs": [
             {
                 "name": "Working Directory",
-                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
-                "inputMode": "REQUIRED",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your Paraview session runs.",
+                "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "*",
-                "envKey": "workingDirectory",
                 "notes": {
                     "selectionMode": "directory"
                 }
@@ -98,16 +97,13 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: ALL"
-    ],
+    "tags": ["portalName: DesignSafe"],
     "notes": {
-        "licenseType": "MATLAB",
-        "label": "MATLAB R2023b Interactive (Stampede3)",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
+        "label": "Paraview (Stampede 3)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#paraview-user-guide",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
-        "icon": "MATLAB",
-        "category": "Analysis"
+        "icon": "Paraview",
+        "category": "Visualization"
     }
 }

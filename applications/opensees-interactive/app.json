@@ -41,8 +41,8 @@
                 },
                 {
                     "key": "_DOCKER_IMAGE",
-                    "value": "docker://taccaci/opensees-interactive:3.7.0",
-                    "description": "Docker image to use for the job",
+                    "value": "/opt/apptainer-images/opensees-interactive-matlab.sif",
+                    "description": "Apptainer image to use for the job",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
@@ -52,7 +52,10 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [
-                    "opensees-interactive.zip",
+                    "opensees_interactive.zip",
+                    "tapisjob_app.sh",
+                    "tapisjob.sh",
+                    "tapisjob.pid",
                     "tapisjob.env",
                     "tmp"
                 ],

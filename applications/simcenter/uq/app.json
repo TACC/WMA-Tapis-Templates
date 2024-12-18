@@ -1,0 +1,83 @@
+{
+    "id": "simcenter-uq-stampede3",
+    "version": "1.0.0",
+    "description": "simcenter-uq on Stampede3",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://designsafe.storage.default/tg457427/appsTapisV3/simcenter-uq-stampede3-1.0.0.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "execSystemConstraints": null,
+        "execSystemId": "stampede3",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "skx-dev",
+        "archiveSystemId": "designsafe.storage.default",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [
+                {
+                    "key": "inputFile",
+                    "value": "scInput.json",
+                    "description": "workflow input file",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "notes": {}
+                },
+                {
+                    "key": "driverFile",
+                    "value": "driver.sh",
+                    "description": "workflow driver file",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "notes": {}
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/community/opensees-mp/examples/smallmp",
+                "targetPath": "inputDirectory",
+                "envKey": "inputDirectory",
+                "description": "Input directory that contains all required files."
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 2,
+        "coresPerNode": 4,
+        "memoryMB": 192000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe",
+        "portalName: CEP"
+    ],
+    "notes": {
+        "label": "simcenter-uq-frontera",
+        "helpUrl": "https://opensees.berkeley.edu/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": false,
+        "icon": null,
+        "category": "Simulation"
+    }
+}

@@ -51,7 +51,7 @@
             "minMemoryMB": 1,
             "maxMemoryMB": 256000,
             "minMinutes": 1,
-            "maxMinutes": 1440
+            "maxMinutes": 2880
         },
         {
             "name": "skx",
@@ -65,7 +65,7 @@
             "minMemoryMB": 1,
             "maxMemoryMB": 192000,
             "minMinutes": 1,
-            "maxMinutes": 1440
+            "maxMinutes": 2880
         },
         {
             "name": "skx-dev",
@@ -107,7 +107,7 @@
             "minMemoryMB": 1,
             "maxMemoryMB": 128000,
             "minMinutes": 1,
-            "maxMinutes": 1440
+            "maxMinutes": 2880
         }
     ],
     "batchDefaultLogicalQueue": "simcenter",
