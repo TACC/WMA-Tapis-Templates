@@ -4,7 +4,10 @@ SHELL_COMMAND="$@"
 
 echo "SHELL_COMMAND is $SHELL_COMMAND"
 
-cd "${inputDirectory}"
+if [ -d "${inputDirectory}" ]; then
+    echo "Changing directory to input directory..."
+    cd "${inputDirectory}"
+fi
 
 echo "Running $SHELL_COMMAND"
 

@@ -46,7 +46,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "inputMode": "REQUIRED",
+                "inputMode": "OPTIONAL",
                 "sourceUrl": null,
                 "targetPath": "inputDirectory",
                 "envKey": "inputDirectory",
