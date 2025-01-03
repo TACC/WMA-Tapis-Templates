@@ -1,0 +1,38 @@
+{
+    "archiveOnAppError": true,
+    "appId": "shell-runner-s3",
+    "appVersion": "1.0.0",
+    "execSystemId": "stampede3",
+    "fileInputs": [
+        {
+            "name": "Input Directory",
+            "sourceUrl": "tapis://designsafe.storage.default/sal/shell-runner"
+        }
+    ],
+    "parameterSet": {
+        "appArgs": [
+            {
+                "name": "Shell command",
+                "arg": "bash test2.sh"
+            }
+        ],
+        "envVariables": [],
+        "schedulerOptions": [
+            {
+                "name": "TACC Allocation",
+                "description": "The TACC allocation associated with this job execution",
+                "arg": "-A DS-HPC1"
+            }
+        ]
+    },
+    "execSystemLogicalQueue": "skx",
+    "maxMinutes": 5,
+    "nodeCount": 1,
+    "coresPerNode": 48,
+    "name": "shell-runner-s3-1.0.0_2025-01-03T20:07:33",
+    "archiveSystemId": "designsafe.storage.default",
+    "archiveSystemDir": "${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "tags": [
+        "portalName: DESIGNSAFE"
+    ]
+}

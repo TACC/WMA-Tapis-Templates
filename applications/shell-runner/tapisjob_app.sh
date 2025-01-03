@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SHELL_COMMAND=$1
+SHELL_COMMAND="$@"
 
 echo "SHELL_COMMAND is $SHELL_COMMAND"
 
