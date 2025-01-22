@@ -1,11 +1,10 @@
 {
-    "name": "matlab_2023b_interactive",
-    "description": "Modules to load for MATLAB R2023b",
+    "name": "python3",
+    "description": "Modules to load for python3",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "matlab/2023b",
-                "tacc-apptainer"
+                "python3/3.9.2"
             ],
             "moduleLoadCommand": "module load"
         }

@@ -1,11 +1,12 @@
 {
-    "name": "matlab_2023b_interactive",
-    "description": "Modules to load for MATLAB R2023b",
+    "name": "openfoam_v12",
+    "description": "Modules to load for OpenFOAM v12",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "matlab/2023b",
-                "tacc-apptainer"
+                "intel/24.0",
+                "impi/21.11",
+                "openfoam/12"
             ],
             "moduleLoadCommand": "module load"
         }

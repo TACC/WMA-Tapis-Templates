@@ -62,7 +62,17 @@
                     }
                 }
             ],
-            "envVariables": [],
+            "envVariables": [
+                {
+                    "key": "APPTAINER_PWD",
+                    "value": "/home/jovyan/work",
+                    "description": "Start terminals in the working directory where host volumes are mounted.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -72,6 +82,8 @@
         "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
+        "coresPerNode": 56,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
@@ -82,7 +94,7 @@
     "notes": {
         "label": "Jupyter Lab HPC (Frontera)",
         "helpUrl": "https://jupyterlab.readthedocs.io/en/stable/",
-        "hideNodeCountAndCoresPerNode": false,
+        "hideNodeCountAndCoresPerNode": true,
         "isInteractive": true,
         "icon": "jupyter",
         "category": "Data Processing"

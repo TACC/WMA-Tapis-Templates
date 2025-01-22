@@ -1,0 +1,77 @@
+{
+    "id": "shell-runner-s3",
+    "version": "1.0.0",
+    "description": "Executes a shell script",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/shell-runner/shell-runner.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "execSystemConstraints": null,
+        "execSystemId": "stampede3",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "skx",
+        "archiveSystemId": "designsafe.storage.default",
+        "archiveSystemDir": "${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Shell command",
+                    "description": "The full shell command you want to execute. For example, 'bash myscript.sh'",
+                    "arg": null,
+                    "inputMode": "REQUIRED"
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "inputMode": "OPTIONAL",
+                "sourceUrl": null,
+                "targetPath": "inputDirectory",
+                "envKey": "inputDirectory",
+                "description": "Input directory that includes the shell script as well as any other required files.",
+                "notes": {
+                    "selectionMode": "directory"
+                }
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 48,
+        "memoryMB": 192000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DesignSafe",
+        "portalName: CEP"
+    ],
+    "notes": {
+        "label": "Shell Runner",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": false,
+        "category": "Utilities"
+    }
+}

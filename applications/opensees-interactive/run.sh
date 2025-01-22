@@ -41,7 +41,7 @@ c.ServerApp.allow_origin = u"*"
 c.ServerApp.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2}
 c.ServerApp.root_dir = "${HOME}"
 c.ServerApp.preferred_dir = "${HOME}"
-c.ServerApp.token = "${SESSION_TOKEN}"
+c.IdentityProvider.token = "${SESSION_TOKEN}"
 c.ServerApp.terminado_settings = {'shell_command': ['/bin/bash', '--login', '-i']}
 EOF
 
@@ -60,5 +60,7 @@ JUPYTER_ARGS="--certfile=/etc/nginx/ssl/nginx.crt --keyfile=/etc/nginx/ssl/nginx
 echo "TACC: using jupyter command: jupyter-lab ${JUPYTER_ARGS}"
 
 export PATH=$HOME/.local/bin:$PATH
+
+pip install --upgrade pip jupyterlab notebook
 
 jupyter-lab ${JUPYTER_ARGS}

@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:ubuntu-20.04
+FROM taccaci/jupyterlab-matlab:R2022b-ubuntu-22.04
 
 # The user must be swtiched to root in order to install and update packages with apt-get.
 # See https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile for info.
@@ -11,19 +11,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 RUN apt-get update && apt-get install -y \
-    tzdata \
-    curl \
-    git \
-    cmake \
     gcc \
     g++ \
-    gfortran \
     liblapack-dev \
-    git \
     tcl8.6 \
     tcl8.6-dev \
     zip \
-    unzip \
     openmpi-bin \
     openmpi-common \
     libopenmpi-dev \
@@ -33,12 +26,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade --no-cache-dir \
     pip \
     setuptools \
-    wheel \
-    jupyterlab \
-    jupyterlab_server \
-    jupyter_server \
-    traitlets \
-    nbformat
+    wheel
 
 RUN pip install --no-cache-dir \
     h5py \
@@ -50,7 +38,7 @@ RUN pip install --no-cache-dir \
     matplotlib \
     mpi4py \
     ipywidgets \
-    jupyter-matlab-proxy
+    scipy
 
 COPY --from=taccaci/opensees:3.7.0 /usr/local/bin/OpenSees /usr/local/bin/OpenSees
 COPY --from=taccaci/opensees:3.7.0 /usr/local/bin/OpenSeesSP /usr/local/bin/OpenSeesSP

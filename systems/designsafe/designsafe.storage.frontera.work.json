@@ -12,6 +12,6 @@
         "label": "HPC Work",
         "keyservice": true,
         "isMyData": true,
-        "portalNames": ["DesignSafe"]
+        "portalNames": []
     }
 }

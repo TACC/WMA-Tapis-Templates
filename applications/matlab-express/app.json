@@ -64,6 +64,7 @@
         "label": "MATLAB 2022b Interactive (VM)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
         "hideNodeCountAndCoresPerNode": true,
+        "hideMaxMinutes": true,
         "icon": "MATLAB",
         "category": "Analysis",
         "isInteractive": true
