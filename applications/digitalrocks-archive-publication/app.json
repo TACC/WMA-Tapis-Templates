@@ -1,0 +1,73 @@
+{
+  "id": "digitalrocks-archive-publication",
+  "version": "0.0.1",
+  "description": "ZIP DigitalRocks publication data and metadata",
+  "owner": "${apiUserId}",
+  "enabled": true,
+  "runtime": "ZIP",
+  "runtimeVersion": null,
+  "runtimeOptions": null,
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/digitalrocks-archive-publication/v1/digitalrocks-archive-publication.zip",
+  "jobType": "FORK",
+  "maxJobs": -1,
+  "maxJobsPerUser": -1,
+  "strictFileInputs": true,
+  "jobAttributes": {
+    "description": "",
+    "dynamicExecSystem": false,
+    "execSystemConstraints": null,
+    "execSystemId": "cloud.data.exec.wma_prtl",
+    "execSystemExecDir": "${JobWorkingDir}",
+    "execSystemInputDir": "${JobWorkingDir}",
+    "execSystemOutputDir": "${JobWorkingDir}/output",
+    "execSystemLogicalQueue": "development",
+    "archiveSystemId": "cloud.data",
+    "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "archiveOnAppError": true,
+    "isMpi": false,
+    "mpiCmd": null,
+    "cmdPrefix": null,
+    "parameterSet": {
+      "appArgs": [],
+      "containerArgs": [],
+      "schedulerOptions": [],
+      "envVariables": [
+        {
+          "key": "publishedRootDir",
+          "description": "Root directory for publications. Archives will be saved in ${publishedRootDir}/archive",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "publishedRootDir"
+          }
+        },
+        {
+          "key": "projectId",
+          "description": "Project ID, e.g. DRP-1234. The data to be archived should be at ${publishedRootDir}/${projectId}",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "label": "projectId"
+          }
+        }
+      ],
+      "archiveFilter": {
+        "includes": [],
+        "excludes": [],
+        "includeLaunchFiles": true
+      }
+    },
+    "fileInputs": [],
+    "fileInputArrays": [],
+    "nodeCount": 1,
+    "coresPerNode": 56,
+    "memoryMB": 192000,
+    "maxMinutes": 120,
+    "subscriptions": [],
+    "tags": []
+  },
+  "tags": [
+    "portalName: DRP"
+  ],
+  "notes": {
+    "label": "digitalrocks-archive-publication"
+  }
+}
