@@ -1,7 +1,7 @@
 {
   "id": "kalpana",
   "version": "1.0.2",
-  "description": "Kalpana converts ADCIRC output files in netCDF format to GIS shapefiles.",
+  "description": "Converts ADCIRC output files in netCDF format to GIS shapefiles.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
