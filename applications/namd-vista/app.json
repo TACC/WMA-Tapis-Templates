@@ -1,0 +1,103 @@
+{
+    "id": "namd",
+    "version": "3.0",
+    "description": "NAMD is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/namd-vista/namd3.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": false,
+    "jobAttributes": {
+        "description": "Run a NAMD session on Vista",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "vista",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "gg",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": true,
+        "mpiCmd": "ibrun",
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Configuration file",
+                    "description": "The filename of the NAMD configuration file, for example a .conf or .namd file. This file should reside in the specified Input Directory.",
+                    "inputMode": "REQUIRED",
+                    "arg": null
+                },
+                {
+                    "name": "Tasks per node",
+                    "description": "TACC staff recommends that users attempt runs with 4 tasks per node and 8 tasks per node (scales better at large number of nodes) and then pick the configuration that provides the best performance.",
+                    "inputMode": "REQUIRED",
+                    "arg": "4",
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "4": "4 tasks per node"
+                            },
+                            {
+                                "8": "8 tasks per node"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "NAMD TACC Scheduler Profile",
+                    "description": "Scheduler profile for TACC NAMD 3.0",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile namd-vista-3.0",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input Directory",
+                "description": "The directory containing your NAMD input files as well as your configuration file. Explore example inputs in tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/namd",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "output"
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 144,
+        "memoryMB": 192000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: LCCF"
+    ],
+    "notes": {
+        "label": "NAMD",
+        "helpUrl": "https://www.ks.uiuc.edu/Research/namd/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": false,
+        "icon": "namd",
+        "category": "Simulation"
+    }
+}
