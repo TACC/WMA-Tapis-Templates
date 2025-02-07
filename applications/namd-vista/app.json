@@ -98,6 +98,10 @@
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": false,
         "icon": "namd",
-        "category": "Simulation"
+        "category": "Simulation",
+        "queueFilter": [
+            "gg"
+        ]
+
     }
 }
