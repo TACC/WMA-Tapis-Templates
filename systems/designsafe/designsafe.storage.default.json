@@ -2,9 +2,9 @@
     "id": "designsafe.storage.default",
     "description": "DesignSafe default user storage system",
     "systemType": "LINUX",
-    "host": "cloud.data.tacc.utexas.edu",
+    "host": "wma-exec-01.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/data/designsafe/mydata",
     "port": 22,
     "canExec": false,
@@ -12,6 +12,8 @@
         "label": "My Data",
         "keyservice": true,
         "isMyData": true,
-        "portalNames": ["DesignSafe"]
+        "portalNames": [
+            "DesignSafe"
+        ]
     }
 }
