@@ -58,8 +58,9 @@ mkdir -p -m 700 "${_tapisJobWorkingDir}/tmp"
 
 # Define container binds
 USER_MYDATA="/data/designsafe/mydata/${_tapisJobOwner}"
+USER_WORK="/work/${_TAS_DIR}"
 CONTAINER_HOME="${USER_MYDATA}/.opensees-interactive"
-mkdir -p "${CONTAINER_HOME}/MyData" "${CONTAINER_HOME}/MyProjects" "${CONTAINER_HOME}/NEES" "${CONTAINER_HOME}/CommunityData" "${CONTAINER_HOME}/NHERI-Published"
+mkdir -p "${CONTAINER_HOME}/MyData" "${CONTAINER_HOME}/MyProjects" "${CONTAINER_HOME}/NEES" "${CONTAINER_HOME}/CommunityData" "${CONTAINER_HOME}/NHERI-Published" "${CONTAINER_HOME}/Work"
 
 apptainer run \
     --cleanenv \
@@ -75,6 +76,7 @@ apptainer run \
     --bind /corral/main/projects/NHERI/projects \
     --bind "${USER_MYDATA}:${HOME}/MyData" \
     --bind "${PROJECTS_DIR}:${HOME}/MyProjects" \
+    --bind "${USER_WORK}:${HOME}/Work" \
     --bind "/corral/main/projects/NHERI/public/projects:${HOME}/NEES:ro" \
     --bind "/corral/main/projects/NHERI/community:${HOME}/CommunityData:ro" \
     --bind "/corral/main/projects/NHERI/published:${HOME}/NHERI-Published:ro" \
