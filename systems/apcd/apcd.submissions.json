@@ -2,7 +2,7 @@
     "id": "apcd.submissions",
     "description": "APCD Submissions Root System",
     "systemType": "LINUX",
-    "host": "pprd.apcd.tacc.utexas.edu",
+    "host": "dev.apcd.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/apcd-uploads",
