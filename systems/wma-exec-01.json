@@ -13,7 +13,6 @@
     "canExec": true,
     "canRunBatch": false,
     "enableCmdPrefix": true,
-    "mpiCmd": "",
     "jobRuntimes": [
         {
             "runtimeType": "SINGULARITY",
@@ -28,10 +27,6 @@
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
-    "batchScheduler": "",
-    "batchLogicalQueues": [],
-    "batchDefaultLogicalQueue": "",
-    "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
     "notes": {

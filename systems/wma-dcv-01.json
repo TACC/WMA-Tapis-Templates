@@ -13,7 +13,6 @@
     "canExec": true,
     "canRunBatch": false,
     "enableCmdPrefix": true,
-    "mpiCmd": "",
     "jobRuntimes": [
         {
             "runtimeType": "ZIP",
@@ -24,10 +23,6 @@
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
-    "batchScheduler": "SLURM",
-    "batchLogicalQueues": [],
-    "batchDefaultLogicalQueue": "",
-    "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
     "notes": {
