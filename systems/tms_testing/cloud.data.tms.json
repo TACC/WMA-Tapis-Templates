@@ -1,10 +1,10 @@
 {
-    "id": "cloud.data",
+    "id": "cloud.data.tms",
     "description": "Community Storage System",
     "systemType": "LINUX",
-    "host": "cloud.data.tacc.utexas.edu",
+    "host": "wma-exec-01.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "canExec": false,

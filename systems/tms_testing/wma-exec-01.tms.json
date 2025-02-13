@@ -1,12 +1,12 @@
 {
     "isPublic": true,
     "isDynamicEffectiveUser": true,
-    "id": "wma-exec-01",
+    "id": "wma-exec-01.tms",
     "description": "System for running jobs on the wma-exec-01 VM",
     "systemType": "LINUX",
     "host": "wma-exec-01.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "useProxy": false,
@@ -32,7 +32,7 @@
     "notes": {
         "label": "Virtual Machine",
         "allocations": [
-            "DesignSafe-DCV"
+            "DesignSafe-Corral"
         ]
     }
 }
