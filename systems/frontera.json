@@ -13,7 +13,6 @@
     "canExec": true,
     "canRunBatch": true,
     "enableCmdPrefix": true,
-    "mpiCmd": null,
     "jobRuntimes": [
         {
             "runtimeType": "SINGULARITY",
@@ -173,5 +172,5 @@
     "tags": [],
     "notes": {
         "label": "Frontera"
-      }
+    }
 }
