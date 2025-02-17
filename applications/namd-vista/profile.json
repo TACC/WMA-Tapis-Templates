@@ -1,0 +1,15 @@
+{
+    "name": "namd-vista-3.0",
+    "description": "Modules to load for NAMD",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "namd/3.0"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
