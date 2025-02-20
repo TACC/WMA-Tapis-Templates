@@ -7,7 +7,7 @@
   "runtime": "ZIP",
   "runtimeVersion": null,
   "runtimeOptions": null,
-  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.7.0/OpenSees/opensees.zip",
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/latest/OpenSees/opensees.zip",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,

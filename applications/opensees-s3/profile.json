@@ -1,0 +1,16 @@
+{
+    "name": "OpenSees_default",
+    "description": "Modules to load for the default version of OpenSees",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "hdf5/1.14.4",
+                "opensees"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
