@@ -2,6 +2,8 @@ FROM ubuntu:20.04
 
 LABEL maintainer="TACC-ACI-WMA <wma_prtl@tacc.utexas.edu>"
 
+ARG OPENSEES_VERSION=main
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV TZ=Etc/UTC
@@ -47,7 +49,7 @@ RUN git clone https://github.com/OpenSees/mumps.git \
     && cmake --build .
 
 # Clone OpenSees repository
-RUN git clone https://github.com/OpenSees/OpenSees.git \
+RUN git clone --depth 1 --branch ${OPENSEES_VERSION} https://github.com/OpenSees/OpenSees.git \
     && cd OpenSees \
     && mkdir build
 
