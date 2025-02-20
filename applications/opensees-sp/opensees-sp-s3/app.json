@@ -1,6 +1,6 @@
 {
   "id": "opensees-sp-s3",
-  "version": "3.7.0",
+  "version": "latest",
   "description": "Parallel version driven by a single processor. Easy to use even with limited knowledge about parallel computing.",
   "owner": "${apiUserId}",
   "enabled": true,
@@ -48,9 +48,9 @@
       "schedulerOptions": [
         {
           "name": "OpenSees TACC Scheduler Profile",
-          "description": "Scheduler profile for TACC OpenSees 3.7.0.",
+          "description": "Scheduler profile for the default version of OpenSees",
           "inputMode": "FIXED",
-          "arg": "--tapis-profile OpenSees_3.7.0",
+          "arg": "--tapis-profile OpenSees_default",
           "notes": {
             "isHidden": true
           }
