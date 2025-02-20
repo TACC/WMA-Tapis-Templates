@@ -1,0 +1,22 @@
+{
+    "name": "test-job-digitalrocks-archive-publication",
+    "appId": "digitalrocks-archive-publication",
+    "appVersion": "0.0.1",
+    "description": "Example submission for app digitalrocks-archive-publication",
+    "fileInputs": [],
+    "parameterSet": {
+      "appArgs": [],
+      "schedulerOptions": [],
+      "envVariables": [
+        {
+          "key": "publishedRootDir",
+          "value": "/corral-repl/utexas/OTH21076/data_pprd/published"
+        },
+        {
+          "key": "projectId",
+          "value": "DRP-PPRD-16"
+        }
+      ]
+    },
+    "tags": ["portalName:digitalrocks"]
+  }
