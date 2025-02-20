@@ -33,6 +33,7 @@
         "label": "Virtual Machine",
         "allocations": [
             "DesignSafe-Corral"
-        ]
+        ],
+        "noAllocationRequired": true
     }
 }

@@ -14,6 +14,7 @@
         "keyservice": true,
         "portalNames": [
             "DesignSafe"
-        ]
+        ],
+        "noAllocationRequired": true
     }
 }

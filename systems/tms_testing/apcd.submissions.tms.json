@@ -9,6 +9,7 @@
     "port": 22,
     "canExec": false,
     "notes": {
-        "keyservice": true
+        "keyservice": true,
+        "noAllocationRequired": true
     }
 }
