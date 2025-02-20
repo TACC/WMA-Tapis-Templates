@@ -64,7 +64,7 @@
         },
         "fileInputs": [],
         "fileInputArrays": [],
-        "maxMinutes": 1440,
+        "maxMinutes": 2880,
         "subscriptions": [],
         "tags": []
     },
@@ -76,6 +76,7 @@
         "label": "Interactive VM for OpenSees",
         "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/simulation/opensees/",
         "hideNodeCountAndCoresPerNode": true,
+        "hideMaxMinutes": true,
         "isInteractive": true,
         "icon": "OpenSees",
         "category": "Simulation"
