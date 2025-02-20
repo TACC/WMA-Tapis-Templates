@@ -5,7 +5,7 @@ apptainer run \
     --bind "${inputDirectory}":/data \
     docker://taccaci/opensees:latest \
     /bin/sh -c \
-        "cd /data; OpenSees < /data/$tclScript"
+        "cd /data; ${mainProgram} < /data/$tclScript"
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then

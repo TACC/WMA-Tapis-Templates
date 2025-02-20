@@ -41,7 +41,7 @@
                 },
                 {
                     "key": "_DOCKER_IMAGE",
-                    "value": "/opt/apptainer-images/opensees-interactive-matlab.sif",
+                    "value": "/opt/apptainer-images/opensees-interactive-latest-matlab.sif",
                     "description": "Apptainer image to use for the job",
                     "inputMode": "FIXED",
                     "notes": {
