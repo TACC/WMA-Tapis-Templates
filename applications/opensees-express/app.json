@@ -84,7 +84,7 @@
             }
         ],
         "fileInputArrays": [],
-        "maxMinutes": 2880,
+        "maxMinutes": 1440,
         "subscriptions": [],
         "tags": []
     },
