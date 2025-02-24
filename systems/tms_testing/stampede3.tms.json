@@ -1,0 +1,120 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "stampede3.tms",
+    "description": "System for running jobs on the Stampede3 HPC system.",
+    "systemType": "LINUX",
+    "host": "stampede3.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "TMS_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "useProxy": false,
+    "canExec": true,
+    "canRunBatch": true,
+    "enableCmdPrefix": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($SCRATCH)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "icx",
+            "hpcQueueName": "icx",
+            "maxJobs": -1,
+            "maxJobsPerUser": 20,
+            "minNodeCount": 1,
+            "maxNodeCount": 32,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 80,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "skx",
+            "hpcQueueName": "skx",
+            "maxJobs": -1,
+            "maxJobsPerUser": 60,
+            "minNodeCount": 1,
+            "maxNodeCount": 256,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 48,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 192000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "skx-dev",
+            "hpcQueueName": "skx-dev",
+            "maxJobs": -1,
+            "maxJobsPerUser": 3,
+            "minNodeCount": 1,
+            "maxNodeCount": 16,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 48,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 192000,
+            "minMinutes": 1,
+            "maxMinutes": 120
+        },
+        {
+            "name": "pvc",
+            "hpcQueueName": "pvc",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 96,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 128000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "spr",
+            "hpcQueueName": "spr",
+            "maxJobs": -1,
+            "maxJobsPerUser": 36,
+            "minNodeCount": 1,
+            "maxNodeCount": 32,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 112,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 128000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "nvdimm",
+            "hpcQueueName": "nvdimm",
+            "maxJobs": -1,
+            "maxJobsPerUser": 3,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 80,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 4000000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        }
+    ],
+    "batchDefaultLogicalQueue": "skx",
+    "batchSchedulerProfile": "tacc-apptainer",
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {
+        "label": "Stampede3"
+    }
+}

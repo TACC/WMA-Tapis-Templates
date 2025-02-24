@@ -1,10 +1,10 @@
 {
     "isPublic": true,
     "isDynamicEffectiveUser": true,
-    "id": "wma-exec-01.tms",
-    "description": "System for running jobs on the wma-exec-01 VM",
+    "id": "wma-dcv-01.tms",
+    "description": "System for running DCV jobs on the wma-dcv-01 VM",
     "systemType": "LINUX",
-    "host": "wma-exec-01.tacc.utexas.edu",
+    "host": "wma-dcv-01.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
@@ -14,10 +14,6 @@
     "canRunBatch": false,
     "enableCmdPrefix": true,
     "jobRuntimes": [
-        {
-            "runtimeType": "SINGULARITY",
-            "version": null
-        },
         {
             "runtimeType": "ZIP",
             "version": null
@@ -30,7 +26,7 @@
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Virtual Machine",
+        "label": "DCV Virtual Machine",
         "noAllocationRequired": true
     }
 }

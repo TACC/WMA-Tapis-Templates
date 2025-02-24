@@ -1,0 +1,78 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "vista.tms",
+    "description": "System for running jobs on the Vista HPC system.",
+    "systemType": "LINUX",
+    "host": "vista.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "TMS_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "useProxy": false,
+    "canExec": true,
+    "canRunBatch": true,
+    "enableCmdPrefix": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($SCRATCH)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "gg",
+            "hpcQueueName": "gg",
+            "maxJobs": -1,
+            "maxJobsPerUser": 40,
+            "minNodeCount": 1,
+            "maxNodeCount": 32,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 144,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 237000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "gh",
+            "hpcQueueName": "gh",
+            "maxJobs": -1,
+            "maxJobsPerUser": 40,
+            "minNodeCount": 1,
+            "maxNodeCount": 64,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 72,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 96000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "gh-dev",
+            "hpcQueueName": "gh-dev",
+            "maxJobs": -1,
+            "maxJobsPerUser": 3,
+            "minNodeCount": 1,
+            "maxNodeCount": 8,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 72,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 96000,
+            "minMinutes": 1,
+            "maxMinutes": 120
+        }
+    ],
+    "batchDefaultLogicalQueue": "gg",
+    "batchSchedulerProfile": "tacc-apptainer",
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {
+        "label": "Vista"
+    }
+}
