@@ -32,15 +32,6 @@
             "containerArgs": [],
             "schedulerOptions": [
                 {
-                    "name": "Paraview TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC Paraview 5.12.0.",
-                    "inputMode": "FIXED",
-                    "arg": "--tapis-profile Paraview_5.12.0",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
                     "name": "TACC Interactive Session Substrings",
                     "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
                     "inputMode": "FIXED",
@@ -53,7 +44,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "paraview",
+                    "value": "/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -86,6 +77,17 @@
                 "targetPath": "*",
                 "notes": {
                     "selectionMode": "directory"
+                }
+            },
+            {
+                "name": "shell script",
+                "description": "shell script",
+                "inputMode": "FIXED",
+                "autoMountLocal": true,
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
+                "targetPath": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
+                "notes": {
+                    "isHidden": true
                 }
             }
         ],
