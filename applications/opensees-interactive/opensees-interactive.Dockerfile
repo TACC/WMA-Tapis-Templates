@@ -40,11 +40,11 @@ RUN pip install --no-cache-dir \
     ipywidgets \
     scipy
 
-COPY --from=taccaci/opensees:3.7.0 /usr/local/bin/OpenSees /usr/local/bin/OpenSees
-COPY --from=taccaci/opensees:3.7.0 /usr/local/bin/OpenSeesSP /usr/local/bin/OpenSeesSP
-COPY --from=taccaci/opensees:3.7.0 /usr/local/bin/OpenSeesMP /usr/local/bin/OpenSeesMP
+COPY --from=taccaci/opensees:latest /usr/local/bin/OpenSees /usr/local/bin/OpenSees
+COPY --from=taccaci/opensees:latest /usr/local/bin/OpenSeesSP /usr/local/bin/OpenSeesSP
+COPY --from=taccaci/opensees:latest /usr/local/bin/OpenSeesMP /usr/local/bin/OpenSeesMP
 
-COPY --from=taccaci/opensees:3.7.0 /usr/local/lib/tcl8.6 /usr/local/lib/tcl8.6
+COPY --from=taccaci/opensees:latest /usr/local/lib/tcl8.6 /usr/local/lib/tcl8.6
 
 COPY run.sh /tapis/run.sh
 

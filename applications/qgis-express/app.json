@@ -63,6 +63,7 @@
         "label": "QGIS Desktop 3.36 (VM)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/qgis/",
         "hideNodeCountAndCoresPerNode": true,
+        "hideMaxMinutes": true,
         "icon": "QGIS",
         "category": "GIS Tools",
         "isInteractive": true

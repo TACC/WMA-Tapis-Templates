@@ -1,11 +1,13 @@
 {
-    "name": "OpenSees_default",
-    "description": "Modules to load for the default version of OpenSees",
+    "name": "mpm-s3",
+    "description": "Modules to load for MPM",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "hdf5/1.14.4",
-                "opensees"
+                "intel/24.0",
+                "impi/21.11",
+                "boost",
+                "hdf5"
             ],
             "moduleLoadCommand": "module load"
         }

@@ -1,7 +1,7 @@
 {
-  "id": "opensees-sp-s3",
+  "id": "opensees-s3",
   "version": "latest",
-  "description": "Parallel version driven by a single processor. Easy to use even with limited knowledge about parallel computing.",
+  "description": "Runs OpenSees based on the type selected",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
@@ -27,16 +27,24 @@
     "parameterSet": {
       "appArgs": [
         {
-          "name": "mainProgram",
-          "arg": "OpenSeesSP",
-          "inputMode": "FIXED",
+          "name": "Main Program",
+          "description": "Choose the OpenSees binary to use.",
+          "arg": null,
+          "inputMode": "REQUIRED",
           "notes": {
-            "isHidden": true
+            "enum_values": [
+              {
+                "OpenSeesMP": "OpenSeesMP"
+              },
+              {
+                "OpenSeesSP": "OpenSeesSP"
+              }
+            ]
           }
         },
         {
           "name": "Main Script",
-          "description": "The filename only of the OpenSees TCL script to execute. This file should reside in the Input Directory specified. To use with test input, use 'Example.tcl'",
+          "description": "The filename of the OpenSees TCL script to execute, e.g. \"freeFieldEffective.tcl\". This file should reside in the Input Directory specified.",
           "arg": null,
           "inputMode": "REQUIRED",
           "notes": {
@@ -70,14 +78,14 @@
         "sourceUrl": null,
         "targetPath": "inputDirectory",
         "envKey": "inputDirectory",
-        "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesSP",
+        "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees",
         "notes": {
           "selectionMode": "directory"
         }
       }
     ],
     "fileInputArrays": [],
-    "nodeCount": 1,
+    "nodeCount": 2,
     "coresPerNode": 48,
     "memoryMB": 192000,
     "maxMinutes": 120,
@@ -89,7 +97,7 @@
     "portalName: CEP"
   ],
   "notes": {
-    "label": "OpenSeesSP",
+    "label": "OpenSees",
     "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
     "hideNodeCountAndCoresPerNode": false,
     "isInteractive": false,

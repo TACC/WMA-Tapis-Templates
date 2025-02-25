@@ -1,11 +1,10 @@
 {
-    "name": "OpenSees_default",
-    "description": "Modules to load for the default version of OpenSees",
+    "name": "namd-vista-3.0",
+    "description": "Modules to load for NAMD",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "hdf5/1.14.4",
-                "opensees"
+                "namd/3.0"
             ],
             "moduleLoadCommand": "module load"
         }

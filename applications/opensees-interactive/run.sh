@@ -51,7 +51,7 @@ echo "TACC:     JUPYTER_URL is $JUPYTER_URL"
 # Wait a few seconds for jupyter to boot up and send webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 (
-    sleep 5 &&
+    sleep 10 &&
     curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 ) &
 

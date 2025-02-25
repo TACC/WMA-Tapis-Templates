@@ -1,13 +1,13 @@
 {
   "id": "opensees-mp-s3",
-  "version": "3.7.0",
+  "version": "latest",
   "description": "Runs all the processors in parallel. Requires understanding of parallel processing and the capabilities to write parallel scripts.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
   "runtimeVersion": null,
   "runtimeOptions": null,
-  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/v3.7.0/OpenSees/opensees.zip",
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/opensees/latest/OpenSees/opensees.zip",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -48,9 +48,9 @@
       "schedulerOptions": [
         {
           "name": "OpenSees TACC Scheduler Profile",
-          "description": "Scheduler profile for TACC OpenSees 3.7.0.",
+          "description": "Scheduler profile for the default version of OpenSees",
           "inputMode": "FIXED",
-          "arg": "--tapis-profile OpenSees_3.7.0",
+          "arg": "--tapis-profile OpenSees_default",
           "notes": {
             "isHidden": true
           }
@@ -72,7 +72,7 @@
         "envKey": "inputDirectory",
         "description": "Input directory that includes the tcl script as well as any other required files. Example input is in tapis://designsafe.storage.community/app_examples/opensees/OpenSeesMP",
         "notes": {
-            "selectionMode": "directory"
+          "selectionMode": "directory"
         }
       }
     ],
