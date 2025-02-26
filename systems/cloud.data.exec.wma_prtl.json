@@ -22,7 +22,7 @@
             "version": null
         }
     ],
-    "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
+    "jobWorkingDir": "/tmp/tapis-${JobOwner}/${JobCreateDate}/${JobUUID}",
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,

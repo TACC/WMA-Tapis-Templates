@@ -21,8 +21,8 @@
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "skx-dev",
-        "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemId": "stampede3",
+        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -99,7 +99,9 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": ["portalName: DesignSafe"],
+    "tags": [
+        "portalName: DesignSafe"
+    ],
     "notes": {
         "label": "Paraview (Stampede 3)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#paraview-user-guide",
