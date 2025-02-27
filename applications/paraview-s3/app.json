@@ -44,7 +44,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
+                    "value": "paraview-s3/paraview.sh",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -81,11 +81,9 @@
             },
             {
                 "name": "shell script",
-                "description": "shell script",
                 "inputMode": "FIXED",
-                "autoMountLocal": true,
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
-                "targetPath": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-s3",
+                "targetPath": "*",
                 "notes": {
                     "isHidden": true
                 }
