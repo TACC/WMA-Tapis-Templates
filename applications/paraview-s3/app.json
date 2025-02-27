@@ -21,8 +21,8 @@
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "skx-dev",
-        "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemId": "stampede3",
+        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -31,15 +31,6 @@
             "appArgs": [],
             "containerArgs": [],
             "schedulerOptions": [
-                {
-                    "name": "Paraview TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC Paraview 5.12.0.",
-                    "inputMode": "FIXED",
-                    "arg": "--tapis-profile Paraview_5.12.0",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
                 {
                     "name": "TACC Interactive Session Substrings",
                     "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
@@ -53,7 +44,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "paraview",
+                    "value": "/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -87,6 +78,17 @@
                 "notes": {
                     "selectionMode": "directory"
                 }
+            },
+            {
+                "name": "shell script",
+                "description": "shell script",
+                "inputMode": "FIXED",
+                "autoMountLocal": true,
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
+                "targetPath": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-s3/paraview.sh",
+                "notes": {
+                    "isHidden": true
+                }
             }
         ],
         "fileInputArrays": [],
@@ -97,7 +99,9 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": ["portalName: DesignSafe"],
+    "tags": [
+        "portalName: DesignSafe"
+    ],
     "notes": {
         "label": "Paraview (Stampede 3)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#paraview-user-guide",
