@@ -23,7 +23,7 @@
         "execSystemInputDir": "${JobWorkingDir}/jobs/${JobUUID}",
         "execSystemOutputDir": "${JobWorkingDir}/jobs/${JobUUID}/output",
         "execSystemLogicalQueue": "development",
-        "archiveSystemId": "cloud.data",
+        "archiveSystemId": "frontera",
         "archiveSystemDir": "HOST_EVAL($WORK)/archive/${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,

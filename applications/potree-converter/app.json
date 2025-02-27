@@ -22,7 +22,7 @@
         "execSystemOutputDir": "${JobWorkingDir}/converter-output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemDir": "/tmp/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -31,13 +31,13 @@
             "appArgs": [],
             "envVariables": [
                 {
-                  "key": "addArgs",
-                  "value": "",
-                  "description": "Extra arguments passed into the converter. For example: '-p index --outdir OUTPUT_DIR_NAME --material ELEVATION'. To use the PotreeViewer App, you must add '-p index' in the arguments.",
-                  "inputMode": "INCLUDE_BY_DEFAULT",
-                  "notes": {
-                    "label": "Extra arguments passed into the converter."
-                  }
+                    "key": "addArgs",
+                    "value": "",
+                    "description": "Extra arguments passed into the converter. For example: '-p index --outdir OUTPUT_DIR_NAME --material ELEVATION'. To use the PotreeViewer App, you must add '-p index' in the arguments.",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "notes": {
+                        "label": "Extra arguments passed into the converter."
+                    }
                 }
             ],
             "archiveFilter": {
