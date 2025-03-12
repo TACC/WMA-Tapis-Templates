@@ -1,6 +1,6 @@
 {
     "id": "hello-world",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Sleeps for 3m. Then prints a configurable Hello World greeting to a target file.",
     "owner": "${apiUserId}",
     "enabled": true,
