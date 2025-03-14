@@ -1,6 +1,6 @@
 {
     "id": "hello-world",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Sleeps for 3m. Then prints a configurable Hello World greeting to a target file.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -23,8 +23,8 @@
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "debug",
-        "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemId": "ls6",
+        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
@@ -115,6 +115,9 @@
         "hideNodeCountAndCoresPerNode": false,
         "category": "Utilities",
         "showTargetPath": true,
-        "dynamicExecSystems": ["frontera", "ls6"]
+        "dynamicExecSystems": [
+            "frontera",
+            "ls6"
+        ]
     }
 }
