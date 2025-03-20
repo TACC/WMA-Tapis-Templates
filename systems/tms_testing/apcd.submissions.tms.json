@@ -2,14 +2,13 @@
     "id": "apcd.submissions.tms",
     "description": "APCD Submissions Root System",
     "systemType": "LINUX",
-    "host": "dev.apcd.tacc.utexas.edu",
+    "host": "prod.apcd.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/apcd-uploads",
-    "port": 22,
+    "port": 2222,
     "canExec": false,
     "notes": {
-        "keyservice": true,
         "noAllocationRequired": true
     }
 }
