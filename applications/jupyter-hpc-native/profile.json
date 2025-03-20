@@ -1,0 +1,16 @@
+{
+    "name": "python3_vista",
+    "description": "Modules to load for python3 on Vista",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "gcc/14.2.0",
+                "python3/3.11.8"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
