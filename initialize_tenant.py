@@ -265,6 +265,7 @@ def main():
                         "GiD-stampede3",
                         "jupyter-hpc-mpi",
                         "jupyter-hpc-mpi-ls6",
+                        "jupyter-hpc-native",
                         "jupyter-lab-hpc",
                         "jupyter-lab-hpc/gpu",
                         "jupyter-lab-hpc-cuda-ds",
@@ -316,7 +317,7 @@ def main():
                         "stko-express",
                         "swbatch",
                         "visit",
-                        "visit-stampede3"
+                        "visit-stampede3",
                     ]
                     if apps == ["ALL"]
                     else apps
@@ -348,6 +349,7 @@ def main():
                         "GiD-stampede3",
                         "jupyter-hpc-mpi",
                         "jupyter-hpc-mpi-ls6",
+                        "jupyter-hpc-native",
                         "jupyter-lab-hpc",
                         "jupyter-lab-hpc/gpu",
                         "jupyter-lab-hpc-cuda-ds",
@@ -395,7 +397,7 @@ def main():
                         "rstudio-ls6",
                         "swbatch",
                         "visit",
-                        "visit-stampede3"
+                        "visit-stampede3",
                     ]
                     if apps == ["ALL"]
                     else apps

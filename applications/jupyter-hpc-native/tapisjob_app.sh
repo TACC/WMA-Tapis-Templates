@@ -28,7 +28,7 @@ if $(echo ${JUPYTER_BIN} | grep -qve '^/opt') ; then
 fi
 
 # Home Dir for Jupyter Notebook HPC Native for persistent storage between sessions
-JUPYTER_HOME=$HOME/.jupyter-notebook-hpc-native
+JUPYTER_HOME=$HOME/.jupyter-hpc-native
 mkdir -p $JUPYTER_HOME
 
 # Make symlinks for work, home and scratch
