@@ -1,0 +1,87 @@
+{
+    "id": "jupyter-hpc-native",
+    "version": "1.0.0",
+    "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-hpc-native/jupyter-hpc-native.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": null,
+        "dynamicExecSystem": false,
+        "execSystemId": "vista",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "gh-dev",
+        "archiveSystemId": "vista",
+        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "cmdPrefix": "source tap.sh;",
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile python3_vista",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TAP Session Substring",
+                    "description": "TAP Functions require the substring 'tap_' in the SLURM job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-tap_dsmydata",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "TAP script",
+                "inputMode": "REQUIRED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 72,
+        "memoryMB": 96000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: DESIGNSAFE"
+    ],
+    "notes": {
+        "label": "Jupyter HPC Native",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": "jupyter",
+        "category": "Data Processing"
+    }
+}

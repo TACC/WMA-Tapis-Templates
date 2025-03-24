@@ -56,5 +56,5 @@ echo "TACC: got login node app port ${LOGIN_PORT}"
 # Create a reverse tunnel port from the compute node to the login nodes.
 # Make one tunnel for each login node so the user can just connect to $NODE_HOSTNAME_DOMAIN
 for i in `seq 4`; do
-  ssh -o StrictHostKeyChecking=no -f -g -N -R ${LOGIN_PORT}:${NODE_HOSTNAME_PREFIX}:${LOCAL_PORT} login${i}
+  ssh -o StrictHostKeyChecking=no -o ConnectTimeout=3 -q -f -g -N -R ${LOGIN_PORT}:${NODE_HOSTNAME_PREFIX}:${LOCAL_PORT} login${i}
 done

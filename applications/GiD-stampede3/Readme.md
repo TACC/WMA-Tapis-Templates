@@ -1,0 +1,1 @@
+GiD is an interactive Pre/Postprocessor for OpenSees. It is used in DesignSafe.
