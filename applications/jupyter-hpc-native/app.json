@@ -78,7 +78,7 @@
     ],
     "notes": {
         "label": "Jupyter HPC Native",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "jupyter",
