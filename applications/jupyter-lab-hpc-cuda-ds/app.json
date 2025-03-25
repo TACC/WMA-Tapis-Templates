@@ -122,7 +122,7 @@
     ],
     "notes": {
         "label": "Jupyter Lab HPC (GPU)",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide#designsafe-hpc-jupyter-guide",
         "hideNodeCountAndCoresPerNode": true,
         "isInteractive": true,
         "icon": "Jupyter",
