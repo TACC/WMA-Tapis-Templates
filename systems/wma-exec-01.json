@@ -12,6 +12,7 @@
     "useProxy": false,
     "canExec": true,
     "canRunBatch": false,
+    "batchScheduler": null,
     "enableCmdPrefix": true,
     "jobRuntimes": [
         {

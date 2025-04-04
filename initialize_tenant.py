@@ -369,6 +369,7 @@ def main():
                         "matlab-ls6",
                         "mpm",
                         "mpm-s3",
+                        "napari-ls6",
                         "openfoam",
                         "openfoam-s3",
                         "opensees-express",
