@@ -1,15 +1,11 @@
 {
-    "id": "jupyter-hpc-mpi",
-    "version": "1.0.1",
-    "description": "Run an interactive Jupyter Notebook session with ability to launch mpi jobs.",
+    "id": "jupyter-hpc-native",
+    "version": "frontera",
+    "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
     "owner": "${apiUserId}",
     "enabled": true,
-    "runtime": "SINGULARITY",
-    "runtimeVersion": null,
-    "runtimeOptions": [
-        "SINGULARITY_RUN"
-    ],
-    "containerImage": "docker://debian:bullseye-slim",
+    "runtime": "ZIP",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-hpc-native/jupyter-hpc-native.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -17,7 +13,6 @@
     "jobAttributes": {
         "description": null,
         "dynamicExecSystem": false,
-        "execSystemConstraints": null,
         "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
@@ -27,19 +22,9 @@
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
-        "mpiCmd": null,
-        "cmdPrefix": "source tapisjob.env;source jupyter-notebook-native/run.sh;",
+        "cmdPrefix": "source tap.sh;",
         "parameterSet": {
-            "appArgs": [
-                {
-                    "name": "launchParameters",
-                    "arg": "echo 'Job is done.'",
-                    "inputMode": "FIXED",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "appArgs": [],
             "containerArgs": [],
             "schedulerOptions": [
                 {
@@ -53,7 +38,7 @@
                 },
                 {
                     "name": "TAP Session Substring",
-                    "description": "TAP Functions require the substring 'tap_' and in the slurm job name in order to function.",
+                    "description": "TAP Functions require the substring 'tap_' in the SLURM job name.",
                     "inputMode": "FIXED",
                     "arg": "--job-name ${JobName}-tap_",
                     "notes": {
@@ -61,7 +46,17 @@
                     }
                 }
             ],
-            "envVariables": [],
+            "envVariables": [
+                {
+                    "key": "CUSTOM_KERNELSPEC",
+                    "value": "/home1/05193/sabyadk/.local/share/jupyter/kernels/py312-test/",
+                    "description": "Load an optional custom kernelspec into your Jupyter Notebook session. Note that you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "label": "Custom Kernelspec Directory"
+                    }
+                }
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -70,9 +65,9 @@
         },
         "fileInputs": [
             {
-                "name": "Jupyter input files",
+                "name": "TAP script",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-notebook-native",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh",
                 "targetPath": "*",
                 "notes": {
                     "isHidden": true
