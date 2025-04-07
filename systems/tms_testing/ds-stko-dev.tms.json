@@ -1,10 +1,10 @@
 {
     "isPublic": true,
     "isDynamicEffectiveUser": true,
-    "id": "wma-exec-01",
-    "description": "System for running jobs on the wma-exec-01 VM",
+    "id": "ds-stko-dev.tms",
+    "description": "System for running jobs on the ds-stko-dev VM",
     "systemType": "LINUX",
-    "host": "wma-exec-01.tacc.utexas.edu",
+    "host": "ds-stko-dev.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
@@ -14,10 +14,6 @@
     "canRunBatch": false,
     "enableCmdPrefix": true,
     "jobRuntimes": [
-        {
-            "runtimeType": "SINGULARITY",
-            "version": null
-        },
         {
             "runtimeType": "ZIP",
             "version": null
@@ -30,7 +26,7 @@
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Virtual Machine",
+        "label": "DesignSafe STKO VM",
         "noAllocationRequired": true
     }
 }
