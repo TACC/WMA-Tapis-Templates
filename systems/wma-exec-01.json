@@ -6,13 +6,12 @@
     "systemType": "LINUX",
     "host": "wma-exec-01.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "useProxy": false,
     "canExec": true,
     "canRunBatch": false,
-    "batchScheduler": null,
     "enableCmdPrefix": true,
     "jobRuntimes": [
         {
@@ -32,8 +31,6 @@
     "tags": [],
     "notes": {
         "label": "Virtual Machine",
-        "allocations": [
-            "DesignSafe-DCV"
-        ]
+        "noAllocationRequired": true
     }
 }

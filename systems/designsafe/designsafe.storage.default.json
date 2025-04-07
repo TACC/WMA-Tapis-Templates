@@ -4,16 +4,16 @@
     "systemType": "LINUX",
     "host": "cloud.data.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/data/designsafe/mydata",
     "port": 22,
     "canExec": false,
     "notes": {
         "label": "My Data",
-        "keyservice": true,
         "isMyData": true,
         "portalNames": [
             "DesignSafe"
-        ]
+        ],
+        "noAllocationRequired": true
     }
 }
