@@ -117,16 +117,28 @@ def provision(client, systems, apps, args):
 
         try:
             client.apps.createAppVersion(**app_json)
-            print("app created: {}".format(app_json["id"]))
+            print(
+                "app created: {}, version: {}".format(
+                    app_json["id"], app_json["version"]
+                )
+            )
         except BaseTapyException as e:
             if "APPAPI_APP_EXISTS" in e.message:
-                print("app already exists: {}".format(app_json["id"]))
+                print(
+                    "app already exists: {}, version: {}".format(
+                        app_json["id"], app_json["version"]
+                    )
+                )
 
                 if args.update_apps:
                     client.apps.putApp(
                         appId=app_json["id"], appVersion=app_json["version"], **app_json
                     )
-                    print("app updated: {}".format(app_json["id"]))
+                    print(
+                        "app updated: {}, version: {}".format(
+                            app_json["id"], app_json["version"]
+                        )
+                    )
             else:
                 raise
 
