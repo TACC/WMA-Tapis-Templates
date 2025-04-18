@@ -1,0 +1,16 @@
+{
+    "name": "padcirc_v56",
+    "description": "Modules to load for PADCIRC",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "TACC",
+                "netcdf"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
