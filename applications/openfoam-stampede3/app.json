@@ -152,7 +152,7 @@
     "notes": {
         "icon": "OpenFOAM",
         "label": "OpenFOAM (Stampede3) - v12.0",
-        "helpUrl": "https://www.designsafe-ci.org/rw/user-guides/tools-applications/simulation/openfoam/",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/openfoam/#openfoam-user-guide",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Simulation"
     }
