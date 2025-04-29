@@ -1,6 +1,6 @@
 {
     "id": "compress-secure",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Compress a file or folder for download.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -94,17 +94,16 @@
                 "includeLaunchFiles": false
             }
         },
-        "fileInputs": [
+        "fileInputs": [],
+        "fileInputArrays": [
             {
                 "name": "Target path to be compressed",
-                "description": "The directory or file to be compressed.",
-                "inputMode": "OPTIONAL",
-                "autoMountLocal": true,
-                "sourceUrl": null,
-                "targetPath": "*"
+                "description": "The directory or file(s) to be compressed.",
+                "inputMode": "REQUIRED",
+                "sourceUrls": null,
+                "targetDir": "*"
             }
         ],
-        "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
         "memoryMB": 100,
