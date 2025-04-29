@@ -5,6 +5,10 @@
 - (Optional) [pyenv](https://github.com/pyenv/pyenv)
 - (Optional) [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 
+## Related Repositories
+
+- [DesignSafe Portal Apps User Content](https://github.com/DesignSafe-CI/portal-apps-user-content), content for DesignSafe applications overview pages.
+
 ## Provisioning a Tenant
 1. Create a `client_secrets.py` file with a `CLIENT_USERNAME` and `CLIENT_PASSWORD` (see client_secrets.example.py)
 2. Adjust the tenants, systems, and apps you wish to create in `initialize_tenant.py`
