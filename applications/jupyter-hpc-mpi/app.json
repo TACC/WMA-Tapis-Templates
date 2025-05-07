@@ -49,12 +49,9 @@
             "envVariables": [
                 {
                     "key": "CUSTOM_KERNELSPEC",
-                    "value": "/home1/05193/sabyadk/.local/share/jupyter/kernels/py312-test/",
+                    "value": "/work2/05193/sabyadk/frontera/conda_install/custom_kernel/kernels/py311",
                     "description": "Load an optional custom kernelspec into your Jupyter Notebook session. Note that you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "notes": {
-                        "label": "Custom Kernelspec Directory"
-                    }
+                    "inputMode": "INCLUDE_ON_DEMAND"
                 }
             ],
             "archiveFilter": {
@@ -85,7 +82,7 @@
         "portalName: MISE"
     ],
     "notes": {
-        "label": "Jupyter Notebook HPC MPI (Frontera)",
+        "label": "Jupyter HPC Native (Frontera)",
         "helpUrl": "https://jupyter-notebook.readthedocs.io/en/stable/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
