@@ -90,12 +90,21 @@
                 "includeLaunchFiles": false
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Target path to be compressed",
+                "description": "The directory or file to be compressed.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*"
+            }
+        ],
         "fileInputArrays": [
             {
                 "name": "Target path to be compressed",
                 "description": "The directory or file(s) to be compressed.",
-                "inputMode": "REQUIRED",
+                "inputMode": "OPTIONAL",
                 "sourceUrls": null,
                 "targetDir": "*",
                 "notes": {
