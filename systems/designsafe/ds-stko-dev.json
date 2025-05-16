@@ -1,19 +1,18 @@
 {
     "isPublic": true,
     "isDynamicEffectiveUser": true,
-    "id": "ds-stko-dev",
+    "id": "ds-stko-dev.tms",
     "description": "System for running jobs on the ds-stko-dev VM",
     "systemType": "LINUX",
     "host": "ds-stko-dev.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "useProxy": false,
     "canExec": true,
     "canRunBatch": false,
     "enableCmdPrefix": true,
-    "mpiCmd": "",
     "jobRuntimes": [
         {
             "runtimeType": "ZIP",
@@ -24,16 +23,10 @@
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
-    "batchScheduler": "SLURM",
-    "batchLogicalQueues": [],
-    "batchDefaultLogicalQueue": "",
-    "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
     "notes": {
         "label": "DesignSafe STKO VM",
-        "allocations": [
-            "DesignSafe-DCV"
-        ]
+        "noAllocationRequired": true
     }
 }
