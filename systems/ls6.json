@@ -6,7 +6,7 @@
     "systemType": "LINUX",
     "host": "ls6.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "canExec": true,
@@ -143,5 +143,5 @@
     "tags": [],
     "notes": {
         "label": "Lonestar6"
-      }
+    }
 }

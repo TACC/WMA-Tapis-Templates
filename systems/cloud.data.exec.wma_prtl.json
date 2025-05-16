@@ -5,12 +5,8 @@
     "description": "System for running jobs on cloud.data",
     "systemType": "LINUX",
     "host": "cloud.data.tacc.utexas.edu",
-    "effectiveUserId": "wma_prtl",
-    "defaultAuthnMethod": "PKI_KEYS",
-    "authnCredential": {
-        "privateKey": "CHANGEME",
-        "publicKey": "CHANGEME"
-    },
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "canExec": true,
