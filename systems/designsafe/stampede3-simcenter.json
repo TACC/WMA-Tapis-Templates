@@ -1,7 +1,7 @@
 {
     "isPublic": true,
     "isDynamicEffectiveUser": true,
-    "id": "stampede3-simcenter.tms",
+    "id": "stampede3-simcenter",
     "description": "System for running jobs on the Stampede3 HPC system.",
     "systemType": "LINUX",
     "host": "stampede3.tacc.utexas.edu",
