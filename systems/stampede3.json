@@ -6,7 +6,7 @@
     "systemType": "LINUX",
     "host": "stampede3.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "useProxy": false,
