@@ -20,7 +20,7 @@ Options:
 
 import os
 import argparse
-from tapipy.errors import BaseTapyException
+from tapipy.errors import BaseTapyException, UnauthorizedError
 from client_secrets import TAPIS_CLIENTS
 from utils.load_file_to_json import load_file_to_json
 from utils.client import get_client
@@ -71,6 +71,8 @@ def provision(client, systems, apps, args):
         None
     """
     profile = load_file_to_json("profiles/tacc-apptainer.json")
+
+    # Create scheduler profile
     try:
         client.systems.createSchedulerProfile(**profile)
         print("profile created: {}".format(profile["name"]))
@@ -87,6 +89,7 @@ def provision(client, systems, apps, args):
             raise
 
     for system in systems:
+        # Get or create systems
         sys_json = load_file_to_json(f"systems/{system}.json")
         public = sys_json["effectiveUserId"] == "${apiUserId}"
         get_or_create_system(client, sys_json, update=args.update_systems)
@@ -95,6 +98,35 @@ def provision(client, systems, apps, args):
             client.files.sharePathPublic(
                 systemId=sys_json["id"], path=sys_json["rootDir"]
             )
+
+        # Create credentials for users on systems
+        credential_usernames = (
+            args.credential_users.split(",") if args.credential_users else []
+        )
+        if credential_usernames:
+            for username in credential_usernames:
+                try:
+                    client.systems.checkUserCredential(
+                        systemId=sys_json["id"],
+                        userName=username,
+                    )
+                    print(
+                        f"OK: credentials good for: {username} on system: {sys_json['id']}"
+                    )
+                except UnauthorizedError:
+                    try:
+                        client.systems.createUserCredential(
+                            systemId=sys_json["id"],
+                            userName=username,
+                            createTmsKeys=True,
+                        )
+                        print(
+                            f"Success: credentials created for user: {username} on system: {sys_json['id']}"
+                        )
+                    except BaseTapyException:
+                        print(
+                            f"Error: could not create credential for: {username} on system: {sys_json['id']}, tenant: {client.base_url}"
+                        )
 
     for app_name in apps:
         app_json = load_file_to_json(f"applications/{app_name}/app.json")
@@ -200,6 +232,11 @@ def main():
         action="store_false",
         default=False,
         help="Uses Dev Specs when enabled",
+    )
+    parser.add_argument(
+        "-c",
+        "--credential_users",
+        help="Comma separated list of usernames to create credentials for on specified systems.",
     )
     args = parser.parse_args()
 

@@ -1,0 +1,35 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "cloud.data.exec",
+    "description": "System for running jobs on cloud.data",
+    "systemType": "LINUX",
+    "host": "cloud.data.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "TMS_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "canExec": true,
+    "canRunBatch": false,
+    "enableCmdPrefix": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        },
+        {
+            "runtimeType": "ZIP",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "/tmp/tapis-${JobOwner}/${JobCreateDate}/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": 10,
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {
+        "label": "Virtual Machine",
+        "noAllocationRequired": true
+    }
+}

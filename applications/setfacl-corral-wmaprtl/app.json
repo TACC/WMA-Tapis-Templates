@@ -16,7 +16,7 @@
     "description": "",
     "dynamicExecSystem": false,
     "execSystemConstraints": null,
-    "execSystemId": "cloud.data.exec.wma_prtl",
+    "execSystemId": "cloud.data.exec",
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
     "execSystemOutputDir": "${JobWorkingDir}/output",
