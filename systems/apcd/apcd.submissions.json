@@ -4,11 +4,11 @@
     "systemType": "LINUX",
     "host": "prod.apcd.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/apcd-uploads",
     "port": 22,
     "canExec": false,
     "notes": {
-        "keyservice": true
+        "noAllocationRequired": true
     }
 }

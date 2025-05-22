@@ -1,4 +1,26 @@
-## Compress app
+# About
+This is the Compress app. It compresses a file or directory into a .tar.gz or .zip archive for download.
+
+## App build details
+
+
+## Usage
+App is used is used in all our portals. It lives in the 'Utilities' section.
+
+## Inputs
+The user selects a single directory or file to be compressed. 
+
+## Outputs
+The output is a compressed file (zip or tar.gz).
+The original file remains intact. 
+
+## Details on how this app is launched
+
+
+## Note
+
+Core Portal has an option to compress in the Data Files section. However this does not work. 
+
 
 ### 07/28/2023
 - The current fix utilizes the regex validator in the `app.json` to limit inputs of special characters.

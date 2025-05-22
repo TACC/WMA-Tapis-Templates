@@ -16,7 +16,7 @@
 # Example docker build commands are available at the end of this file.
 
 ## Setup Build Arguments, to chain multi-stage build selection.
-ARG MATLAB_RELEASE=R2022b
+ARG MATLAB_RELEASE=R2024b
 
 # See https://mathworks.com/help/install/ug/mpminstall.html for product list specfication
 ARG MATLAB_PRODUCT_LIST="MATLAB"
@@ -57,8 +57,8 @@ ARG VNC=${INSTALL_VNC:+"-with-vnc"}
 ARG LICENSE_SERVER
 ARG NLM=${LICENSE_SERVER:+"-with-nlm"}
 
-# Both 22.04 & 24.04 ship with Python 3.11
-ARG UBUNTU_VERSION=22.04
+# 24.04 ships with Python 3.12
+ARG UBUNTU_VERSION=24.04
 
 ######################################
 #  Stage 1 : Base Layer + matlab-deps
