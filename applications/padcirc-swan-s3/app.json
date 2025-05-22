@@ -63,7 +63,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your PADCIRC input files.",
+                "description": "The directory containing your PADCIRC input files. To try this out with example data, copy and paste 'tapis://designsafe.storage.community/app_examples/adcirc/padcirc' above.",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
