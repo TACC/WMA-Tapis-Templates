@@ -14,3 +14,14 @@ Kalpana has two main capabilities:
 - For developers, run the test job on the development queue for a maximum run time of 5 minutes
 
 - Once the job is finished, there should be a directory called 'wind-speed' inside your archived output dir (i.e. the Output Location under Job History)
+
+
+### Example Test Docker Commands
+
+~~~bash
+docker run -v $(pwd)/examples:/Kalpana/examples clos21/kalpana:test test --storm test --filetype /Kalpana/examples/maxwvel.63.nc --polytype polygon --viztype shapefile --subplots no --contourlevel '0 1 2 3 4 5 6 7 8 9 10 11 12'
+~~~
+
+~~~bash
+python3 ../Kalpana/Kalpana_N.py --storm test --filetype ${filetype} --polytype ${polytype} --viztype shapefile --subplots no --${contour} "${range_value}"
+~~~
