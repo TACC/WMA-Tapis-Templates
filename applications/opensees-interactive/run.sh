@@ -48,13 +48,6 @@ EOF
 JUPYTER_URL="https://${VM_HOST}:${LOGIN_PORT}/?token=${SESSION_TOKEN}"
 echo "TACC:     JUPYTER_URL is $JUPYTER_URL"
 
-# Wait a few seconds for jupyter to boot up and send webhook callback url for job ready notification.
-# Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
-(
-    sleep 10 &&
-    curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
-) &
-
 # launch jupyter
 JUPYTER_ARGS="--certfile=/etc/nginx/ssl/nginx.crt --keyfile=/etc/nginx/ssl/nginx.key --config=${JUPYTER_CONFIG}"
 echo "TACC: using jupyter command: jupyter-lab ${JUPYTER_ARGS}"
@@ -62,5 +55,12 @@ echo "TACC: using jupyter command: jupyter-lab ${JUPYTER_ARGS}"
 export PATH=$HOME/.local/bin:$PATH
 
 pip install --upgrade pip jupyterlab notebook
+
+# Wait a few seconds for jupyter to boot up and send webhook callback url for job ready notification.
+# Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
+(
+    sleep 10 &&
+    curl -k --data "event_type=interactive_session_ready&address=${JUPYTER_URL}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+) &
 
 jupyter-lab ${JUPYTER_ARGS}

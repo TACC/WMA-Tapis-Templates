@@ -6,7 +6,7 @@
     "systemType": "LINUX",
     "host": "wma-dcv-01.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "TMS_KEYS",
     "rootDir": "/",
     "port": 22,
     "useProxy": false,
@@ -27,8 +27,6 @@
     "tags": [],
     "notes": {
         "label": "DCV Virtual Machine",
-        "allocations": [
-            "DesignSafe-DCV"
-        ]
+        "noAllocationRequired": true
     }
 }

@@ -53,6 +53,12 @@ then
     ln -sf /data/designsafe/mydata/${_tapisJobOwner} $JUPYTER_HOME/MyData
 fi
 
+# Load custom kernelspec if defined
+if [[ ! -z "${CUSTOM_KERNELSPEC}" ]]; then
+    echo "TACC: using custom kernelspec ${CUSTOM_KERNELSPEC}"
+    jupyter kernelspec install ${CUSTOM_KERNELSPEC} --user
+fi
+
 # create the tap jupyter config if needed
 JUPYTER_CONFIG="${_tapisJobWorkingDir}/jupyter_config.py"
 

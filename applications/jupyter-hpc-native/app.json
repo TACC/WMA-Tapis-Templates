@@ -46,7 +46,17 @@
                     }
                 }
             ],
-            "envVariables": [],
+            "envVariables": [
+                {
+                    "key": "CUSTOM_KERNELSPEC",
+                    "value": "",
+                    "description": "Load an optional custom python kernelspec into your Jupyter Notebook session. Note that you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "label": "Custom Python Kernelspec Directory"
+                    }
+                }
+            ],
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
@@ -78,7 +88,7 @@
     ],
     "notes": {
         "label": "Jupyter HPC Native",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/#designsafe-hpc-jupyter-guide",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "jupyter",

@@ -1,6 +1,6 @@
 {
     "id": "compress",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Compress a file or folder for download.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -94,16 +94,24 @@
             {
                 "name": "Target path to be compressed",
                 "description": "The directory or file to be compressed.",
-                "inputMode": "REQUIRED",
+                "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "*",
+                "targetPath": "*"
+            }
+        ],
+        "fileInputArrays": [
+            {
+                "name": "Target path to be compressed",
+                "description": "The directory or file(s) to be compressed.",
+                "inputMode": "OPTIONAL",
+                "sourceUrls": null,
+                "targetDir": "*",
                 "notes": {
                     "selectionMode": "both"
                 }
             }
         ],
-        "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
         "memoryMB": 100,

@@ -1,4 +1,4 @@
-FROM taccaci/jupyterlab-matlab:R2022b-ubuntu-22.04
+FROM taccaci/jupyterlab-matlab:R2024b-ubuntu-24.04
 
 # The user must be swtiched to root in order to install and update packages with apt-get.
 # See https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile for info.
