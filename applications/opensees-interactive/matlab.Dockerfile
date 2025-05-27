@@ -1,6 +1,6 @@
 # Copyright 2024 The MathWorks, Inc.
 # Dockerfile for the MATLAB Integration for Jupyter based on quay.io/jupyter/base-notebook
-# With Python Version : 3.11
+# With Python Version : 3.12
 ###############################################################################
 # This Dockerfile is divided into multiple stages, the behavior of each stage
 #         is based on the build time args.
@@ -95,9 +95,6 @@ FROM base1 AS install-matlab-using-mpm
 ARG MATLAB_RELEASE
 ARG MATLAB_PRODUCT_LIST
 ARG MATLAB_INSTALL_LOCATION
-
-# Temporary workaround to issue introduced in MPM 2024.3
-ENV MW_SPROOT_SETTINGSXML=1
 
 # Dont need to set HOME to install Support packages as jupyter images set HOME to NB_USER in all images, even for ROOT.
 RUN echo "Installing MATLAB using MPM..."

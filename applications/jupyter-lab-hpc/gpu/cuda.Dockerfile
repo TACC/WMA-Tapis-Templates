@@ -6,13 +6,19 @@ USER root
 
 EXPOSE 8888
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     fonts-liberation \
     git \
+    libx11-6 \
+    libx11-dev \
+    libxext6 \
+    libxrender1 \
+    libxcb1 \
+    libx11-xcb1 \
     locales \
     pandoc \
     python3 \
