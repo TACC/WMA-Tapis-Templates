@@ -10,6 +10,7 @@ In DesignSafe, it is under 'Simulation'. It runs on Stampede3.
 ## Inputs
 Testing Steps:
 - For the Case Directory go to 'Community Data' and navigate to [Community Data/app_examples/openfoam/openfoam_v12/testCase1](https://www.designsafe-ci.org/data/browser/tapis/designsafe.storage.community/%2Fapp_examples%2Fopenfoam%2Fopenfoam_v12%2FtestCase1)
+- For the 'Solver' parameter select pisoFoam
 - For the 'Decomposition' parameter select Off
 - For the 'Mesh' parameter select On
 
