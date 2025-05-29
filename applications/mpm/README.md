@@ -11,7 +11,7 @@ Inputs include mesh, particles, material models, and boundary conditions.
 When the analysis is complete, the outputs are VTK and HDF5 files. These can be further analyzed in ParaView (for example).
 
 ## Inputs
-Input taken from Community Data (/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress)
+Input taken from Community Data ([/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress](https://cep.tacc.utexas.edu/workbench/data/tapis/community/cloud.data/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress/))
 
 1. Input Directory: tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/mpm/uniaxial_stress
 2. Input Script (appArgs): mpm.json
@@ -21,6 +21,12 @@ Input taken from Community Data (/corral/tacc/aci/CEP/community/app_examples/mpm
 
 Go to the output file, go to InputDirectory --> results --> uniaxial-stress-2d-usf
 This folder will have a collection .vtp, .h5, and .txt files
+
+There is also a results.ipynb file, you can run it and verify you get the same results.
+<em> 
+    I had to pip install tables
+    I had to adjust the file path, and make sure the final .h5 file is valid (syntax)
+</em>  
 
 ## Details on how this app is launched
 1. Tapis fetches and unzips mpm.zip into your job’s working directory on Frontera.
