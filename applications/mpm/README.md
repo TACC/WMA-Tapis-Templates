@@ -24,7 +24,7 @@ This folder will have a collection .vtp, .h5, and .txt files
 
 There is also a results.ipynb file, you can run it and verify you get the same results.
     I had to pip install tables
-    I had to adjust the file path, and make sure the final .h5 file is valid (syntax)
+    I had to adjust the file path, and make sure the final .h5 file is valid file name
 
 ## Details on how this app is launched
 1. Tapis fetches and unzips mpm.zip into your job’s working directory on Frontera.
