@@ -21,7 +21,6 @@ Testing Steps:
 - Once the job is finished, the results should be in the 'inputDirectory' directory inside your archived output dir (i.e. the Output Location under Job History)
 
 ## Details on how this app is launched
-1. Wrapper script from ZIP template runs openfoam module
-2. No container, no Docker, no MPI
+Wrapper script from ZIP template runs openfoam module
 
 ## Note
