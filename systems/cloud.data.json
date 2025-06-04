@@ -11,6 +11,9 @@
     "notes": {
         "label": "Data Files",
         "hasWork": true,
-        "noAllocationRequired": true
+        "noAllocationRequired": true,
+        "portalNames": [
+            "DesignSafe"
+        ]
     }
 }
