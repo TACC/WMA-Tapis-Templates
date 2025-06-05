@@ -46,15 +46,24 @@
       ],
       "containerArgs": [],
       "schedulerOptions": [
-        {
-          "name": "OpenSees TACC Scheduler Profile",
-          "description": "Scheduler profile for the default version of OpenSees",
-          "inputMode": "FIXED",
-          "arg": "--tapis-profile OpenSees_default",
-          "notes": {
-            "isHidden": true
+          {
+              "name": "OpenSees TACC Scheduler Profile",
+              "description": "Scheduler profile for the default version of OpenSees",
+              "inputMode": "FIXED",
+              "arg": "--tapis-profile OpenSees_default",
+              "notes": {
+                  "isHidden": true
+              }
+          },
+          {
+              "name": "TACC Reservation",
+              "description": "Reservation input string",
+              "inputMode": "INCLUDE_ON_DEMAND",
+              "arg": null,
+              "notes": {
+                  "isReservation": true
+              }
           }
-        }
       ],
       "envVariables": [],
       "archiveFilter": {
