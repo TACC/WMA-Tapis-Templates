@@ -1,7 +1,7 @@
 {
-    "id": "napari",
-    "version": "0.4.17",
-    "description": "Run an interactive Napari session on Lonestar6.",
+    "id": "jlabyer-napari",
+    "version": "0.0.0",
+    "description": "Run an interactive Napari session on Stampede3.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -9,21 +9,21 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/napari:0.4.17",
+    "containerImage": "docker://jlabyer/napari-3dem:0.0.6",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Run an interactive Napari session on Lonestar6.",
+        "description": "Run an interactive Napari session on Stampede3.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "ls6",
+        "execSystemId": "stampede3",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "development",
-        "archiveSystemId": "ls6",
+        "execSystemLogicalQueue": "skx-dev",
+        "archiveSystemId": "stampede3",
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
@@ -36,7 +36,7 @@
                     "name": "Interactive Session and TACC Module Mounts",
                     "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
                     "inputMode": "FIXED",
-                    "arg": "--bind /bin,/lib,/lib64,/share,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/etc,/usr/include,/usr/share,/usr/sbin,/usr/src",
+                    "arg": "--bind /bin,/lib,/lib64,/share,/run,/opt/apps,/usr/lib,/usr/lib64,/usr/libexec,/usr/bin,/usr/include,/usr/share,/usr/sbin,/usr/src",
                     "notes": {
                         "isHidden": true
                     }
@@ -91,8 +91,8 @@
         "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 128,
-        "memoryMB": 256000,
+        "coresPerNode": 48,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
@@ -102,7 +102,7 @@
         "portalName: 3DEM"
     ],
     "notes": {
-        "label": "Napari Interactive (LS6)",
+        "label": "Napari Interactive (Stampede3) test",
         "helpUrl": "https://napari.org/stable/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
