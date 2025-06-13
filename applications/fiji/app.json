@@ -1,6 +1,6 @@
 {
     "id": "fiji",
-    "version": "2.14.0",
+    "version": "2.15.0",
     "description": "Run an interactive Fiji session on Lonestar6.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/fiji:latest",
+    "containerImage": "docker://jlabyer/jlabyer-fiji:1.1.0",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
