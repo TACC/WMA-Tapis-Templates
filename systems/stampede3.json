@@ -108,6 +108,20 @@
             "maxMemoryMB": 4000000,
             "minMinutes": 1,
             "maxMinutes": 2880
+        },
+        {
+            "name": "h100",
+            "hpcQueueName": "h100",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 96,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 1000000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
         }
     ],
     "batchDefaultLogicalQueue": "skx",
