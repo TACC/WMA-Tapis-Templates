@@ -30,26 +30,7 @@
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
-            "schedulerOptions": [
-                {
-                    "name": "TACC Scheduler Profile",
-                    "description": "Scheduler profile for HPC clusters at TACC",
-                    "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "name": "Slurm job name",
-                    "description": "Set the slurm job name to be identical to the Tapis job name.",
-                    "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}",
-                    "notes": {
-                        "isHidden": true
-                    }
-                }
-            ],
+            "schedulerOptions": [],
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
@@ -76,7 +57,7 @@
         "nodeCount": 1,
         "coresPerNode": 1,
         "memoryMB": 100,
-        "maxMinutes": 10,
+        "maxMinutes": 60,
         "subscriptions": [],
         "tags": []
     },
@@ -85,7 +66,7 @@
     ],
     "notes": {
         "label": "Extract Compressed File",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/hazard/#compress-extract",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/utilities/",
         "hideNodeCountAndCoresPerNode": true,
         "icon": "Extract",
         "category": "Utilities",
