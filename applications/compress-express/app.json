@@ -1,0 +1,113 @@
+{
+    "id": "compress-express",
+    "version": "0.0.1",
+    "description": "Compress a file or folder for download.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/compress-express/compress-express.zip",
+    "jobType": "FORK",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": false,
+    "jobAttributes": {
+        "description": "Compress a file or folder for download.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "cloud.data.exec",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}/input",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "/tmp/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": false,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Compression Type",
+                    "description": "Select the type of compressed file, either a Gzipped TAR file (.tar.gz) or a Zip file (.zip).",
+                    "inputMode": "REQUIRED",
+                    "arg": "tgz",
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "tgz": "tar.gz"
+                            },
+                            {
+                                "zip": "zip"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Archive File Name",
+                    "description": "Output archive file name. The selected Compression Type will be appended to this filename. Keep the file name inside single quotes. Any special characters in the file name will be replaced with an underscore.",
+                    "inputMode": "REQUIRED",
+                    "arg": "Archive",
+                    "notes": {
+                        "validator": {
+                            "regex": "^[a-zA-Z0-9!@#%^*-_.,'? ]+$",
+                            "message": "Must contain valid characters (a-z, A-Z, 0-9, !@#%^*-_.,?) and spaces."
+                        }
+                    }
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "tapisjob.out"
+                ],
+                "includeLaunchFiles": false
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Target path to be compressed",
+                "description": "The directory or file to be compressed.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*"
+            }
+        ],
+        "fileInputArrays": [
+            {
+                "name": "Target path to be compressed",
+                "description": "The directory or file(s) to be compressed.",
+                "inputMode": "OPTIONAL",
+                "sourceUrls": null,
+                "targetDir": "*",
+                "notes": {
+                    "selectionMode": "both"
+                }
+            }
+        ],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 100,
+        "maxMinutes": 60,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: ALL"
+    ],
+    "notes": {
+        "label": "Compress Files/Folders",
+        "hideNodeCountAndCoresPerNode": true,
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/utilities/",
+        "icon": "Compress",
+        "category": "Utilities",
+        "hideQueue": true,
+        "hideAllocation": true
+    }
+}
