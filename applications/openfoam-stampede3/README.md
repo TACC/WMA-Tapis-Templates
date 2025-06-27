@@ -21,7 +21,7 @@ Testing Steps:
 - Once the job is finished, the results should be in the 'inputDirectory' directory inside your archived output dir (i.e. the Output Location under Job History)
 
  Note: For an output example navigate to 
- [Community Data/app_examples/openfoam/openfoam_v12/inputDirectory](https://www.designsafe-ci.org/data/browser/tapis/designsafe.storage.community/%2Fapp_examples%2Fopenfoam%2Fopenfoam_v12%2FinputDirectory)
+ [Community Data/app_examples/openfoam/openfoam_v12/outputs/testCase1](https://www.designsafe-ci.org/data/browser/projects/PRJ-1305/workdir/%2Fapp_examples%2Fopenfoam%2Fopenfoam_v12%2Foutputs%2FtestCase1)
 
 ## Details on how this app is launched
 Wrapper script from ZIP template runs openfoam module
