@@ -1,0 +1,68 @@
+{
+    "id":"kalpana-interactive-ashtonc",
+    "owner": "${apiUserId}",
+    "version": "v0.0.24",
+    "containerImage":"docker://docker.io/ashtonvcole/kalpana:v0.0.24",
+    "description": "Kalpana converts several kinds of ADCIRC outputs into vector formats.",
+    "runtime": "SINGULARITY",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "jobAttributes": {
+        "archiveOnAppError": true,
+        "archiveSystemId": "designsafe.storage.default",
+        "archiveSystemDir": "${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "description": "Job running Kalpana.",
+        "execSystemId": "wma-exec-01",
+        "fileInputs": [],
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "IP Adjustment",
+                    "description": "This makes Jupyter listen to requests outside of the container.\nFlag: --ip\nValue: 0.0.0.0",
+                    "inputMode": "FIXED",
+                    "arg": "--ip 0.0.0.0"
+                }
+            ],
+            "archiveFilter": {
+                "excludes": []
+            },
+            "containerArgs": [
+                {
+                    "name": "Port Binding"
+                },
+                {
+                    "name": "PWD",
+                    "description": "Set present working directory to output directory. NOTE: Singularity does not honor Docker WORKDIR commands. NOTE 2: By default, Singularity binds the outside filesystem to the container's home directory.\nFlag: --pwd\nValue: file path",
+                    "inputMode": "FIXED",
+                    "arg": "--pwd /home/mambauser"
+                },
+                {
+                    "name": "Writable",
+                    "description": "Allow for temporary files to be written.",
+                    "inputMode": "FIXED",
+                    "arg": "--writable-tmpfs"
+                },
+                {
+                    "name": "Jupyter Mounts",
+                    "description": "Mount for user work and persistent jupyter env.",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /data/designsafe/mydata/${_tapisJobOwner}:/home/mambauser/MyData"
+                }
+            ]
+        }
+    },
+    "jobType": "FORK",
+    "notes": {
+        "category": "Visualization",
+        "helpUrl": "https://github.com/ccht-ncsu/Kalpana",
+        "isInteractive": true,
+        "label": "Kalpana Interactive"
+    },
+    "strictFileInputs": true,
+    "tags": [
+        "portalName: DesignSafe"
+    ]
+}
+
+

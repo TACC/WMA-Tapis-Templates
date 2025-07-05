@@ -1,0 +1,32 @@
+{
+    "name": "kalpana-tacc-ashtonc-job",
+    "appId": "kalpana-tacc-ashtonc",
+    "appVersion": "1.0.0",
+    "execSystemId": "wma-exec-01",
+    "parameterSet": {
+        "appArgs": [
+            {
+                "name": "Storm",
+                "arg": "--storm Test"
+            },
+            {
+                "name": "File Type",
+                "arg": "--filetype maxwvel.63.nc"
+            },
+            {
+                "name": "Poly Type",
+                "arg": "--polytype polygon"
+            },
+            {
+                "name": "Visualization Type",
+                "arg": "--viztype shapefile"
+            }
+        ]
+    },
+    "fileInputs": [
+        {
+            "name": "Input File",
+            "sourceUrl": "tapis://designsafe.storage.default/ashtonc/tapis-dev/sample-data/maxwvel.63.nc"
+        }
+    ]
+}

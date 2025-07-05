@@ -1,0 +1,10 @@
+{
+    "name": "kalpana-interactive-ashtonc-job",
+    "appId": "kalpana-interactive-ashtonc",
+    "appVersion": "v0.0.24",
+    "execSystemId": "wma-exec-01",
+    "parameterSet": {
+        "appArgs": []
+    },
+    "fileInputs": []
+}

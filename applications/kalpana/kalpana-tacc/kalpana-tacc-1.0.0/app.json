@@ -1,0 +1,277 @@
+{
+    "id":"kalpana-tacc-ashtonc",
+    "owner": "${apiUserId}",
+    "version": "1.0.0",
+    "containerImage":"docker://docker.io/ashtonvcole/kalpana-tacc:1.0.0",
+    "description": "Kalpana converts several kinds of ADCIRC outputs into vector formats. NOTE: This application runs an image of the TACC fork of the project (https://github.com/TACC/Kalpana), which is based on a dated version of Kalpana. The latest versions have significantly different structure and behavior.",
+    "runtime": "SINGULARITY",
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "jobAttributes": {
+        "archiveOnAppError": true,
+        "archiveSystemId": "designsafe.storage.default",
+        "archiveSystemDir": "${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "description": "Job running TACC fork of Kalpana.",
+        "execSystemId": "wma-exec-01",
+        "fileInputs": [
+            {
+                "name": "Input File",
+                "description": "File which Kalpana operates on.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "input.nc"
+            }
+        ],
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "File Name",
+                    "description": "Name of staged input file. This is input.nc by default. From the perspective of the Singularity container.\nFlag: --filename\nValue: file path",
+                    "inputMode": "FIXED",
+                    "arg": "--filename \\$_tapisExecSystemInputDir/input.nc"
+                },
+                {
+                    "name": "File Type",
+                    "description": "Type of ADCIRC or SWAN output operated upon.\nFlag: --filetype\nValues: bathytopo, maxele.63.nc, maxwvel.63.nc, swan_HS_max.63.nc, fort.63.nc, fort.74.nc, swan_HS.63.nc, swan_TPS_max.63.nc, swan_TPS.63.nc, swan_TMM10.63.nc",
+                    "inputMode": "REQUIRED",
+                    "arg": null,
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "--filetype bathytopo": "bathytopo"
+                            },
+                            {
+                                "--filetype maxele.63.nc": "maxele.63.nc"
+                            },
+                            {
+                                "--filetype maxwvel.63.nc": "maxwvel.63.nc"
+                            },
+                            {
+                                "--filetype swan_HS_max.63.nc": "swan_HS_max.63.nc"
+                            },
+                            {
+                                "--filetype fort.63.nc": "fort.63.nc"
+                            },
+                            {
+                                "--filetype fort.74.nc": "fort.74.nc"
+                            },
+                            {
+                                "--filetype swan_HS.63.nc": "swan_HS.63.nc"
+                            },
+                            {
+                                "--filetype swan_TPS_max.63.nc": "swan_TPS_max.63.nc"
+                            },
+                            {
+                                "--filetype swan_TPS.63.nc": "swan_TPS.63.nc"
+                            },
+                            {
+                                "--filetype swan_TMM10.63.nc": "swan_TMM10.63.nc"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Storm",
+                    "description": "Name of storm. Used for labeling.\nFlag: --storm\nValues: title",
+                    "inputMode": "REQUIRED",
+                    "arg": "--storm Untitled"
+                },
+                {
+                    "name": "Contour Type",
+                    "description": "What shapes are used to represent the output contours: solid polygons or outlines. Default is polygon.\nFlag: --polytype\nValues: polygon, polyline",
+                    "inputMode": "REQUIRED",
+                    "arg": null,
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "--polytype polygon": "polygon"
+                            },
+                            {
+                                "--polytype polyline": "polyline"
+                            }
+                        ]
+                    }
+                    
+                },
+                {
+                    "name": "Visualization Type",
+                    "description": "This specifies what kinds of output files are produced, which are used by different software. Default is kmz.\nFlag: --viztype\nValues: shapefile, kmz",
+                    "inputMode": "REQUIRED",
+                    "arg": null,
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "--viztype shapefile": "shapefile"
+                            },
+                            {
+                                "--viztype kmz": "kmz"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Output",
+                    "description": "Where resulting files are saved, from the perspective of the Singularity container.\nFlag: --output\nValue: file path",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "--output \\$_tapisExecSystemOutputDir/contours"
+                },
+                {
+                    "name": "Units",
+                    "description": "Units used. Default is si.\nFlag: --units\nValues: si, english",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "--units si": "SI"
+                            },
+                            {
+                                "--units english": "English"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Datum Label",
+                    "description": "Label to specify elevation datum used. Default is MSL.\nFlag: --datumlabel\nValues: e.g. MSL, NAVD88, \"local ground level\"",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Palette Name",
+                    "description": "Palette file used to color contours for KMZ output. Default is water-level.pal. This must be specified with an absolute path, or to the container input mount. To use the default included in the image specify /app/Kalpana/water-level.pal.\nFlag: --palettename\nValue: file path",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Logo File",
+                    "description": "Image file to impose on a KMZ output as a watermark, e.g. logo of a research lab. Default is logo.png. May specify as null or none.\nFlag: --logofile\nValue: file path",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Logo Dimensions",
+                    "description": "Dimensions of watermark image file. Default is null, which evaluates to 0.85 0.08.\nFlag: --logodims\nValue: x y (floats separated by space)",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Logo Units",
+                    "description": "Units of watermark image file. Default is fraction.\nFlag: --logounits\nValues: fraction, pixel",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "--logounits fraction": "fraction"
+                            },
+                            {
+                                "--logounits pixel": "pixel"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Subplots",
+                    "description": "Whether to make subplots first for KMZ polygon case, to improve rendering. Default is no.\nFlag: --subplots/nValues: yes, no",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "--subplots yes": "yes"
+                            },
+                            {
+                                "--subplots no": "no"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Contour Levels",
+                    "description": "Specify individual contour levels. Default is null, which evaluates to various sets of levels depending on the file type.\nFlag: --contourlevels\nValue: z1 z2 z3 ... (floats separated by spaces)",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Contour Range",
+                    "description": "Specify contours with min, max, and increment. Default is null, which evaluates to various sets of levels depending on the file type.\nFlag: --contourrange\nValue: z1 z2 dz (floats separated by spaces)",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Tick Marks",
+                    "description": "Tick mark locations on the legend for KMZ output. Default is null, which evaluates to contour levels.\nFlag: --ticks\nValue: x1 x2 x3 ... (floats separated by spaces)",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Longitude Latitude Box",
+                    "description": "Local box of interest for KMZ polyon case, in which a submesh is created. Default is 36 33.5 -60 -100\nFlag: --lonlatbox\nValue: N S E W (floats separated by spaces)",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Longitude Latitude Buffer",
+                    "description": "Buffer around area of interest. Default is 0.\nFlag: --lonlatbuffer\nValue: float",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                },
+                {
+                    "name": "Datum Conversion",
+                    "description": "Whether to convert datum from MSL to NAVD88. Default is no.\nFlag: --datumconv\nValues: yes, no",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "enum_values": [
+                            {
+                                "--datumconv yes": "yes"
+                            },
+                            {
+                                "--datumconv no": "no"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Datum Text File",
+                    "description": "Name of text file used for datum conversion via raster interpolation. Default is rasterdeltas_capped.txt. To use the default included in the image specify /app/Kalpana/rasterdeltas_capped.txt.\nFlag: --datumtextfile\nValue: file path",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                }
+            ],
+            "archiveFilter": {
+                "excludes": []
+            },
+            "containerArgs": [
+                {
+                    "name": "PWD",
+                    "description": "Set present working directory to output directory. NOTE: Singularity does not honor Docker WORKDIR commands. NOTE 2: By default, Singularity binds the outside filesystem to the container's home directory.\nFlag: --pwd\nValue: file path",
+                    "inputMode": "FIXED",
+                    "arg": "--pwd /home/mambauser"
+                },
+                {
+                    "name": "Writable",
+                    "description": "Necessary for KMZ output, because it appears that intermediate files are written.",
+                    "inputMode": "FIXED",
+                    "arg": "--writable-tmpfs"
+                }
+            ]
+        }
+    },
+    "jobType": "FORK",
+    "notes": {
+        "category": "Visualization",
+        "helpUrl": "https://github.com/TACC/Kalpana",
+        "isInteractive": false,
+        "label": "TACC Fork of Kalpana"
+    },
+    "strictFileInputs": true,
+    "tags": [
+        "portalName: DesignSafe"
+    ]
+}
+
+
