@@ -16,6 +16,8 @@ See Docker Hub pages: [ashtonvcole/kalpana](https://hub.docker.com/r/ashtonvcole
 
 There are two components to setup: the Docker image and the Tapis application. The Docker image provides a version-controlled environment to run the script consistently across computers. The Tapis application is a set of configurations to deploy the container on supercomputing resources via the DesignSafe portal. Tapis is an API which facilitates and manages jobs on supercomputers.
 
+For setup scripts and examples, refer to [test](test).
+
 ### Docker
 
 #### Image
