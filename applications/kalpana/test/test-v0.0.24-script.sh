@@ -28,7 +28,6 @@ if [ $# -eq 0 ]; then
 fi
 
 docker run --rm -it \
-	-p 8888:8888 \
 	-v "$(pwd):/mnt/host" \
 	ashtonvcole/kalpana:v0.0.24 \
 		/mnt/host/$1
