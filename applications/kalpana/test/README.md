@@ -4,15 +4,15 @@ This directory provides several scripts to test Kalpana on a Tapis system and lo
 
 ## File Description
 
-- [downscaling/](downscaling): Input files to test static downscaling functionality.
-	- [fort.14](downscaling/fort.14): A mesh file of North Carolina.
-	- [maxele.63.nc](downscaling/maxele.63.nc): Simulated maximum elevations from Hurricane Irene.
-	- [NC_CoNED_subset_100m.tif](downscaling/NC_CoNED_subset_100m.tif): An elevation raster of the North Carolina coast.
-	- [dzDaums_noaaTideGauges_msl_navd88.csv](downscaling/dzDaums_noaaTideGauges_msl_navd88.csv): Datums to convert between MSL and NAVD88.
+- [`downscaling/`](downscaling): Input files to test static downscaling functionality.
+	- [`fort.14`](downscaling/fort.14): A mesh file of North Carolina.
+	- [`maxele.63.nc`](downscaling/maxele.63.nc): Simulated maximum elevations from Hurricane Irene.
+	- [`NC_CoNED_subset_100m.tif`](downscaling/NC_CoNED_subset_100m.tif): An elevation raster of the North Carolina coast.
+	- [`dzDaums_noaaTideGauges_msl_navd88.csv`](downscaling/dzDaums_noaaTideGauges_msl_navd88.csv): Datums to convert between MSL and NAVD88.
 - [`maxele.63.nc`](maxele.63.nc): A sample ADCIRC output file.
 - [`maxvel.63.nc`](maxvel.63.nc): A sample ADCIRC output file.
 - [`maxwvel.63.nc`](maxwvel.63.nc): A sample ADCIRC output file.
-- ['scripts/'](scripts): Some use cases of Kalpana v0.0.24. For more help see [their own examples](https://github.com/ccht-ncsu/Kalpana/tree/master/examples).
+- [`scripts/`](scripts): Some use cases of Kalpana v0.0.24. For more help see [their own examples](https://github.com/ccht-ncsu/Kalpana/tree/master/examples).
 	- [`hello_world.py`](scripts/hello_world.py): A script to submit to [ashtonvcole/kalpana](https://hub.docker.com/r/ashtonvcole/kalpana):v0.0.24, either locally or on a Tapis system.
 	- [`nc2kmz_local.py`](scripts/nc2shp_local.py): A script converting an ADCIRC output to KMZ for Google Earth locally. WIP.
 	- [`nc2shp_local.py`](scripts/nc2shp_local.py): A script converting an ADCIRC output to shapefile locally.
