@@ -1,6 +1,6 @@
 {
     "id": "jupyter-hpc-native",
-    "version": "1.0.0",
+    "version": "vista",
     "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -87,7 +87,7 @@
         "portalName: DESIGNSAFE"
     ],
     "notes": {
-        "label": "Jupyter HPC Native",
+        "label": "Jupyter HPC Native (Vista)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
