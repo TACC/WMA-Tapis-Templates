@@ -3,7 +3,7 @@
     "version": "3.3.0",
     "description": "Run an interactive STKO (Scientific ToolKit for OpenSees) desktop session on a virtual machine.",
     "owner": "${apiUserId}",
-    "enabled": true,
+    "enabled": false,
     "runtime": "ZIP",
     "runtimeVersion": null,
     "runtimeOptions": null,
