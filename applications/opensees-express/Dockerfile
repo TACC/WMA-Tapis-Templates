@@ -62,7 +62,7 @@ RUN conan install .. --build missing \
 # BUILD OpenSees binaries
 RUN cmake --build . --config Release --target OpenSees
 RUN cmake --build . --config Release --target OpenSeesSP
-RUN cmake --build . --config Release --target OpenSeesMP
+# RUN cmake --build . --config Release --target OpenSeesMP # Removed because OpenSeesMP is unable to use multiple cores, essentially making it SP.
 # RUN cmake --build . --config Release --target OpenSeesPy
 
 # Move OpenSees binaries to /usr/local/bin and tcl to /usr/local/lib

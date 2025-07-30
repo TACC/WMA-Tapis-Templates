@@ -43,9 +43,6 @@
                             },
                             {
                                 "OpenSeesSP": "OpenSeesSP"
-                            },
-                            {
-                                "OpenSeesMP": "OpenSeesMP"
                             }
                         ]
                     }
