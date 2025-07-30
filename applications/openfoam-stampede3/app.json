@@ -55,7 +55,7 @@
                     "inputMode": "INCLUDE_ON_DEMAND",
                     "arg": null,
                     "notes": {
-                        "isReservation": true
+                        "isHidden": true
                     }
                 }
             ],
