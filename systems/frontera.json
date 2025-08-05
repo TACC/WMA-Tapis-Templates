@@ -172,7 +172,7 @@
     "tags": [],
     "notes": {
         "label": "Frontera",
-        "DESIGNSAFE": [
+        "queueFilter": [
             "normal", "small", "development", "nvdimm", "rtx", "rtx-dev"
         ]
     }

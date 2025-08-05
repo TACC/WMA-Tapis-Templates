@@ -74,7 +74,7 @@
     "tags": [],
     "notes": {
         "label": "Vista",
-        "DESIGNSAFE": [
+        "queueFilter": [
             "gg", "gh", "gh-dev"
         ]
     }

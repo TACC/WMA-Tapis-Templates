@@ -130,7 +130,7 @@
     "tags": [],
     "notes": {
         "label": "Stampede3",
-        "DESIGNSAFE": [
+        "queueFilter": [
             "skx", "skx-dev", "icx", "spr", "nvdimm", "pvc"
         ]
     }
