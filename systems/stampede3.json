@@ -129,6 +129,14 @@
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Stampede3"
+        "label": "Stampede3",
+        "DESIGNSAFE": {
+            "skx": "skx (CPU, recommended standard compute)",
+            "skx-dev": "skx-dev (CPU, 2 hour max, 1 job max, for testing)",
+            "icx": "icx (CPU, standard compute)",
+            "spr": "spr (CPU, high memory bandwidth)",
+            "nvdimm": "nvdimm (CPU, large memory)",
+            "pvc": "pvc (GPU, Intel no CUDA)"
+        }
     }
 }
