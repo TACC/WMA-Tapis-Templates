@@ -109,6 +109,6 @@
         "isInteractive": false,
         "icon": "OpenSees",
         "category": "Simulation",
-        "hideReservation": false
+        "showReservation": true
     }
 }

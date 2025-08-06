@@ -163,6 +163,7 @@
         "label": "OpenFOAM (Stampede3) - v12.0",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/openfoam/#openfoam-user-guide",
         "hideNodeCountAndCoresPerNode": false,
-        "category": "Simulation"
+        "category": "Simulation",
+        "showReservation": true
     }
 }

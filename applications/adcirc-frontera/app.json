@@ -99,6 +99,7 @@
         "label": "ADCIRC (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#adcirc-user-guide",
         "hideNodeCountAndCoresPerNode": false,
-        "category": "Simulation"
+        "category": "Simulation",
+        "showReservation": true
     }
 }

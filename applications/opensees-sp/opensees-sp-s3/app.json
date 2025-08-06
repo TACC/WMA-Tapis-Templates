@@ -98,11 +98,12 @@
     "portalName: CEP"
   ],
   "notes": {
-    "label": "OpenSeesSP",
-    "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
-    "hideNodeCountAndCoresPerNode": false,
-    "isInteractive": false,
-    "icon": "OpenSees",
-    "category": "Simulation"
+      "label": "OpenSeesSP",
+      "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
+      "hideNodeCountAndCoresPerNode": false,
+      "isInteractive": false,
+      "icon": "OpenSees",
+      "category": "Simulation",
+      "showReservation": true
   }
 }
