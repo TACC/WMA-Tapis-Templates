@@ -26,8 +26,8 @@
     "batchScheduler": "SLURM",
     "batchLogicalQueues": [
         {
-            "name": "icx",
-            "hpcQueueName": "icx (CPU, standard compute)",
+            "name": "icx (CPU, standard compute)",
+            "hpcQueueName": "icx",
             "maxJobs": -1,
             "maxJobsPerUser": 20,
             "minNodeCount": 1,
@@ -40,8 +40,8 @@
             "maxMinutes": 2880
         },
         {
-            "name": "skx",
-            "hpcQueueName": "skx (CPU, recommended standard compute)",
+            "name": "skx (CPU, recommended standard compute)",
+            "hpcQueueName": "skx",
             "maxJobs": -1,
             "maxJobsPerUser": 60,
             "minNodeCount": 1,
@@ -54,8 +54,8 @@
             "maxMinutes": 2880
         },
         {
-            "name": "skx-dev",
-            "hpcQueueName": "skx-dev (CPU, 2 hour max, 1 job max, for testing)",
+            "name": "skx-dev (CPU, 2 hour max, 1 job max, for testing)",
+            "hpcQueueName": "skx-dev",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -68,8 +68,8 @@
             "maxMinutes": 120
         },
         {
-            "name": "pvc",
-            "hpcQueueName": "pvc (GPU, Intel no CUDA)",
+            "name": "pvc (GPU, Intel no CUDA)",
+            "hpcQueueName": "pvc",
             "maxJobs": -1,
             "maxJobsPerUser": 4,
             "minNodeCount": 1,
@@ -82,8 +82,8 @@
             "maxMinutes": 2880
         },
         {
-            "name": "spr",
-            "hpcQueueName": "spr (CPU, high memory bandwidth)",
+            "name": "spr (CPU, high memory bandwidth)",
+            "hpcQueueName": "spr",
             "maxJobs": -1,
             "maxJobsPerUser": 36,
             "minNodeCount": 1,
@@ -96,8 +96,8 @@
             "maxMinutes": 2880
         },
         {
-            "name": "nvdimm",
-            "hpcQueueName": "nvdimm (CPU, large memory)",
+            "name": "nvdimm (CPU, large memory)",
+            "hpcQueueName": "nvdimm",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -124,7 +124,7 @@
             "maxMinutes": 2880
         }
     ],
-    "batchDefaultLogicalQueue": "skx",
+    "batchDefaultLogicalQueue": "skx (CPU, recommended standard compute)",
     "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],
