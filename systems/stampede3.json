@@ -26,8 +26,9 @@
     "batchScheduler": "SLURM",
     "batchLogicalQueues": [
         {
-            "name": "icx (CPU, standard compute)",
+            "name": "icx",
             "hpcQueueName": "icx",
+            "description": "icx (CPU, standard compute)",
             "maxJobs": -1,
             "maxJobsPerUser": 20,
             "minNodeCount": 1,
@@ -40,8 +41,9 @@
             "maxMinutes": 2880
         },
         {
-            "name": "skx (CPU, recommended standard compute)",
+            "name": "skx",
             "hpcQueueName": "skx",
+            "description": "skx (CPU, recommended standard compute)",
             "maxJobs": -1,
             "maxJobsPerUser": 60,
             "minNodeCount": 1,
@@ -54,8 +56,9 @@
             "maxMinutes": 2880
         },
         {
-            "name": "skx-dev (CPU, 2 hour max, 1 job max, for testing)",
+            "name": "skx-dev",
             "hpcQueueName": "skx-dev",
+            "description": "skx-dev (CPU, 2 hour max, 1 job max, for testing)",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -68,8 +71,9 @@
             "maxMinutes": 120
         },
         {
-            "name": "pvc (GPU, Intel no CUDA)",
+            "name": "pvc",
             "hpcQueueName": "pvc",
+            "description": "pvc (GPU, Intel no CUDA)",
             "maxJobs": -1,
             "maxJobsPerUser": 4,
             "minNodeCount": 1,
@@ -82,8 +86,9 @@
             "maxMinutes": 2880
         },
         {
-            "name": "spr (CPU, high memory bandwidth)",
+            "name": "spr",
             "hpcQueueName": "spr",
+            "description": "spr (CPU, high memory bandwidth)",
             "maxJobs": -1,
             "maxJobsPerUser": 36,
             "minNodeCount": 1,
@@ -96,8 +101,9 @@
             "maxMinutes": 2880
         },
         {
-            "name": "nvdimm (CPU, large memory)",
+            "name": "nvdimm",
             "hpcQueueName": "nvdimm",
+            "description": "nvdimm (CPU, large memory)",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -124,7 +130,7 @@
             "maxMinutes": 2880
         }
     ],
-    "batchDefaultLogicalQueue": "skx (CPU, recommended standard compute)",
+    "batchDefaultLogicalQueue": "skx",
     "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],

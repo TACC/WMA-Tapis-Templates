@@ -40,8 +40,9 @@
             "maxMinutes": 2880
         },
         {
-            "name": "development (CPU, 2 hour max, 1 job max, for testing)",
+            "name": "development",
             "hpcQueueName": "development",
+            "description": "development (CPU, 2 hour max, 1 job max, for testing)",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -54,8 +55,9 @@
             "maxMinutes": 120
         },
         {
-            "name": "normal (CPU, 3 or more nodes/job)",
+            "name": "normal",
             "hpcQueueName": "normal",
+            "description": "normal (CPU, 3 or more nodes/job)",
             "maxJobs": -1,
             "maxJobsPerUser": 200,
             "minNodeCount": 3,
@@ -96,8 +98,9 @@
             "maxMinutes": 2880
         },
         {
-            "name": "rtx (GPU)",
+            "name": "rtx",
             "hpcQueueName": "rtx",
+            "description": "rtx (GPU)",
             "maxJobs": -1,
             "maxJobsPerUser": 50,
             "minNodeCount": 1,
@@ -110,8 +113,9 @@
             "maxMinutes": 2880
         },
         {
-            "name": "rtx-dev (GPU, 2 hour max, 1-2 nodes/job, 1 job max, for testing)",
+            "name": "rtx-dev",
             "hpcQueueName": "rtx-dev",
+            "description": "rtx-dev (GPU, 2 hour max, 1-2 nodes/job, 1 job max, for testing)",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -124,8 +128,9 @@
             "maxMinutes": 120
         },
         {
-            "name": "nvdimm (CPU, large memory)",
+            "name": "nvdimm",
             "hpcQueueName": "nvdimm",
+            "description": "nvdimm (CPU, large memory)",
             "maxJobs": -1,
             "maxJobsPerUser": 8,
             "minNodeCount": 1,
@@ -138,8 +143,9 @@
             "maxMinutes": 120
         },
         {
-            "name": "small (CPU, 1-2 nodes/job)",
+            "name": "small",
             "hpcQueueName": "small",
+            "description": "small (CPU, 1-2 nodes/job)",
             "maxJobs": -1,
             "maxJobsPerUser": 200,
             "minNodeCount": 1,
@@ -166,7 +172,7 @@
             "maxMinutes": 7200
         }
     ],
-    "batchDefaultLogicalQueue": "normal (CPU, 3 or more nodes/job)",
+    "batchDefaultLogicalQueue": "normal",
     "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],
