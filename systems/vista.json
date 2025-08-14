@@ -78,7 +78,12 @@
     "notes": {
         "label": "Vista",
         "queueFilter": [
-            "gg", "gh", "gh-dev"
+            {
+                "portalName": "DESIGNSAFE",
+                "queues": [
+                    "gg", "gh", "gh-dev"
+                ]
+            }
         ]
     }
 }

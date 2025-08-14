@@ -179,7 +179,12 @@
     "notes": {
         "label": "Frontera",
         "queueFilter": [
-            "normal", "small", "development", "nvdimm", "rtx", "rtx-dev"
+            {
+                "portalName": "DESIGNSAFE",
+                "queues": [
+                    "normal", "small", "development", "nvdimm", "rtx", "rtx-dev"
+                ]
+            }
         ]
     }
 }

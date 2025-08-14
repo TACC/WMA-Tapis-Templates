@@ -137,7 +137,12 @@
     "notes": {
         "label": "Stampede3",
         "queueFilter": [
-            "skx", "skx-dev", "icx", "spr", "nvdimm", "pvc"
+            {
+                "portalName": "DESIGNSAFE",
+                "queues": [
+                    "skx", "skx-dev", "icx", "spr", "nvdimm", "pvc"
+                ]
+            }
         ]
     }
 }
