@@ -48,6 +48,15 @@
                     "notes": {
                         "isHidden": true
                     }
+                },
+                {
+                    "name": "TACC Reservation",
+                    "description": "Reservation input string",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "envVariables": [],
@@ -90,6 +99,7 @@
         "label": "PADCIRC SWAN (Frontera)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#adcirc-user-guide",
         "hideNodeCountAndCoresPerNode": false,
-        "category": "Simulation"
+        "category": "Simulation",
+        "showReservation": true
     }
 }
