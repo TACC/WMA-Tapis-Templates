@@ -52,7 +52,7 @@
 					"notes": {
 						"enum_values": [
 							{
-								"--conType polylgon": "polygon"
+								"--conType polygon": "polygon"
 							},
 							{
 								"--conType polyline": "polyline"
