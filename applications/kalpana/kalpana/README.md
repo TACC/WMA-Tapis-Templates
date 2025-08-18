@@ -14,6 +14,7 @@ This image is built on top of [mambaorg/micromamba](https://hub.docker.com/r/mam
 
 - `latest`, `v0.0.24`: Intended for Python scripts. The entrypoint of the image runs the script, `ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python"]`. The default working directory is `/home/mambauser`.
 - `latest-jupyter-lab`, `v0.0.24-jupyter-lab`: Intended for interactive use with Jupyter Lab. The entrypoint of the image runs the script, `ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "jupyter" , "lab"]`. The default arguments are `CMD ["--ip", "0.0.0.0", "--no-browser"]`. The default working directory is `/home/mambauser`.
+- `latest-nc2shp`, `v0.0.24-nc2shp`: Intended for CLI. A run script acts as a wrapper for the netCDF to shapefile function, `nc2shp()`, taking in flags for the function's arguments.
 
 ## Usage
 
@@ -72,6 +73,22 @@ docker run --rm -it \
 	-p 8888:8888 \
 	-v "$(pwd):/mnt/host" \
 	ashtonvcole/kalpana:v0.0.24-jupyter-lab
+```
+
+### Non-Interactively, `nc2shp` Version
+
+This allows limited Kalpana functionality to be leveraged strictly through the command line. Function arguments are provided through flags.
+
+```bash
+docker run --rm -it \
+	-v "$(pwd):/mnt/host" \
+	ashtonvcole/kalpana:v0.0.24-nc2shp \
+		--ncFile /mnt/host/maxele.63.nc \
+		--var zeta_max \
+		--levels 0 5.5 0.5 \
+		--conType polygon \
+		--pathOut /mnt/host/contours.gpkg \
+		--epsgOut 4326
 ```
 
 ## Known Issues
