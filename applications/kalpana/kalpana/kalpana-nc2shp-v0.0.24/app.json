@@ -187,14 +187,14 @@
             "containerArgs": [
                 {
                     "name": "PWD",
-                    "description": "Set present working directory to output directory. NOTE: Singularity does not honor Docker WORKDIR commands. NOTE 2: By default, Singularity binds the outside filesystem to the container's home directory.\nFlag: --pwd\nValue: file path",
-                    "inputMode": "FIXED",
-                    "arg": "--pwd \\${ExecSystemOutputDir}"
+                    "description": "Set present working directory. NOTE: Singularity does not honor Docker WORKDIR commands. NOTE 2: By default, Singularity binds the outside filesystem to the container's home directory.\nFlag: --pwd\nValue: file path",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "--pwd /home/mambauser"
                 },
                 {
                     "name": "Writable",
                     "description": "Allow for temporary files to be written.",
-                    "inputMode": "FIXED",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
                     "arg": "--writable-tmpfs"
                 }
             ]
