@@ -205,7 +205,7 @@
         "category": "Visualization",
         "helpUrl": "https://github.com/ccht-ncsu/Kalpana",
         "isInteractive": false,
-        "label": "Kalpana"
+        "label": "Kalpana nc2shp"
     },
     "strictFileInputs": true,
     "tags": [
