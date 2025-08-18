@@ -172,7 +172,7 @@
 					"name": "Kdtree Query Points",
 					"description": "Number of points to return in kdtree query. Default is 7. Flag: --k Value: integer",
 					"inputMode": "INCLUDE_ON_DEMAND",
-					"arg": "--k"
+					"arg": null
 				},
 				{
 					"name": "Time Steps",
