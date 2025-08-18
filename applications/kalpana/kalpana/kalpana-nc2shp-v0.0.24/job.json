@@ -1,6 +1,6 @@
 {
-    "name": "kalpana-interactive-ashtonc-job",
-    "appId": "kalpana-interactive-ashtonc",
+    "name": "kalpana-nc2shp-ashtonc-job",
+    "appId": "kalpana-nc2shp-ashtonc",
     "appVersion": "v0.0.24",
     "execSystemId": "wma-exec-01",
     "parameterSet": {

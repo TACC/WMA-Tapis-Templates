@@ -1,8 +1,8 @@
 {
-    "id":"kalpana-ashtonc",
+    "id":"kalpana-ashtonc-nc2shp",
     "owner": "${apiUserId}",
     "version": "v0.0.24",
-    "containerImage":"docker://docker.io/ashtonvcole/kalpana:v0.0.24",
+    "containerImage":"docker://docker.io/ashtonvcole/kalpana:v0.0.24-nc2shp",
     "description": "Kalpana converts several kinds of ADCIRC outputs into vector formats.",
     "runtime": "SINGULARITY",
     "runtimeOptions": [
@@ -16,14 +16,6 @@
         "execSystemId": "wma-exec-01",
         "fileInputs": [
             {
-                "name": "Python Script",
-                "description": "Python script which requires Kalpana.",
-                "inputMode": "REQUIRED",
-                "autoMountLocal": true,
-                "sourceUrl": null,
-                "targetPath": "script.py"
-            },
-            {
                 "name": "ADCIRC File",
                 "description": "ADCIRC output file which requires Kalpana. Maps to $_tapisExecSystemInputDir/input.",
                 "inputMode": "REQUIRED",
@@ -34,12 +26,7 @@
         ],
         "parameterSet": {
             "appArgs": [
-                {
-                    "name": "Python Script Name",
-                    "description": "Name of Python script to run. This is \\$_tapisExecSystemInputDir/script.py by default. From the perspective of the Singularity container.\nFlag: N/A\nValue: file path",
-                    "inputMode": "FIXED",
-                    "arg": "\\$_tapisExecSystemInputDir/script.py"
-                }
+				// DO WORK HERE
             ],
             "archiveFilter": {
                 "excludes": []
