@@ -17,16 +17,169 @@
         "fileInputs": [
             {
                 "name": "ADCIRC File",
-                "description": "ADCIRC output file which requires Kalpana. Maps to $_tapisExecSystemInputDir/input.",
+                "description": "ADCIRC output file which requires Kalpana. Maps to $_tapisExecSystemInputDir/input.nc",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "input"
+                "targetPath": "input.nc"
             }
         ],
         "parameterSet": {
             "appArgs": [
-				// DO WORK HERE
+				{
+					"name": "File Name",
+					"description": "Name of staged input file. This is input.nc by default. From the perspective of the Singularity container. Flag: --filename Value: file path",
+					"inputMode": "FIXED",
+					"arg": "--ncFile \\$_tapisExecSystemInputDir/input.nc"
+				},
+				{
+					"name": "Variable",
+					"description": "Variable used to generate contours. For example, zeta_max for an ADCIRC maxele.63.nc file. Flag: --var Value: string",
+					"inputMode": "REQUIRED",
+					"arg": "--var zeta_max"
+				},
+				{
+					"name": "Contour Levels",
+					"description": "Contour level specification, in the form min max step. Flag: --levels Value: three numbers, separated by spaces",
+					"inputMode": "REQUIRED",
+					"arg": "--levels z0 z1 dz"
+				},
+				{
+					"name": "Contour Type",
+					"description": "Contour type, polyline or polygon. Flag: --conType Value: polyline or polygon",
+					"inputMode": "REQUIRED",
+					"arg": null,
+					"notes": {
+						"enum_values": [
+							{
+								"--conType polylgon": "polygon"
+							},
+							{
+								"--conType polyline": "polyline"
+							}
+						]
+					}
+				},
+				{
+					"name": "Path Out",
+					"description": "Path to output, *.shp or *.gpkg. Flag: --pathOut Value: file path",
+					"inputMode": "REQUIRED",
+					"arg": "--pathOut \\$_tapisExecSystemOutputDir/contours.shp"
+				},
+				{
+					"name": "EPSG Out",
+					"description": "EPSG coordinate system for output, 4326 recommended. Flag: --epsgOut Value: integer",
+					"inputMode": "REQUIRED",
+					"arg": "--epsgOut 4326"
+				},
+				{
+					"name": "Vertical Units Out",
+					"description": "Units out. Default is m. Flag: --vUnitOut Value: m or ft",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null,
+					"notes": {
+						"enum_values": [
+							{
+								"--vUnitOut m": "m"
+							},
+							{
+								"--vUnitOut ft": "ft"
+							}
+						]
+					}
+				},
+				{
+					"name": "Vertical Units In",
+					"description": "Units in. Default is m. Flag: --vUnitIn Value: m or ft",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null,
+					"notes": {
+						"enum_values": [
+							{
+								"--vUnitIn m": "m"
+							},
+							{
+								"--vUnitIn ft": "ft"
+							}
+						]
+					}
+				},
+				{
+					"name": "EPSG In",
+					"description": "EPSG coordinate system for input. Default is 4326. Flag: --epsgIn Value: integer",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "Subdomain",
+					"description": "If a subdomain is desired, full path of the subdomain polygon kml or shapefile, or list of bounding box coordinates separated by spaces W N E S. Default is None. Flag: --subDomain Value: file path or four numbers, separated by spaces",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "EPSG of Subdomain",
+					"description": "EPSG coordinate system for subdomain. Default is None. Flag: --epsgSubDom Value: integer",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "Export Mesh",
+					"description": "Whether to save the ADCIRC mesh as a shapefile. Default is False. Flag: --exportMesh Value: True or False",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null,
+					"notes": {
+						"enum_values": [
+							{
+								"--exportMesh True": "True"
+							},
+							{
+								"--exportMesh False": "False"
+							}
+						]
+					}
+				},
+				{
+					"name": "Mesh Name",
+					"description": "If desired, file name of the mesh shapefile. Default is None. Flag: --meshName Value: file path",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "Datum Pickle File",
+					"description": "Full path to the pickle file with the vertical difference between datums. Default is None. Flag: --dzFile Value: file path",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "Zero Difference",
+					"description": "For datum adjustments, threshold for using nearest neighbor interpolation to change datum, otherwise points are unchanged. Default is -20. Flag: --zeroDif Value: number",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "Max Difference",
+					"description": "For datum adjustments, threshold to define the percentage of the dz given by the spatial interpolation to be applied. Default is -5. Flag: --maxDif Value: number",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "Distance Threshold",
+					"description": "For datum adjustments, distance threshold for limiting the inverse distance-weighted (IDW) interpolation, otherwise points are unchanged. Default is 1. Flag: --distThreshold Value: number",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				},
+				{
+					"name": "Kdtree Query Points",
+					"description": "Number of points to return in kdtree query. Default is 7. Flag: --k Value: integer",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": "--k"
+				},
+				{
+					"name": "Time Steps",
+					"description": "Timesteps to extract if the netCDF file is a time-varying ADCIRC output file, in the form t1 t2 t3 ..., if None, all are exported. Default is None. Flag: --timesteps Value: integers, separated by spaces",
+					"inputMode": "INCLUDE_ON_DEMAND",
+					"arg": null
+				}
             ],
             "archiveFilter": {
                 "excludes": []
