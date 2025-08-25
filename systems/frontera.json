@@ -42,6 +42,7 @@
         {
             "name": "development",
             "hpcQueueName": "development",
+            "description": "development (CPU, 2 hour max, 1 job max, for testing)",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -56,6 +57,7 @@
         {
             "name": "normal",
             "hpcQueueName": "normal",
+            "description": "normal (CPU, 3 or more nodes/job)",
             "maxJobs": -1,
             "maxJobsPerUser": 200,
             "minNodeCount": 3,
@@ -98,6 +100,7 @@
         {
             "name": "rtx",
             "hpcQueueName": "rtx",
+            "description": "rtx (GPU)",
             "maxJobs": -1,
             "maxJobsPerUser": 50,
             "minNodeCount": 1,
@@ -112,6 +115,7 @@
         {
             "name": "rtx-dev",
             "hpcQueueName": "rtx-dev",
+            "description": "rtx-dev (GPU, 2 hour max, 1-2 nodes/job, 1 job max, for testing)",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -126,6 +130,7 @@
         {
             "name": "nvdimm",
             "hpcQueueName": "nvdimm",
+            "description": "nvdimm (CPU, large memory)",
             "maxJobs": -1,
             "maxJobsPerUser": 8,
             "minNodeCount": 1,
@@ -140,6 +145,7 @@
         {
             "name": "small",
             "hpcQueueName": "small",
+            "description": "small (CPU, 1-2 nodes/job)",
             "maxJobs": -1,
             "maxJobsPerUser": 200,
             "minNodeCount": 1,
@@ -171,6 +177,14 @@
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Frontera"
+        "label": "Frontera",
+        "queueFilter": [
+            {
+                "portalName": "DESIGNSAFE",
+                "queues": [
+                    "normal", "small", "development", "nvdimm", "rtx", "rtx-dev"
+                ]
+            }
+        ]
     }
 }
