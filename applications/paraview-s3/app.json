@@ -35,7 +35,7 @@
                     "name": "TACC Interactive Session Substrings",
                     "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_dsmydata",
                     "notes": {
                         "isHidden": true
                     }
