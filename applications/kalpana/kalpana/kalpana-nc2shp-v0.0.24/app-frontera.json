@@ -15,6 +15,7 @@
 		"cmdPrefix": "module load singularity-tacc;",
         "description": "Job running Kalpana.",
 		"dynamicExecSystem": false,
+		"execSystemConstraints": null,
         "execSystemId": "frontera",
 		"execSystemLogicalQueue": "small",
         "fileInputs": [
@@ -250,6 +251,35 @@
 					"notes": {
 						"isHidden": true
 					}
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TACC Reservation",
+                    "description": "Reservation input string",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ]
         }
