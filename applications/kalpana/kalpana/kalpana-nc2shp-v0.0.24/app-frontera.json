@@ -12,6 +12,7 @@
         "archiveOnAppError": true,
         "archiveSystemId": "designsafe.storage.default",
         "archiveSystemDir": "${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+		"cmdPrefix": "module load singularity-tacc;",
         "description": "Job running Kalpana.",
         "execSystemId": "frontera",
         "fileInputs": [
