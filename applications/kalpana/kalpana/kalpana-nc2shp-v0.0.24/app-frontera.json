@@ -14,7 +14,9 @@
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
 		"cmdPrefix": "module load singularity-tacc;",
         "description": "Job running Kalpana.",
+		"dynamicExecSystem": false,
         "execSystemId": "frontera",
+		"execSystemLogicalQueue": "small",
         "fileInputs": [
             {
                 "name": "ADCIRC File",
