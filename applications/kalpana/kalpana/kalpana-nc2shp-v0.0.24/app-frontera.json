@@ -12,7 +12,7 @@
         "archiveOnAppError": true,
         "archiveSystemId": "frontera",
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-		"cmdPrefix": "module load singularity-tacc;",
+		"cmdPrefix": null,
         "description": "Job running Kalpana.",
 		"dynamicExecSystem": false,
 		"execSystemConstraints": null,
