@@ -1,6 +1,6 @@
 {
     "id": "paraview-s3",
-    "version": "5.12.0",
+    "version": "5.13.3",
     "description": "Run an interactive Paraview session on Stampede 3.",
     "owner": "${apiUserId}",
     "enabled": true,
