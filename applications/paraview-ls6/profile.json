@@ -1,14 +1,12 @@
 {
-    "name": "Paraview_5.10.0_ls6",
+    "name": "Paraview_5.13.3_ls6",
     "description": "Modules to load for Paraview",
     "moduleLoads": [
         {
             "modulesToLoad": [
-                "intel/19.1.1",
+                "gcc/11.2.0",
                 "qt5/5.14.2",
-                "swr/21.2.5",
-                "oneapi_rk/2021.4.0",
-                "paraview/5.10.0",
+                "paraview/5.13.3",
                 "tacc-apptainer"
             ],
             "moduleLoadCommand": "module load"
