@@ -1,6 +1,0 @@
-{
-    "name": "no-profile-override",
-    "description": "No-op profile to override system default.",
-    "moduleLoads": null,
-    "hiddenOptions": []
-}
