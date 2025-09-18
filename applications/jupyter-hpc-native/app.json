@@ -44,6 +44,15 @@
                     "notes": {
                         "isHidden": true
                     }
+                },
+                {
+                    "name": "TACC Reservation",
+                    "description": "Reservation input string",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null,
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "envVariables": [
@@ -92,6 +101,7 @@
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "jupyter",
-        "category": "Data Processing"
+        "category": "Data Processing",
+        "showReservation": true
     }
 }
