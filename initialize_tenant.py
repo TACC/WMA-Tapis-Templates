@@ -79,12 +79,16 @@ def provision(client, systems, apps, args):
     except BaseTapyException as e:
         if "SYSAPI_PRF_EXISTS" in e.message:
             print("profile already exists: {}".format(profile["name"]))
-
-            if args.update_profiles:
-                print("recreating profile {}".format(profile["name"]))
-                client.systems.deleteSchedulerProfile(name=profile["name"])
-                client.systems.createSchedulerProfile(**profile)
-                print("profile created: {}".format(profile["name"]))
+            try:
+                if args.update_profiles:
+                    print("recreating profile {}".format(profile["name"]))
+                    client.systems.deleteSchedulerProfile(name=profile["name"])
+                    client.systems.createSchedulerProfile(**profile)
+                    print("profile created: {}".format(profile["name"]))
+            except BaseTapyException as bte:
+                if "SYSLIB_PRF_UNAUTH" in bte.message:
+                    print('Unauthorized to make changes to this profile: {}'.format(profile["name"]))
+                pass
         else:
             raise
 
@@ -350,6 +354,7 @@ def main():
                         "paraview",
                         "paraview-ls6",
                         "paraview-s3",
+                        "paraview-vista",
                         "potree-converter",
                         "potree-viewer",
                         "pyreconstruct",
