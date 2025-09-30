@@ -1,0 +1,453 @@
+
+
+ ***************************************************************
+ *            ANSYS LEGAL NOTICES                              *
+ ***************************************************************
+ *                                                             *
+ * Copyright 1971-2023 ANSYS, Inc.  All rights reserved.       *
+ * Unauthorized use, distribution or duplication is            *
+ * prohibited.                                                 *
+ *                                                             *
+ * Ansys is a registered trademark of ANSYS, Inc. or its       *
+ * subsidiaries in the United States or other countries.       *
+ * See the ANSYS, Inc. online documentation or the ANSYS, Inc. *
+ * documentation CD or online help for the complete Legal      *
+ * Notice.                                                     *
+ *                                                             *
+ ***************************************************************
+ *                                                             *
+ * THIS ANSYS SOFTWARE PRODUCT AND PROGRAM DOCUMENTATION       *
+ * INCLUDE TRADE SECRETS AND CONFIDENTIAL AND PROPRIETARY      *
+ * PRODUCTS OF ANSYS, INC., ITS SUBSIDIARIES, OR LICENSORS.    *
+ * The software products and documentation are furnished by    *
+ * ANSYS, Inc. or its subsidiaries under a software license    *
+ * agreement that contains provisions concerning               *
+ * non-disclosure, copying, length and nature of use,          *
+ * compliance with exporting laws, warranties, disclaimers,    *
+ * limitations of liability, and remedies, and other           *
+ * provisions.  The software products and documentation may be *
+ * used, disclosed, transferred, or copied only in accordance  *
+ * with the terms and conditions of that software license      *
+ * agreement.                                                  *
+ *                                                             *
+ * ANSYS, Inc. is a UL registered                              *
+ * ISO 9001:2015 company.                                      *
+ *                                                             *
+ ***************************************************************
+ *                                                             *
+ * This product is subject to U.S. laws governing export and   *
+ * re-export.                                                  *
+ *                                                             *
+ * For U.S. Government users, except as specifically granted   *
+ * by the ANSYS, Inc. software license agreement, the use,     *
+ * duplication, or disclosure by the United States Government  *
+ * is subject to restrictions stated in the ANSYS, Inc.        *
+ * software license agreement and FAR 12.212 (for non-DOD      *
+ * licenses).                                                  *
+ *                                                             *
+ ***************************************************************
+
+      Date: 09/30/2025      Time: 12:46:33  
+      ___________________________________________________ 
+     |                                                   |
+     |  LS-DYNA, A Program for Nonlinear Dynamic         |
+     |  Analysis of Structures in Three Dimensions       |
+     |  Date    : 10/16/2023    Time: 19:29:09           |
+     |  Version : mpp s R14                              |
+     |  Revision: R14.1-205-geb5348f751                  |
+     |  AnLicVer: 2024 R1 (20231025+2752148)             |
+     |                                                   |
+     |  Features enabled in this version:                |
+     |    Distributed Memory Parallel                    |
+     |    FFTW (multi-dimensional FFTW Library)          |
+     |    ANSYSLIC enabled                               |
+     |                                                   |
+     |  Licensed to: Texas Advanced Computing Center(TA  |
+     |  Issued by  : stephanie.castano_04022025          |
+     |                                                   |
+     |  Platform   : Intel-MPI 2018 Xeon64               |
+     |  OS Level   : Linux CentOS 7.9 uom                |
+     |  Compiler   : Intel Fortran Compiler 19.0 SSE2    |
+     |  Hostname   : c455-071.stampede3.tacc.utexas.edu  |
+     |  Precision  : Single precision (I4R4)             |
+     |                                                   |
+     |  Unauthorized use infringes Ansys Inc. copyrights |
+     |___________________________________________________|
+
+
+ Command line options: i=/scratch/05598/fnetsch/tapis/043b7b6f-fc35-4194-9229-8778dce82da5-007/inputDirectory/constrained.linear.plate1.k
+
+ Input file: /scratch/05598/fnetsch/tapis/043b7b6f-fc35-4194-9229-8778dce82da5-007/inputDirec
+
+ The native file format       : 32-bit small endian
+ Memory size from default     :   100000000,            0
+ Memory size from default     :   100000000,    100000000
+
+ Memory for the head node
+ Memory installed (MB)        :       191507
+ Memory available (MB)        :       183428
+ allocating  memory to   100000000 d      148516 Initial allocation
+
+ ********  notice  ********  notice  ********  notice  ********
+ *                                                            *
+ * This is the LS-DYNA Finite Element code.                   *
+ *                                                            *
+ * Neither LST nor the authors assume any responsibility for  *
+ * the validity, accuracy, or applicability of any results    *
+ * obtained from this system. Users must verify their own     *
+ * results.                                                   *
+ *                                                            *
+ * LST endeavors to make the LS-DYNA code as complete,        *
+ * accurate and easy to use as possible.                      *
+ * Suggestions and comments are welcomed.  Please report any  *
+ * errors encountered in either the documentation or results  *
+ * immediately to LST through your site focus.                *
+ *                                                            *
+ * Copyright (C) 1990-2021                                    *
+ * by Livermore Software Technology, LLC                      *
+ * All rights reserved                                        *
+ *                                                            *
+ ********  notice  ********  notice  ********  notice  ********
+ 
+LSTC Environment Variables:
+ 
+LSTC_LICENSE_SERVER=31010@license03.tacc.utexas.edu
+LSTC_LICENSE=network
+ 
+
+ Beginning of keyword reader                                   09/30/25 12:46:35
+ expanding   memory to       22500 d      203301  
+ expanding   memory to       52500 d      203301  
+ expanding   memory to       73842 d      264069  
+ expanding   memory to      102514 d      272581  
+ expanding   memory to      124536 d      272581  
+ expanding   memory to      229536 d      272581  
+
+********** echo of pfile data **********
+
+
+*********** end of pfile data **********
+
+ Memory required to process keyword     :     229536  
+ Additional dynamic memory required     :     275840  
+
+ allocating  memory to   100000000 d      275642 end of keyword reader
+
+ MPP execution with      48 procs
+
+ LS-DYNA will perform a structural only analysis 
+
+
+ Initial reading of file                                       09/30/25 12:46:35
+ Linear Constraint Equations                                             
+                    ls-dyna mpp s R14 R14.1_205_eb5348f date 10/16/2023
+ expanding   memory to        2001 d      148969 material, node and element data
+ expanding   memory to        2071 d      148988 material properties
+ expanding   memory to        2086 d      153117 gradient of damage data
+ expanding   memory to        2108 d      154550 user control for contact interfaces
+ contracting memory to        2088 d      154551 thermal expansion 0
+ expanding   memory to        2090 d      154552 cross-sectional force definitions 0
+ expanding   memory to        2171 d      154559 temp index array for node sorting
+ contracting memory to        2090 d      154644 just because?
+ expanding   memory to        2154 d      154878 arbitrary element numbering input
+ expanding   memory to        4098 d      155403 load curve data
+ contracting memory to        2523 d      155435 user_define_loading_set
+ expanding   memory to        2729 d      155435 regularize time history data
+ contracting memory to        2527 d      155435 *DEFINE_ELEMENT_DEATH
+ expanding   memory to        3689 d      155533 implicit contact 1
+ contracting memory to        2527 d      155535 before call to elgen
+ expanding   memory to        3527 d      155535 contact segment data 1
+ expanding   memory to        3962 d      155535 contact segment data 3
+ contracting memory to        2527 d      155616 contact definition
+ expanding   memory to        2531 d      155749 contact friction
+ expanding   memory to        2631 d      156564 rigid bodies for disp. termination
+ expanding   memory to        5634 d      156584 restart-constraint set 1
+ contracting memory to        2655 d      156584 restart-constraint 2
+ expanding   memory to        2657 d      156943 sensor_control for curve
+
+ Performing Decomposition -- Phase 1                           09/30/25 12:46:35
+ contracting memory to         711 d      151358 decomp reverse connectivity
+ expanding   memory to        1031 d      151358 element ownership
+
+Decomposition region 1:
+
+   Everything
+
+Region  1 is distributed to 48 processors
+
+   With no coordinate transformation
+
+Normalized element costs assigned during decomposition:
+            Minumum: 9.000000E-01
+            Maximum: 1.200000E+00
+ Standard Deviation: 1.414214E-01
+
+ contracting memory to         780 d      161406 constraint scratch
+ expanding   memory to         861 d      161406 constraint scratch
+ expanding   memory to         862 d      161487 shadow node processing
+ expanding   memory to         990 d      151487 share node processing
+ contracting memory to         770 d      151341 nodal sharing list
+
+ Memory required for decomposition      :       5634  
+ Additional dynamic memory required     :     286784  
+
+ allocating  memory to   100000000 d      150972 Allocate memory top of decomps
+ expanding   memory to          65 d      150972 shell ownership chunk
+ contracting memory to          50 d      150910 nodal force sharing lists 1
+
+ Performing Decomposition -- Phase 2                           09/30/25 12:46:35
+ expanding   memory to          51 d      151032 mat scratch
+ expanding   memory to          57 d     1151032 time history scratch
+ contracting memory to          51 d     1151032 cross section scratch
+ expanding   memory to          52 d     1151039 tied nodes scratch
+ expanding   memory to          99 d     1151039 tied node scratch
+ contracting memory to          51 d     1151039 nodal rigid body scratch
+ contracting memory to           1 d      151035 Performing Decomposition -- Phase 3
+ Performing Decomposition -- Phase 3                           09/30/25 12:46:36
+ Linear Constraint Equations                                             
+                    ls-dyna mpp s R14 R14.1_205_eb5348f date 10/16/2023
+ expanding   memory to        2001 d      151426 material, node and element data
+ expanding   memory to        2071 d      151445 material properties
+ expanding   memory to        2086 d      151736 gradient of damage data
+ expanding   memory to        2108 d      152440 user control for contact interfaces
+ contracting memory to        2088 d      152441 thermal expansion 0
+ expanding   memory to        2090 d      152442 cross-sectional force definitions 0
+ expanding   memory to        2096 d      152449 temp index array for node sorting
+ contracting memory to        2090 d      152449 just because?
+ expanding   memory to        2092 d      152410 arbitrary element numbering input
+ contracting memory to        2091 d      152527 d3thdt storage
+ expanding   memory to        4099 d      152785 load curve data
+ contracting memory to        2524 d      152753 user_define_loading_set
+ expanding   memory to        2730 d      152753 regularize time history data
+ contracting memory to        2528 d      152753 *DEFINE_ELEMENT_DEATH
+ expanding   memory to        3540 d      152792 implicit contact 1
+ contracting memory to        3528 d      152907 contact segment data 1
+ expanding   memory to        3558 d      152907 contact segment data 3
+ contracting memory to        2528 d      203541 contact definition
+ expanding   memory to        2531 d      203551 rbe2 scratch
+ expanding   memory to        2532 d      203962 contact friction
+ expanding   memory to        2632 d      204578 rigid bodies for disp. termination
+ expanding   memory to        2691 d      204578 save d3plot control data
+ expanding   memory to        2693 d      204569 sensor_control for curve
+ expanding   memory to        2706 d      204570 weld node list 1
+ expanding   memory to        2714 d      204570 weld node list 2
+ contracting memory to        2701 d      204570 global pointers for welds
+ contracting memory to        2694 d      204570 global shared weld node list 1
+ expanding   memory to        2699 d      204570 global shared weld node list 2
+ expanding   memory to        2732 d      206218 mpp general scratch
+
+ initial kinetic energy = 0.00000000E+00
+
+ The following binary output files are being created,
+ and contain data equivalent to the indicated ascii output files
+   binout0031: (on processor      31)
+    nodout                                  
+
+ S t o r a g e   a l l o c a t i o n   
+
+ Memory required to begin solution      :     4099
+ Additional dynamically allocated memory:    3154K
+                                   Total:    3158K
+
+   2 smallest timesteps
+ ------------------------------------------------
+ element       number                part    timestep
+ shell              2                   1  1.9198E-06
+ shell              1                   1  1.9198E-06
+       1 t 0.0000E+00 dt 1.92E-06 flush i/o buffers            09/30/25 12:46:36
+       1 t 0.0000E+00 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+      11 t 1.9183E-05 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+      21 t 3.8347E-05 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+      32 t 5.9434E-05 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+      42 t 7.8582E-05 dt 1.91E-06 write d3plot file            09/30/25 12:46:36
+      53 t 9.9599E-05 dt 1.91E-06 write d3plot file            09/30/25 12:46:36
+      63 t 1.1863E-04 dt 1.90E-06 write d3plot file            09/30/25 12:46:36
+      74 t 1.3953E-04 dt 1.90E-06 write d3plot file            09/30/25 12:46:36
+      84 t 1.5850E-04 dt 1.89E-06 write d3plot file            09/30/25 12:46:36
+      95 t 1.7930E-04 dt 1.89E-06 write d3plot file            09/30/25 12:46:36
+     105 t 1.9813E-04 dt 1.88E-06 write d3plot file            09/30/25 12:46:36
+     116 t 2.1878E-04 dt 1.87E-06 write d3plot file            09/30/25 12:46:36
+     127 t 2.3931E-04 dt 1.86E-06 write d3plot file            09/30/25 12:46:36
+     138 t 2.5974E-04 dt 1.86E-06 write d3plot file            09/30/25 12:46:36
+     148 t 2.7827E-04 dt 1.85E-06 write d3plot file            09/30/25 12:46:36
+     159 t 2.9857E-04 dt 1.84E-06 write d3plot file            09/30/25 12:46:36
+     170 t 3.1876E-04 dt 1.83E-06 write d3plot file            09/30/25 12:46:36
+     181 t 3.3886E-04 dt 1.82E-06 write d3plot file            09/30/25 12:46:36
+     192 t 3.5885E-04 dt 1.81E-06 write d3plot file            09/30/25 12:46:36
+     203 t 3.7875E-04 dt 1.81E-06 write d3plot file            09/30/25 12:46:36
+     214 t 3.9861E-04 dt 1.80E-06 write d3plot file            09/30/25 12:46:36
+     225 t 4.1834E-04 dt 1.79E-06 write d3plot file            09/30/25 12:46:36
+     237 t 4.3980E-04 dt 1.78E-06 write d3plot file            09/30/25 12:46:36
+     248 t 4.5934E-04 dt 1.78E-06 write d3plot file            09/30/25 12:46:36
+     259 t 4.7885E-04 dt 1.77E-06 write d3plot file            09/30/25 12:46:36
+     270 t 4.9829E-04 dt 1.76E-06 write d3plot file            09/30/25 12:46:36
+ 
+ *** termination time reached ***
+     270 t 5.0005E-04 dt 1.76E-06 write d3dump01 file          09/30/25 12:46:37
+     270 t 5.0005E-04 dt 1.76E-06 flush i/o buffers            09/30/25 12:46:37
+     270 t 5.0005E-04 dt 1.76E-06 write d3plot file            09/30/25 12:46:37
+
+ N o r m a l    t e r m i n a t i o n                          09/30/25 12:46:37
+
+ S t o r a g e   a l l o c a t i o n   
+
+ Memory required to complete solution   :     4099
+ Additional dynamically allocated memory:    3154K
+                                   Total:    3158K
+
+
+ P r o c e s s o r   #         0
+
+ T i m i n g   i n f o r m a t i o n
+                        CPU(seconds)   %CPU  Clock(seconds) %Clock
+  ----------------------------------------------------------------
+  Keyword Processing ... 8.6704E-03    0.30     1.4564E-01    3.43
+    KW Reading ......... 2.5929E-03    0.09     2.6441E-02    0.62
+    KW Writing ......... 1.8650E-03    0.06     3.6784E-02    0.87
+  MPP Decomposition .... 2.8551E-01    9.72     6.9300E-01   16.32
+    Init Proc .......... 7.2169E-03    0.25     1.0597E-01    2.50
+    Decomposition ...... 8.0295E-03    0.27     2.5909E-02    0.61
+    Translation ........ 2.7018E-01    9.20     5.6085E-01   13.21
+  Initialization ....... 2.3295E+00   79.33     2.7817E+00   65.52
+    Init Proc Phase 1 .. 8.3100E-02    2.83     1.0096E-01    2.38
+    Init Proc Phase 2 .. 2.3546E-02    0.80     4.9185E-02    1.16
+  Init solver .......... 3.4649E-03    0.12     1.6089E-02    0.38
+  Element processing ... 1.1238E-02    0.38     3.9430E-02    0.93
+    Shells ............. 8.6866E-03    0.30     2.6982E-02    0.64
+    E Other ............ 6.5831E-04    0.02     4.9820E-03    0.12
+  Binary databases ..... 4.5457E-02    1.55     5.3990E-02    1.27
+  ASCII database ....... 9.1880E-02    3.13     9.4733E-02    2.23
+  Contact algorithm .... 1.8566E-03    0.06     3.3870E-03    0.08
+  Rigid Bodies ......... 1.3945E-03    0.05     1.7370E-03    0.04
+  Time step size ....... 4.9062E-03    0.17     4.9460E-03    0.12
+  Group force file ..... 1.0011E-04    0.00     1.0200E-04    0.00
+  Others ............... 3.4383E-03    0.12     4.7630E-03    0.11
+    Force Sharing ...... 2.0922E-03    0.07     2.1090E-03    0.05
+  Misc. 1 .............. 4.4761E-03    0.15     1.5513E-02    0.37
+    Scale Masses ....... 4.3144E-04    0.01     8.0300E-04    0.02
+    Force Constraints .. 9.5879E-05    0.00     9.3000E-05    0.00
+    Force to Accel ..... 8.7114E-05    0.00     9.4000E-05    0.00
+    Constraint Sharing . 2.7211E-04    0.01     2.7600E-04    0.01
+    Update RB nodes .... 9.7398E-05    0.00     1.0100E-04    0.00
+  Misc. 2 .............. 1.2192E-03    0.04     2.0330E-03    0.05
+  Misc. 3 .............. 1.4149E-01    4.82     3.7869E-01    8.92
+  Misc. 4 .............. 1.8957E-03    0.06     9.7200E-03    0.23
+    Timestep Init ...... 2.3352E-04    0.01     1.4190E-03    0.03
+    Apply Loads ........ 1.4925E-03    0.05     8.1230E-03    0.19
+  ----------------------------------------------------------------
+  T o t a l s            2.9365E+00  100.00     4.2454E+00  100.00
+
+
+ A v e r a g e s
+
+ T i m i n g   i n f o r m a t i o n
+                        CPU(seconds)   %CPU  Clock(seconds) %Clock
+  ----------------------------------------------------------------
+  Keyword Processing ... 1.4061E-01    4.18     1.4574E-01    3.43
+    KW Reading ......... 5.4018E-05    0.00     5.5085E-04    0.01
+    KW Writing ......... 3.8855E-05    0.00     7.6633E-04    0.02
+  MPP Decomposition .... 3.2476E-01    9.67     6.8629E-01   16.17
+    Init Proc .......... 1.0301E-01    3.07     1.0608E-01    2.50
+    Decomposition ...... 2.1548E-02    0.64     2.5813E-02    0.61
+    Translation ........ 2.0018E-01    5.96     5.5438E-01   13.06
+  Initialization ....... 2.5264E+00   75.19     2.7883E+00   65.68
+    Init Proc Phase 1 .. 5.3876E-02    1.60     9.9306E-02    2.34
+    Init Proc Phase 2 .. 3.4688E-02    1.03     4.9120E-02    1.16
+  Init solver .......... 3.2878E-03    0.10     1.6046E-02    0.38
+  Element processing ... 9.7927E-03    0.29     3.7749E-02    0.89
+    Shells ............. 7.4712E-03    0.22     2.5656E-02    0.60
+    E Other ............ 5.4204E-04    0.02     4.8436E-03    0.11
+  Binary databases ..... 5.7023E-02    1.70     6.0825E-02    1.43
+  ASCII database ....... 9.1550E-02    2.72     9.4586E-02    2.23
+  Contact algorithm .... 1.7564E-03    0.05     3.4932E-03    0.08
+  Rigid Bodies ......... 1.2670E-03    0.04     1.6319E-03    0.04
+  Time step size ....... 5.1141E-03    0.15     5.1445E-03    0.12
+  Bnd prescribed opt ... 1.5052E-05    0.00     5.9146E-05    0.00
+  Group force file ..... 9.7142E-05    0.00     1.0010E-04    0.00
+  Others ............... 4.7818E-03    0.14     6.1762E-03    0.15
+    Force Sharing ...... 3.5172E-03    0.10     3.5870E-03    0.08
+  Misc. 1 .............. 4.4333E-03    0.13     8.6636E-03    0.20
+    Scale Masses ....... 3.3919E-04    0.01     7.7210E-04    0.02
+    Force Constraints .. 8.6941E-05    0.00     8.7583E-05    0.00
+    Force to Accel ..... 8.4743E-05    0.00     8.4500E-05    0.00
+    Constraint Sharing . 5.3992E-04    0.02     5.4579E-04    0.01
+    Update RB nodes .... 9.0302E-05    0.00     9.2646E-05    0.00
+  Misc. 2 .............. 1.1262E-03    0.03     1.9623E-03    0.05
+  Misc. 3 .............. 1.8612E-01    5.54     3.7895E-01    8.93
+  Misc. 4 .............. 1.8970E-03    0.06     9.7413E-03    0.23
+    Timestep Init ...... 2.6253E-04    0.01     1.4824E-03    0.03
+    Apply Loads ........ 1.4718E-03    0.04     8.0913E-03    0.19
+  ----------------------------------------------------------------
+  T o t a l s            3.3600E+00  100.00     4.2454E+00  100.00
+
+ Problem time       =    5.0005E-04
+ Problem cycle      =       270
+ Total CPU time     =         3 seconds (   0 hours  0 minutes  3 seconds)
+ CPU time per zone cycle  =      42612.988 nanoseconds
+ Clock time per zone cycle=      36178.020 nanoseconds
+
+ Parallel execution with     48 MPP proc
+ NLQ used/max               120/   120
+
+  C P U   T i m i n g   i n f o r m a t i o n
+
+  Processor   Hostname                              CPU/Avg_CPU  CPU(seconds)
+  ---------------------------------------------------------------------------
+  #       0   c455-071.stampede3.tacc.utexas            0.88013   3.3700E+00
+  #       1   c455-071.stampede3.tacc.utexas            1.03684   3.9700E+00
+  #       2   c455-071.stampede3.tacc.utexas            0.99505   3.8100E+00
+  #       3   c455-071.stampede3.tacc.utexas            1.04467   4.0000E+00
+  #       4   c455-071.stampede3.tacc.utexas            0.97416   3.7300E+00
+  #       5   c455-071.stampede3.tacc.utexas            1.07340   4.1100E+00
+  #       6   c455-071.stampede3.tacc.utexas            1.01594   3.8900E+00
+  #       7   c455-071.stampede3.tacc.utexas            0.99505   3.8100E+00
+  #       8   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #       9   c455-071.stampede3.tacc.utexas            1.01855   3.9000E+00
+  #      10   c455-071.stampede3.tacc.utexas            0.99244   3.8000E+00
+  #      11   c455-071.stampede3.tacc.utexas            0.95065   3.6400E+00
+  #      12   c455-071.stampede3.tacc.utexas            1.06295   4.0700E+00
+  #      13   c455-071.stampede3.tacc.utexas            1.03161   3.9500E+00
+  #      14   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #      15   c455-071.stampede3.tacc.utexas            1.03161   3.9500E+00
+  #      16   c455-071.stampede3.tacc.utexas            1.00550   3.8500E+00
+  #      17   c455-071.stampede3.tacc.utexas            1.02117   3.9100E+00
+  #      18   c455-071.stampede3.tacc.utexas            0.99766   3.8200E+00
+  #      19   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #      20   c455-071.stampede3.tacc.utexas            0.96632   3.7000E+00
+  #      21   c455-071.stampede3.tacc.utexas            0.97154   3.7200E+00
+  #      22   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      23   c455-071.stampede3.tacc.utexas            1.03422   3.9600E+00
+  #      24   c455-071.stampede3.tacc.utexas            0.99766   3.8200E+00
+  #      25   c455-071.stampede3.tacc.utexas            1.00027   3.8300E+00
+  #      26   c455-071.stampede3.tacc.utexas            0.98721   3.7800E+00
+  #      27   c455-071.stampede3.tacc.utexas            1.03684   3.9700E+00
+  #      28   c455-071.stampede3.tacc.utexas            1.00550   3.8500E+00
+  #      29   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      30   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      31   c455-071.stampede3.tacc.utexas            0.94543   3.6200E+00
+  #      32   c455-071.stampede3.tacc.utexas            0.97416   3.7300E+00
+  #      33   c455-071.stampede3.tacc.utexas            1.06034   4.0600E+00
+  #      34   c455-071.stampede3.tacc.utexas            0.99244   3.8000E+00
+  #      35   c455-071.stampede3.tacc.utexas            1.00550   3.8500E+00
+  #      36   c455-071.stampede3.tacc.utexas            0.96110   3.6800E+00
+  #      37   c455-071.stampede3.tacc.utexas            0.97938   3.7500E+00
+  #      38   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #      39   c455-071.stampede3.tacc.utexas            1.01072   3.8700E+00
+  #      40   c455-071.stampede3.tacc.utexas            0.90364   3.4600E+00
+  #      41   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      42   c455-071.stampede3.tacc.utexas            0.97416   3.7300E+00
+  #      43   c455-071.stampede3.tacc.utexas            0.99505   3.8100E+00
+  #      44   c455-071.stampede3.tacc.utexas            0.97938   3.7500E+00
+  #      45   c455-071.stampede3.tacc.utexas            1.02117   3.9100E+00
+  #      46   c455-071.stampede3.tacc.utexas            1.00811   3.8600E+00
+  #      47   c455-071.stampede3.tacc.utexas            0.99766   3.8200E+00
+  ---------------------------------------------------------------------------
+  T o t a l s                                                     1.8379E+02
+
+
+ Start time   09/30/2025 12:46:33  
+ End time     09/30/2025 12:46:37  
+ Elapsed time       4 seconds for     270 cycles using    48 MPP procs
+             (      0 hour   0 minute   4 seconds)
+
+ N o r m a l    t e r m i n a t i o n                          09/30/25 12:46:37

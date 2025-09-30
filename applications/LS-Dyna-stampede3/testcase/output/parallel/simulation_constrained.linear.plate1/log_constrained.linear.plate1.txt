@@ -1,0 +1,363 @@
+TACC:  Starting up job 2426342 
+TACC:  Starting parallel tasks... 
+MPI startup(): I_MPI_OFI_LIBRARY variable has been removed from the product, its value is ignored
+
+ License option : check network license only
+
+
+ ***************************************************************
+ *            ANSYS LEGAL NOTICES                              *
+ ***************************************************************
+ *                                                             *
+ * Copyright 1971-2023 ANSYS, Inc.  All rights reserved.       *
+ * Unauthorized use, distribution or duplication is            *
+ * prohibited.                                                 *
+ *                                                             *
+ * Ansys is a registered trademark of ANSYS, Inc. or its       *
+ * subsidiaries in the United States or other countries.       *
+ * See the ANSYS, Inc. online documentation or the ANSYS, Inc. *
+ * documentation CD or online help for the complete Legal      *
+ * Notice.                                                     *
+ *                                                             *
+ ***************************************************************
+ *                                                             *
+ * THIS ANSYS SOFTWARE PRODUCT AND PROGRAM DOCUMENTATION       *
+ * INCLUDE TRADE SECRETS AND CONFIDENTIAL AND PROPRIETARY      *
+ * PRODUCTS OF ANSYS, INC., ITS SUBSIDIARIES, OR LICENSORS.    *
+ * The software products and documentation are furnished by    *
+ * ANSYS, Inc. or its subsidiaries under a software license    *
+ * agreement that contains provisions concerning               *
+ * non-disclosure, copying, length and nature of use,          *
+ * compliance with exporting laws, warranties, disclaimers,    *
+ * limitations of liability, and remedies, and other           *
+ * provisions.  The software products and documentation may be *
+ * used, disclosed, transferred, or copied only in accordance  *
+ * with the terms and conditions of that software license      *
+ * agreement.                                                  *
+ *                                                             *
+ * ANSYS, Inc. is a UL registered                              *
+ * ISO 9001:2015 company.                                      *
+ *                                                             *
+ ***************************************************************
+ *                                                             *
+ * This product is subject to U.S. laws governing export and   *
+ * re-export.                                                  *
+ *                                                             *
+ * For U.S. Government users, except as specifically granted   *
+ * by the ANSYS, Inc. software license agreement, the use,     *
+ * duplication, or disclosure by the United States Government  *
+ * is subject to restrictions stated in the ANSYS, Inc.        *
+ * software license agreement and FAR 12.212 (for non-DOD      *
+ * licenses).                                                  *
+ *                                                             *
+ ***************************************************************
+
+      Date: 09/30/2025      Time: 12:46:33  
+      ___________________________________________________ 
+     |                                                   |
+     |  LS-DYNA, A Program for Nonlinear Dynamic         |
+     |  Analysis of Structures in Three Dimensions       |
+     |  Date    : 10/16/2023    Time: 19:29:09           |
+     |  Version : mpp s R14                              |
+     |  Revision: R14.1-205-geb5348f751                  |
+     |  AnLicVer: 2024 R1 (20231025+2752148)             |
+     |                                                   |
+     |  Features enabled in this version:                |
+     |    Distributed Memory Parallel                    |
+     |    FFTW (multi-dimensional FFTW Library)          |
+     |    ANSYSLIC enabled                               |
+     |                                                   |
+     |  Licensed to: Texas Advanced Computing Center(TA  |
+     |  Issued by  : stephanie.castano_04022025          |
+     |                                                   |
+     |  Platform   : Intel-MPI 2018 Xeon64               |
+     |  OS Level   : Linux CentOS 7.9 uom                |
+     |  Compiler   : Intel Fortran Compiler 19.0 SSE2    |
+     |  Hostname   : c455-071.stampede3.tacc.utexas.edu  |
+     |  Precision  : Single precision (I4R4)             |
+     |                                                   |
+     |  Unauthorized use infringes Ansys Inc. copyrights |
+     |___________________________________________________|
+
+
+ Command line options: i=/scratch/05598/fnetsch/tapis/043b7b6f-fc35-4194-9229-8778dce82da5-007/inputDirectory/constrained.linear.plate1.k
+
+ Input file: /scratch/05598/fnetsch/tapis/043b7b6f-fc35-4194-9229-8778dce82da5-007/inputDirec
+
+ The native file format       : 32-bit small endian
+ Memory size from default     :   100000000,            0
+ Memory size from default     :   100000000,    100000000
+
+ Memory for the head node
+ Memory installed (MB)        :       191507
+ Memory available (MB)        :       183428
+
+ on UNIX computers note the following change:
+
+ ctrl-c interrupts ls-dyna and prompts for a sense  switch.
+ type the desired sense switch: sw1., sw2., etc. to continue
+ the execution.  ls-dyna will respond as explained in the users manual
+
+    type                      response
+   -----   ------------------------------------------------------------
+   quit    ls-dyna terminates.
+   stop    ls-dyna terminates.
+   sw1.    a restart file is written and ls-dyna terminates.
+   sw2.    ls-dyna responds with time and cycle numbers.    
+   sw3.    a restart file is written and ls-dyna continues calculations.
+   sw4.    a plot state is written and ls-dyna continues calculations.
+   sw5.    ls-dyna enters interactive graphics phase.
+   swa.    ls-dyna flushes all output i/o buffers.
+   swb.    a dynain is written and ls-dyna continues calculations.
+   swc.    a restart and dynain are written and ls-dyna continues calculations.
+   swd.    a restart and dynain are written and ls-dyna terminates.
+   swe.    stop dynamic relaxation just as though convergence
+   endtime=time change the termination time
+   lpri    toggle implicit lin. alg. solver output on/off.
+   nlpr    toggle implicit nonlinear solver output on/off.
+   iter    toggle implicit output to d3iter database on/off.
+   prof    output timing data to prof.out and continue.
+   conv    force implicit nonlinear convergence for current time step.
+   ttrm    terminate implicit time step, reduce time step, retry time step.
+   rtrm    terminate implicit at end of current time step.
+
+
+ ********  notice  ********  notice  ********  notice  ********
+ *                                                            *
+ * This is the LS-DYNA Finite Element code.                   *
+ *                                                            *
+ * Neither LST nor the authors assume any responsibility for  *
+ * the validity, accuracy, or applicability of any results    *
+ * obtained from this system. Users must verify their own     *
+ * results.                                                   *
+ *                                                            *
+ * LST endeavors to make the LS-DYNA code as complete,        *
+ * accurate and easy to use as possible.                      *
+ * Suggestions and comments are welcomed.  Please report any  *
+ * errors encountered in either the documentation or results  *
+ * immediately to LST through your site focus.                *
+ *                                                            *
+ * Copyright (C) 1990-2021                                    *
+ * by Livermore Software Technology, LLC                      *
+ * All rights reserved                                        *
+ *                                                            *
+ ********  notice  ********  notice  ********  notice  ********
+
+ Beginning of keyword reader                                   09/30/25 12:46:35
+  
+
+ Memory required to process keyword     :     229536  
+ Additional dynamic memory required     :     275840  
+
+
+ MPP execution with      48 procs
+
+ Initial reading of file                                       09/30/25 12:46:35
+
+ Performing Decomposition -- Phase 1                           09/30/25 12:46:35
+
+ Performing Recursive Coordinate Bisection (RCB)
+
+ Memory required for decomposition      :       5634  
+ Additional dynamic memory required     :     286784  
+
+
+ Performing Decomposition -- Phase 2                           09/30/25 12:46:35
+ Performing Decomposition -- Phase 3                           09/30/25 12:46:36
+
+ input of data is completed
+
+ initial kinetic energy = 0.00000000E+00
+
+ The following binary output files are being created,
+ and contain data equivalent to the indicated ascii output files
+   binout0031: (on processor      31)
+    nodout                                  
+
+ Memory required to begin solution (memory=    230K memory2=    5635)
+          Minimum    4099 on processor     0
+          Maximum    5635 on processor    36
+          Average    4131
+
+ Additional dynamically allocated memory
+          Minimum   3153K on processor     2
+          Maximum   3154K on processor     0
+          Average   3153K
+
+ Total allocated memory
+          Minimum   3157K on processor     2
+          Maximum   3159K on processor    36
+          Average   3157K
+
+ initialization completed
+       1 t 0.0000E+00 dt 1.92E-06 flush i/o buffers            09/30/25 12:46:36
+       1 t 0.0000E+00 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+ cpu time per zone cycle............      2416 nanoseconds
+ average cpu time per zone cycle....     38686 nanoseconds
+ average clock time per zone cycle..    133170 nanoseconds
+
+ estimated total cpu time          =         2 sec (       0 hrs  0 mins)
+ estimated cpu time to complete    =         0 sec (       0 hrs  0 mins)
+ estimated total clock time        =         5 sec (       0 hrs  0 mins)
+ estimated clock time to complete  =         2 sec (       0 hrs  0 mins)
+ termination time                  = 5.000E-04
+      11 t 1.9183E-05 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+      21 t 3.8347E-05 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+      32 t 5.9434E-05 dt 1.92E-06 write d3plot file            09/30/25 12:46:36
+      42 t 7.8582E-05 dt 1.91E-06 write d3plot file            09/30/25 12:46:36
+      53 t 9.9599E-05 dt 1.91E-06 write d3plot file            09/30/25 12:46:36
+      63 t 1.1863E-04 dt 1.90E-06 write d3plot file            09/30/25 12:46:36
+      74 t 1.3953E-04 dt 1.90E-06 write d3plot file            09/30/25 12:46:36
+      84 t 1.5850E-04 dt 1.89E-06 write d3plot file            09/30/25 12:46:36
+      95 t 1.7930E-04 dt 1.89E-06 write d3plot file            09/30/25 12:46:36
+     105 t 1.9813E-04 dt 1.88E-06 write d3plot file            09/30/25 12:46:36
+     116 t 2.1878E-04 dt 1.87E-06 write d3plot file            09/30/25 12:46:36
+     127 t 2.3931E-04 dt 1.86E-06 write d3plot file            09/30/25 12:46:36
+     138 t 2.5974E-04 dt 1.86E-06 write d3plot file            09/30/25 12:46:36
+     148 t 2.7827E-04 dt 1.85E-06 write d3plot file            09/30/25 12:46:36
+     159 t 2.9857E-04 dt 1.84E-06 write d3plot file            09/30/25 12:46:36
+     170 t 3.1876E-04 dt 1.83E-06 write d3plot file            09/30/25 12:46:36
+     181 t 3.3886E-04 dt 1.82E-06 write d3plot file            09/30/25 12:46:36
+     192 t 3.5885E-04 dt 1.81E-06 write d3plot file            09/30/25 12:46:36
+     203 t 3.7875E-04 dt 1.81E-06 write d3plot file            09/30/25 12:46:36
+     214 t 3.9861E-04 dt 1.80E-06 write d3plot file            09/30/25 12:46:36
+     225 t 4.1834E-04 dt 1.79E-06 write d3plot file            09/30/25 12:46:36
+     237 t 4.3980E-04 dt 1.78E-06 write d3plot file            09/30/25 12:46:36
+     248 t 4.5934E-04 dt 1.78E-06 write d3plot file            09/30/25 12:46:36
+     259 t 4.7885E-04 dt 1.77E-06 write d3plot file            09/30/25 12:46:36
+     270 t 4.9829E-04 dt 1.76E-06 write d3plot file            09/30/25 12:46:36
+ 
+ *** termination time reached ***
+     270 t 5.0005E-04 dt 1.76E-06 write d3dump01 file          09/30/25 12:46:37
+     270 t 5.0005E-04 dt 1.76E-06 flush i/o buffers            09/30/25 12:46:37
+     270 t 5.0005E-04 dt 1.76E-06 write d3plot file            09/30/25 12:46:37
+
+ N o r m a l    t e r m i n a t i o n                          09/30/25 12:46:37
+
+ Memory required to complete solution (memory=    230K memory2=    5635)
+          Minimum    4099 on processor     0
+          Maximum    5635 on processor    36
+          Average    4131
+
+ Additional dynamically allocated memory
+          Minimum   3153K on processor     2
+          Maximum   3154K on processor     0
+          Average   3153K
+
+ Total allocated memory
+          Minimum   3157K on processor     2
+          Maximum   3159K on processor    36
+          Average   3157K
+
+ T i m i n g   i n f o r m a t i o n
+                        CPU(seconds)   %CPU  Clock(seconds) %Clock
+  ----------------------------------------------------------------
+  Keyword Processing ... 1.4061E-01    4.18     1.4574E-01    3.43
+    KW Reading ......... 5.4018E-05    0.00     5.5085E-04    0.01
+    KW Writing ......... 3.8855E-05    0.00     7.6633E-04    0.02
+  MPP Decomposition .... 3.2476E-01    9.67     6.8629E-01   16.17
+    Init Proc .......... 1.0301E-01    3.07     1.0608E-01    2.50
+    Decomposition ...... 2.1548E-02    0.64     2.5813E-02    0.61
+    Translation ........ 2.0018E-01    5.96     5.5438E-01   13.06
+  Initialization ....... 2.5264E+00   75.19     2.7883E+00   65.68
+    Init Proc Phase 1 .. 5.3876E-02    1.60     9.9306E-02    2.34
+    Init Proc Phase 2 .. 3.4688E-02    1.03     4.9120E-02    1.16
+  Init solver .......... 3.2878E-03    0.10     1.6046E-02    0.38
+  Element processing ... 9.7927E-03    0.29     3.7749E-02    0.89
+    Shells ............. 7.4712E-03    0.22     2.5656E-02    0.60
+    E Other ............ 5.4204E-04    0.02     4.8436E-03    0.11
+  Binary databases ..... 5.7023E-02    1.70     6.0825E-02    1.43
+  ASCII database ....... 9.1550E-02    2.72     9.4586E-02    2.23
+  Contact algorithm .... 1.7564E-03    0.05     3.4932E-03    0.08
+  Rigid Bodies ......... 1.2670E-03    0.04     1.6319E-03    0.04
+  Time step size ....... 5.1141E-03    0.15     5.1445E-03    0.12
+  Bnd prescribed opt ... 1.5052E-05    0.00     5.9146E-05    0.00
+  Group force file ..... 9.7142E-05    0.00     1.0010E-04    0.00
+  Others ............... 4.7818E-03    0.14     6.1762E-03    0.15
+    Force Sharing ...... 3.5172E-03    0.10     3.5870E-03    0.08
+  Misc. 1 .............. 4.4333E-03    0.13     8.6636E-03    0.20
+    Scale Masses ....... 3.3919E-04    0.01     7.7210E-04    0.02
+    Force Constraints .. 8.6941E-05    0.00     8.7583E-05    0.00
+    Force to Accel ..... 8.4743E-05    0.00     8.4500E-05    0.00
+    Constraint Sharing . 5.3992E-04    0.02     5.4579E-04    0.01
+    Update RB nodes .... 9.0302E-05    0.00     9.2646E-05    0.00
+  Misc. 2 .............. 1.1262E-03    0.03     1.9623E-03    0.05
+  Misc. 3 .............. 1.8612E-01    5.54     3.7895E-01    8.93
+  Misc. 4 .............. 1.8970E-03    0.06     9.7413E-03    0.23
+    Timestep Init ...... 2.6253E-04    0.01     1.4824E-03    0.03
+    Apply Loads ........ 1.4718E-03    0.04     8.0913E-03    0.19
+  ----------------------------------------------------------------
+  T o t a l s            3.3600E+00  100.00     4.2454E+00  100.00
+
+ Problem time       =    5.0005E-04
+ Problem cycle      =       270
+ Total CPU time     =         3 seconds (   0 hours  0 minutes  3 seconds)
+ CPU time per zone cycle  =      42612.988 nanoseconds
+ Clock time per zone cycle=      36178.020 nanoseconds
+
+ Parallel execution with     48 MPP proc
+ NLQ used/max               120/   120
+
+  C P U   T i m i n g   i n f o r m a t i o n
+
+  Processor   Hostname                              CPU/Avg_CPU  CPU(seconds)
+  ---------------------------------------------------------------------------
+  #       0   c455-071.stampede3.tacc.utexas            0.88013   3.3700E+00
+  #       1   c455-071.stampede3.tacc.utexas            1.03684   3.9700E+00
+  #       2   c455-071.stampede3.tacc.utexas            0.99505   3.8100E+00
+  #       3   c455-071.stampede3.tacc.utexas            1.04467   4.0000E+00
+  #       4   c455-071.stampede3.tacc.utexas            0.97416   3.7300E+00
+  #       5   c455-071.stampede3.tacc.utexas            1.07340   4.1100E+00
+  #       6   c455-071.stampede3.tacc.utexas            1.01594   3.8900E+00
+  #       7   c455-071.stampede3.tacc.utexas            0.99505   3.8100E+00
+  #       8   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #       9   c455-071.stampede3.tacc.utexas            1.01855   3.9000E+00
+  #      10   c455-071.stampede3.tacc.utexas            0.99244   3.8000E+00
+  #      11   c455-071.stampede3.tacc.utexas            0.95065   3.6400E+00
+  #      12   c455-071.stampede3.tacc.utexas            1.06295   4.0700E+00
+  #      13   c455-071.stampede3.tacc.utexas            1.03161   3.9500E+00
+  #      14   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #      15   c455-071.stampede3.tacc.utexas            1.03161   3.9500E+00
+  #      16   c455-071.stampede3.tacc.utexas            1.00550   3.8500E+00
+  #      17   c455-071.stampede3.tacc.utexas            1.02117   3.9100E+00
+  #      18   c455-071.stampede3.tacc.utexas            0.99766   3.8200E+00
+  #      19   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #      20   c455-071.stampede3.tacc.utexas            0.96632   3.7000E+00
+  #      21   c455-071.stampede3.tacc.utexas            0.97154   3.7200E+00
+  #      22   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      23   c455-071.stampede3.tacc.utexas            1.03422   3.9600E+00
+  #      24   c455-071.stampede3.tacc.utexas            0.99766   3.8200E+00
+  #      25   c455-071.stampede3.tacc.utexas            1.00027   3.8300E+00
+  #      26   c455-071.stampede3.tacc.utexas            0.98721   3.7800E+00
+  #      27   c455-071.stampede3.tacc.utexas            1.03684   3.9700E+00
+  #      28   c455-071.stampede3.tacc.utexas            1.00550   3.8500E+00
+  #      29   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      30   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      31   c455-071.stampede3.tacc.utexas            0.94543   3.6200E+00
+  #      32   c455-071.stampede3.tacc.utexas            0.97416   3.7300E+00
+  #      33   c455-071.stampede3.tacc.utexas            1.06034   4.0600E+00
+  #      34   c455-071.stampede3.tacc.utexas            0.99244   3.8000E+00
+  #      35   c455-071.stampede3.tacc.utexas            1.00550   3.8500E+00
+  #      36   c455-071.stampede3.tacc.utexas            0.96110   3.6800E+00
+  #      37   c455-071.stampede3.tacc.utexas            0.97938   3.7500E+00
+  #      38   c455-071.stampede3.tacc.utexas            1.02639   3.9300E+00
+  #      39   c455-071.stampede3.tacc.utexas            1.01072   3.8700E+00
+  #      40   c455-071.stampede3.tacc.utexas            0.90364   3.4600E+00
+  #      41   c455-071.stampede3.tacc.utexas            0.98983   3.7900E+00
+  #      42   c455-071.stampede3.tacc.utexas            0.97416   3.7300E+00
+  #      43   c455-071.stampede3.tacc.utexas            0.99505   3.8100E+00
+  #      44   c455-071.stampede3.tacc.utexas            0.97938   3.7500E+00
+  #      45   c455-071.stampede3.tacc.utexas            1.02117   3.9100E+00
+  #      46   c455-071.stampede3.tacc.utexas            1.00811   3.8600E+00
+  #      47   c455-071.stampede3.tacc.utexas            0.99766   3.8200E+00
+  ---------------------------------------------------------------------------
+  T o t a l s                                                     1.8379E+02
+
+
+ Start time   09/30/2025 12:46:33  
+ End time     09/30/2025 12:46:37  
+ Elapsed time       4 seconds for     270 cycles using    48 MPP procs
+             (      0 hour   0 minute   4 seconds)
+
+ N o r m a l    t e r m i n a t i o n                          09/30/25 12:46:37
+TACC:  Shutdown complete. Exiting. 

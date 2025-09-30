@@ -1,0 +1,1 @@
+constrained.linear.plate1.k
