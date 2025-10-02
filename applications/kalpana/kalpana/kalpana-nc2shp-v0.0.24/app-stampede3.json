@@ -17,7 +17,7 @@
 		"dynamicExecSystem": false,
 		"execSystemConstraints": null,
         "execSystemId": "stampede3",
-		"execSystemLogicalQueue": "small",
+		"execSystemLogicalQueue": "skx",
         "fileInputs": [
             {
                 "name": "ADCIRC File",
