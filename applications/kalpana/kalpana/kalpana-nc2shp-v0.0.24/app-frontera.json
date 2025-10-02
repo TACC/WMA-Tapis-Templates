@@ -1,5 +1,5 @@
 {
-    "id":"kalpana-ashtonc-nc2shp",
+    "id":"kalpana-ashtonc-nc2shp-frontera",
     "owner": "${apiUserId}",
     "version": "v0.0.24",
     "containerImage":"docker://docker.io/ashtonvcole/kalpana:v0.0.24-nc2shp",
@@ -289,7 +289,7 @@
         "category": "Visualization",
         "helpUrl": "https://github.com/ccht-ncsu/Kalpana",
         "isInteractive": false,
-        "label": "Kalpana nc2shp"
+        "label": "Kalpana (Frontera)"
     },
     "strictFileInputs": true,
     "tags": [

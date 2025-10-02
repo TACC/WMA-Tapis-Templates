@@ -1,5 +1,5 @@
 {
-    "id":"kalpana-ashtonc-nc2shp",
+    "id":"kalpana-ashtonc-nc2shp-stampede3",
     "owner": "${apiUserId}",
     "version": "v0.0.24",
     "containerImage":"docker://docker.io/ashtonvcole/kalpana:v0.0.24-nc2shp",
@@ -289,7 +289,7 @@
         "category": "Visualization",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#kalpana",
         "isInteractive": false,
-        "label": "Kalpana"
+        "label": "Kalpana (Stampede 3)"
     },
     "strictFileInputs": true,
     "tags": [
