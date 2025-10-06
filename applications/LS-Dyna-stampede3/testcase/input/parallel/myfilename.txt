@@ -1,0 +1,3 @@
+constrained.linear.plate1.k
+constrained.linear.plate2.k
+constrained.linear.plate3.k
