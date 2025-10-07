@@ -28,6 +28,7 @@
         {
             "name": "gg",
             "hpcQueueName": "gg",
+            "description": "gg (CPU)",
             "maxJobs": -1,
             "maxJobsPerUser": 40,
             "minNodeCount": 1,
@@ -42,6 +43,7 @@
         {
             "name": "gh",
             "hpcQueueName": "gh",
+            "description": "gh (GPU)",
             "maxJobs": -1,
             "maxJobsPerUser": 40,
             "minNodeCount": 1,
@@ -56,6 +58,8 @@
         {
             "name": "gh-dev",
             "hpcQueueName": "gh-dev",
+            "description": "gh-dev (GPU, 2 hour max, 1-8 nodes/job, 1 job max, for testing)",
+            "description": "gh (GPU, 2 hour max, 1-8 nodes/job, 1 job max, for testing)",
             "maxJobs": -1,
             "maxJobsPerUser": 3,
             "minNodeCount": 1,
@@ -73,6 +77,14 @@
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Vista"
+        "label": "Vista",
+        "queueFilter": [
+            {
+                "portalName": "DESIGNSAFE",
+                "queues": [
+                    "gg", "gh", "gh-dev"
+                ]
+            }
+        ]
     }
 }

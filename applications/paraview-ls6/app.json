@@ -1,6 +1,6 @@
 {
     "id": "paraview-ls6",
-    "version": "5.10.0",
+    "version": "5.13.3",
     "description": "Run an interactive Paraview session on Lonestar 6.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -45,9 +45,9 @@
             "schedulerOptions": [
                 {
                     "name": "Paraview TACC Scheduler Profile",
-                    "description": "Scheduler profile for TACC Paraview 5.10.0.",
+                    "description": "Scheduler profile for TACC Paraview 5.13.3.",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile Paraview_5.10.0_ls6",
+                    "arg": "--tapis-profile Paraview_5.13.3_ls6",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,7 +65,7 @@
             "envVariables": [
                 {
                     "key": "_XTERM_CMD",
-                    "value": "swr -t 8 paraview",
+                    "value": "paraview",
                     "description": "Command passed to XTERM, launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
@@ -121,7 +121,8 @@
     "tags": [
         "portalName: UTRC",
         "portalName: CEP",
-        "portalName: PTDATAX"
+        "portalName: PTDATAX",
+        "portalName: DesignSafe"
     ],
     "notes": {
         "label": "Paraview (LoneStar6)",

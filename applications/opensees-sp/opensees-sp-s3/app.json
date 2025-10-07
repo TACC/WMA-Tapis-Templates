@@ -46,15 +46,24 @@
       ],
       "containerArgs": [],
       "schedulerOptions": [
-        {
-          "name": "OpenSees TACC Scheduler Profile",
-          "description": "Scheduler profile for the default version of OpenSees",
-          "inputMode": "FIXED",
-          "arg": "--tapis-profile OpenSees_default",
-          "notes": {
-            "isHidden": true
+          {
+              "name": "OpenSees TACC Scheduler Profile",
+              "description": "Scheduler profile for the default version of OpenSees",
+              "inputMode": "FIXED",
+              "arg": "--tapis-profile OpenSees_default",
+              "notes": {
+                  "isHidden": true
+              }
+          },
+          {
+              "name": "TACC Reservation",
+              "description": "Reservation input string",
+              "inputMode": "INCLUDE_ON_DEMAND",
+              "arg": null,
+              "notes": {
+                  "isHidden": true
+              }
           }
-        }
       ],
       "envVariables": [],
       "archiveFilter": {
@@ -89,11 +98,12 @@
     "portalName: CEP"
   ],
   "notes": {
-    "label": "OpenSeesSP",
-    "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
-    "hideNodeCountAndCoresPerNode": false,
-    "isInteractive": false,
-    "icon": "OpenSees",
-    "category": "Simulation"
+      "label": "OpenSeesSP",
+      "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/simulation/#opensees-user-guide",
+      "hideNodeCountAndCoresPerNode": false,
+      "isInteractive": false,
+      "icon": "OpenSees",
+      "category": "Simulation",
+      "showReservation": true
   }
 }

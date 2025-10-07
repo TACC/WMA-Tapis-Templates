@@ -1,6 +1,6 @@
 {
     "id": "paraview-s3",
-    "version": "5.12.0",
+    "version": "5.13.3",
     "description": "Run an interactive Paraview session on Stampede 3.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -35,7 +35,7 @@
                     "name": "TACC Interactive Session Substrings",
                     "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_dsmydata",
                     "notes": {
                         "isHidden": true
                     }
