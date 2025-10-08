@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check if conda exists, if so deactivate any active conda env
+if command -v conda > /dev/null 2>&1; then
+    echo "TACC: deactivating conda environment"
+    conda deactivate
+fi
+
 # use jupyter-lab if it exists, otherwise jupyter-notebook
 JUPYTER_BIN=$(which jupyter-lab 2> /dev/null)
 if [ -z "${JUPYTER_BIN}" ]; then
