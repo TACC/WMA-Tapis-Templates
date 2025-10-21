@@ -118,6 +118,7 @@
         {
             "name": "h100",
             "hpcQueueName": "h100",
+            "description": "h100 (GPU, NVIDIA has CUDA)",
             "maxJobs": -1,
             "maxJobsPerUser": 4,
             "minNodeCount": 1,
@@ -140,7 +141,13 @@
             {
                 "portalName": "DESIGNSAFE",
                 "queues": [
-                    "skx", "skx-dev", "icx", "spr", "nvdimm", "pvc"
+                    "skx",
+                    "skx-dev",
+                    "icx",
+                    "spr",
+                    "nvdimm",
+                    "pvc",
+                    "h100"
                 ]
             }
         ]
