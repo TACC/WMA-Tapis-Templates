@@ -1,6 +1,6 @@
 {
     "id": "jupyter-hpc-native",
-    "version": "stampede3",
+    "version": "vista",
     "description": "Run an interactive Jupyter session.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -13,12 +13,12 @@
     "jobAttributes": {
         "description": null,
         "dynamicExecSystem": false,
-        "execSystemId": "stampede3",
+        "execSystemId": "vista",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "skx-dev",
-        "archiveSystemId": "stampede3",
+        "execSystemLogicalQueue": "gh-dev",
+        "archiveSystemId": "vista",
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
@@ -31,7 +31,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile python312_stampede3",
+                    "arg": "--tapis-profile python3_vista",
                     "notes": {
                         "isHidden": true
                     }
@@ -59,11 +59,8 @@
                 {
                     "key": "CUSTOM_KERNELSPEC",
                     "value": "",
-                    "description": "OPTIONAL: If you want to include a custom python kernelspec into your Jupyter Notebook session, you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "notes": {
-                        "label": "Custom Python Kernelspec Directory"
-                    }
+                    "description": "Load an optional custom python kernelspec into your Jupyter Notebook session. Note that you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
+                    "inputMode": "INCLUDE_ON_DEMAND"
                 }
             ],
             "archiveFilter": {
@@ -85,8 +82,8 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 48,
-        "memoryMB": 192000,
+        "coresPerNode": 72,
+        "memoryMB": 96000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
@@ -96,7 +93,7 @@
         "portalName: DESIGNSAFE"
     ],
     "notes": {
-        "label": "Jupyter HPC Native (Stampede3)",
+        "label": "Jupyter HPC Native (Vista)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
