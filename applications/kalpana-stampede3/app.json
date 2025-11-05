@@ -21,7 +21,7 @@
         "fileInputs": [
             {
                 "name": "ADCIRC File",
-                "description": "ADCIRC output file which requires Kalpana. Maps to $_tapisExecSystemInputDir/input.nc",
+                "description": "ADCIRC output file which requires Kalpana. For example, tapis://designsafe.storage.community/app_examples/adcirc_outputs/maxele.63.nc",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
