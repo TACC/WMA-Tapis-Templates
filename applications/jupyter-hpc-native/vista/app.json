@@ -1,7 +1,7 @@
 {
     "id": "jupyter-hpc-native",
     "version": "vista",
-    "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
+    "description": "Run an interactive Jupyter session.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -59,11 +59,8 @@
                 {
                     "key": "CUSTOM_KERNELSPEC",
                     "value": "",
-                    "description": "OPTIONAL: If you want to include a custom python kernelspec into your Jupyter Notebook session, you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "notes": {
-                        "label": "Custom Python Kernelspec Directory"
-                    }
+                    "description": "Load an optional custom python kernelspec into your Jupyter Notebook session. Note that you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
+                    "inputMode": "INCLUDE_ON_DEMAND"
                 }
             ],
             "archiveFilter": {

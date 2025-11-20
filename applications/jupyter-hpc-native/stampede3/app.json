@@ -1,7 +1,7 @@
 {
     "id": "jupyter-hpc-native",
-    "version": "vista",
-    "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
+    "version": "stampede3",
+    "description": "Run an interactive Jupyter session.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
@@ -13,12 +13,12 @@
     "jobAttributes": {
         "description": null,
         "dynamicExecSystem": false,
-        "execSystemId": "vista",
+        "execSystemId": "stampede3",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "gh-dev",
-        "archiveSystemId": "vista",
+        "execSystemLogicalQueue": "skx-dev",
+        "archiveSystemId": "stampede3",
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
@@ -31,7 +31,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile python3_vista",
+                    "arg": "--tapis-profile python312_stampede3",
                     "notes": {
                         "isHidden": true
                     }
@@ -85,8 +85,8 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 72,
-        "memoryMB": 96000,
+        "coresPerNode": 48,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
@@ -96,7 +96,7 @@
         "portalName: DESIGNSAFE"
     ],
     "notes": {
-        "label": "Jupyter HPC Native (Vista)",
+        "label": "Jupyter HPC Native (Stampede3)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
