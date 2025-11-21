@@ -1,0 +1,111 @@
+{
+    "id": "paraview-vista",
+    "version": "5.13.3",
+    "description": "Run an interactive Paraview session on Vista.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/interactive.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Run an interactive Paraview session on Vista.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "vista",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "gh-dev",
+        "archiveSystemId": "vista",
+        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-dcvserver-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+                {
+                    "key": "_XTERM_CMD",
+                    "value": "bash paraview-vista/paraview.sh",
+                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "key": "APPEND_PATH",
+                    "value": "$PATH",
+                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "inputMode": "FIXED",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Working Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your Paraview session runs.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*",
+                "notes": {
+                    "selectionMode": "directory"
+                }
+            },
+            {
+                "name": "shell script",
+                "inputMode": "FIXED",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/paraview-vista",
+                "targetPath": "*",
+                "notes": {
+                    "isHidden": true
+                }
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 72,
+        "memoryMB": 96000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: LCCF"
+    ],
+    "notes": {
+        "label": "Paraview (Vista)",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#paraview-user-guide",
+        "hideNodeCountAndCoresPerNode": true,
+        "isInteractive": true,
+        "icon": "Paraview",
+        "category": "Visualization"
+    }
+}

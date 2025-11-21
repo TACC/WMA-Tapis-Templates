@@ -1,0 +1,15 @@
+{
+    "name": "python312_ls6",
+    "description": "Modules to load for python 3.12 on LS6",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "python/3.12"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "name": "tacc-no-modules",
+    "description": "Profile that does no module loads and has MEM as a hidden option.",
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
