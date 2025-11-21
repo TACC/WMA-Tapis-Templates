@@ -81,6 +81,7 @@ c.NotebookApp.allow_origin = u"*"
 c.NotebookApp.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2,}
 c.NotebookApp.notebook_dir = "${JUPYTER_HOME}"
 c.NotebookApp.token = "${TAP_TOKEN}"
+c.FileContentsManager.delete_to_trash = False
 EOF
 elif [ ${JUPYTER_SERVER_APP} == "ServerApp" ]; then
 cat <<- EOF > ${JUPYTER_CONFIG}
@@ -95,6 +96,7 @@ c.ServerApp.allow_origin = u"*"
 c.ServerApp.ssl_options = {"ssl_version": ssl.PROTOCOL_TLSv1_2,}
 c.ServerApp.root_dir = "${JUPYTER_HOME}"
 c.IdentityProvider.token = "${TAP_TOKEN}"
+c.FileContentsManager.delete_to_trash = False
 EOF
 else
     echo "TACC: ERROR - could not determine jupyter server app"
