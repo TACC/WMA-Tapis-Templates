@@ -6,12 +6,13 @@ MATLAB allows computing mathematical equations, matrix manipulations, plotting o
 Users need to submit an RT ticket in order to get a license approved before they may use MATLAB.
 
 ## App build details
-Runs on: LoneStar6<br>
+Runs on: Stampede3<br>
 Interactive desktop: NICE DCV<br>
 Container/runtime: Tapis v3 ZIP runtime using `interactive-template/interactive.zip`
 
 ## Usage
-In Core Portals, it's under 'Data Processing' -->  MATLAB R2022b Interactive (LoneStar6)<br>
+In Designsafe, it's under 'Analysis' --> MATLAB Interactive (HPC)<br>
+In Core Portals, it's under 'Data Processing' -->  MATLAB R2023b Interactive (Stampede3)<br>
 It is optional to supply a folder of models/results to work on.
 
 ## Inputs
@@ -23,13 +24,13 @@ It is optional to supply a folder of models/results to work on.
 Anything you save/export in the session will be in the archive file.
 
 ## Details on how this app is launched
-Exec system: LoneStar6 (execSystemId: ls6, queue: development)<br>
+Exec system: Stampede3 (execSystemId: stampede3, queue: skx-dev)<br>
 Interactive desktop: NICE DCV (via TACC interactive template)<br>
 Container/runtime: Tapis v3 ZIP runtime using `interactive-template/interactive.zip`<br>
 Launch command: `_XTERM_CMD` runs the site-installed MATLAB module
     `matlab -desktop`<br>
 Libraries/paths: `APPEND_PATH=$PATH`<br>
-Resources: 1 node, 128 cores, 256000 MB (~256 GB) RAM, 120 max time<br>
+Resources: 1 node, 48 cores, 192000 MB (~187.5 GB) RAM, 120 max time<br>
 Archiving: Outputs archived to `$WORK/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}`
 
 ## Note
