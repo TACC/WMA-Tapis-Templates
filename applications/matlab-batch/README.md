@@ -6,30 +6,28 @@ MATLAB allows computing mathematical equations, matrix manipulations, plotting o
 Users need to submit an RT ticket in order to get a license approved before they may use MATLAB.
 
 ## App build details
-Runs on: LoneStar6<br>
-Interactive desktop: NICE DCV<br>
-Container/runtime: Tapis v3 ZIP runtime using `interactive-template/interactive.zip`
+Runs on: Stampede3<br>
+Container/runtime: Tapis v3 ZIP runtime using `matlab-batch/2023b/matlab-batch.zip`
 
 ## Usage
-In Core Portals, it's under 'Data Processing' -->  MATLAB R2022b Interactive (LoneStar6)<br>
-It is optional to supply a folder of models/results to work on.
+In Designsafe, it's under 'Analysis' --> MATLAB Batch<br>
+It is required to supply a folder of models/results to work on.
 
 ## Inputs
-1. Example Input: tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/matlab-batch/
-2. Submit to start the interactive job.
-3. Open, view, and run matlab_test.m
+1. Example Working Directory: tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/matlab-batch/
+2. Example MATLAB Script:matlab_test.m
+3. Submit job and run
 
 ## Outputs
-Anything you save/export in the session will be in the archive file.
+Once the job is finished, the results should be in the 'workingDirectory' directory inside your archived output dir (for the above input example) (i.e. the Output Location under Job History)
 
 ## Details on how this app is launched
-Exec system: LoneStar6 (execSystemId: ls6, queue: development)<br>
-Interactive desktop: NICE DCV (via TACC interactive template)<br>
-Container/runtime: Tapis v3 ZIP runtime using `interactive-template/interactive.zip`<br>
-Launch command: `_XTERM_CMD` runs the site-installed MATLAB module
-    `matlab -desktop`<br>
-Libraries/paths: `APPEND_PATH=$PATH`<br>
-Resources: 1 node, 128 cores, 256000 MB (~256 GB) RAM, 120 max time<br>
+Exec system: Stampede3 (execSystemId: stampede3, queue: skx-dev)<br>
+Container/runtime: Tapis v3 ZIP runtime using `matlab-batch/2023b/matlab-batch.zip`<br>
+Launch command: `tapisjob_app.sh` runs the site-installed MATLAB module
+    `matlab -nosplash -nodesktop < ${matlabScriptName} >> matlab_output.eo.txt 2>&1`<br>
+Module: `matlab/2023b`<br>
+Resources: 1 node, 48 cores, 192000 MB (~187.5 GB) RAM, 120 max time<br>
 Archiving: Outputs archived to `$WORK/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}`
 
 ## Note
