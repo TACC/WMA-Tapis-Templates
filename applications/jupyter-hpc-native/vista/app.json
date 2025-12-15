@@ -22,7 +22,7 @@
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
-        "cmdPrefix": "source tap.sh;",
+        "cmdPrefix": "source tap-ilogin.sh;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
@@ -73,7 +73,7 @@
             {
                 "name": "TAP script",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap-ilogin.sh",
                 "targetPath": "*",
                 "notes": {
                     "isHidden": true
