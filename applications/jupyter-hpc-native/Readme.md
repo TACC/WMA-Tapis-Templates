@@ -2,7 +2,9 @@
 Jupyter HPC Native runs a native jupyter instance on a compute node. It loads the latest python3 module for the system it runs on, and executes jupyter-lab, or jupyter-notebook if jupyter-lab is unavailable.
 
 ### Runtime
-The app utilizes the TAP utilities and a baseline `tap.sh` file to reverse proxy the compute node and jupyter port to a secure port. Script is imported from `tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh`.
+For Vista, the app utilizes the TAP utilities and a baseline `tap-ilogin.sh` file to reverse proxy the compute node and jupyter port to a secure port. Script is imported from `tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap-ilogin.sh`.
+
+For all other execution systems, the app utilizes the TAP utilities and a baseline `tap.sh` file to reverse proxy the compute node and jupyter port to a secure port. Script is imported from `tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh`.
 
 `$JUPYTER_HOME` is defined as `$HOME/.jupyter-hpc-native`, meaning state will persist between sessions.
 
