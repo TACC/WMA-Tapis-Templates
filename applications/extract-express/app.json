@@ -22,7 +22,7 @@
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
         "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "/tmp/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemDir": "/tmp/tapis-${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": false,
         "isMpi": false,
         "mpiCmd": null,
