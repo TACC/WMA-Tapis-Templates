@@ -1,0 +1,49 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "secure.lonestar6",
+    "description": "System for running jobs using corral-secure protected data on the LS6 HPC system.",
+    "systemType": "LINUX",
+    "host": "pdata.lonestar6.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "TMS_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "canExec": true,
+    "canRunBatch": true,
+    "enableCmdPrefix": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "/corral-secure/projects/A2CPS/shared/${JobOwner}/jobs/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "corralextra",
+            "hpcQueueName": "corralextra",
+            "maxJobs": -1,
+            "maxJobsPerUser": 200,
+            "minNodeCount": 1,
+            "maxNodeCount": 512,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 56,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 192000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        }
+    ],
+    "batchDefaultLogicalQueue": "corralextra",
+    "batchSchedulerProfile": "tacc-apptainer",
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {
+        "label": "LS6 Secure"
+      }
+}
