@@ -180,7 +180,7 @@
             "minMemoryMB": 1,
             "maxMemoryMB": 2000000,
             "minMinutes": 1,
-            "maxMinutes": 1440
+            "maxMinutes": 2880
         },
         {
             "name": "debug",
