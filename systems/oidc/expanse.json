@@ -66,9 +66,10 @@
                     "inputMode": "INCLUDE_BY_DEFAULT",
                     "arg": "1",
                     "notes": {
-                        "type": "number",
-                        "min": "1",
-                        "max": "32"
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 32
                     }
                 }
             ],
@@ -94,9 +95,10 @@
                     "inputMode": "INCLUDE_BY_DEFAULT",
                     "arg": "1",
                     "notes": {
-                        "type": "number",
-                        "min": "1",
-                        "max": "32"
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 32
                     }
                 }
             ],
@@ -122,9 +124,10 @@
                     "inputMode": "INCLUDE_BY_DEFAULT",
                     "arg": "1",
                     "notes": {
-                        "type": "number",
-                        "min": "1",
-                        "max": "4"
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 4
                     }
                 }
             ],
@@ -150,9 +153,10 @@
                     "inputMode": "INCLUDE_BY_DEFAULT",
                     "arg": "1",
                     "notes": {
-                        "type": "number",
-                        "min": "1",
-                        "max": "4"
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 4
                     }
                 }
             ],
@@ -208,9 +212,10 @@
                     "inputMode": "INCLUDE_BY_DEFAULT",
                     "arg": "1",
                     "notes": {
-                        "type": "number",
-                        "min": "1",
-                        "max": "2"
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 2
                     }
                 }
             ],
