@@ -81,7 +81,9 @@
             {
                 "portalName": "DESIGNSAFE",
                 "queues": [
-                    "gg", "gh", "gh-dev"
+                    "gg",
+                    "gh",
+                    "gh-dev"
                 ]
             }
         ]
