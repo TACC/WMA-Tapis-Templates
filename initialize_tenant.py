@@ -21,7 +21,7 @@ Options:
 import os
 import argparse
 from tapipy.errors import BaseTapyException, UnauthorizedError
-from client_secrets import TAPIS_CLIENTS
+from client_credentials import TAPIS_CLIENTS
 from utils.load_file_to_json import load_file_to_json
 from utils.client import get_client
 
@@ -87,7 +87,11 @@ def provision(client, systems, apps, args):
                     print("profile created: {}".format(profile["name"]))
             except BaseTapyException as bte:
                 if "SYSLIB_PRF_UNAUTH" in bte.message:
-                    print('Unauthorized to make changes to this profile: {}'.format(profile["name"]))
+                    print(
+                        "Unauthorized to make changes to this profile: {}".format(
+                            profile["name"]
+                        )
+                    )
                 pass
         else:
             raise
