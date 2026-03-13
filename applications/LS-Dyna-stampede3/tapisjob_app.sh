@@ -28,7 +28,7 @@ fi
 # Calculate total number of processors
 total_procs=$((nodes*ppn))
 
-while IFS= read -u 9 k_file; do
+while IFS= read -r -u 9 k_file || [[ -n "$k_file" ]]; do
     if [[ -f "$k_file" ]]; then
         k_file_path=$(realpath "$k_file")
         sim_dir="simulation_${k_file%.k}"
