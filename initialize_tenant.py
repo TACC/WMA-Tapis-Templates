@@ -273,7 +273,7 @@ def main():
         match tenant_name:
             case "A2CPS":
                 systems = (
-                    ["a2cps/secure.frontera", "a2cps/secure.corral"]
+                    ["a2cps/secure.frontera", "a2cps/secure.corral", "a2cps/secure.lonestar6"]
                     if systems == ["ALL"]
                     else systems
                 )
