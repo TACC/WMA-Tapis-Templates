@@ -1,6 +1,6 @@
 {
     "id": "extract-secure",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
     "owner": "${apiUserId}",
     "enabled": true,
