@@ -1,0 +1,92 @@
+{
+    "id": "jupyter-lab-hpc-ls6-secure",
+    "version": "0.0.1",
+    "description": "Run an interactive Jupyter Lab session on an LS6 secure HPC compute node.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://taccaci/jupyter-lab-hpc",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": null,
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "secure.lonestar6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "corralextra",
+        "archiveSystemId": "secure.lonestar6",
+        "archiveSystemDir": "/corral-secure/projects/A2CPS/shared/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [
+                {
+                    "name": "Jupyter Mounts",
+                    "description": "Mount for TAP functions",
+                    "inputMode": "FIXED",
+                    "arg": "--bind /share,/corral-secure",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "FIXED",
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "TAP Session Substring",
+                    "description": "TAP Functions require the substring 'tap_' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 1000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: A2CPS"
+    ],
+    "notes": {
+        "label": "Jupyter Lab HPC (LS6 Secure)",
+        "helpUrl": "https://jupyterlab.readthedocs.io/en/stable/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": "jupyter",
+        "category": "Data Processing"
+    }
+}
