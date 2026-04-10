@@ -284,6 +284,8 @@ def main():
                         "a2cps/jupyter-lab-hpc-secure",
                         "a2cps/matlab-secure",
                         "a2cps/rstudio-secure",
+                        "a2cps/jupyter-lab-hpc-ls6-secure",
+                        "a2cps/matlab-ls6-secure",
                     ]
                     if apps == ["ALL"]
                     else apps
