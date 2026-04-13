@@ -1,7 +1,7 @@
 {
-    "id": "extract-secure",
-    "version": "0.0.2",
-    "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
+    "id": "jupyter-lab-hpc-ls6-secure",
+    "version": "0.0.1",
+    "description": "Run an interactive Jupyter Lab session on an LS6 secure HPC compute node.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
@@ -9,23 +9,23 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/extract:latest",
+    "containerImage": "docker://taccaci/jupyter-lab-hpc",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
     "strictFileInputs": true,
     "jobAttributes": {
-        "description": "Extract a tar, tar.gz, tgz, gz, or zip file.",
+        "description": null,
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "secure.frontera",
+        "execSystemId": "secure.lonestar6",
         "execSystemExecDir": "${JobWorkingDir}",
-        "execSystemInputDir": "${JobWorkingDir}/input",
+        "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "corralextra",
-        "archiveSystemId": "secure.frontera",
+        "archiveSystemId": "secure.lonestar6",
         "archiveSystemDir": "/corral-secure/projects/A2CPS/shared/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": false,
+        "archiveOnAppError": true,
         "isMpi": false,
         "mpiCmd": null,
         "cmdPrefix": null,
@@ -33,10 +33,10 @@
             "appArgs": [],
             "containerArgs": [
                 {
-                    "name": "Corral Secure Mount",
-                    "description": "Corral Secure Mount",
+                    "name": "Jupyter Mounts",
+                    "description": "Mount for TAP functions",
                     "inputMode": "FIXED",
-                    "arg": "--bind /corral-secure",
+                    "arg": "--bind /share,/corral-secure",
                     "notes": {
                         "isHidden": true
                     }
@@ -53,10 +53,10 @@
                     }
                 },
                 {
-                    "name": "Slurm job name",
-                    "description": "Set the slurm job name to be identical to the Tapis job name.",
+                    "name": "TAP Session Substring",
+                    "description": "TAP Functions require the substring 'tap_' in the slurm job name in order to function.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}",
+                    "arg": "--job-name ${JobName}-tap_",
                     "notes": {
                         "isHidden": true
                     }
@@ -65,27 +65,16 @@
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [
-                    "tapisjob.out"
-                ],
-                "includeLaunchFiles": false
+                "excludes": [],
+                "includeLaunchFiles": true
             }
         },
-        "fileInputs": [
-            {
-                "name": "Input File",
-                "description": "The archive file to be extracted.",
-                "inputMode": "REQUIRED",
-                "autoMountLocal": true,
-                "sourceUrl": null,
-                "targetPath": "*"
-            }
-        ],
+        "fileInputs": [],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 1,
-        "memoryMB": 100,
-        "maxMinutes": 10,
+        "memoryMB": 1000,
+        "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
@@ -93,9 +82,11 @@
         "portalName: A2CPS"
     ],
     "notes": {
-        "label": "Extract Compressed File",
-        "hideNodeCountAndCoresPerNode": true,
-        "icon": "extract",
-        "category": "Utilities"
+        "label": "Jupyter Lab HPC (LS6 Secure)",
+        "helpUrl": "https://jupyterlab.readthedocs.io/en/stable/",
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": true,
+        "icon": "jupyter",
+        "category": "Data Processing"
     }
 }

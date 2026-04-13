@@ -1,0 +1,15 @@
+{
+    "name": "sdsc-singularity",
+    "description": "Default SDSC Singularity Scheduler Profile",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "singularitypro"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

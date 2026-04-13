@@ -21,7 +21,7 @@ Options:
 import os
 import argparse
 from tapipy.errors import BaseTapyException, UnauthorizedError
-from client_secrets import TAPIS_CLIENTS
+from client_credentials import TAPIS_CLIENTS
 from utils.load_file_to_json import load_file_to_json
 from utils.client import get_client
 
@@ -87,7 +87,11 @@ def provision(client, systems, apps, args):
                     print("profile created: {}".format(profile["name"]))
             except BaseTapyException as bte:
                 if "SYSLIB_PRF_UNAUTH" in bte.message:
-                    print('Unauthorized to make changes to this profile: {}'.format(profile["name"]))
+                    print(
+                        "Unauthorized to make changes to this profile: {}".format(
+                            profile["name"]
+                        )
+                    )
                 pass
         else:
             raise
@@ -269,7 +273,7 @@ def main():
         match tenant_name:
             case "A2CPS":
                 systems = (
-                    ["a2cps/secure.frontera", "a2cps/secure.corral"]
+                    ["a2cps/secure.frontera", "a2cps/secure.corral", "a2cps/secure.lonestar6"]
                     if systems == ["ALL"]
                     else systems
                 )
@@ -280,6 +284,8 @@ def main():
                         "a2cps/jupyter-lab-hpc-secure",
                         "a2cps/matlab-secure",
                         "a2cps/rstudio-secure",
+                        "a2cps/jupyter-lab-hpc-ls6-secure",
+                        "a2cps/matlab-ls6-secure",
                     ]
                     if apps == ["ALL"]
                     else apps

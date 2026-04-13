@@ -23,7 +23,7 @@
         "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "corralextra",
-        "archiveSystemId": "secure.frontera",
+        "archiveSystemId": "secure.lonestar6",
         "archiveSystemDir": "/corral-secure/projects/A2CPS/shared/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": false,
         "isMpi": false,

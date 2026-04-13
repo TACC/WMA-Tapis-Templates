@@ -1,0 +1,241 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "expanse",
+    "description": "System for running jobs on the Expanse HPC system.",
+    "systemType": "LINUX",
+    "host": "login.expanse.sdsc.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PKI_KEYS",
+    "rootDir": "/",
+    "port": 22,
+    "useProxy": false,
+    "canExec": true,
+    "canRunBatch": true,
+    "enableCmdPrefix": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "/expanse/lustre/scratch/HOST_EVAL($USER)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "compute",
+            "hpcQueueName": "compute",
+            "description": "Exclusive access to regular compute nodes; limit applies per group",
+            "maxJobs": -1,
+            "maxJobsPerUser": 64,
+            "minNodeCount": 1,
+            "maxNodeCount": 32,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "shared",
+            "hpcQueueName": "shared",
+            "description": "Single-node jobs using fewer than 128 cores",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4096,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "gpu",
+            "hpcQueueName": "gpu",
+            "description": "Used for exclusive access to the GPU nodes",
+            "schedulerOptions": [
+                {
+                    "name": "gpus",
+                    "description": "Select the amount of GPUs for this job",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "1",
+                    "notes": {
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 32
+                    }
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": 8,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 40,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 384000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "nairr-gpu",
+            "hpcQueueName": "nairr-gpu",
+            "description": "Exclusive access to the NAIRR GPU nodes",
+            "schedulerOptions": [
+                {
+                    "name": "gpus",
+                    "description": "Select the amount of GPUs for this job",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "1",
+                    "notes": {
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 32
+                    }
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": 8,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 40,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 384000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "gpu-shared",
+            "hpcQueueName": "gpu-shared",
+            "description": "Single-node job using fewer than 4 GPUs",
+            "schedulerOptions": [
+                {
+                    "name": "gpus",
+                    "description": "Select the amount of GPUs for this job",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "1",
+                    "notes": {
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 4
+                    }
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": 24,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 40,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 384000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "nairr-gpu-shared",
+            "hpcQueueName": "nairr-gpu-shared",
+            "description": "Single-node job using fewer than 4 NAIRR GPUs",
+            "schedulerOptions": [
+                {
+                    "name": "gpus",
+                    "description": "Select the amount of GPUs for this job",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "1",
+                    "notes": {
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 4
+                    }
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": 16,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 40,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 384000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "large-shared",
+            "hpcQueueName": "large-shared",
+            "description": "Single-node jobs using large memory up to 2 TB (minimum memory required 256G)",
+            "maxJobs": -1,
+            "maxJobsPerUser": 4,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 2000000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "debug",
+            "hpcQueueName": "debug",
+            "description": "Priority access to shared nodes set aside for testing of jobs with short walltime and limited resources",
+            "maxJobs": -1,
+            "maxJobsPerUser": 2,
+            "minNodeCount": 1,
+            "maxNodeCount": 2,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 30
+        },
+        {
+            "name": "gpu-debug",
+            "hpcQueueName": "gpu-debug",
+            "description": "Priority access to gpu-shared nodes set aside for testing of jobs with short walltime and limited resources; max two gpus per job",
+            "schedulerOptions": [
+                {
+                    "name": "gpus",
+                    "description": "Select the amount of GPUs for this job",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "1",
+                    "notes": {
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 2
+                    }
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": 2,
+            "minNodeCount": 1,
+            "maxNodeCount": 2,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 40,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 384000,
+            "minMinutes": 1,
+            "maxMinutes": 30
+        }
+    ],
+    "batchDefaultLogicalQueue": "shared",
+    "batchSchedulerProfile": "sdsc-singularity",
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {
+        "label": "Expanse"
+    }
+}
