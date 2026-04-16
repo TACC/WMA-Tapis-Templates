@@ -1,6 +1,8 @@
 set -x
 WRAPPERDIR=$( cd "$( dirname "$0" )" && pwd )
 
+export FI_PROVIDER=tcp
+
  #Change to input directory
 cd inputDirectory
 inputfile=$1
