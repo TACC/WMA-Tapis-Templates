@@ -59,7 +59,7 @@
                     "name": "OpenSees TACC Scheduler Profile",
                     "description": "Scheduler profile for TACC OpenSees 3.5.0.",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile OpenSees_3.5.0",
+                    "arg": "--tapis-profile OpenSees_3.5.0_frontera",
                     "notes": {
                         "isHidden": true
                     }
