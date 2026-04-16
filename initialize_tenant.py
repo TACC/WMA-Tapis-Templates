@@ -319,6 +319,8 @@ def main():
                         "extract-ls6",
                         "figuregen/serial",
                         "figuregen/parallel",
+                        "FigureGen-Serial-Stampede3",
+                        "FigureGen-Parallel-Stampede3",
                         "fiji",
                         "GiD",
                         "GiD-stampede3",
