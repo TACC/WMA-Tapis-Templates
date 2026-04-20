@@ -18,7 +18,7 @@
         "description": "Compress a file or folder for download.",
         "dynamicExecSystem": false,
         "execSystemConstraints": null,
-        "execSystemId": "secure.frontera",
+        "execSystemId": "secure.lonestar6",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
