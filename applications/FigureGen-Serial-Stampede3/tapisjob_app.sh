@@ -1,5 +1,4 @@
 set -x
-WRAPPERDIR=$( cd "$( dirname "$0" )" && pwd )
 
 echo "TACC: unloading xalt"
 module unload xalt
