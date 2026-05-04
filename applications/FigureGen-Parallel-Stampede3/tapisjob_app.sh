@@ -7,10 +7,6 @@ export FI_PROVIDER=tcp
 cd inputDirectory
 inputfile=$1
 
-# Do not set GMT and GhostScript paths, they are available via the container
-sed -e "4s/.*/                                                   ! Path where GMT executables are located./" -i ${inputfile}
-sed -e "5s/.*/                                                   ! Path where GhostScript executable is located./" -i ${inputfile}
-
 ibrun apptainer run docker://clos21/figuregen-tacc-ubuntu18-impi19.0.7-common:latest figuregen -I ${inputfile}
 cd ..
 
