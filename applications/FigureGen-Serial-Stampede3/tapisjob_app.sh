@@ -12,7 +12,6 @@ inputfile=$1
 sed -e "4s/.*/                                                   ! Path where GMT executables are located./" -i ${inputfile}
 sed -e "5s/.*/                                                   ! Path where GhostScript executable is located./" -i ${inputfile}
 
-${AGAVE_JOB_CALLBACK_RUNNING}
 
 apptainer exec library://georgiastuart/figuregen/figuregen-serial figuregen -I ${inputfile}
 cd ..
