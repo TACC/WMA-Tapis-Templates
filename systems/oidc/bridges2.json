@@ -19,33 +19,143 @@
             "version": null
         }
     ],
-    "jobWorkingDir": "HOST_EVAL($LOCAL)/tapis/${JobUUID}",
+    "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
     "batchScheduler": "SLURM",
     "batchLogicalQueues": [
         {
-            "name": "GPU-shared",
-            "hpcQueueName": "GPU-shared",
-            "description": "GPU-shared (CPU, standard compute)",
+            "name": "RM",
+            "hpcQueueName": "RM",
+            "description": "Regular Memory: one or more full nodes",
             "maxJobs": -1,
-            "maxJobsPerUser": 20,
+            "maxJobsPerUser": -1,
             "minNodeCount": 1,
-            "maxNodeCount": 32,
+            "maxNodeCount": 64,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 4320
+        },
+        {
+            "name": "RM-shared",
+            "hpcQueueName": "RM-shared",
+            "description": "Regular Memory: part of one node",
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 64,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 4320
+        },
+        {
+            "name": "RM-512",
+            "hpcQueueName": "RM-512",
+            "description": "Regular Memory: one or more full 512GB nodes",
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 2,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 512000,
+            "minMinutes": 1,
+            "maxMinutes": 4320
+        },
+        {
+            "name": "EM",
+            "hpcQueueName": "EM",
+            "description": "Extreme Memory",
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 24,
+            "maxCoresPerNode": 96,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 4000000,
+            "minMinutes": 1,
+            "maxMinutes": 7200
+        },
+        {
+            "name": "GPU",
+            "hpcQueueName": "GPU",
+            "description": "One or more entire GPU nodes (v100-32)",
+            "schedulerOptions": [
+                {
+                    "name": "--gpus",
+                    "description": "Select the amount of GPUs for this job",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "v100-32:1",
+                    "notes": {
+                        "fieldType": "number",
+                        "label": "GPUs",
+                        "min": 1,
+                        "max": 4
+                    }
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
             "minCoresPerNode": 1,
             "maxCoresPerNode": 80,
             "minMemoryMB": 1,
-            "maxMemoryMB": 256000,
+            "maxMemoryMB": 512000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "GPU-shared",
+            "hpcQueueName": "GPU-shared",
+            "description": "Part of one GPU node (v100-32)",
+            "schedulerOptions": [
+                {
+                    "name": "--gpus",
+                    "description": "Select the amount of GPUs for this job",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "v100-32:8",
+                    "notes": {
+                        "label": "GPUs",
+                        "fieldType": "enumeration",
+                        "enum_values": [
+                            {
+                                "8": "8",
+                                "16": "16",
+                                "24": "24",
+                                "32": "32"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 80,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 512000,
             "minMinutes": 1,
             "maxMinutes": 2880
         }
     ],
-    "batchDefaultLogicalQueue": "skx",
-    "batchSchedulerProfile": "tacc-apptainer",
+    "batchDefaultLogicalQueue": "GPU-shared",
+    "batchSchedulerProfile": null,
     "jobCapabilities": [],
     "tags": [],
     "notes": {
-        "label": "Bridges2"
+        "label": "Bridges2",
+        "jobWorkingDir": "HOST_EVAL($LOCAL)/tapis/${JobUUID}"
     }
 }
