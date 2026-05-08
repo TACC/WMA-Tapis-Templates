@@ -148,7 +148,7 @@
             "description": "Single-node job using fewer than 4 NAIRR GPUs",
             "schedulerOptions": [
                 {
-                    "name": "gpus",
+                    "name": "--gpus",
                     "description": "Select the amount of GPUs for this job",
                     "inputMode": "INCLUDE_BY_DEFAULT",
                     "arg": "1",
