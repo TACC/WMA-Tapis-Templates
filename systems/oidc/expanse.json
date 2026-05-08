@@ -19,7 +19,7 @@
             "version": null
         }
     ],
-    "jobWorkingDir": "/expanse/lustre/scratch/HOST_EVAL($USER)/tapis/${JobUUID}",
+    "jobWorkingDir": "/expanse/lustre/scratch/${EffectiveUserId}/tapis/${JobUUID}",
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
