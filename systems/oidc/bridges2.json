@@ -4,7 +4,7 @@
     "id": "bridges2",
     "description": "System for running jobs on the bridges2 HPC system at PSC.",
     "systemType": "LINUX",
-    "host": "bridges2.psc.edu",
+    "host": "vm049.bridges2.psc.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "PKI_KEYS",
     "rootDir": "/",
