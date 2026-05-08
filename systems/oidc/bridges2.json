@@ -91,16 +91,10 @@
             "description": "One or more entire GPU nodes (v100-32)",
             "schedulerOptions": [
                 {
-                    "name": "--gpus",
-                    "description": "Select the amount of GPUs for this job",
+                    "name": "GPUs",
+                    "description": "Select the GPU type and amount of GPUs for this job. See https://www.psc.edu/resources/bridges-2/user-guide#gpu-partitions",
                     "inputMode": "INCLUDE_BY_DEFAULT",
-                    "arg": "v100-32:1",
-                    "notes": {
-                        "fieldType": "number",
-                        "label": "GPUs",
-                        "min": 1,
-                        "max": 4
-                    }
+                    "arg": "--gpus=v100-32:8"
                 }
             ],
             "maxJobs": -1,
@@ -120,22 +114,10 @@
             "description": "Part of one GPU node (v100-32)",
             "schedulerOptions": [
                 {
-                    "name": "--gpus",
-                    "description": "Select the amount of GPUs for this job",
+                    "name": "GPUs",
+                    "description": "Select the GPU type and amount of GPUs for this job. See https://www.psc.edu/resources/bridges-2/user-guide#gpu-partitions",
                     "inputMode": "INCLUDE_BY_DEFAULT",
-                    "arg": "v100-32:8",
-                    "notes": {
-                        "label": "GPUs",
-                        "fieldType": "enumeration",
-                        "enum_values": [
-                            {
-                                "8": "8",
-                                "16": "16",
-                                "24": "24",
-                                "32": "32"
-                            }
-                        ]
-                    }
+                    "arg": "--gpus=v100-32:8"
                 }
             ],
             "maxJobs": -1,
