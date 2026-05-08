@@ -6,7 +6,7 @@
     "systemType": "LINUX",
     "host": "vm049.bridges2.psc.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "PKI_KEYS",
+    "defaultAuthnMethod": "PASSWORD",
     "rootDir": "/",
     "port": 22,
     "useProxy": false,
@@ -93,7 +93,7 @@
                 {
                     "name": "GPUs",
                     "description": "Select the GPU type and amount of GPUs for this job. See https://www.psc.edu/resources/bridges-2/user-guide#gpu-partitions",
-                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "inputMode": "REQUIRED",
                     "arg": "--gpus=v100-32:8"
                 }
             ],
@@ -116,7 +116,7 @@
                 {
                     "name": "GPUs",
                     "description": "Select the GPU type and amount of GPUs for this job. See https://www.psc.edu/resources/bridges-2/user-guide#gpu-partitions",
-                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "inputMode": "REQUIRED",
                     "arg": "--gpus=v100-32:8"
                 }
             ],
