@@ -8,7 +8,9 @@
     "locked": false,
     "isPublic": true,
     "runtime": "ZIP",
-    "runtimeOptions": ["SINGULARITY_RUN"],
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
     "containerImage": "https://github.com/tapis-project/FlexServ-Deployer/releases/download/tapis-flexserv-1.4.0/Tapis-FlexServ.zip",
     "jobType": "BATCH",
     "maxJobs": 2147483647,
@@ -139,6 +141,15 @@
             ],
             "schedulerOptions": [
                 {
+                    "name": "TACC Resource Allocation",
+                    "description": "Set the TACC resource allocation for the job.",
+                    "arg": null,
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "INCLUDE_BY_DEFAULT",
@@ -262,12 +273,15 @@
         "memoryMB": 96000,
         "maxMinutes": 120
     },
-    "tags": ["appName: FlexServ"],
+    "tags": [
+        "appName: FlexServ"
+    ],
     "notes": {
-        "label": "FlexServ",
+        "label": "FlexServ (Vista)",
         "category": "Utilities",
         "showTargetPath": true,
         "hideNodeCountAndCoresPerNode": false,
-        "showReservation": true
+        "showReservation": true,
+        "isInteractive": true
     }
 }
