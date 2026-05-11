@@ -142,7 +142,7 @@
                     }
                 },
                 {
-                    "name": "Reservation Name",
+                    "name": "TACC Reservation",
                     "description": "Set the reservation name for the job.",
                     "inputMode": "INCLUDE_ON_DEMAND",
                     "arg": null,
@@ -236,6 +236,7 @@
         "label": "FlexServ",
         "category": "Utilities",
         "showTargetPath": true,
-        "hideNodeCountAndCoresPerNode": false
+        "hideNodeCountAndCoresPerNode": false,
+        "showReservation": true
     }
 }
