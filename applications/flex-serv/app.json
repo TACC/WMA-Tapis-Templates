@@ -155,7 +155,9 @@
                     "value": "/work/projects/aci/cic/apps/flexserv/singularity_cache",
                     "description": "Apptainer cache directory.",
                     "inputMode": "INCLUDE_BY_DEFAULT",
-                    "notes": {}
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "key": "HUGGINGFACE_TOKEN",
@@ -176,7 +178,9 @@
                     "value": "/app/venvs/flexserv",
                     "description": "Venv path in container for backend/gateway startup.",
                     "inputMode": "INCLUDE_BY_DEFAULT",
-                    "notes": {}
+                    "notes": {
+                        "isHidden": true
+                    }
                 },
                 {
                     "key": "ENABLE_GATEWAY",
