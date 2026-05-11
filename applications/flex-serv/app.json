@@ -140,13 +140,6 @@
                   "notes": {}
               },
               {
-                  "name": "TACC Resource Allocation",
-                  "description": "Set the TACC resource allocation for the job.",
-                  "inputMode": "INCLUDE_BY_DEFAULT",
-                  "arg": "-A << allocation >>",
-                  "notes": {}
-              },
-              {
                   "name": "Reservation Name",
                   "description": "Set the reservation name for the job.",
                   "inputMode": "INCLUDE_ON_DEMAND",
