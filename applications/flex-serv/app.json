@@ -161,7 +161,9 @@
                     "description": "Set the reservation name for the job.",
                     "inputMode": "INCLUDE_ON_DEMAND",
                     "arg": null,
-                    "notes": {}
+                    "notes": {
+                        "isHidden": true
+                    }
                 }
             ],
             "envVariables": [
