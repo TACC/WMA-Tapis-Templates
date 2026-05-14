@@ -1,0 +1,117 @@
+{
+    "id": "dpm_lbpm_mrt_x86_gpu_ls6",
+    "version": "0.0.1",
+    "description": "Lattice Boltzmann for Porous Media (LBPM) single-phase (MRT) permeability simulations.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": ["SINGULARITY_RUN"],
+    "containerImage": "oras://docker.io/bchang19/lbpm:mrt-x86-cuda11-latest",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": 2,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Lattice Boltzmann for Porous Media (LBPM) single-phase (MRT) permeability simulations.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ls6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "gpu-a100-dev",
+        "archiveSystemId": "ls6",
+        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Input File",
+                    "description": "The input database (.db) file for LBPM simulation.",
+                    "inputMode": "REQUIRED",
+                    "arg": null,
+                    "notes": {
+                        "validator": {
+                            "regex": "^.*\\.db$",
+                            "message": "The input file must be a .db file."
+                        }
+                    }
+                },
+                {
+                    "name": "Number of GPUs",
+                    "description": "The number of GPUs to use for the LBPM simulation (max. 3). This should match nproc in the input file.",
+                    "inputMode": "REQUIRED",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "number",
+                        "validator": {
+                            "regex": "^(?:[1-3])$",
+                            "message": "Enter an integer from 1 to 3."
+                        }
+                    }
+                }
+            ],
+            "containerArgs": [
+                {
+                    "name": "Nvidia Runtime",
+                    "description": "Set runtime to expose GPUs",
+                    "inputMode": "FIXED",
+                    "arg": "--nv"
+                }
+            ],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be the same as the Tapis job name.",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm Reservation",
+                    "description": "Specify the Slurm reservation to use for the job (if applicable)",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 3,
+        "memoryMB": 256000,
+        "maxMinutes": 120,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DRP"
+    ],
+    "notes": {
+        "icon": "LBPM",
+        "label": "LBPM MRT GPU (Lonestar6)",
+        "hideNodeCountAndCoresPerNode": false,
+        "category": "Simulation",
+        "showTargetPath": true
+    }
+}
