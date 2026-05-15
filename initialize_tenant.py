@@ -320,6 +320,7 @@ def main():
                         "figuregen/serial",
                         "figuregen/parallel",
                         "fiji",
+                        "flex-serv",
                         "GiD",
                         "GiD-stampede3",
                         "jupyter-hpc-mpi",
