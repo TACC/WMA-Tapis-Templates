@@ -60,7 +60,7 @@ trap cleanup EXIT
 lxsession &
 LXDE_PID=$!
 sleep 5
-xterm -geometry 80x24+100+100 -e "/opt/MATLAB/R2022b/bin/matlab -c 10280@matlab.shared.utexas.edu -sd \"${_tapisJobWorkingDir}\""
+/opt/MATLAB/R2022b/bin/matlab -c 10280@matlab.shared.utexas.edu -sd "${_tapisJobWorkingDir}"
 dcv close-session ${DCV_HANDLE}
 EOF
 chmod a+rx $DCV_STARTUP

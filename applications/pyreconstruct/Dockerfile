@@ -11,7 +11,8 @@ RUN cp /lib/x86_64-linux-gnu/libm.so.6 /usr/local/bin/../lib/libm.so.6 && \
   cp /lib/x86_64-linux-gnu/librt.so.1 /usr/local/bin/../lib/librt.so.1 && \
   cp /lib/x86_64-linux-gnu/libbz2.so.1.0 /usr/local/bin/../lib/libbz2.so.1.0
 
-COPY --from=taccaci/interactive-base:1.1.0 /tapis /tapis
+COPY run.sh /tapis/run.sh
+RUN chmod +x /tapis/run.sh
 COPY wrapper.sh /app/wrapper.sh
 RUN chmod +x /app/wrapper.sh
 
