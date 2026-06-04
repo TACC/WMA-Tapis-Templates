@@ -30,14 +30,11 @@
             "appArgs": [
                 {
                     "name": "Input File",
-                    "description": "The input database (.db) file for LBPM simulation.",
-                    "inputMode": "REQUIRED",
-                    "arg": null,
+                    "description": "Staged input database (.db) path passed to LBPM.",
+                    "inputMode": "FIXED",
+                    "arg": "${ExecSystemInputDir}/input.db",
                     "notes": {
-                        "validator": {
-                            "regex": "^.*\\.db$",
-                            "message": "The input file must be a .db file."
-                        }
+                        "isHidden": true
                     }
                 },
                 {
@@ -88,7 +85,23 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Input File",
+                "description": "The input database (.db) file for LBPM simulation.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "input.db",
+                "notes": {
+                    "selectionMode": "file",
+                    "validator": {
+                        "regex": "^.*\\.db$",
+                        "message": "The input file must be a .db file."
+                    }
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 128,
@@ -105,6 +118,6 @@
         "label": "LBPM MRT CPU (Lonestar6)",
         "hideNodeCountAndCoresPerNode": false,
         "category": "Simulation",
-        "showTargetPath": true
+        "showTargetPath": false
     }
 }
