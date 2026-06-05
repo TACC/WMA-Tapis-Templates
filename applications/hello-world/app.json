@@ -116,8 +116,14 @@
         "category": "Utilities",
         "showTargetPath": true,
         "dynamicExecSystems": [
-            "frontera",
-            "ls6"
+            {
+                "systemId": "frontera",
+                "profileName": "tacc-apptainer"
+            },
+            {
+                "systemId": "ls6",
+                "profileName": "tacc-apptainer"
+            }
         ]
     }
 }
