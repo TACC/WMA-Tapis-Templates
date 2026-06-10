@@ -69,12 +69,6 @@
             "containerArgs": [],
             "schedulerOptions": [
                 {
-                    "name": "TACC Scheduler Profile",
-                    "description": "Scheduler profile for HPC clusters at TACC",
-                    "inputMode": "FIXED",
-                    "arg": "--tapis-profile tacc-apptainer"
-                },
-                {
                     "name": "Slurm job name",
                     "description": "Set the slurm job name to be identical to the Tapis job name.",
                     "inputMode": "FIXED",
