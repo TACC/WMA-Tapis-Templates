@@ -78,7 +78,9 @@ apptainer instance start \
     --bind ${workdir}/nginx-cache:/var/cache/nginx \
     --bind ${workdir}/nginx.pid:/var/run/nginx.pid \
     --bind $(cat ${TAP_CERTFILE}):/etc/nginx/ssl/session.crt \
-    library://rstijerina/taccapps/nginx:latest nginx
+    library://rstijerina/taccapps/nginx:latest nginx &
+
+wait $!
 
 # Webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/

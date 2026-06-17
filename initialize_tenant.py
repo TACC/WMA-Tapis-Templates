@@ -273,7 +273,7 @@ def main():
         match tenant_name:
             case "A2CPS":
                 systems = (
-                    ["a2cps/secure.frontera", "a2cps/secure.corral"]
+                    ["a2cps/secure.frontera", "a2cps/secure.corral", "a2cps/secure.lonestar6"]
                     if systems == ["ALL"]
                     else systems
                 )
@@ -284,6 +284,8 @@ def main():
                         "a2cps/jupyter-lab-hpc-secure",
                         "a2cps/matlab-secure",
                         "a2cps/rstudio-secure",
+                        "a2cps/jupyter-lab-hpc-ls6-secure",
+                        "a2cps/matlab-ls6-secure",
                     ]
                     if apps == ["ALL"]
                     else apps
@@ -317,7 +319,10 @@ def main():
                         "extract-ls6",
                         "figuregen/serial",
                         "figuregen/parallel",
+                        "FigureGen-Serial-Stampede3",
+                        "FigureGen-Parallel-Stampede3",
                         "fiji",
+                        "flex-serv",
                         "GiD",
                         "GiD-stampede3",
                         "jupyter-hpc-mpi",

@@ -1,0 +1,15 @@
+{
+    "name": "python3_dynamic",
+    "description": "Modules to load for python3_dynamic on Frontera",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "python3/3.9.2"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

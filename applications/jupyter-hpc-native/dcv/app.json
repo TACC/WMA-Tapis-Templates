@@ -1,11 +1,11 @@
 {
-    "id": "jupyter-hpc-native",
-    "version": "vista",
-    "description": "Run an interactive Jupyter session.",
+    "id": "jupyter-hpc-native-dcv",
+    "version": "1.0.0",
+    "description": "Run an interactive Jupyter Notebook session with optional MPI support.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
-    "containerImage": "tapis://vista/corral/tacc/aci/CEP/applications/v3/jupyter-hpc-native/jupyter-hpc-native.zip",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-hpc-native/jupyter-hpc-native.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -22,7 +22,7 @@
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
-        "cmdPrefix": "source tap-ilogin.sh;",
+        "cmdPrefix": "source tap.sh;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
@@ -40,16 +40,7 @@
                     "name": "TAP Session Substring",
                     "description": "TAP Functions require the substring 'tap_' in the SLURM job name.",
                     "inputMode": "FIXED",
-                    "arg": "--job-name ${JobName}-tap_dsmydata",
-                    "notes": {
-                        "isHidden": true
-                    }
-                },
-                {
-                    "name": "TACC Reservation",
-                    "description": "Reservation input string",
-                    "inputMode": "INCLUDE_ON_DEMAND",
-                    "arg": null,
+                    "arg": "--job-name ${JobName}-tap_dsmydata-dcvserver",
                     "notes": {
                         "isHidden": true
                     }
@@ -60,7 +51,10 @@
                     "key": "CUSTOM_KERNELSPEC",
                     "value": "",
                     "description": "Load an optional custom python kernelspec into your Jupyter Notebook session. Note that you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
-                    "inputMode": "INCLUDE_ON_DEMAND"
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "label": "Custom Python Kernelspec Directory"
+                    }
                 }
             ],
             "archiveFilter": {
@@ -73,7 +67,7 @@
             {
                 "name": "TAP script",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://vista/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap-ilogin.sh",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/dcv/dcv.sh",
                 "targetPath": "*",
                 "notes": {
                     "isHidden": true
@@ -93,12 +87,11 @@
         "portalName: DESIGNSAFE"
     ],
     "notes": {
-        "label": "Jupyter HPC Native (Vista)",
+        "label": "Jupyter HPC Native (DCV)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "jupyter",
-        "category": "Data Processing",
-        "showReservation": true
+        "category": "Data Processing"
     }
 }

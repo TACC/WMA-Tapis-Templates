@@ -4,9 +4,9 @@
     "id": "secure.lonestar6",
     "description": "System for running jobs using corral-secure protected data on the LS6 HPC system.",
     "systemType": "LINUX",
-    "host": "pdata.lonestar6.tacc.utexas.edu",
+    "host": "pdata.ls6.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
-    "defaultAuthnMethod": "TMS_KEYS",
+    "defaultAuthnMethod": "PKI_KEYS",
     "rootDir": "/",
     "port": 22,
     "canExec": true,
@@ -73,5 +73,5 @@
     "tags": [],
     "notes": {
         "label": "LS6 Secure"
-      }
+    }
 }

@@ -1,0 +1,67 @@
+{
+    "id": "hello-world-rst479@utexas.edu",
+    "version": "expanse",
+    "description": "Echo hello world in a singularity container",
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": [
+        "SINGULARITY_RUN"
+    ],
+    "containerImage": "docker://hello-world",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": null,
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "expanse",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}/output",
+        "execSystemLogicalQueue": "nairr-gpu",
+        "archiveSystemId": null,
+        "archiveSystemDir": null,
+        "archiveMode": "NEVER",
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": false
+            },
+            "logConfig": {
+                "stdoutFilename": "",
+                "stderrFilename": ""
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 1,
+        "memoryMB": 1000,
+        "maxMinutes": 30,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: CEP",
+        "portalName: CPU"
+    ],
+    "notes": {
+        "label": "Hello World (Sal)",
+        "helpUrl": null,
+        "hideNodeCountAndCoresPerNode": false,
+        "isInteractive": false,
+        "icon": null,
+        "category": "Data Processing",
+        "showReservation": false
+    }
+}

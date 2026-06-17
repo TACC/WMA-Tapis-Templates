@@ -1,0 +1,143 @@
+{
+    "isPublic": true,
+    "isDynamicEffectiveUser": true,
+    "id": "bridges2",
+    "description": "System for running jobs on the bridges2 HPC system at PSC.",
+    "systemType": "LINUX",
+    "host": "vm049.bridges2.psc.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "PASSWORD",
+    "rootDir": "/",
+    "port": 22,
+    "useProxy": false,
+    "canExec": true,
+    "canRunBatch": true,
+    "enableCmdPrefix": true,
+    "jobRuntimes": [
+        {
+            "runtimeType": "SINGULARITY",
+            "version": null
+        }
+    ],
+    "jobWorkingDir": "HOST_EVAL($HOME)/tapis/${JobUUID}",
+    "jobEnvVariables": [],
+    "jobMaxJobs": -1,
+    "jobMaxJobsPerUser": -1,
+    "batchScheduler": "SLURM",
+    "batchLogicalQueues": [
+        {
+            "name": "RM",
+            "hpcQueueName": "RM",
+            "description": "Regular Memory: one or more full nodes",
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 64,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 4320
+        },
+        {
+            "name": "RM-shared",
+            "hpcQueueName": "RM-shared",
+            "description": "Regular Memory: part of one node",
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 64,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 256000,
+            "minMinutes": 1,
+            "maxMinutes": 4320
+        },
+        {
+            "name": "RM-512",
+            "hpcQueueName": "RM-512",
+            "description": "Regular Memory: one or more full 512GB nodes",
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 2,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 128,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 512000,
+            "minMinutes": 1,
+            "maxMinutes": 4320
+        },
+        {
+            "name": "EM",
+            "hpcQueueName": "EM",
+            "description": "Extreme Memory",
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 24,
+            "maxCoresPerNode": 96,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 4000000,
+            "minMinutes": 1,
+            "maxMinutes": 7200
+        },
+        {
+            "name": "GPU",
+            "hpcQueueName": "GPU",
+            "description": "One or more entire GPU nodes (v100-32)",
+            "schedulerOptions": [
+                {
+                    "name": "GPUs",
+                    "description": "Select the GPU type and amount of GPUs for this job. See https://www.psc.edu/resources/bridges-2/user-guide#gpu-partitions",
+                    "inputMode": "REQUIRED",
+                    "arg": "--gpus=v100-32:8"
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 4,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 80,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 512000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        },
+        {
+            "name": "GPU-shared",
+            "hpcQueueName": "GPU-shared",
+            "description": "Part of one GPU node (v100-32)",
+            "schedulerOptions": [
+                {
+                    "name": "GPUs",
+                    "description": "Select the GPU type and amount of GPUs for this job. See https://www.psc.edu/resources/bridges-2/user-guide#gpu-partitions",
+                    "inputMode": "REQUIRED",
+                    "arg": "--gpus=v100-32:4"
+                }
+            ],
+            "maxJobs": -1,
+            "maxJobsPerUser": -1,
+            "minNodeCount": 1,
+            "maxNodeCount": 1,
+            "minCoresPerNode": 1,
+            "maxCoresPerNode": 80,
+            "minMemoryMB": 1,
+            "maxMemoryMB": 512000,
+            "minMinutes": 1,
+            "maxMinutes": 2880
+        }
+    ],
+    "batchDefaultLogicalQueue": "GPU-shared",
+    "batchSchedulerProfile": null,
+    "jobCapabilities": [],
+    "tags": [],
+    "notes": {
+        "label": "Bridges2",
+        "jobWorkingDir": "HOST_EVAL($LOCAL)/tapis/${JobUUID}"
+    }
+}

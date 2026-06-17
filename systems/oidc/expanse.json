@@ -19,7 +19,7 @@
             "version": null
         }
     ],
-    "jobWorkingDir": "/expanse/lustre/scratch/HOST_EVAL($USER)/tapis/${JobUUID}",
+    "jobWorkingDir": "/expanse/lustre/scratch/${EffectiveUserId}/temp_project/tapis/${JobUUID}",
     "jobEnvVariables": [],
     "jobMaxJobs": -1,
     "jobMaxJobsPerUser": -1,
@@ -61,16 +61,10 @@
             "description": "Used for exclusive access to the GPU nodes",
             "schedulerOptions": [
                 {
-                    "name": "gpus",
-                    "description": "Select the amount of GPUs for this job",
-                    "inputMode": "INCLUDE_BY_DEFAULT",
-                    "arg": "1",
-                    "notes": {
-                        "fieldType": "number",
-                        "label": "GPUs",
-                        "min": 1,
-                        "max": 32
-                    }
+                    "name": "GPUs",
+                    "description": "Select the amount of GPUs for this job, up to a max of 32.",
+                    "inputMode": "REQUIRED",
+                    "arg": "--gpus=1"
                 }
             ],
             "maxJobs": -1,
@@ -90,16 +84,10 @@
             "description": "Exclusive access to the NAIRR GPU nodes",
             "schedulerOptions": [
                 {
-                    "name": "gpus",
-                    "description": "Select the amount of GPUs for this job",
-                    "inputMode": "INCLUDE_BY_DEFAULT",
-                    "arg": "1",
-                    "notes": {
-                        "fieldType": "number",
-                        "label": "GPUs",
-                        "min": 1,
-                        "max": 32
-                    }
+                    "name": "GPUs",
+                    "description": "Select the amount of GPUs for this job, up to a max of 32.",
+                    "inputMode": "REQUIRED",
+                    "arg": "--gpus=1"
                 }
             ],
             "maxJobs": -1,
@@ -119,16 +107,10 @@
             "description": "Single-node job using fewer than 4 GPUs",
             "schedulerOptions": [
                 {
-                    "name": "gpus",
-                    "description": "Select the amount of GPUs for this job",
-                    "inputMode": "INCLUDE_BY_DEFAULT",
-                    "arg": "1",
-                    "notes": {
-                        "fieldType": "number",
-                        "label": "GPUs",
-                        "min": 1,
-                        "max": 4
-                    }
+                    "name": "GPUs",
+                    "description": "Select the amount of GPUs for this job, up to a max of 4.",
+                    "inputMode": "REQUIRED",
+                    "arg": "--gpus=1"
                 }
             ],
             "maxJobs": -1,
@@ -148,16 +130,10 @@
             "description": "Single-node job using fewer than 4 NAIRR GPUs",
             "schedulerOptions": [
                 {
-                    "name": "gpus",
-                    "description": "Select the amount of GPUs for this job",
-                    "inputMode": "INCLUDE_BY_DEFAULT",
-                    "arg": "1",
-                    "notes": {
-                        "fieldType": "number",
-                        "label": "GPUs",
-                        "min": 1,
-                        "max": 4
-                    }
+                    "name": "GPUs",
+                    "description": "Select the amount of GPUs for this job, up to a max of 4.",
+                    "inputMode": "REQUIRED",
+                    "arg": "--gpus=1"
                 }
             ],
             "maxJobs": -1,
@@ -207,16 +183,10 @@
             "description": "Priority access to gpu-shared nodes set aside for testing of jobs with short walltime and limited resources; max two gpus per job",
             "schedulerOptions": [
                 {
-                    "name": "gpus",
-                    "description": "Select the amount of GPUs for this job",
-                    "inputMode": "INCLUDE_BY_DEFAULT",
-                    "arg": "1",
-                    "notes": {
-                        "fieldType": "number",
-                        "label": "GPUs",
-                        "min": 1,
-                        "max": 2
-                    }
+                    "name": "GPUs",
+                    "description": "Select the amount of GPUs for this job, up to a max of 2.",
+                    "inputMode": "REQUIRED",
+                    "arg": "--gpus=1"
                 }
             ],
             "maxJobs": -1,

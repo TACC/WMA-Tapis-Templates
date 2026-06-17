@@ -1,11 +1,11 @@
 {
     "id": "jupyter-hpc-native",
-    "version": "vista",
+    "version": "frontera",
     "description": "Run an interactive Jupyter session.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "ZIP",
-    "containerImage": "tapis://vista/corral/tacc/aci/CEP/applications/v3/jupyter-hpc-native/jupyter-hpc-native.zip",
+    "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/jupyter-hpc-native/jupyter-hpc-native.zip",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -13,16 +13,16 @@
     "jobAttributes": {
         "description": null,
         "dynamicExecSystem": false,
-        "execSystemId": "vista",
+        "execSystemId": "frontera",
         "execSystemExecDir": "${JobWorkingDir}",
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
-        "execSystemLogicalQueue": "gh-dev",
-        "archiveSystemId": "vista",
+        "execSystemLogicalQueue": "development",
+        "archiveSystemId": "frontera",
         "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
         "archiveOnAppError": true,
         "isMpi": false,
-        "cmdPrefix": "source tap-ilogin.sh;",
+        "cmdPrefix": "source tap.sh;",
         "parameterSet": {
             "appArgs": [],
             "containerArgs": [],
@@ -31,7 +31,7 @@
                     "name": "TACC Scheduler Profile",
                     "description": "Scheduler profile for HPC clusters at TACC",
                     "inputMode": "FIXED",
-                    "arg": "--tapis-profile python3_vista",
+                    "arg": "--tapis-profile python3-3.9.2",
                     "notes": {
                         "isHidden": true
                     }
@@ -60,7 +60,10 @@
                     "key": "CUSTOM_KERNELSPEC",
                     "value": "",
                     "description": "Load an optional custom python kernelspec into your Jupyter Notebook session. Note that you must have both the path to the kernelspec directory and the path to the python kernel accessible to you on the filesystem.",
-                    "inputMode": "INCLUDE_ON_DEMAND"
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "notes": {
+                        "label": "Custom Python Kernelspec Directory"
+                    }
                 }
             ],
             "archiveFilter": {
@@ -73,7 +76,7 @@
             {
                 "name": "TAP script",
                 "inputMode": "REQUIRED",
-                "sourceUrl": "tapis://vista/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap-ilogin.sh",
+                "sourceUrl": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/interactive-template/tap/tap.sh",
                 "targetPath": "*",
                 "notes": {
                     "isHidden": true
@@ -82,19 +85,19 @@
         ],
         "fileInputArrays": [],
         "nodeCount": 1,
-        "coresPerNode": 72,
-        "memoryMB": 96000,
+        "coresPerNode": 56,
+        "memoryMB": 192000,
         "maxMinutes": 120,
         "subscriptions": [],
         "tags": []
     },
     "tags": [
         "portalName: CEP",
-        "portalName: DESIGNSAFE"
+        "portalName: MISE"
     ],
     "notes": {
-        "label": "Jupyter HPC Native (Vista)",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/jupyterhub/",
+        "label": "Jupyter HPC Native (Frontera)",
+        "helpUrl": "https://jupyter-notebook.readthedocs.io/en/stable/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "jupyter",
