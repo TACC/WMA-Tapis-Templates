@@ -47,6 +47,54 @@
           "notes": {
             "label": "projectId"
           }
+        },
+        {
+          "key": "ranchSystemId",
+          "description": "Tapis storage system ID for Ranch. If omitted, the Ranch transfer is skipped.",
+          "inputMode": "OPTIONAL",
+          "notes": {
+            "label": "ranchSystemId"
+          }
+        },
+        {
+          "key": "ranchDestinationDir",
+          "description": "Full destination directory on the Ranch Tapis system, e.g. /scoutfs/projects/OTH21076/archive/DRP-1234. If omitted, ranchArchiveRootDir is used.",
+          "inputMode": "OPTIONAL",
+          "notes": {
+            "label": "ranchDestinationDir"
+          }
+        },
+        {
+          "key": "ranchArchiveRootDir",
+          "description": "Ranch archive root. Used to build ${ranchArchiveRootDir}/archive/${projectId} when ranchDestinationDir is omitted.",
+          "inputMode": "OPTIONAL",
+          "notes": {
+            "label": "ranchArchiveRootDir"
+          }
+        },
+        {
+          "key": "corralSystemId",
+          "description": "Tapis storage system ID for the Corral source. Defaults to cloud.data.",
+          "inputMode": "OPTIONAL",
+          "notes": {
+            "label": "corralSystemId"
+          }
+        },
+        {
+          "key": "tapisBaseUrl",
+          "description": "Tapis API base URL. Defaults to https://portals.tapis.io.",
+          "inputMode": "OPTIONAL",
+          "notes": {
+            "label": "tapisBaseUrl"
+          }
+        },
+        {
+          "key": "tapisAccessToken",
+          "description": "Bearer token used to submit the Tapis transfer. The script also accepts TAPIS_ACCESS_TOKEN or TAPIS_TOKEN.",
+          "inputMode": "OPTIONAL",
+          "notes": {
+            "label": "tapisAccessToken"
+          }
         }
       ],
       "archiveFilter": {

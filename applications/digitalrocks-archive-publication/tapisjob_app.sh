@@ -18,4 +18,43 @@ zip -u ${projectId}_archive.zip ${projectId}_metadata.json
 chmod -R 755 ${projectId}_archive.zip
 
 popd
+
+# Transfer the completed archive directory to Ranch when transfer settings are provided.
+xtrace_was_enabled=0
+case "$-" in
+    *x*) xtrace_was_enabled=1 ;;
+esac
+set +x
+
+tapisTransferToken="${tapisAccessToken:-${TAPIS_ACCESS_TOKEN:-${TAPIS_TOKEN:-}}}"
+tapisBaseUrl="${tapisBaseUrl:-https://portals.tapis.io}"
+corralSystemId="${corralSystemId:-cloud.data}"
+
+if [ -z "${ranchDestinationDir}" ] && [ -n "${ranchArchiveRootDir}" ]; then
+    ranchDestinationDir="${ranchArchiveRootDir%/}/archive/${projectId}"
+fi
+
+if [ -n "${tapisTransferToken}" ] && [ -n "${ranchSystemId}" ] && [ -n "${ranchDestinationDir}" ]; then
+    echo "Submitting Tapis transfer for ${projectId} archive to Ranch"
+    curl --fail --show-error --silent \
+        -X POST "${tapisBaseUrl}/v3/files/transfers" \
+        -H "Authorization: Bearer ${tapisTransferToken}" \
+        -H "Content-Type: application/json" \
+        --data "{
+            \"tag\": \"digitalrocks-archive-publication-${projectId}\",
+            \"elements\": [
+                {
+                    \"sourceURI\": \"tapis://${corralSystemId}${publishedRootDir}/archive/${projectId}\",
+                    \"destinationURI\": \"tapis://${ranchSystemId}${ranchDestinationDir}\"
+                }
+            ]
+        }"
+else
+    echo "Skipping Ranch transfer; tapisAccessToken/TAPIS_ACCESS_TOKEN/TAPIS_TOKEN, ranchSystemId, and ranchDestinationDir or ranchArchiveRootDir are required."
+fi
+
+if [ "${xtrace_was_enabled}" -eq 1 ]; then
+    set -x
+fi
+
 popd
