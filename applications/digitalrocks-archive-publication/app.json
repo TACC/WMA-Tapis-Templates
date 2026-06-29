@@ -87,14 +87,6 @@
           "notes": {
             "label": "tapisBaseUrl"
           }
-        },
-        {
-          "key": "tapisAccessToken",
-          "description": "Bearer token used to submit the Tapis transfer. The script also accepts TAPIS_ACCESS_TOKEN or TAPIS_TOKEN.",
-          "inputMode": "OPTIONAL",
-          "notes": {
-            "label": "tapisAccessToken"
-          }
         }
       ],
       "archiveFilter": {

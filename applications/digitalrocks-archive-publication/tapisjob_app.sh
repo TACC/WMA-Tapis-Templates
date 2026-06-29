@@ -26,7 +26,14 @@ case "$-" in
 esac
 set +x
 
-tapisTransferToken="${tapisAccessToken:-${TAPIS_ACCESS_TOKEN:-${TAPIS_TOKEN:-}}}"
+tapisEnvFile="${TAPIS_ENV_FILE:-${HOME}/.digitalrocks-archive-publication.env}"
+if [ -f "${tapisEnvFile}" ]; then
+    . "${tapisEnvFile}"
+else
+    echo "Tapis env file not found at ${tapisEnvFile}; Ranch transfer may be skipped."
+fi
+
+tapisTransferToken="${TAPIS_ACCESS_TOKEN:-${TAPIS_TOKEN:-}}"
 tapisBaseUrl="${tapisBaseUrl:-https://portals.tapis.io}"
 corralSystemId="${corralSystemId:-cloud.data}"
 
@@ -50,7 +57,7 @@ if [ -n "${tapisTransferToken}" ] && [ -n "${ranchSystemId}" ] && [ -n "${ranchD
             ]
         }"
 else
-    echo "Skipping Ranch transfer; tapisAccessToken/TAPIS_ACCESS_TOKEN/TAPIS_TOKEN, ranchSystemId, and ranchDestinationDir or ranchArchiveRootDir are required."
+    echo "Skipping Ranch transfer; TAPIS_ACCESS_TOKEN or TAPIS_TOKEN from ${tapisEnvFile}, ranchSystemId, and ranchDestinationDir or ranchArchiveRootDir are required."
 fi
 
 if [ "${xtrace_was_enabled}" -eq 1 ]; then
