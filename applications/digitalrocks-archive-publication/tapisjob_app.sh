@@ -20,6 +20,7 @@ chmod -R 755 ${projectId}_archive.zip
 popd
 
 # Transfer the completed archive directory to Ranch when transfer settings are provided.
+# Preserve and disable xtrace so the token-bearing cURL command is not printed in job logs.
 xtrace_was_enabled=0
 case "$-" in
     *x*) xtrace_was_enabled=1 ;;
@@ -33,7 +34,7 @@ else
     echo "Tapis env file not found at ${tapisEnvFile}; Ranch transfer may be skipped."
 fi
 
-tapisTransferToken="${TAPIS_ACCESS_TOKEN:-${TAPIS_TOKEN:-}}"
+tapisTransferToken="${TAPIS_ACCESS_TOKEN:-}"
 tapisBaseUrl="${tapisBaseUrl:-https://portals.tapis.io}"
 corralSystemId="${corralSystemId:-cloud.data}"
 
@@ -57,7 +58,7 @@ if [ -n "${tapisTransferToken}" ] && [ -n "${ranchSystemId}" ] && [ -n "${ranchD
             ]
         }"
 else
-    echo "Skipping Ranch transfer; TAPIS_ACCESS_TOKEN or TAPIS_TOKEN from ${tapisEnvFile}, ranchSystemId, and ranchDestinationDir or ranchArchiveRootDir are required."
+    echo "Skipping Ranch transfer; TAPIS_ACCESS_TOKEN from ${tapisEnvFile}, ranchSystemId, and ranchDestinationDir or ranchArchiveRootDir are required."
 fi
 
 if [ "${xtrace_was_enabled}" -eq 1 ]; then
