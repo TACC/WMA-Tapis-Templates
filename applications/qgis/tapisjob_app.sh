@@ -47,7 +47,6 @@ fi
 
 # create an X startup file in /tmp
 # source xinitrc-common to ensure xterms can be made
-# then source the user's xstartup if it exists
 XSTARTUP="/tmp/dcv-startup-$USER"
 cat <<- EOF > $XSTARTUP
 #!/bin/sh
@@ -58,13 +57,6 @@ unset DBUS_SESSION_BUS_ADDRESS
 exec startxfce4
 EOF
 
-### NOTE: an ampersand after "exec startxfce4" can break DCV.
-### This ampersand was found in sal's $HOME/.vnc/xstartup for some reason, so disable for all just in case
-# if [ -x $HOME/.vnc/xstartup ]; then
-#   cat $HOME/.vnc/xstartup >> $XSTARTUP
-# else
-#   echo "exec startxfce4" >> $XSTARTUP
-# fi
 chmod a+rx $XSTARTUP
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
@@ -85,7 +77,6 @@ if [ "x${SERVER_TYPE}" == "xDCV" ]; then
     echo "TACC: please submit a consulting ticket at the TACC user portal:"
     echo "TACC: https://portal.tacc.utexas.edu/tacc-consulting/-/consult/tickets/create"
     echo "TACC: "
-
     SERVER_TYPE="VNC"
   else
     LOCAL_PORT=8443  # default DCV port
@@ -94,7 +85,6 @@ if [ "x${SERVER_TYPE}" == "xDCV" ]; then
 fi
 
 if [ "x${SERVER_TYPE}" == "xVNC" ]; then
-
   VNCSERVER_BIN=`which vncserver`
   echo "TACC: using default VNC server $VNCSERVER_BIN"
 
@@ -129,9 +119,9 @@ echo "TACC: got login node ${SERVER_TYPE} port $LOGIN_PORT"
 # Wait a few seconds for good measure for the job status to update
 sleep 3;
 
-# create reverse tunnel port to login nodes.  Make one tunnel for each login so the user can just connect to $HPC_HOST
+# create reverse tunnel port to login nodes. Make one tunnel for each login.
 for i in `seq 4`; do
-  ssh -o StrictHostKeyChecking=no -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
+  ssh -o StrictHostKeyChecking=no -q -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
 done
 
 echo "TACC: Created reverse ports on $HPC_HOST logins"
@@ -140,7 +130,6 @@ echo "TACC:          https://$HPC_HOST:$LOGIN_PORT"
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
   INTERACTIVE_SESSION_ADDRESS="https://${HPC_HOST}:${LOGIN_PORT}"
 elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
-
   TAP_CERTFILE=${HOME}/.tap/.${SLURM_JOB_ID}
   # bail if we cannot create a secure session
   if [ ! -f ${TAP_CERTFILE} ]; then
@@ -153,11 +142,10 @@ elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
   WEBSOCKIFY_CMD="/home1/00832/envision/websockify/run"
   WEBSOCKIFY_PORT=5902
   WEBSOCKIFY_ARGS="--cert=$(cat ${TAP_CERTFILE}) --ssl-only --ssl-version=tlsv1_2 -D ${WEBSOCKIFY_PORT} localhost:${VNC_PORT}"
-  ${WEBSOCKIFY_CMD} ${WEBSOCKIFY_ARGS} # websockify will daemonize
+  ${WEBSOCKIFY_CMD} ${WEBSOCKIFY_ARGS}
 
   INTERACTIVE_SESSION_ADDRESS="https://tap.tacc.utexas.edu/noVNC/?host=${HPC_HOST}&port=${LOGIN_PORT}&password=${_tapisJobUUID}&autoconnect=true&encrypt=true&resize=scale"
 else
-  # we should never get this message since we just checked this at LOCAL_PORT
   echo "TACC: "
   echo "TACC: ERROR - unknown server type '${SERVER_TYPE}'"
   echo "TACC: Please submit a consulting ticket at the TACC user portal"
@@ -167,16 +155,12 @@ else
   exit 1
 fi
 
-echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
-
 # Webhook callback url for job ready notification.
-# Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
 # Run $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
 ${_XTERM_CMD}
-
 # Job is done!
 
 echo "TACC: closing ${SERVER_TYPE} session"
@@ -185,7 +169,6 @@ if [ "x${SERVER_TYPE}" == "xDCV" ]; then
 elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
   vncserver -kill ${DISPLAY}
 else
-  # we should never get this message since we just checked this at LOCAL_PORT
   echo "TACC: "
   echo "TACC: ERROR - unknown server type '${SERVER_TYPE}'"
   echo "TACC: Please submit a consulting ticket at the TACC user portal"
