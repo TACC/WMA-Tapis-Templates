@@ -46,7 +46,7 @@ if [ -n "${tapisTransferToken}" ] && [ -n "${ranchSystemId}" ] && [ -n "${ranchD
     echo "Submitting Tapis transfer for ${projectId} archive to Ranch"
     curl --fail --show-error --silent \
         -X POST "${tapisBaseUrl}/v3/files/transfers" \
-        -H "Authorization: Bearer ${tapisTransferToken}" \
+        -H "X-Tapis-Token: ${tapisTransferToken}" \
         -H "Content-Type: application/json" \
         --data "{
             \"tag\": \"digitalrocks-archive-publication-${projectId}\",
