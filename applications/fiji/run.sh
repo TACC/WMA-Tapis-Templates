@@ -184,9 +184,9 @@ cat > /tmp/ImageJ.cfg <<EOF
 -XX:ActiveProcessorCount=${TOTAL_PROCS} -Xmx${TOTAL_MEM}m -cp ij.jar ij.ImageJ
 EOF
 
-# Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
+# Run $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
-xterm -r -ls -geometry 80x24+10+10 -title '*** Exit this window to kill your interactive session ***' -e "${_XTERM_CMD}"
+${_XTERM_CMD}
 
 # Job is done!
 

@@ -23,11 +23,11 @@ fi
 # get certfile from tap
 mkdir -p ${HOME}/.tap
 export TAP_CERTFILE=$(cat ${HOME}/.tap/.${SLURM_JOB_ID})
-if [ ! -f ${TAP_CERTFILE} ]; then
-    echo "TACC: ERROR - could not find TLS cert for secure session"
-    echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
-    exit 1
-fi
+# if [ ! -f ${TAP_CERTFILE} ]; then
+#     echo "TACC: ERROR - could not find TLS cert for secure session"
+#     echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
+#     exit 1
+# fi
 
 # create session token
 export TAP_TOKEN=$(tap_get_token)

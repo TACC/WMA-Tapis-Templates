@@ -117,7 +117,7 @@
                     "name": "GPUs",
                     "description": "Select the GPU type and amount of GPUs for this job. See https://www.psc.edu/resources/bridges-2/user-guide#gpu-partitions",
                     "inputMode": "REQUIRED",
-                    "arg": "--gpus=v100-32:8"
+                    "arg": "--gpus=v100-32:4"
                 }
             ],
             "maxJobs": -1,
