@@ -1,0 +1,18 @@
+{
+    "name": "OpenSees_3.5.0_frontera",
+    "description": "Modules to load for OpenSees on Frontera",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "intel/19.1.1",
+                "impi/19.0.9",
+                "opensees/3.5.0",
+                "tacc-apptainer"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}

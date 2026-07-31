@@ -71,7 +71,7 @@
             "maxMinutes": 120
         }
     ],
-    "batchDefaultLogicalQueue": "gg",
+    "batchDefaultLogicalQueue": "gh",
     "batchSchedulerProfile": "tacc-apptainer",
     "jobCapabilities": [],
     "tags": [],

@@ -1,7 +1,7 @@
 {
     "name": "test-job-digitalrocks-archive-publication",
     "appId": "digitalrocks-archive-publication",
-    "appVersion": "0.0.1",
+    "appVersion": "0.0.2",
     "description": "Example submission for app digitalrocks-archive-publication",
     "fileInputs": [],
     "parameterSet": {
@@ -14,7 +14,15 @@
         },
         {
           "key": "projectId",
-          "value": "DRP-PPRD-16"
+          "value": "DRP-PPRD-68"
+        },
+        {
+          "key": "ranchSystemId",
+          "value": "digitalrocks.ranch.test"
+        },
+        {
+          "key": "ranchArchiveRootDir",
+          "value": "/"
         }
       ]
     },
