@@ -4,7 +4,7 @@ set -x
 
 # python-s3: general-purpose Python app for DesignSafe (TACC Stampede3)
 #
-# Lifecycle:  setup (modules, pip) -> PRE_SCRIPT -> main (BINARY, default python3) -> POST_SCRIPT
+# Lifecycle:  setup (unzip, modules, pip) -> PRE_SCRIPT -> main (BINARY, default python3) -> POST_SCRIPT
 #
 # Failure semantics:
 #   - setup or PRE_SCRIPT failure aborts before the main run (no wasted SUs)
@@ -130,6 +130,30 @@ echo "Working directory: $(pwd)"
 
 # ---------------------------------------------------------------- setup ----
 SETUP_START=$(date +%s)
+
+# --- Expand input bundles first ---
+# Tapis stages each file of a directory input as its own transfer task
+# (~40s/file under tenant load), so many-small-file inputs should be shipped
+# as one ZIP. This runs before everything else because the pre-script,
+# requirements file, and main script may all live inside the bundle.
+if [[ -n "${UNZIP_INPUTS:-}" ]]; then
+  IFS=',' read -ra ZIPS <<< "$UNZIP_INPUTS"
+  for z in "${ZIPS[@]}"; do
+    z="$(echo "$z" | xargs)"
+    if [[ -z "$z" ]]; then
+      continue
+    fi
+    if [[ "$z" != *.zip ]]; then
+      z="${z}.zip"
+    fi
+    if [[ ! -f "$z" ]]; then
+      echo "ERROR: UNZIP_INPUTS entry not found: $z" >&2
+      exit 66
+    fi
+    unzip -o -q "$z"
+    echo "Unzipped: $z"
+  done
+fi
 
 # --- Extra TACC modules (if any) ---
 if [[ -n "${EXTRA_MODULES:-}" ]]; then

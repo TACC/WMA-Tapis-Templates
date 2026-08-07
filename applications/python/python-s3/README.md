@@ -7,7 +7,7 @@ Contact: Krishna Kumar (UT Austin)
 ## Lifecycle
 
 ```
-setup (modules, pip)  →  PRE_SCRIPT  →  main (BINARY, default python3)  →  POST_SCRIPT
+setup (unzip, modules, pip)  →  PRE_SCRIPT  →  main (BINARY, default python3)  →  POST_SCRIPT
 ```
 
 Failure semantics:
@@ -33,6 +33,7 @@ Every job writes `job-summary.json` next to `tapisjob.out` — on success and on
 | `BINARY` | `python3` | Executable for the main run (name on PATH, `./name` in the Input Directory, or absolute path) |
 | `USE_MPI` | `False` | Launch the main script with the MPI launcher |
 | `MPI_LAUNCHER` | `ibrun` | MPI launch command when `USE_MPI=True` (`srun`/`mpirun` on other systems) |
+| `UNZIP_INPUTS` | (empty) | Comma-separated ZIPs in the Input Directory to expand before anything else runs |
 | `EXTRA_MODULES` | (empty) | Comma-separated TACC modules to load |
 | `PYTHON_ENV` | (empty) | Path to a persistent virtual environment to use (created if missing, kept after the job) |
 | `PIP_PACKAGES` | (empty) | Comma-separated packages to pip install into the job's Python environment |
@@ -42,6 +43,17 @@ Every job writes `job-summary.json` next to `tapisjob.out` — on success and on
 | `POST_SCRIPT_REQUIRED` | `False` | If `True`, a failing post-script fails the job |
 
 All optional. Empty values are skipped entirely.
+
+## Input bundling
+
+Tapis stages each file of a directory input as its own transfer task (roughly 40 seconds per file when the tenant transfer queue is loaded), so an input directory with many small files can spend far longer staging than running. Bundle it client-side and let the wrapper expand it:
+
+```
+Input Directory: contains inputs.zip (and nothing else)
+UNZIP_INPUTS=inputs
+```
+
+The expansion runs before everything else — the pre-script, `PIP_REQUIREMENTS` file, and main script may all live inside the bundle. A listed ZIP that is missing fails the job immediately.
 
 ## Python environment
 
