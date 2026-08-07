@@ -79,6 +79,13 @@
           "notes": {}
         },
         {
+          "key": "UNZIP_INPUTS",
+          "value": "",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "Comma-separated ZIP files in the Input Directory to expand before anything else runs ('.zip' suffix optional). Bundle many small input files into one ZIP so Tapis staging transfers one file instead of one per file. The job fails if a listed ZIP is missing.",
+          "notes": {}
+        },
+        {
           "key": "PYTHON_ENV",
           "value": "",
           "inputMode": "INCLUDE_ON_DEMAND",
