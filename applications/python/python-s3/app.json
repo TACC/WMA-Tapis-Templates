@@ -1,0 +1,167 @@
+{
+  "id": "python-s3",
+  "version": "1.0.0",
+  "description": "General-purpose Python execution on Stampede3 with optional PyLauncher and MPI support, pre/post scripts, and a machine-readable job-summary.json for provenance.",
+  "owner": "${apiUserId}",
+  "enabled": true,
+  "runtime": "ZIP",
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/python/1.0.0/python.zip",
+  "jobType": "BATCH",
+  "maxJobs": -1,
+  "maxJobsPerUser": -1,
+  "strictFileInputs": true,
+  "jobAttributes": {
+    "execSystemId": "stampede3",
+    "execSystemExecDir": "${JobWorkingDir}",
+    "execSystemInputDir": "${JobWorkingDir}",
+    "execSystemOutputDir": "${JobWorkingDir}",
+    "execSystemLogicalQueue": "skx",
+    "archiveSystemId": "designsafe.storage.default",
+    "archiveSystemDir": "${EffectiveUserId}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+    "archiveOnAppError": true,
+    "isMpi": false,
+    "parameterSet": {
+      "appArgs": [
+        {
+          "name": "Input Script",
+          "description": "Python script to execute. Must be in the Input Directory.",
+          "arg": null,
+          "inputMode": "REQUIRED",
+          "notes": {
+            "inputType": "fileInput"
+          }
+        },
+        {
+          "name": "Arguments",
+          "description": "Optional command-line arguments passed to the script.",
+          "arg": null,
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "notes": {}
+        }
+      ],
+      "containerArgs": [],
+      "schedulerOptions": [
+        {
+          "name": "TACC Scheduler Profile",
+          "description": "Scheduler profile for module loading.",
+          "inputMode": "FIXED",
+          "arg": "--tapis-profile python_default",
+          "notes": {
+            "isHidden": true
+          }
+        },
+        {
+          "name": "TACC Allocation",
+          "description": "TACC allocation to charge.",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "arg": null,
+          "notes": {}
+        }
+      ],
+      "envVariables": [
+        {
+          "key": "USE_MPI",
+          "value": "False",
+          "inputMode": "INCLUDE_BY_DEFAULT",
+          "description": "Set to True to launch with ibrun for MPI parallelism (mpi4py, OpenSeesMP). False for serial, PyLauncher, or concurrent.futures.",
+          "notes": {
+            "enum_values": [
+              {"False": "Serial execution (default)"},
+              {"True": "MPI parallel (ibrun)"}
+            ]
+          }
+        },
+        {
+          "key": "EXTRA_MODULES",
+          "value": "",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "Comma-separated TACC modules to load in addition to python. Example: 'opensees,hdf5/1.14.4'.",
+          "notes": {}
+        },
+        {
+          "key": "PIP_PACKAGES",
+          "value": "",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "Comma-separated Python packages to pip install before the run. Example: 'scipy,h5py'. Skipped if empty.",
+          "notes": {}
+        },
+        {
+          "key": "PIP_REQUIREMENTS",
+          "value": "",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "requirements.txt-style file in the Input Directory to pip install before the run. Example: 'requirements.txt'. The job fails if the file is missing.",
+          "notes": {}
+        },
+        {
+          "key": "PRE_SCRIPT",
+          "value": "",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "Script in the Input Directory to run before the main script ('.py' runs via python3, anything else via bash). Use for custom setup (module loads, file staging, OpenSeesPy, etc.). If it is missing or fails, the job aborts before the main run.",
+          "notes": {}
+        },
+        {
+          "key": "POST_SCRIPT",
+          "value": "",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "Script in the Input Directory to run after the main script ('.py' runs via python3, anything else via bash). Use for post-processing or cleanup. Failure is a warning unless POST_SCRIPT_REQUIRED=True.",
+          "notes": {}
+        },
+        {
+          "key": "POST_SCRIPT_REQUIRED",
+          "value": "False",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "If True, a failing POST_SCRIPT fails the job. Use when post-processing output is the deliverable (e.g., sweep aggregation).",
+          "notes": {
+            "enum_values": [
+              {"False": "Post-script failure is a warning (default)"},
+              {"True": "Post-script failure fails the job"}
+            ]
+          }
+        },
+        {
+          "key": "MPI_LAUNCHER",
+          "value": "ibrun",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "MPI launch command used when USE_MPI=True. Default 'ibrun' (TACC). Override for other systems (e.g., 'srun', 'mpirun').",
+          "notes": {}
+        }
+      ],
+      "archiveFilter": {
+        "includes": [],
+        "excludes": ["python.zip"],
+        "includeLaunchFiles": true
+      }
+    },
+    "fileInputs": [
+      {
+        "name": "Input Directory",
+        "inputMode": "REQUIRED",
+        "sourceUrl": null,
+        "targetPath": "inputDirectory",
+        "envKey": "inputDirectory",
+        "description": "Directory containing the Python script and any supporting files.",
+        "notes": {
+          "selectionMode": "directory"
+        }
+      }
+    ],
+    "fileInputArrays": [],
+    "nodeCount": 1,
+    "coresPerNode": 48,
+    "memoryMB": 192000,
+    "maxMinutes": 120,
+    "subscriptions": [],
+    "tags": []
+  },
+  "tags": [
+    "portalName: DesignSafe"
+  ],
+  "notes": {
+    "label": "Python (Stampede3)",
+    "helpUrl": "https://designsafe-ci.github.io/dapi/",
+    "hideNodeCountAndCoresPerNode": false,
+    "isInteractive": false,
+    "icon": "Python",
+    "category": "Simulation"
+  }
+}

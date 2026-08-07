@@ -1,0 +1,100 @@
+# python — Stampede3
+
+General-purpose Python app for DesignSafe. Runs Python scripts with optional PyLauncher and MPI support, user-supplied pre/post scripts, and a machine-readable run summary.
+
+Contact: Krishna Kumar (UT Austin)
+
+## Lifecycle
+
+```
+setup (modules, pip)  →  PRE_SCRIPT  →  main script  →  POST_SCRIPT
+```
+
+Failure semantics:
+
+- **setup or PRE_SCRIPT fails → job aborts** before the main run (no wasted SUs)
+- **main script fails → job fails**, POST_SCRIPT is skipped
+- **POST_SCRIPT fails → warning only**, unless `POST_SCRIPT_REQUIRED=True`
+
+Every job writes `job-summary.json` next to `tapisjob.out` — on success and on failure — with per-stage exit codes and timings, the exact command run, the Python version, and the loaded modules. Downstream tools (e.g., provenance manifests) can consume it directly.
+
+## Defaults
+
+- Python 3.12 on Stampede3 SKX nodes
+- Serial execution (no MPI)
+- PyLauncher module loaded automatically
+- No pip installs, extra modules, or pre/post scripts unless requested
+- Archives to the submitting user's DesignSafe storage
+
+## Environment variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `USE_MPI` | `False` | Launch the main script with the MPI launcher |
+| `MPI_LAUNCHER` | `ibrun` | MPI launch command when `USE_MPI=True` (`srun`/`mpirun` on other systems) |
+| `EXTRA_MODULES` | (empty) | Comma-separated TACC modules to load |
+| `PIP_PACKAGES` | (empty) | Comma-separated packages to pip install (`--user`) |
+| `PIP_REQUIREMENTS` | (empty) | requirements.txt-style file in the Input Directory; job fails if missing |
+| `PRE_SCRIPT` | (empty) | Script to run before the main script; missing or failing aborts the job |
+| `POST_SCRIPT` | (empty) | Script to run after the main script |
+| `POST_SCRIPT_REQUIRED` | `False` | If `True`, a failing post-script fails the job |
+
+All optional. Empty values are skipped entirely.
+
+## Pre/post scripts
+
+`PRE_SCRIPT` and `POST_SCRIPT` name a file in the Input Directory (or an absolute path on the execution system). How it runs is chosen by extension:
+
+- `*.py` → `python3 script.py`
+- executable file → run directly
+- anything else → `bash script.sh`
+
+Use the pre-script for domain setup the wrapper deliberately does not bake in (module loads, staging, unzipping bundles, building inputs). Use the post-script for post-processing and cleanup. Set `POST_SCRIPT_REQUIRED=True` when the post-processing output *is* the deliverable (e.g., aggregating a parameter sweep).
+
+## OpenSeesPy
+
+Not built in. Use a `PRE_SCRIPT` to set it up:
+
+```bash
+# setup.sh
+module load opensees hdf5/1.14.4
+cp ${TACC_OPENSEES_BIN}/OpenSeesPy.so ./opensees.so
+```
+
+Then `import opensees as ops` in your main script.
+
+## job-summary.json
+
+```json
+{
+  "app_id": "python-s3",
+  "app_version": "1.0.0",
+  "job_uuid": "…",
+  "started": "2026-08-07T10:00:00-05:00",
+  "ended": "2026-08-07T10:12:34-05:00",
+  "input_script": "run_analysis.py",
+  "command": "ibrun python3 run_analysis.py --npts 2000",
+  "python_version": "Python 3.12.11",
+  "loaded_modules": "…",
+  "stages": {
+    "setup": {"seconds": 41},
+    "pre_script": {"script": "setup.sh", "exit_code": 0, "seconds": 3},
+    "main": {"exit_code": 0, "seconds": 702},
+    "post_script": {"script": null, "exit_code": null, "seconds": null}
+  },
+  "exit_code": 0,
+  "total_seconds": 754
+}
+```
+
+`null` means the stage did not run.
+
+## Porting to other systems
+
+The wrapper is system-agnostic: only `app.json` (execution system, queue, archive) and `profile.json` (base modules) change per system, plus the `MPI_LAUNCHER` default. To add e.g. `python-ls6`, copy this directory alongside as `applications/python/python-ls6/` and adjust those two files.
+
+## Deploying
+
+```
+python3 initialize_tenant.py --tenants=DESIGNSAFE --systems=stampede3 --apps=python/python-s3
+```
