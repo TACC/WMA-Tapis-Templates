@@ -34,13 +34,25 @@ Every job writes `job-summary.json` next to `tapisjob.out` — on success and on
 | `USE_MPI` | `False` | Launch the main script with the MPI launcher |
 | `MPI_LAUNCHER` | `ibrun` | MPI launch command when `USE_MPI=True` (`srun`/`mpirun` on other systems) |
 | `EXTRA_MODULES` | (empty) | Comma-separated TACC modules to load |
-| `PIP_PACKAGES` | (empty) | Comma-separated packages to pip install (`--user`) |
-| `PIP_REQUIREMENTS` | (empty) | requirements.txt-style file in the Input Directory; job fails if missing |
+| `PYTHON_ENV` | (empty) | Path to a persistent virtual environment to use (created if missing, kept after the job) |
+| `PIP_PACKAGES` | (empty) | Comma-separated packages to pip install into the job's Python environment |
+| `PIP_REQUIREMENTS` | (empty) | requirements.txt-style file installed into the job's Python environment; job fails if missing |
 | `PRE_SCRIPT` | (empty) | Script to run before the main script; missing or failing aborts the job |
 | `POST_SCRIPT` | (empty) | Script to run after the main script |
 | `POST_SCRIPT_REQUIRED` | `False` | If `True`, a failing post-script fails the job |
 
 All optional. Empty values are skipped entirely.
+
+## Python environment
+
+Two modes, both created with `--system-site-packages` so the module-provided numpy/scipy/mpi4py stack is inherited:
+
+- **Default (temporary):** when `PIP_PACKAGES` or `PIP_REQUIREMENTS` is set, a throwaway venv (`.job-venv`) is created in the job working directory and deleted on exit — nothing leaks into `$HOME`, no packages carry over between jobs, the archive stays small. No environment is created when neither variable is set.
+- **Persistent (`PYTHON_ENV`):** point at a path such as `$WORK/envs/myproject` to reuse an environment across jobs and skip repeated pip installs. It is created if missing, never deleted, and pip installs (if any) go into it. Prefer `$WORK`/`$SCRATCH` paths; an environment inside the Input Directory would be archived with your results.
+
+Either way the environment is *activated* for the whole job — its `bin/` is prepended to PATH and `VIRTUAL_ENV` is set — so the pre/post scripts, `pip3`, and the main run all resolve into it, and the default `BINARY=python3` resolves to the environment's interpreter by absolute path (which is what each MPI rank under `ibrun` executes). The path used is recorded as `python_env` in `job-summary.json`.
+
+**Caveat:** pip installs pair with the app's default `python3`. If you override `BINARY` to a different Python interpreter by absolute path, it bypasses the environment and will not see the installed packages.
 
 ## Pre/post scripts
 
@@ -98,6 +110,7 @@ Then `import opensees as ops` in your main script. (`TACC_OPENSEES_BIN` is set b
   "ended": "2026-08-07T10:12:34-05:00",
   "input_script": "run_analysis.py",
   "binary": "/opt/apps/python3_12/bin/python3",
+  "python_env": null,
   "command": "/opt/apps/python3_12/bin/python3 run_analysis.py --npts 2000",
   "python_version": "Python 3.12.11",
   "loaded_modules": "…",

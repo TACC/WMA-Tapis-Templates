@@ -49,13 +49,6 @@
           "notes": {
             "isHidden": true
           }
-        },
-        {
-          "name": "TACC Allocation",
-          "description": "TACC allocation to charge.",
-          "inputMode": "INCLUDE_ON_DEMAND",
-          "arg": null,
-          "notes": {}
         }
       ],
       "envVariables": [
@@ -86,17 +79,24 @@
           "notes": {}
         },
         {
+          "key": "PYTHON_ENV",
+          "value": "",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "Path to a Python virtual environment to use for the run (e.g. '$WORK/envs/myproject'). Created with access to the module-provided packages if it does not exist, and kept after the job — reuse it across jobs to skip repeated pip installs. If unset, a temporary per-job environment is created only when pip installs are requested and removed after the job.",
+          "notes": {}
+        },
+        {
           "key": "PIP_PACKAGES",
           "value": "",
           "inputMode": "INCLUDE_ON_DEMAND",
-          "description": "Comma-separated Python packages to pip install before the run. Example: 'scipy,h5py'. Skipped if empty.",
+          "description": "Comma-separated Python packages to pip install before the run into the job's Python environment (temporary per-job venv, or PYTHON_ENV if set). Example: 'scipy,h5py'. Skipped if empty.",
           "notes": {}
         },
         {
           "key": "PIP_REQUIREMENTS",
           "value": "",
           "inputMode": "INCLUDE_ON_DEMAND",
-          "description": "requirements.txt-style file in the Input Directory to pip install before the run. Example: 'requirements.txt'. The job fails if the file is missing.",
+          "description": "requirements.txt-style file in the Input Directory to pip install before the run into the job's Python environment (temporary per-job venv, or PYTHON_ENV if set). Example: 'requirements.txt'. The job fails if the file is missing.",
           "notes": {}
         },
         {
@@ -135,7 +135,7 @@
       ],
       "archiveFilter": {
         "includes": [],
-        "excludes": ["python.zip"],
+        "excludes": ["python.zip", ".job-venv"],
         "includeLaunchFiles": true
       }
     },

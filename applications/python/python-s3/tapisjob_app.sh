@@ -34,7 +34,7 @@ export PYTHONUNBUFFERED=1
 
 # Stage bookkeeping for the summary writer (empty = stage did not run)
 export SETUP_SEC="" PRE_RC="" PRE_SEC="" MAIN_RC="" MAIN_SEC="" POST_RC="" POST_SEC=""
-export SUMMARY_CMD="" SUMMARY_PYTHON="" SUMMARY_MODULES="" SUMMARY_BINARY="" OVERALL_RC="" TOTAL_SEC="" ENDED_AT=""
+export SUMMARY_CMD="" SUMMARY_PYTHON="" SUMMARY_MODULES="" SUMMARY_BINARY="" SUMMARY_VENV="" SUMMARY_VENV_TEMP="" OVERALL_RC="" TOTAL_SEC="" ENDED_AT=""
 
 write_summary() {
   rc=$?
@@ -68,6 +68,7 @@ summary = {
     "ended": os.environ.get("ENDED_AT"),
     "input_script": os.environ.get("SUMMARY_INPUTSCRIPT"),
     "binary": os.environ.get("SUMMARY_BINARY") or None,
+    "python_env": os.environ.get("SUMMARY_VENV") or None,
     "command": os.environ.get("SUMMARY_CMD") or None,
     "python_version": os.environ.get("SUMMARY_PYTHON") or None,
     "loaded_modules": os.environ.get("SUMMARY_MODULES") or None,
@@ -87,6 +88,12 @@ with open(path, "w") as f:
     f.write("\n")
 print(f"Wrote {path}")
 PYEOF
+  # Remove the temp per-job venv so it is never archived (summary is written
+  # first). User-provided PYTHON_ENV environments are kept.
+  if [[ "${SUMMARY_VENV_TEMP:-}" == "1" && -n "${SUMMARY_VENV:-}" && -d "${SUMMARY_VENV}" ]]; then
+    rm -rf -- "${SUMMARY_VENV}" || true
+    echo "Removed temp job venv: ${SUMMARY_VENV}"
+  fi
 }
 trap write_summary EXIT
 
@@ -138,6 +145,39 @@ fi
 # --- PyLauncher (always available for Python) ---
 module load pylauncher || true
 
+# --- Python environment ---
+# PYTHON_ENV set: use that environment (created with --system-site-packages if
+#   missing) and KEEP it after the job, so repeat jobs skip reinstalls.
+# PYTHON_ENV unset: create a temp per-job venv only when pip installs are
+#   requested, and remove it on exit so nothing leaks into $HOME or the archive.
+ENV_DIR=""
+if [[ -n "${PYTHON_ENV:-}" ]]; then
+  ENV_DIR="${PYTHON_ENV}"
+  if [[ "$ENV_DIR" != /* ]]; then
+    ENV_DIR="$(pwd)/${ENV_DIR#./}"
+  fi
+  if [[ ! -x "${ENV_DIR}/bin/python3" ]]; then
+    if [[ -e "$ENV_DIR" ]]; then
+      echo "ERROR: PYTHON_ENV '${ENV_DIR}' exists but is not a Python environment (no bin/python3)." >&2
+      exit 65
+    fi
+    echo "PYTHON_ENV not found; creating persistent environment: ${ENV_DIR}"
+    python3 -m venv --system-site-packages "$ENV_DIR"
+  else
+    echo "Reusing Python environment: ${ENV_DIR}"
+  fi
+elif [[ -n "${PIP_REQUIREMENTS:-}" || -n "${PIP_PACKAGES:-}" ]]; then
+  ENV_DIR="${ROOT_DIR}/.job-venv"
+  python3 -m venv --system-site-packages "$ENV_DIR"
+  export SUMMARY_VENV_TEMP="1"
+  echo "Created temp job venv: ${ENV_DIR}"
+fi
+if [[ -n "$ENV_DIR" ]]; then
+  export VIRTUAL_ENV="$ENV_DIR"
+  export PATH="${ENV_DIR}/bin:${PATH}"
+  export SUMMARY_VENV="$ENV_DIR"
+fi
+
 # --- Pip: requirements file (if any) ---
 if [[ -n "${PIP_REQUIREMENTS:-}" ]]; then
   REQ="${PIP_REQUIREMENTS}"
@@ -148,7 +188,7 @@ if [[ -n "${PIP_REQUIREMENTS:-}" ]]; then
     echo "ERROR: PIP_REQUIREMENTS file not found: $REQ" >&2
     exit 66
   fi
-  pip3 install --user --no-warn-script-location -r "$REQ"
+  pip3 install -r "$REQ"
 fi
 
 # --- Pip: package list (if any) ---
@@ -162,7 +202,7 @@ if [[ -n "${PIP_PACKAGES:-}" ]]; then
     fi
   done
   if [[ ${#CLEAN_PKGS[@]} -gt 0 ]]; then
-    pip3 install --user --no-warn-script-location "${CLEAN_PKGS[@]}"
+    pip3 install "${CLEAN_PKGS[@]}"
   fi
 fi
 
