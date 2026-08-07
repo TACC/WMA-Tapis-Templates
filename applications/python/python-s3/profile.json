@@ -1,0 +1,15 @@
+{
+  "name": "python_default",
+  "description": "Default modules for Python execution on Stampede3",
+  "moduleLoads": [
+    {
+      "modulesToLoad": [
+        "python/3.12.11"
+      ],
+      "moduleLoadCommand": "module load"
+    }
+  ],
+  "hiddenOptions": [
+    "MEM"
+  ]
+}
