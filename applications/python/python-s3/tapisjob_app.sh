@@ -4,7 +4,7 @@ set -x
 
 # python-s3: general-purpose Python app for DesignSafe (TACC Stampede3)
 #
-# Lifecycle:  setup (modules, pip) -> PRE_SCRIPT -> main script -> POST_SCRIPT
+# Lifecycle:  setup (modules, pip) -> PRE_SCRIPT -> main (BINARY, default python3) -> POST_SCRIPT
 #
 # Failure semantics:
 #   - setup or PRE_SCRIPT failure aborts before the main run (no wasted SUs)
@@ -34,7 +34,7 @@ export PYTHONUNBUFFERED=1
 
 # Stage bookkeeping for the summary writer (empty = stage did not run)
 export SETUP_SEC="" PRE_RC="" PRE_SEC="" MAIN_RC="" MAIN_SEC="" POST_RC="" POST_SEC=""
-export SUMMARY_CMD="" SUMMARY_PYTHON="" SUMMARY_MODULES="" OVERALL_RC="" TOTAL_SEC="" ENDED_AT=""
+export SUMMARY_CMD="" SUMMARY_PYTHON="" SUMMARY_MODULES="" SUMMARY_BINARY="" OVERALL_RC="" TOTAL_SEC="" ENDED_AT=""
 
 write_summary() {
   rc=$?
@@ -67,6 +67,7 @@ summary = {
     "started": os.environ.get("STARTED_AT"),
     "ended": os.environ.get("ENDED_AT"),
     "input_script": os.environ.get("SUMMARY_INPUTSCRIPT"),
+    "binary": os.environ.get("SUMMARY_BINARY") or None,
     "command": os.environ.get("SUMMARY_CMD") or None,
     "python_version": os.environ.get("SUMMARY_PYTHON") or None,
     "loaded_modules": os.environ.get("SUMMARY_MODULES") or None,
@@ -184,8 +185,43 @@ if [[ -n "${PRE_SCRIPT:-}" ]]; then
   fi
 fi
 
+# ---------------------------------------------------------- main binary ----
+# Resolved after PRE_SCRIPT so a pre-script may stage or build the binary.
+BINARY="${BINARY:-python3}"
+case "$BINARY" in
+  python|Python|Python3) BINARY="python3" ;;
+esac
+
+RESOLVED_BINARY=""
+if [[ "$BINARY" == */* ]]; then
+  # Path form: absolute, or relative to the Input Directory
+  CAND="$BINARY"
+  if [[ "$CAND" != /* ]]; then
+    CAND="$(pwd)/${CAND#./}"
+  fi
+  if [[ -f "$CAND" && ! -x "$CAND" ]]; then
+    echo "NOTE: adding execute permission to ${CAND} (staging can drop exec bits)"
+    chmod +x "$CAND" || true
+  fi
+  if [[ -x "$CAND" ]]; then
+    RESOLVED_BINARY="$CAND"
+  fi
+else
+  # Name form: resolve on PATH (as set by the profile and EXTRA_MODULES)
+  RESOLVED_BINARY="$(command -v "$BINARY" || true)"
+fi
+
+if [[ -z "$RESOLVED_BINARY" ]]; then
+  echo "ERROR: BINARY '${BINARY}' not found or not executable." >&2
+  echo "HINT: use a module-provided name (add its module to EXTRA_MODULES)," >&2
+  echo "      './name' for a program inside the Input Directory," >&2
+  echo "      or an absolute path such as \$WORK/apps/solver." >&2
+  exit 127
+fi
+export SUMMARY_BINARY="$RESOLVED_BINARY"
+
 # ------------------------------------------------------------------ run ----
-MAIN_CMD=(python3 "$INPUTSCRIPT" "$@")
+MAIN_CMD=("$RESOLVED_BINARY" "$INPUTSCRIPT" "$@")
 if is_true "${USE_MPI:-False}"; then
   MAIN_CMD=("${MPI_LAUNCHER:-ibrun}" "${MAIN_CMD[@]}")
 fi

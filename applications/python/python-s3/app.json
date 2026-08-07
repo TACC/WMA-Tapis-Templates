@@ -1,7 +1,7 @@
 {
   "id": "python-s3",
   "version": "1.0.0",
-  "description": "General-purpose Python execution on Stampede3 with optional PyLauncher and MPI support, pre/post scripts, and a machine-readable job-summary.json for provenance.",
+  "description": "General-purpose execution on Stampede3 — Python by default, any binary via BINARY — with optional PyLauncher and MPI support, pre/post scripts, and a machine-readable job-summary.json for provenance.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
@@ -24,7 +24,7 @@
       "appArgs": [
         {
           "name": "Input Script",
-          "description": "Python script to execute. Must be in the Input Directory.",
+          "description": "Script or input file passed to the binary (default python3, see BINARY). Must be in the Input Directory.",
           "arg": null,
           "inputMode": "REQUIRED",
           "notes": {
@@ -59,6 +59,13 @@
         }
       ],
       "envVariables": [
+        {
+          "key": "BINARY",
+          "value": "python3",
+          "inputMode": "INCLUDE_ON_DEMAND",
+          "description": "Executable for the main run (default python3). Either a name resolved on PATH after EXTRA_MODULES (e.g. 'OpenSeesMP'), './name' for a program inside the Input Directory, or an absolute path on the execution system (e.g. '$WORK/apps/solver'). Resolved after PRE_SCRIPT; the job fails before the run if it cannot be found.",
+          "notes": {}
+        },
         {
           "key": "USE_MPI",
           "value": "False",

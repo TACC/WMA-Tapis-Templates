@@ -1,13 +1,13 @@
 # python — Stampede3
 
-General-purpose Python app for DesignSafe. Runs Python scripts with optional PyLauncher and MPI support, user-supplied pre/post scripts, and a machine-readable run summary.
+General-purpose app for DesignSafe. Runs Python scripts by default or any executable via `BINARY` with optional PyLauncher and MPI support, user-supplied pre/post scripts, and a machine-readable run summary.
 
 Contact: Krishna Kumar (UT Austin)
 
 ## Lifecycle
 
 ```
-setup (modules, pip)  →  PRE_SCRIPT  →  main script  →  POST_SCRIPT
+setup (modules, pip)  →  PRE_SCRIPT  →  main (BINARY, default python3)  →  POST_SCRIPT
 ```
 
 Failure semantics:
@@ -30,6 +30,7 @@ Every job writes `job-summary.json` next to `tapisjob.out` — on success and on
 
 | Variable | Default | Description |
 |---|---|---|
+| `BINARY` | `python3` | Executable for the main run (name on PATH, `./name` in the Input Directory, or absolute path) |
 | `USE_MPI` | `False` | Launch the main script with the MPI launcher |
 | `MPI_LAUNCHER` | `ibrun` | MPI launch command when `USE_MPI=True` (`srun`/`mpirun` on other systems) |
 | `EXTRA_MODULES` | (empty) | Comma-separated TACC modules to load |
@@ -49,19 +50,42 @@ All optional. Empty values are skipped entirely.
 - executable file → run directly
 - anything else → `bash script.sh`
 
-Use the pre-script for domain setup the wrapper deliberately does not bake in (module loads, staging, unzipping bundles, building inputs). Use the post-script for post-processing and cleanup. Set `POST_SCRIPT_REQUIRED=True` when the post-processing output *is* the deliverable (e.g., aggregating a parameter sweep).
+Use the pre-script for domain setup the wrapper deliberately does not bake in (file staging, unzipping bundles, building inputs or binaries). Use the post-script for post-processing and cleanup. Set `POST_SCRIPT_REQUIRED=True` when the post-processing output *is* the deliverable (e.g., aggregating a parameter sweep).
+
+**Scope note:** pre/post scripts run as child processes, so `module load` inside them does **not** carry into the main run. Modules the main run needs (libraries, executables) must go in `EXTRA_MODULES`.
+
+## Custom binaries
+
+`BINARY` accepts three forms, resolved *after* the pre-script (so a pre-script may build or stage the binary), and the job fails before the main run if it can't be found:
+
+- **Name** (no `/`): looked up on PATH after `EXTRA_MODULES` are loaded — e.g. `BINARY=OpenSeesMP` with `EXTRA_MODULES=opensees,hdf5/1.14.4`
+- **`./name`**: a program shipped inside the Input Directory; the exec bit is restored automatically if staging dropped it
+- **Absolute path**: e.g. `$WORK/apps/mysolver` for your own compiled code
+
+The main run is always `[MPI_LAUNCHER] BINARY INPUTSCRIPT ARGS...`, and the resolved absolute path is recorded in `job-summary.json`.
+
+Example — OpenSeesMP (Tcl), 2 nodes:
+
+```
+BINARY=OpenSeesMP  EXTRA_MODULES=opensees,hdf5/1.14.4  USE_MPI=True
+Input Script: model.tcl
+```
 
 ## OpenSeesPy
 
-Not built in. Use a `PRE_SCRIPT` to set it up:
+Not built in. Load the runtime modules via `EXTRA_MODULES` and copy the TACC build in a `PRE_SCRIPT`:
+
+```
+EXTRA_MODULES=opensees,hdf5/1.14.4   # runtime libraries for the main run
+PRE_SCRIPT=setup.sh
+```
 
 ```bash
 # setup.sh
-module load opensees hdf5/1.14.4
 cp ${TACC_OPENSEES_BIN}/OpenSeesPy.so ./opensees.so
 ```
 
-Then `import opensees as ops` in your main script.
+Then `import opensees as ops` in your main script. (`TACC_OPENSEES_BIN` is set by the opensees module, which `EXTRA_MODULES` loads before the pre-script runs.)
 
 ## job-summary.json
 
@@ -73,7 +97,8 @@ Then `import opensees as ops` in your main script.
   "started": "2026-08-07T10:00:00-05:00",
   "ended": "2026-08-07T10:12:34-05:00",
   "input_script": "run_analysis.py",
-  "command": "ibrun python3 run_analysis.py --npts 2000",
+  "binary": "/opt/apps/python3_12/bin/python3",
+  "command": "/opt/apps/python3_12/bin/python3 run_analysis.py --npts 2000",
   "python_version": "Python 3.12.11",
   "loaded_modules": "…",
   "stages": {
