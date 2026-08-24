@@ -1,0 +1,73 @@
+{
+    "id": "jar-s3-shell-test",
+    "version": "latest",
+    "description": "Test app for terminal access",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "ZIP",
+    "runtimeVersion": null,
+    "runtimeOptions": null,
+    "containerImage": "tapis://cloud.data/home/jarosenb/tapis-apps/ttyd_app.zip",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": -1,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "execSystemConstraints": null,
+        "execSystemId": "stampede3",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "skx-dev",
+        "archiveSystemId": "cloud.data",
+        "archiveSystemDir": "/home/jarosenb/tapis-jobs/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "mpiCmd": null,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Interactive Session Substrings",
+                    "description": "VNC and DCV sessions require the substrings 'tap_' and '-dcvserver' in the slurm job name in order to function.",
+                    "inputMode": "FIXED",
+                    "arg": "--job-name ${JobName}-terminal-tap_",
+                    "notes": {
+                        "isHidden": true
+                    }
+                }
+            ],
+            "envVariables": [
+            ],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [
+                    "opensees_interactive.zip",
+                    "tapisjob_app.sh",
+                    "tapisjob.sh",
+                    "tapisjob.pid",
+                    "tapisjob.env",
+                    "tmp"
+                ],
+                "includeLaunchFiles": false
+            }
+        },
+        "fileInputs": [],
+        "fileInputArrays": [],
+        "maxMinutes": 30,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+    ],
+    "notes": {
+        "label": "Stampede3 idev test app",
+        "hideNodeCountAndCoresPerNode": true,
+        "hideMaxMinutes": true,
+        "isInteractive": true,
+        "icon": "OpenSees",
+        "category": "Simulation"
+    }
+}
