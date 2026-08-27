@@ -96,7 +96,7 @@
         "fileInputs": [
             {
                 "name": "Input Directory",
-                "description": "The directory containing your NAMD input files as well as your configuration file. Explore example inputs in tapis://cloud.data/corral/tacc/aci/CEP/community/app_examples/namd",
+                "description": "The directory containing your NAMD input files as well as your configuration file. Explore example inputs in tapis://cloud.data/corral/tacc/aci/app_examples/namd",
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
