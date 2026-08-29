@@ -1,5 +1,6 @@
 FROM eriksf/napari:latest
 
-COPY --from=taccaci/interactive-base:1.1.0 /tapis /tapis
+COPY run.sh /tapis/run.sh
+RUN chmod +x /tapis/run.sh
 
 ENTRYPOINT [ "/tapis/run.sh"]

@@ -58,13 +58,6 @@ unset DBUS_SESSION_BUS_ADDRESS
 exec startxfce4
 EOF
 
-### NOTE: an ampersand after "exec startxfce4" can break DCV.
-### This ampersand was found in sal's $HOME/.vnc/xstartup for some reason, so disable for all just in case
-# if [ -x $HOME/.vnc/xstartup ]; then
-#   cat $HOME/.vnc/xstartup >> $XSTARTUP
-# else
-#   echo "exec startxfce4" >> $XSTARTUP
-# fi
 chmod a+rx $XSTARTUP
 
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
@@ -131,7 +124,7 @@ sleep 3;
 
 # create reverse tunnel port to login nodes.  Make one tunnel for each login so the user can just connect to $HPC_HOST
 for i in `seq 4`; do
-  ssh -o StrictHostKeyChecking=no -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
+  ssh -o StrictHostKeyChecking=no -q -f -g -N -R $LOGIN_PORT:$NODE_HOSTNAME:$LOCAL_PORT login$i
 done
 
 echo "TACC: Created reverse ports on $HPC_HOST logins"
@@ -167,8 +160,6 @@ else
   exit 1
 fi
 
-echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
-
 # Webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
@@ -176,8 +167,8 @@ curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSI
 # Run $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
 ${_XTERM_CMD}
-
 # Job is done!
+
 
 echo "TACC: closing ${SERVER_TYPE} session"
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then
