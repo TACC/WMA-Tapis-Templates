@@ -77,7 +77,7 @@
                 "inputMode": "REQUIRED",
                 "autoMountLocal": true,
                 "sourceUrl": null,
-                "targetPath": "*",
+                "targetPath": ".",
                 "envKey": "workingDirectory",
                 "notes": {
                     "selectionMode": "directory"
