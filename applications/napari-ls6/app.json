@@ -1,6 +1,6 @@
 {
     "id": "napari",
-    "version": "0.4.17",
+    "version": "0.4.18",
     "description": "Run an interactive Napari session on Lonestar6.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/napari:0.4.17",
+    "containerImage": "docker://taccaci/napari:0.4.18",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -66,7 +66,7 @@
                 {
                     "key": "_XTERM_CMD",
                     "value": "napari",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "description": "Command launched within the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true
@@ -75,7 +75,7 @@
                 {
                     "key": "APPEND_PATH",
                     "value": "$PATH",
-                    "description": "Append host $PATH to Singularity container default $PATH.",
+                    "description": "Append host $PATH to runtime default $PATH.",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true

@@ -271,20 +271,11 @@ echo ""
 echo "Launching AlignEM-SWiFT..."
 
 
-# run an xterm for the user; execution will hold here
-mkdir -p $HOME/.tap
-TAP_LOCKFILE=${HOME}/.tap/${SLURM_JOB_ID}.lock
-sleep 1
-DISPLAY=:0 xterm -fg white -bg red3 +sb -geometry 55x2+0+0 -T 'END SESSION HERE' -e "echo 'TACC: Press <enter> in this window to end your session' && read && rm ${TAP_LOCKFILE}" &
-sleep 1
-DISPLAY=:0 xterm -ls -geometry 80x24+100+50 -e 'python3 alignEM.py' &
-
+# Run AlignEM directly; execution will hold here.
+export DISPLAY=:0
+python3 alignEM.py
 
 # Job is done!
-echo $(date) > ${TAP_LOCKFILE}
-while [ -f ${TAP_LOCKFILE} ]; do
-    sleep 1
-done
 
 echo "TACC: closing ${SERVER_TYPE} session"
 if [ "x${SERVER_TYPE}" == "xDCV" ]; then

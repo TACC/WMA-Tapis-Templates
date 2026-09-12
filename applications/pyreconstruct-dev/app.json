@@ -1,6 +1,6 @@
 {
     "id": "pyreconstruct-dev",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "PyReconstruct Dev: A Python initialization of RECONSTRUCT, a 3D Tool for Image Reconstruction on LoneStar 6. This app uses developer version of image.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -9,7 +9,7 @@
     "runtimeOptions": [
         "SINGULARITY_RUN"
     ],
-    "containerImage": "docker://taccaci/pyreconstruct-dev:0.0.1",
+    "containerImage": "docker://taccaci/pyreconstruct-dev:0.0.3",
     "jobType": "BATCH",
     "maxJobs": -1,
     "maxJobsPerUser": -1,
@@ -66,7 +66,7 @@
                 {
                     "key": "_XTERM_CMD",
                     "value": "python /work/03762/eriksf/public/code/PyReconstruct/src/PyReconstruct.py",
-                    "description": "Command passed to XTERM, launched within the interactive session.",
+                    "description": "Command launched in the interactive session.",
                     "inputMode": "FIXED",
                     "notes": {
                         "isHidden": true

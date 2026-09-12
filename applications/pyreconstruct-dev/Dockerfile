@@ -1,7 +1,8 @@
 ### pyreconstruct dev image matching PyReconsturct-dev app ###
 FROM eriksf/pyreconstruct:latest
 
-COPY --from=taccaci/interactive-base:1.1.0 /tapis /tapis
+COPY run.sh /tapis/run.sh
+RUN chmod +x /tapis/run.sh
 
 ENTRYPOINT [ "/tapis/run.sh" ]
 
