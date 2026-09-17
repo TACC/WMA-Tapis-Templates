@@ -5,7 +5,7 @@
         {
             "modulesToLoad": [
                 "hdf5/1.14.4",
-                "opensees"
+                "opensees/3.7.1"
             ],
             "moduleLoadCommand": "module load"
         }
