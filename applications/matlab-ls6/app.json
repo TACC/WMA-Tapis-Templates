@@ -1,14 +1,12 @@
 {
-    "id": "matlab_ls6",
-    "version": "9.13.0",
+    "id": "matlab",
+    "version": "ls6",
     "description": "Run an interactive MATLAB 2022b session on LoneStar6. Submit a help ticket to get your license configured or approved.",
     "owner": "${apiUserId}",
     "enabled": true,
     "runtime": "SINGULARITY",
     "runtimeVersion": null,
-    "runtimeOptions": [
-        "SINGULARITY_RUN"
-    ],
+    "runtimeOptions": ["SINGULARITY_RUN"],
     "containerImage": "docker://taccaci/interactive-base:1.1.0",
     "jobType": "BATCH",
     "maxJobs": -1,
@@ -88,7 +86,20 @@
                 "includeLaunchFiles": true
             }
         },
-        "fileInputs": [],
+        "fileInputs": [
+            {
+                "name": "Working Directory",
+                "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
+                "inputMode": "OPTIONAL",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "*",
+                "envKey": "workingDirectory",
+                "notes": {
+                    "selectionMode": "directory"
+                }
+            }
+        ],
         "fileInputArrays": [],
         "nodeCount": 1,
         "coresPerNode": 128,
