@@ -1,6 +1,6 @@
 {
     "id": "matlab",
-    "version": "9.15.0",
+    "version": "stampede3",
     "description": "Run an interactive MATLAB 2023b session on Stampede3. Submit a help ticket to get your license configured or approved.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -80,7 +80,7 @@
             {
                 "name": "Working Directory",
                 "description": "The directory containing the files that you want to work on. This directory and its files will be copied to where your interactive session runs.",
-                "inputMode": "REQUIRED",
+                "inputMode": "OPTIONAL",
                 "autoMountLocal": true,
                 "sourceUrl": null,
                 "targetPath": "*",
@@ -98,13 +98,11 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: ALL"
-    ],
+    "tags": ["portalName: ALL"],
     "notes": {
         "licenseType": "MATLAB",
         "label": "MATLAB R2023b Interactive (Stampede3)",
-        "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/#matlab-user-guide",
+        "helpUrl": "https://www.designsafe-ci.org/user-guide/analysis/matlab/",
         "hideNodeCountAndCoresPerNode": false,
         "isInteractive": true,
         "icon": "MATLAB",
