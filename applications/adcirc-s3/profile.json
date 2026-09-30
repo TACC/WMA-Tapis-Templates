@@ -1,0 +1,17 @@
+{
+    "name": "adcirc_v56",
+    "description": "Modules to load for ADCIRC",
+    "moduleLoads": [
+        {
+            "modulesToLoad": [
+                "intel/24.0",
+                "impi/21.11",
+                "adcirc/56.2.1"
+            ],
+            "moduleLoadCommand": "module load"
+        }
+    ],
+    "hiddenOptions": [
+        "MEM"
+    ]
+}
