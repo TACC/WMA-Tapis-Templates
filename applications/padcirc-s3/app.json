@@ -1,6 +1,6 @@
 {
     "id": "padcirc",
-    "version": "56.0.2",
+    "version": "56.2.1",
     "description": "PADCIRC is the parallel version of the ADCIRC which is optimized for enhanced performance on multiple computer nodes to run very large models. It includes MPI library calls to allow it to operate at high efficiency on parallel machines.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -53,10 +53,7 @@
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [
-                    "tapisjob.env",
-                    "padcirc.zip"
-                ],
+                "excludes": ["tapisjob.env", "padcirc.zip"],
                 "includeLaunchFiles": true
             }
         },
@@ -82,9 +79,7 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: DesignSafe"
-    ],
+    "tags": ["portalName: DesignSafe"],
     "notes": {
         "icon": "Water",
         "label": "PADCIRC (Stampede3)",
