@@ -108,7 +108,8 @@
         "portalName: Frontera",
         "portalName: UTRC",
         "portalName: CEP",
-        "portalName: PTDATAX"
+        "portalName: PTDATAX",
+        "portalName: CIPP"
     ],
     "notes": {
         "label": "RStudio (Lonestar6)",

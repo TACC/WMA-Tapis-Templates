@@ -97,9 +97,7 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: LCCF"
-    ],
+    "tags": ["portalName: LCCF", "portalName: CIPP"],
     "notes": {
         "label": "Paraview (Vista)",
         "helpUrl": "https://www.designsafe-ci.org/user-guide/tools/visualization/#paraview-user-guide",
