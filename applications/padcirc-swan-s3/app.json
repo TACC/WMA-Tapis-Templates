@@ -1,6 +1,6 @@
 {
     "id": "padcirc-swan",
-    "version": "56.0.2",
+    "version": "56.2.1",
     "description": "Parallel SWAN and ADCIRC is the fully-coupled model, the Simulating WAves Nearshore (SWAN) model with unstructured grids and the ADvanced CIRCulation (ADCIRC) model that runs on Stampede3, with 48 cores per node.",
     "owner": "${apiUserId}",
     "enabled": true,
@@ -53,10 +53,7 @@
             "envVariables": [],
             "archiveFilter": {
                 "includes": [],
-                "excludes": [
-                    "tapisjob.env",
-                    "padcirc-swan.zip"
-                ],
+                "excludes": ["tapisjob.env", "padcirc-swan.zip"],
                 "includeLaunchFiles": true
             }
         },
@@ -82,9 +79,7 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: DesignSafe"
-    ],
+    "tags": ["portalName: DesignSafe"],
     "notes": {
         "icon": "Water",
         "label": "PADCIRC SWAN (Stampede3)",

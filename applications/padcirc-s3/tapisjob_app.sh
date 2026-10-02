@@ -23,7 +23,7 @@ $SCORES
 2
 EOT
 
-AADCPREP=$TACC_ADCIRC_BIN/adcprep
+ADCPREP=$TACC_ADCIRC_BIN/adcprep
 PADCIRC=$TACC_ADCIRC_BIN/padcirc
 
 # run adcprep pre-processing
