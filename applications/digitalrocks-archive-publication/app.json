@@ -1,13 +1,13 @@
 {
   "id": "digitalrocks-archive-publication",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ZIP DigitalRocks publication data and metadata",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "ZIP",
   "runtimeVersion": null,
   "runtimeOptions": null,
-  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/digitalrocks-archive-publication/v2/dpm_archive_publication.zip",
+  "containerImage": "tapis://cloud.data/corral/tacc/aci/CEP/applications/v3/digitalrocks-archive-publication/v3/dpm_archive_publication.zip",
   "jobType": "FORK",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -62,6 +62,15 @@
           "inputMode": "REQUIRED",
           "notes": {
             "label": "ranchArchiveRootDir"
+          }
+        },
+        {
+          "key": "checksumOnly",
+          "value": "false",
+          "description": "When \"true\", write the SHA-256 manifest only and skip the SHA-512 manifest, ZIP archive and Ranch transfer. Used to backfill manifest-sha256.txt for existing publications without re-archiving them.",
+          "inputMode": "INCLUDE_BY_DEFAULT",
+          "notes": {
+            "label": "checksumOnly"
           }
         }
       ],

@@ -8,6 +8,37 @@ pushd ${publishedRootDir}
 chmod -R 755 ${projectId}
 
 mkdir -p archive/${projectId}
+
+# SHA-256 manifest for the portal: the published landing page's Croissant JSON-LD only accepts
+# md5/sha256 file checksums (SHA-512 is rejected), so the portal reads per-file hashes from here
+# instead of downloading every file to hash it.
+#  - One file per sha256sum call (-n 1), in parallel (-P) across the node's cores: each call then
+#    writes one short line to the pipe, which the kernel keeps whole, so parallel output can't
+#    interleave mid-line. sort makes the manifest's order stable across runs.
+#  - -r: with no files, xargs would otherwise still run sha256sum once and hash its empty stdin,
+#    adding a bogus "<hash>  -" line.
+#  - pipefail + a .tmp file: if any file fails to hash, no manifest is written at all, so the
+#    portal never reads a partial one; it just leaves the publication's files unhashed.
+sha256Manifest=archive/${projectId}/manifest-sha256.txt
+if ( set -o pipefail
+     find ${projectId} -type f -print0 \
+         | xargs -0 -r -n 1 -P "${checksumParallelism:-16}" sha256sum \
+         | LC_ALL=C sort -k2 > ${sha256Manifest}.tmp ); then
+    mv ${sha256Manifest}.tmp ${sha256Manifest}
+    chmod 755 ${sha256Manifest}
+else
+    echo "ERROR: sha256sum failed for one or more files in ${projectId}; ${sha256Manifest} not written."
+    rm -f ${sha256Manifest}.tmp
+fi
+
+# Backfill mode: existing publications already have their SHA-512 manifest, ZIP (DRP-1149's is
+# 89 GB) and Ranch copy, so only the SHA-256 manifest is generated -- one read of the data.
+if [ "${checksumOnly}" = "true" ]; then
+    echo "checksumOnly=true: skipping SHA-512 manifest, ZIP archive and Ranch transfer."
+    popd
+    exit 0
+fi
+
 find ${projectId} -type f -print0 | xargs -0 sha512sum > archive/${projectId}/manifest-sha512.txt
 zip -r archive/${projectId}/${projectId}_archive.zip ${projectId}
 
