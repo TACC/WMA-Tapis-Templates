@@ -82,9 +82,7 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: DesignSafe"
-    ],
+    "tags": ["portalName: DesignSafe", "portalName: CIPP"],
     "notes": {
         "icon": "Water",
         "label": "PADCIRC (Stampede3)",
