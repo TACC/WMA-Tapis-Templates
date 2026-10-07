@@ -23,8 +23,8 @@ $SCORES
 2
 EOT
 
-ADCPREP=/work2/06307/clos21/shared/adcirc/s3/v56.0.2/adcprep
-PADCIRC=/work2/06307/clos21/shared/adcirc/s3/v56.0.2/padcirc
+ADCPREP=$TACC_ADCIRC_BIN/adcprep
+PADCIRC=$TACC_ADCIRC_BIN/padcirc
 
 # run adcprep pre-processing
 $ADCPREP < ./in.prep1

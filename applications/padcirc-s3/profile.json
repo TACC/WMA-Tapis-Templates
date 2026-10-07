@@ -3,10 +3,7 @@
     "description": "Modules to load for PADCIRC",
     "moduleLoads": [
         {
-            "modulesToLoad": [
-                "TACC",
-                "netcdf"
-            ],
+            "modulesToLoad": ["intel/24.0", "impi/21.11", "adcirc/56.2.1"],
             "moduleLoadCommand": "module load"
         }
     ],
