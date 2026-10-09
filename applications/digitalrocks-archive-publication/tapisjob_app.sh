@@ -31,22 +31,65 @@ else
     rm -f ${sha256Manifest}.tmp
 fi
 
+zipFile=${projectId}_archive.zip
+
+# SHA-256 of the finished ZIP, for the portal's Croissant/Google `distribution` entry for it. Run
+# from archive/${projectId}. Written to a .tmp file and renamed into place, so the portal never
+# reads a partial hash.
+hash_archive() {
+    if sha256sum ${zipFile} > ${zipFile}.sha256.tmp; then
+        mv ${zipFile}.sha256.tmp ${zipFile}.sha256
+        chmod 755 ${zipFile}.sha256
+    else
+        echo "ERROR: sha256sum failed for ${zipFile}; ${zipFile}.sha256 not written."
+        rm -f ${zipFile}.sha256.tmp
+    fi
+}
+
 # Backfill mode: existing publications already have their SHA-512 manifest, ZIP (DRP-1149's is
-# 89 GB) and Ranch copy, so only the SHA-256 manifest is generated -- one read of the data.
+# 89 GB) and Ranch copy, so only the SHA-256 manifest is generated -- one read of the data. With
+# hashArchive=true the existing ZIP is hashed too, which reads it once more.
 if [ "${checksumOnly}" = "true" ]; then
     echo "checksumOnly=true: skipping SHA-512 manifest, ZIP archive and Ranch transfer."
+    if [ "${hashArchive}" = "true" ] && [ -f archive/${projectId}/${zipFile} ]; then
+        pushd archive/${projectId}
+        hash_archive
+        popd
+    fi
     popd
     exit 0
 fi
 
 find ${projectId} -type f -print0 | xargs -0 sha512sum > archive/${projectId}/manifest-sha512.txt
-zip -r archive/${projectId}/${projectId}_archive.zip ${projectId}
+# A hash from an earlier run would no longer match once the ZIP is rebuilt below.
+rm -f archive/${projectId}/${zipFile}.sha256
+zipStatus=0
+zip -r archive/${projectId}/${zipFile} ${projectId} || zipStatus=$?
 
 # Move to archive folder to add manifest and metadata JSON at the top level of the archive
 pushd archive/${projectId}
-zip -u ${projectId}_archive.zip manifest-sha512.txt
-zip -u ${projectId}_archive.zip ${projectId}_metadata.json
-chmod -R 755 ${projectId}_archive.zip
+# zip -u exits 12 when there's nothing to update (a re-run of an unchanged archive): not a failure.
+# It also exits 12 for a file that doesn't exist, so a missing file is checked for separately.
+for extraFile in manifest-sha512.txt ${projectId}_metadata.json; do
+    if [ ! -f ${extraFile} ]; then
+        echo "ERROR: ${extraFile} not found; it can't be added to ${zipFile}."
+        zipStatus=1
+        continue
+    fi
+    zip -u ${zipFile} ${extraFile}
+    rc=$?
+    if [ ${rc} -ne 0 ] && [ ${rc} -ne 12 ]; then
+        zipStatus=${rc}
+    fi
+done
+chmod -R 755 ${zipFile}
+
+# Only a ZIP every step succeeded on is hashed, so the portal never publishes a broken archive.
+if [ ${zipStatus} -eq 0 ]; then
+    hash_archive
+else
+    echo "ERROR: building ${zipFile} failed (zip exit ${zipStatus}); ${zipFile}.sha256 not written."
+fi
 
 popd
 

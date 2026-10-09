@@ -72,6 +72,15 @@
           "notes": {
             "label": "checksumOnly"
           }
+        },
+        {
+          "key": "hashArchive",
+          "value": "false",
+          "description": "With checksumOnly=\"true\", also hash the publication's existing ZIP into ${projectId}_archive.zip.sha256 (one more read of the ZIP). A full run always hashes the ZIP it builds.",
+          "inputMode": "INCLUDE_BY_DEFAULT",
+          "notes": {
+            "label": "hashArchive"
+          }
         }
       ],
       "archiveFilter": {
