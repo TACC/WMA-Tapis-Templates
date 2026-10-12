@@ -89,9 +89,7 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: LCCF"
-    ],
+    "tags": ["portalName: LCCF", "portalName: CIPP"],
     "notes": {
         "label": "NAMD",
         "helpUrl": "https://www.ks.uiuc.edu/Research/namd/",

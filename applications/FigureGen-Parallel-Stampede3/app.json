@@ -87,9 +87,7 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: DesignSafe"
-    ],
+    "tags": ["portalName: DesignSafe", "portalName: CIPP"],
     "notes": {
         "icon": "Generic-Vis",
         "label": "FigureGen Parallel",
