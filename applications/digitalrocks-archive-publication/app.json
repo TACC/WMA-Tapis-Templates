@@ -1,6 +1,6 @@
 {
   "id": "digitalrocks-archive-publication",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ZIP DigitalRocks publication data and metadata",
   "owner": "${apiUserId}",
   "enabled": true,
@@ -67,7 +67,7 @@
         {
           "key": "checksumOnly",
           "value": "false",
-          "description": "When \"true\", write the SHA-256 manifest only and skip the SHA-512 manifest, ZIP archive and Ranch transfer. Used to backfill manifest-sha256.txt for existing publications without re-archiving them.",
+          "description": "When \"true\", write the SHA-256 and CSV/TSV header manifests only and skip the SHA-512 manifest, ZIP archive and Ranch transfer. Used to backfill manifest-sha256.txt for existing publications without re-archiving them.",
           "inputMode": "INCLUDE_BY_DEFAULT",
           "notes": {
             "label": "checksumOnly"

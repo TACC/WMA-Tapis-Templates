@@ -31,6 +31,28 @@ else
     rm -f ${sha256Manifest}.tmp
 fi
 
+# CSV/TSV header manifest for the portal (app 0.0.4+), which turns it into each file's Croissant
+# recordSet columns: one `<base64 path> <base64 header row>` line per .csv/.tsv file, paths as in the
+# SHA-256 manifest. Only each file's first line (up to 64 KiB) is read. Base64 keeps any filename or
+# header text on one line. Tracing is off for the loop, which would otherwise log every file; the
+# manifest is written to a .tmp file and renamed into place, like the SHA-256 manifest.
+columnsManifest=archive/${projectId}/manifest-columns.txt
+{ set +x; } 2>/dev/null
+if ( set -o pipefail
+     find ${projectId} -type f \( -iname '*.csv' -o -iname '*.tsv' \) -print0 \
+         | LC_ALL=C sort -z \
+         | while IFS= read -r -d '' csvFile; do
+               printf '%s %s\n' "$(printf '%s' "${csvFile}" | base64 -w0)" \
+                   "$(head -n 1 -- "${csvFile}" | head -c 65536 | tr -d '\r\n' | base64 -w0)"
+           done > ${columnsManifest}.tmp ); then
+    mv ${columnsManifest}.tmp ${columnsManifest}
+    chmod 755 ${columnsManifest}
+else
+    echo "ERROR: reading CSV/TSV headers in ${projectId} failed; ${columnsManifest} not written."
+    rm -f ${columnsManifest}.tmp
+fi
+set -x
+
 zipFile=${projectId}_archive.zip
 
 # SHA-256 of the finished ZIP, for the portal's Croissant/Google `distribution` entry for it. Run
