@@ -1,0 +1,123 @@
+{
+    "id": "dpm_lbpm_mrt_x86_cpu_ls6",
+    "version": "0.0.1",
+    "description": "Lattice Boltzmann for Porous Media (LBPM) single-phase (MRT) permeability simulations on x86 CPUs.",
+    "owner": "${apiUserId}",
+    "enabled": true,
+    "runtime": "SINGULARITY",
+    "runtimeVersion": null,
+    "runtimeOptions": ["SINGULARITY_RUN"],
+    "containerImage": "oras://docker.io/bchang19/lbpm:mrt-x86-cpu-latest",
+    "jobType": "BATCH",
+    "maxJobs": -1,
+    "maxJobsPerUser": 2,
+    "strictFileInputs": true,
+    "jobAttributes": {
+        "description": "Lattice Boltzmann for Porous Media (LBPM) single-phase (MRT) permeability simulations on x86 CPUs.",
+        "dynamicExecSystem": false,
+        "execSystemConstraints": null,
+        "execSystemId": "ls6",
+        "execSystemExecDir": "${JobWorkingDir}",
+        "execSystemInputDir": "${JobWorkingDir}",
+        "execSystemOutputDir": "${JobWorkingDir}",
+        "execSystemLogicalQueue": "normal",
+        "archiveSystemId": "ls6",
+        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveOnAppError": true,
+        "isMpi": false,
+        "cmdPrefix": null,
+        "parameterSet": {
+            "appArgs": [
+                {
+                    "name": "Input File",
+                    "description": "Staged input database (.db) path passed to LBPM.",
+                    "inputMode": "FIXED",
+                    "arg": "${ExecSystemInputDir}/input.db",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Number of Processors",
+                    "description": "The number of processors to use for the LBPM simulation (max. 128). This should match nproc in the input file.",
+                    "inputMode": "REQUIRED",
+                    "arg": null,
+                    "notes": {
+                        "fieldType": "number",
+                        "validator": {
+                            "regex": "^(?:[1-9]|[1-9][0-9]|1[01][0-9]|12[0-8])$",
+                            "message": "Enter an integer from 1 to 128."
+                        }
+                    }
+                }
+            ],
+            "containerArgs": [],
+            "schedulerOptions": [
+                {
+                    "name": "TACC Scheduler Profile",
+                    "description": "Scheduler profile for HPC clusters at TACC",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "--tapis-profile tacc-apptainer",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm job name",
+                    "description": "Set the slurm job name to be the same as the Tapis job name.",
+                    "inputMode": "INCLUDE_BY_DEFAULT",
+                    "arg": "--job-name ${JobName}",
+                    "notes": {
+                        "isHidden": true
+                    }
+                },
+                {
+                    "name": "Slurm Reservation",
+                    "description": "Specify the Slurm reservation to use for the job (if applicable)",
+                    "inputMode": "INCLUDE_ON_DEMAND",
+                    "arg": null
+                }
+            ],
+            "envVariables": [],
+            "archiveFilter": {
+                "includes": [],
+                "excludes": [],
+                "includeLaunchFiles": true
+            }
+        },
+        "fileInputs": [
+            {
+                "name": "Input File",
+                "description": "The input database (.db) file for LBPM simulation.",
+                "inputMode": "REQUIRED",
+                "autoMountLocal": true,
+                "sourceUrl": null,
+                "targetPath": "input.db",
+                "notes": {
+                    "selectionMode": "file",
+                    "validator": {
+                        "regex": "^.*\\.db$",
+                        "message": "The input file must be a .db file."
+                    }
+                }
+            }
+        ],
+        "fileInputArrays": [],
+        "nodeCount": 1,
+        "coresPerNode": 128,
+        "memoryMB": 256000,
+        "maxMinutes": 2880,
+        "subscriptions": [],
+        "tags": []
+    },
+    "tags": [
+        "portalName: DRP"
+    ],
+    "notes": {
+        "icon": "LBPM",
+        "label": "LBPM MRT CPU (Lonestar6)",
+        "hideNodeCountAndCoresPerNode": false,
+        "category": "Simulation",
+        "showTargetPath": false
+    }
+}
