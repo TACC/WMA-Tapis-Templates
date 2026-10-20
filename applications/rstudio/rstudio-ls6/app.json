@@ -6,9 +6,7 @@
     "enabled": true,
     "runtime": "SINGULARITY",
     "runtimeVersion": null,
-    "runtimeOptions": [
-        "SINGULARITY_RUN"
-    ],
+    "runtimeOptions": ["SINGULARITY_RUN"],
     "containerImage": "docker://rocker/rstudio:4.3",
     "jobType": "BATCH",
     "maxJobs": -1,
@@ -23,9 +21,10 @@
         "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
-        "archiveSystemId": "ls6",
-        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
+        "archiveSystemId": null,
+        "archiveSystemDir": null,
+        "archiveOnAppError": false,
+        "archiveMode": "NEVER",
         "isMpi": false,
         "mpiCmd": null,
         "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper.sh;",
@@ -82,7 +81,7 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
         "fileInputs": [
@@ -104,13 +103,7 @@
         "subscriptions": [],
         "tags": []
     },
-    "tags": [
-        "portalName: Frontera",
-        "portalName: UTRC",
-        "portalName: CEP",
-        "portalName: PTDATAX",
-        "portalName: CIPP"
-    ],
+    "tags": ["portalName: UTRC", "portalName: CEP", "portalName: PTDATAX"],
     "notes": {
         "label": "RStudio (Lonestar6)",
         "helpUrl": "https://docs.posit.co/ide/user/ide/get-started/",
