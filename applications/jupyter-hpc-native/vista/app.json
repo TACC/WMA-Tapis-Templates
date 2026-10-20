@@ -18,9 +18,10 @@
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "gh-dev",
-        "archiveSystemId": "vista",
-        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
+        "archiveSystemId": null,
+        "archiveSystemDir": null,
+        "archiveOnAppError": false,
+        "archiveMode": "NEVER",
         "isMpi": false,
         "cmdPrefix": "source tap-ilogin.sh;",
         "parameterSet": {
@@ -66,7 +67,7 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
         "fileInputs": [
