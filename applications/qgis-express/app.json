@@ -21,9 +21,10 @@
         "execSystemInputDir": "${JobWorkingDir}",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "development",
-        "archiveSystemId": "cloud.data",
-        "archiveSystemDir": "/tmp/tapis-${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
+        "archiveSystemId": null,
+        "archiveSystemDir": null,
+        "archiveOnAppError": false,
+        "archiveMode": "NEVER",
         "isMpi": false,
         "mpiCmd": null,
         "cmdPrefix": null,
@@ -44,7 +45,7 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
         "fileInputArrays": [],

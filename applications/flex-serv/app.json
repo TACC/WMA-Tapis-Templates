@@ -26,9 +26,10 @@
         "dtnSystemInputDir": "!tapis_not_set",
         "dtnSystemOutputDir": "!tapis_not_set",
         "execSystemLogicalQueue": "gh",
-        "archiveSystemId": "vista",
-        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
+        "archiveSystemId": null,
+        "archiveSystemDir": null,
         "archiveOnAppError": false,
+        "archiveMode": "NEVER",
         "isMpi": false,
         "parameterSet": {
             "appArgs": [
@@ -261,7 +262,7 @@
                 }
             ],
             "archiveFilter": {
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             },
             "logConfig": {
                 "stdoutFilename": "",

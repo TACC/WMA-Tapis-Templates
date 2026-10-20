@@ -23,9 +23,10 @@
         "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "skx-dev",
-        "archiveSystemId": "stampede3",
-        "archiveSystemDir": "HOST_EVAL($WORK)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
+        "archiveSystemId": null,
+        "archiveSystemDir": null,
+        "archiveOnAppError": false,
+        "archiveMode": "NEVER",
         "isMpi": false,
         "mpiCmd": null,
         "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper.sh;",
@@ -82,7 +83,7 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
         "fileInputs": [
