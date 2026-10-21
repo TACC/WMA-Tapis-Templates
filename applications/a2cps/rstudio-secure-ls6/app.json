@@ -23,9 +23,10 @@
         "execSystemInputDir": "${JobWorkingDir}/input",
         "execSystemOutputDir": "${JobWorkingDir}/output",
         "execSystemLogicalQueue": "corralextra",
-        "archiveSystemId": "secure.lonestar6",
-        "archiveSystemDir": "/corral-secure/projects/A2CPS/shared/${JobOwner}/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
-        "archiveOnAppError": true,
+        "archiveSystemId": null,
+        "archiveSystemDir": null,
+        "archiveOnAppError": false,
+        "archiveMode": "NEVER",
         "isMpi": false,
         "mpiCmd": null,
         "cmdPrefix": "source tapisjob.env; source input/rstudio/wrapper-secure.sh;",
@@ -82,7 +83,7 @@
             "archiveFilter": {
                 "includes": [],
                 "excludes": [],
-                "includeLaunchFiles": true
+                "includeLaunchFiles": false
             }
         },
         "fileInputs": [
