@@ -78,9 +78,17 @@ apptainer instance start \
     --bind ${workdir}/nginx-cache:/var/cache/nginx \
     --bind ${workdir}/nginx.pid:/var/run/nginx.pid \
     --bind $(cat ${TAP_CERTFILE}):/etc/nginx/ssl/session.crt \
-    library://rstijerina/taccapps/nginx:latest nginx &
+    docker://nginx:stable nginx
 
-wait $!
+# start nginx inside the instance (stays in the foreground, so background it)
+apptainer exec instance://nginx nginx -g 'daemon off;' &
+NGINX_PID=$!
+
+# wait until the port is actually accepting connections (give up after ~60s)
+for i in $(seq 1 60); do
+    curl -sk https://127.0.0.1:8080 >/dev/null 2>&1 && break
+    sleep 1
+done
 
 # Webhook callback url for job ready notification.
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
