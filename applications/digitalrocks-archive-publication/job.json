@@ -1,7 +1,7 @@
 {
     "name": "test-job-digitalrocks-archive-publication",
     "appId": "digitalrocks-archive-publication",
-    "appVersion": "0.0.3",
+    "appVersion": "0.0.4",
     "description": "Example submission for app digitalrocks-archive-publication",
     "fileInputs": [],
     "parameterSet": {
