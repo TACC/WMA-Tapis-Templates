@@ -5,7 +5,7 @@
     "host": "cloud.data.tacc.utexas.edu",
     "effectiveUserId": "${apiUserId}",
     "defaultAuthnMethod": "TMS_KEYS",
-    "rootDir": "/data/designsafe/mydata",
+    "rootDir": "/corral/projects/NHERI/shared",
     "port": 22,
     "canExec": false,
     "notes": {

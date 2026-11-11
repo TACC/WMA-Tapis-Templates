@@ -44,7 +44,7 @@
                     "name": "Jupyter Mounts",
                     "description": "Mount for user work and persistent jupyter env",
                     "inputMode": "FIXED",
-                    "arg": "--bind $HOME/.jupyter-lab-hpc:/home/jovyan/work,${STOCKYARD}:/home/jovyan/work/Work,/data/designsafe/mydata/${_tapisJobOwner}:/home/jovyan/work/MyData",
+                    "arg": "--bind $HOME/.jupyter-lab-hpc:/home/jovyan/work,${STOCKYARD}:/home/jovyan/work/Work,/data/designsafe/mydatavast/${_tapisJobOwner}:/home/jovyan/work/MyData",
                     "notes": {
                         "isHidden": true
                     }

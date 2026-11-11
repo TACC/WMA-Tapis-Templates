@@ -57,7 +57,7 @@ export APPTAINER_TMPDIR="${_tapisJobWorkingDir}/tmp"
 mkdir -p -m 700 "${_tapisJobWorkingDir}/tmp"
 
 # Define container binds
-USER_MYDATA="/data/designsafe/mydata/${_tapisJobOwner}"
+USER_MYDATA="/corral/main/projects/NHERI/shared/${_tapisJobOwner}"
 USER_WORK="/work/${_TAS_DIR}"
 CONTAINER_HOME="${USER_MYDATA}/.opensees-interactive"
 mkdir -p "${CONTAINER_HOME}/MyData" "${CONTAINER_HOME}/MyProjects" "${CONTAINER_HOME}/NEES" "${CONTAINER_HOME}/CommunityData" "${CONTAINER_HOME}/NHERI-Published" "${CONTAINER_HOME}/Work"

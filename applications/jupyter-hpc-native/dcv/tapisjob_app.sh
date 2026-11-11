@@ -48,9 +48,9 @@ then
 fi
 
 # Make symlink for MyData if it exists
-if [ -d /data/designsafe/mydata/${_tapisJobOwner} ];
+if [ -d /data/designsafe/mydatavast/${_tapisJobOwner} ];
 then
-    ln -sf /data/designsafe/mydata/${_tapisJobOwner} $JUPYTER_HOME/MyData
+    ln -sf /data/designsafe/mydatavast/${_tapisJobOwner} $JUPYTER_HOME/MyData
 fi
 
 # Load custom kernelspec if defined
