@@ -1,0 +1,16 @@
+{
+    "id": "ctrn.project.root",
+    "description": "Corral Projects Root System",
+    "systemType": "LINUX",
+    "owner": "wma_prtl",
+    "host": "cloud.data.tacc.utexas.edu",
+    "effectiveUserId": "${apiUserId}",
+    "defaultAuthnMethod": "TMS_KEYS",
+    "rootDir": "/corral/utdmc/DBS25002/projects",
+    "port": 22,
+    "canExec": false,
+    "tags": [],
+    "notes": {
+        "count": 0
+    }
+}
