@@ -96,6 +96,20 @@ TAPIS_CLIENTS = {
         #     "access_token": os.getenv("OIDC_PROD_ACCESS_TOKEN"),
         # },
     ],
+    "CTRN": [
+        # {
+        #     "base_url": "https://ctrn-portal.develop.tapis.io",
+        #     "access_token": os.getenv("CTRN_DEV_ACCESS_TOKEN"),
+        # },
+        # {
+        #     "base_url": "https://ctrn-portal.staging.tapis.io",
+        #     "access_token": os.getenv("CTRN_STAGING_ACCESS_TOKEN"),
+        # },
+        {
+            "base_url": "https://ctrn-portal.tapis.io",
+            "access_token": os.getenv("CTRN_PROD_ACCESS_TOKEN"),
+        },
+    ],
 }
 
 USER_CREDENTIAL_PRIVATE_KEY = os.getenv("USER_CREDENTIAL_PRIVATE_KEY")
