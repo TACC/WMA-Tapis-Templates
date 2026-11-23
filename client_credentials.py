@@ -110,6 +110,12 @@ TAPIS_CLIENTS = {
             "access_token": os.getenv("CTRN_PROD_ACCESS_TOKEN"),
         },
     ],
+    "NAIRR": [
+        {
+            "base_url": "https://nairr-oc.tapis.io",
+            "access_token": os.getenv("NAIRR_OC_PROD_ACCESS_TOKEN"),
+        },
+    ],
 }
 
 USER_CREDENTIAL_PRIVATE_KEY = os.getenv("USER_CREDENTIAL_PRIVATE_KEY")
